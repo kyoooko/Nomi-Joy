@@ -1,24 +1,34 @@
-# README
+# Nomi-joy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+【飲み会の準備を便利に、楽しく】
+幹事さんと参加者双方に向けた、飲み会の準備を便利に楽しくサポートするサービスです。
 
-Things you may want to cover:
+### サイトテーマ
+飲み会準備サポートサービス
 
-* Ruby version
+### テーマを選んだ理由
+前職で会社の飲み会の幹事をすることがありましたが、人数が多かったため出欠管理や会費徴収の管理が大変でした。
+また忘年会や送別会のシーズンになると飲み会が月に何件も重なり、「どの飲み会をどこまで準備できているんだっけ？」「○○さんからこの前の会費をまだいただいてないけど目上の方だから何度もお願いしにくいな・・・」「○○さんが欠席したのはどの飲み会だったっけ？」などと混乱してしまうことがありました。
+私のように、幹事をしてこのように大変な経験をしたことは多いはず・・・そのような人たちが少しでも便利にかつ楽しく準備できるようなサービスを作りたい、という思いからこのサービスを制作しました。また同時に、飲み会の参加者側も便利に利用いただけるサービスを目指しました。
 
-* System dependencies
+### ターゲットユーザ
+* 会社の飲み会の幹事を任され管理を行いたい人
+* 飲み会の参加者全般
 
-* Configuration
+### 主な利用シーン
+飲み会の準備期間中
 
-* Database creation
+【幹事側】
+* 会社の飲み会（中〜大人数規模）の幹事として、決定事項の記録、参加者への情報共有、会費徴収管理をしたいとき
+* 幹事をする飲み会が多数あり、それぞれの進捗管理を行いたいとき
 
-* Database initialization
+【参加者側】
+* 飲み会の情報（場所、会費など）を確認したいとき
+* 幹事に出欠などについて連絡をしたいとき
 
-* How to run the test suite
+## 設計書
 
-* Services (job queues, cache servers, search engines, etc.)
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pqhcQ/edit#gid=1830135488
 
-* Deployment instructions
-
-* ...
