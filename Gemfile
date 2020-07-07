@@ -39,6 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+    # テスト
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -60,3 +62,22 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Bootstrap及びjQuery
+gem 'bootstrap', '~> 4.5.0'
+gem 'jquery-rails'
+# ログイン機能
+gem 'devise'
+# 画像投稿
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+# ページネーション
+gem 'kaminari', '~> 1.2.1'
+# デバッグ
+gem 'pry-byebug'
+# 静的解析ツール
+gem 'rubocop-airbnb'
+# 論理削除
+gem 'paranoia'
+# カレンダー
+gem 'simple_calendar', '~> 2.0'
