@@ -1,0 +1,44 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";   
+@import "simple_calendar";     
+
+// 色
+/* public側 */
+/* background-color:#1b515c; */
+/* 幹事の部屋 */
+/* background-color:#267594; */
+/* グレーはeeeに統一
+background-color:#eee; */
+/* 紫 */
+/* background-color: rgb(200, 142, 207); */
+// 濃い緑
+/* background-color:#153940; */
+/* 少し濃いグレー
+background-color: #dfdfdf; */
+
+/* 共通 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color:#1b515c;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
