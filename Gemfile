@@ -81,3 +81,10 @@ gem 'rubocop-airbnb'
 gem 'paranoia'
 # カレンダー
 gem 'simple_calendar', '~> 2.0'
+# 環境変数
+gem 'dotenv-rails'
+
+group :production do
+# 本番環境はmysql
+  gem 'mysql2'
+end
