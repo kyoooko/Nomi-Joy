@@ -33,3 +33,4 @@
 # 追記
 .DS_Store
 /vendor
+/.env
