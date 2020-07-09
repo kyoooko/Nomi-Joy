@@ -45,3 +45,69 @@
     float: none;
   }
 }
+
+// メンバーページ（index)
+/* タブ(リンク)（修正要：hoverのとき白くなる） */
+.members-tab-link{
+  width:150px;
+  height:50px;
+  font-size: 120%;
+  padding-top: 3px;
+  color: #1b515c;
+}
+.members-tab-link:hover{
+  color: #1b515c;
+  border-color: #eee !important;
+  border-radius: 10px 10px 0 0;
+}
+.nav-link.active{
+  background-color: #1b515c !important;
+  color: #fff !important;
+  border-color: #1b515c !important;
+  border-radius: 10px 10px 0 0;
+}
+.nav-tabs {
+  border-color: #1b515c;
+}
+// タブ（中身）
+#members,#follow{
+  padding-top: 5%;
+}
+// タブ１
+#members{
+  height: 100vh;
+}
+.members-search-form{
+  display: flex;
+  justify-content: center;
+}
+.members-table td{
+  padding-top: 30px;
+}
+.content__block--menbers table{
+  font-size: 12px;
+  }
+/* タブ２ */
+.content__block__following,.content__block__followed,.content__block__search-users{
+  margin-bottom: 10%;
+}
+.content__block__following table,.content__block__followed table,.content__block__search-users table{
+  font-size: 12px;
+  }
+  .content__block__search-users{
+    background-color: #eee;
+    border-radius: 20px;
+    padding: 10px 5%;
+  }
+  .block-hedding{
+    margin-bottom: 5%;
+  }
+  @media (max-width: 767px) {
+    // ヘッダーと見出しが被らないようにする
+    .heading--non-underline{
+      margin-top: 10%;
+    }
+  }
+  
+
+

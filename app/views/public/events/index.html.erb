@@ -18,7 +18,8 @@
           <tbody>
             <tr>
               <th scope="row">ノミカイ名</th>
-              <td><a class="today-link" href="#">2020年3課暑気払い</a></td>
+              <%# 下記event_path(@event)に変更する %>
+              <td><%= link_to events_path,class:"today-link" do %>2020年3課暑気払い<% end %></td>
             </tr>
             <tr>
               <th scope="row">日時</th>
@@ -43,7 +44,8 @@
             <tr>
               <th scope="row">幹事</th>
               <td>オーシャンティック航空 東自損３課 飯田恭子</td>
-              <td><input type="submit" name="commit" value="カンジに連絡する" class="btn green-btn" data-disable-with=""></td>
+              <%# 下記room_path（ルームの相手ユーザーIDが@user.idになるように変更要 %>
+              <td><%= link_to rooms_path,class:"" do %><input type="submit" name="commit" value="カンジに連絡する" class="btn green-btn" data-disable-with=""><% end %></td>
             </tr>
           </tbody>
         </table>

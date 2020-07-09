@@ -1,2 +1,42 @@
-<h1>Public::Notifications#index</h1>
-<p>Find me in app/views/public/notifications/index.html.erb</p>
+<header class="public-header">
+  <%= render 'public/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar">
+    <%= render 'public/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+        <h1 class="heading__en">Notice</h1>
+        <h3 class="heading__ja">通知一覧</h3>
+      </div>
+      <div class="content">
+      <%# 後ほどリンク先変更用（direct_message_path, method: :delete) %>
+        <%= link_to "ゴミ箱マーク", root_path, class:"btn small-btn green-btn dm-destroy-btn" %>
+        <table class="table notice-table">
+          <tbody>
+            <tr>
+              <%# 後ほどuser_path(@user)に変更要 %>
+              <%# 後ほどroom_path(@user)に変更要 %>
+              <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
+              <td><%= link_to user_path(1),class:"" do %>井上理絵<% end %>さんから  <%= link_to rooms_path,class:"" do %>ダイレクトメッセージ<% end %>を受信しました。</td>
+            </tr>
+            <tr>
+              <%# 後ほどuser_path(@user)に変更要 %>
+              <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
+              <td><%= link_to user_path(1),class:"" do %>大野潤<% end %>さんがフォローしました。</td>
+            </tr>
+            <tr>
+              <%# 後ほどuser_path(@user)に変更要 %>
+              <%# 後ほどevent_path(@event)に変更要 %>
+              <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
+              <td><%= link_to user_path(1),class:"" do %>池本菜緒<% end %>さんへ<%= link_to event_path(1),class:"" do %>6/15 ３課女子会<% end %>の会費を支払いました。</td>
+            </tr>
+            <tr>
+              <%# 後ほどuser_path(@user)に変更要 %>
+              <%# 後ほどevent_path(@event)に変更要 %>
+              <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
+              <td><%= link_to user_path(1),class:"" do %>森本瑠奈<% end %>さんから<%= link_to event_path(1),class:"" do %>6/18 自動車営業部３課懇親会<% end %>の会費を支払い確認依頼が届いています。</td>
+            </tr>
+          </tbody>
+        </table>

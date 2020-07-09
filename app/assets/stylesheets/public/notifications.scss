@@ -1,3 +1,12 @@
 // Place all the styles related to the public/notifications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.notice-table td{
+  width:80%;
+  padding-top: 30px;
+}
+.dm-destroy-btn{
+  float: right;
+  margin-bottom: 5%;
+}

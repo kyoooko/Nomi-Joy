@@ -8,6 +8,14 @@
     color:$public-main !important;
   }
 }
+.small-btn{
+  font-size: 12px;
+}
+// 画像（丸型・小）
+.small-image{
+  width:80px;
+  border-radius: 50%;
+ }
  /* フォーム（ログイン、サインイン） */
  .input-form{
   line-height: 200%;
