@@ -1,0 +1,128 @@
+<header class="public-header">
+  <%= render 'public/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar">
+    <%= render 'public/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+      <span class="heading__top-welcome">Welcome to</span>
+      <div class="heading__top-logo"><%= image_tag("Nomi-Joy_letter.png", class: "public-top-logo") %></div>
+    </div>
+    <div class="content">
+      <!-- 今日の飲み会 -->
+      <div class="content__block--today">
+        <h2 class="block-hedding">Today's Nomikai</h2>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th scope="row">ノミカイ名</th>
+              <td><a class="today-link" href="#">2020年3課暑気払い</a></td>
+            </tr>
+            <tr>
+              <th scope="row">日時</th>
+              <td>7/10 &emsp; 18:00-21:00</td>
+            </tr>
+            <tr>
+              <th scope="row">場所</th>
+              <td>上海庭 九段下駅前店</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>東京メトロ東西線九段下駅徒歩５分</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>千代田区三番町0−0−0</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>https://github.com/twbs/bootstrap-rubygem</td>
+            </tr>
+            <tr>
+              <th scope="row">幹事</th>
+              <td>オーシャンティック航空 東自損３課 飯田恭子</td>
+              <td><input type="submit" name="commit" value="カンジに連絡する" class="btn green-btn" data-disable-with=""></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- カレンダー -->
+      <div class="content__block--calender">
+        <h2 class="block-hedding">2020/7</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">月</th>
+              <th scope="col">火</th>
+              <th scope="col">水</th>
+              <th scope="col">木</th>
+              <th scope="col">金</th>
+              <th scope="col">土</th>
+              <th scope="col">日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>18:00-20:00<br>３課加藤さん送別会<br>上海庵</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>18:00-20:00<br>営業懇親会<br>ベルサイユの豚</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr><tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr><tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- 未払い飲み会一覧 -->
+      <div class="content__block__unpaid">
+        <h2 class="block-hedding">未払いの飲み会一覧</h2>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th scope="row">6/25 (金）</th>
+              <td>３課歓迎会</td>
+              <td>3500円</td>
+              <td>東自損3課 &emsp;飯田恭子</td>
+            </tr>
+            <tr>
+              <th scope="row">6/30 (火）</th>
+              <td>日本酒の会</td>
+              <td>4000円</td>
+              <td>東自損3課 &emsp;森本瑠奈</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- フッター -->
+    <!-- <div class="footer fixed-bottom">©Nomi-Joy!.inc</div> -->
+  </div>
+</main>

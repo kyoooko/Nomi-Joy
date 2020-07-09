@@ -1,0 +1,68 @@
+<header class="public-header">
+  <%= render 'public/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar">
+    <%= render 'public/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+      <h1 class="heading__en">My page</h1>
+      <h3 class="heading__ja">マイページ</h3>
+    </div>
+    <div class="content row">
+      <div class="content__block col-sm-4">
+        <%= image_tag("ajisai.JPG", class: "mypage-image") %>
+      </div>
+      <div class="content__block--data col-sm-8">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th scope="row">氏名</th>
+              <td>飯田恭子</td>
+            </tr>
+            <tr>
+              <th scope="row">所属</th>
+              <td>オーシャニック株式会社 東自損３課</td>
+            </tr>
+            <tr>
+              <th scope="row">役職</th>
+              <td>副主任</td>
+            </tr>
+            <tr>
+              <th scope="row">Email</th>
+              <td>111@yahoo.co.jp</td>
+            </tr>
+            <tr>
+              <th scope="row">ノミジョイ！ID</th>
+              <td>hogehoge1</td>
+            </tr>
+            <tr>
+              <th scope="row">最寄駅</th>
+              <td>吉祥寺駅</td>
+            </tr>
+            <tr>
+              <th scope="row">お酒を飲むか</th>
+              <td>飲む</td>
+            </tr>
+            <tr>
+              <th scope="row">好きな料理・お酒</th>
+              <td>スパイスカレー、もんじゃ焼き、ワイン</td>
+            </tr>
+            <tr>
+              <th scope="row">苦手な料理・お酒</th>
+              <td>焼酎、胡麻豆腐</td>
+            </tr>
+            <tr>
+              <th scope="row">自己紹介</th>
+              <td>新入社員の飯田です。学生時代はバレーボール部に所属していました。白ワインが好きです。よろしくお願いいたします。</td>
+            </tr>
+          </tbody>
+        </table>
+        <%= link_to "Edit", edit_user_path(current_user), class:"btn mypage-btn green-btn" %>
+      </div>
+    </div>
+    <!-- フッター -->
+    <!-- <div class="footer fixed-bottom">©Nomi-Joy!.inc</div> -->
+  </div>
+</main>

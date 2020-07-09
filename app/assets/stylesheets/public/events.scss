@@ -1,0 +1,36 @@
+// Place all the styles related to the public/Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// index(ログイン後トップ）
+.heading__top-welcome{
+  font-size: 40px;
+}
+.public-top-logo{
+  width: 60%;
+  margin-top: 1%;
+}
+.content__block--today{
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 5%;
+  margin-top:5%;
+  margin-bottom: 10%;
+}
+.content__block__unpaid{
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 5%;
+  margin-top:5%;  
+}
+// 飲み会名を大きく表示
+.content__block--today tr:first-child td{
+  font-size: 150%;
+  font-weight: bold;
+}
+
+ @media (max-width: 767px) {
+  .heading__top-welcome{
+  font-size: 20px;
+  }
+}

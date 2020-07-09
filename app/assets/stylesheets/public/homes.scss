@@ -1,0 +1,64 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
+@import "public/custom";
+
+.container{
+  text-align: center;
+}
+.main-visual{
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color:$main;
+}
+.main-visual__logo{
+  width:300px;
+  height:300px;
+}
+.main-visual__catch-copy{
+  margin: 50px 0 50px 0;
+}
+ .about__heading{
+  margin: 0 auto;
+  text-align: center;
+  height:100px;
+  line-height: 100px;
+  background-color: $public-main;
+  color:$white;
+ }
+ .about_heading-logo{
+  height:60px;
+ }
+ .about__content{
+  text-align: center;
+  /* contaner使用しないかわり（今後レスポンシブ対応要） */
+  padding: 50px 50px;
+  background-color:$white-gray;
+ }
+ .about-all{
+   /* contaner使用しないかわり（今後レスポンシブ対応要） */
+  padding: 50px 50px 100px 50px;
+ }
+ .about-2way{
+  display: flex;
+  justify-content: space-around;
+ }
+ .about-Nomi-Joy__logo,.about-Kanjino-Heya__logo{
+  width:200px;
+  height:200px;
+  margin-bottom: 30px;
+ }
+ .about-Nomi-Joy__content,.about-Kanjino-Heya__content{
+   height:300px;
+   margin-bottom:30px;
+   background-color: $light-gray;
+ }
+ footer{
+  height:80px;
+  line-height: 80px;
+  background-color:$white-gray;
+  background-color:$main;
+ }
+/* @media (max-width: 767px) {
+} */

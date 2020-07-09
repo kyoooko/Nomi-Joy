@@ -1,0 +1,164 @@
+<header class="public-header">
+  <%= render 'public/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar">
+    <%= render 'public/logging_in_slidebar' %>
+  </div>  
+
+
+
+
+
+   <div class="body">
+      <div class="heading--non-underline">
+        <h1 class="heading__en">Members & Follow</h1>
+        <h3 class="heading__ja">メンバー & フォロー</h3>
+      </div>
+      <div class="content">
+        <!-- <main class="p-3"> -->
+          <!-- タブリンク -->
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a href="#members" class="nav-link members-tab-link active" data-toggle="tab">Members</a>
+            </li>
+            <li class="nav-item">
+              <a href="#follow" class="nav-link members-tab-link" data-toggle="tab">Follow</a>
+            </li>
+          </ul>
+          <!-- タブ中身 -->
+          <div class="tab-content">
+            <!-- タブ① -->
+            <div id="members" class="tab-pane active">
+              <!-- メンバー検索 -->
+              <div class="content__block--search-members">
+                <form class="members-search-form">  
+                  <div class="form-group col-3">
+                      <select class="form-control">
+                          <option>氏名</option>
+                          <option>会社名・所属</option>
+                      </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <input type="text" class="form-control">
+                  </div>
+                </form>
+              </div>
+              <div class="content__block--menbers"> 
+                <table class="table members-table">
+                  <tbody>
+                    <tr>
+                      <th scope="row"><a class="" href="#"><img class="small-image" src="../../images/ajisai.JPG"></a></th>
+                      <td>オーシャンティック航空（株） 東自損3課</td>
+                      <td>副主任</td>
+                      <td>飯田恭子</td>
+                      <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
+                      <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a class="" href="#"><img class="small-image" src="../../images/ajisai.JPG"></a></th>
+                      <td>青山商事（株） 総務２部１チーム</td>
+                      <td>主任</td>
+                      <td>秋山千紘</td>
+                      <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
+                      <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a class="" href="#"><img class="small-image" src="../../images/ajisai.JPG"></a></th>
+                      <td>ワークスインターナショナル 営業４部１課</td>
+                      <td>課長代理</td>
+                      <td>西沢渉</td>
+                      <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
+                      <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+             <!-- タブ② -->
+            <div id="follow" class="tab-pane">
+              <div class="content__block__search-users">
+                <h2 class="block-hedding">ユーザーを探す</h2>
+                  <form class="members-search-form">  
+                    <div class="form-group col-3">
+                        <label for="">ノミジョイ！ID</label>
+                    </div>
+                    <div class="form-group col-6">
+                      <input type="text" class="form-control">
+                    </div>
+                  </form>
+              </div>
+              <div class="content__block__followed">
+                <h2 class="block-hedding">承認依頼の来ているユーザー</h2>
+                <table class="table members-table">
+                  <tbody>
+                    <tr>
+                      <th scope="row"><a class="" href="#"><img class="small-image" src="../../images/ajisai.JPG"></a></th>
+                      <td>オーシャンティック航空（株） 東自損3課</td>
+                      <td>副主任</td>
+                      <td>飯田恭子</td>
+                      <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
+                      <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a class="" href="#"><img class="small-image" src="../../images/ajisai.JPG"></a></th>
+                      <td>青山商事（株） 総務２部１チーム</td>
+                      <td>主任</td>
+                      <td>秋山千紘</td>
+                      <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
+                      <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="content__block__following">
+                <h2 class="block-hedding">申請中のユーザー</h2>
+                <table class="table members-table">
+                  <tbody>
+                    <tr>
+                      <th scope="row"><a class="" href="#"><img class="small-image" src="../../images/ajisai.JPG"></a></th>
+                      <td>オーシャンティック航空（株） 東自損3課</td>
+                      <td>副主任</td>
+                      <td>飯田恭子</td>
+                      <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
+                      <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a class="" href="#"><img class="small-image" src="../../images/ajisai.JPG"></a></th>
+                      <td>青山商事（株） 総務２部１チーム</td>
+                      <td>主任</td>
+                      <td>秋山千紘</td>
+                      <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
+                      <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        <!-- </main> -->
+
+
+
+      </div>
+      <!-- フッター -->
+      <!-- <div class="footer fixed-bottom">©Nomi-Joy!.inc</div> -->
+    </div>
+  </main>
+</body>
+
+
+
+
+  <div class="body">
+    <div class="heading">
+      <h1 class="heading__en">My page</h1>
+      <h3 class="heading__ja">マイページ</h3>
+    </div>
+    <div class="content row">
+
+    </div>
+    <!-- フッター -->
+    <!-- <div class="footer fixed-bottom">©Nomi-Joy!.inc</div> -->
+  </div>
+</main>

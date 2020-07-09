@@ -1,0 +1,74 @@
+<header class="public-header">
+  <%= render 'public/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar">
+    <%= render 'public/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+      <div class="heading">
+        <h1 class="heading__en">My page</h1>
+        <h3 class="heading__ja">マイページ</h3>
+        <h2 class="heading__sub">Edit</h2>
+      </div>
+      <div class="content row">
+        <div class="col-sm-4">
+          <%= image_tag("ajisai.JPG", class: "mypage-image") %>
+        </div>
+        <div class="content__block--data col-sm-8">
+          <form class="" id="edit_book_25796" action="/books/25796" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th scope="row">氏名</th>
+                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="飯田恭子" name="" id=""></td>
+                </tr>
+                <tr>
+                  <th scope="row">所属</th>
+                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="オーシャニック株式会社 東自損３課" name="" id=""></td>
+                </tr>
+                <tr>
+                  <th scope="row">役職</th>
+                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="副主任" name="" id=""></td>
+                </tr>
+                <tr>
+                  <th scope="row">Email</th>
+                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="111@yahoo.co.jp" name="" id=""></td>
+                </tr>
+                <tr>
+                  <th scope="row">ノミジョイ！ID</th>
+                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="hogehoge1" name="" id=""></td>
+                </tr>
+                <tr>
+                  <th scope="row">最寄駅</th>
+                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="吉祥寺駅" name="" id=""></td>
+                </tr>
+                <tr>
+                  <th scope="row">お酒を飲むか</th>
+                  <td><input type="radio" name="gender" value="true" disabled/>飲む
+                    <input type="radio" name="gender" value="false"/>飲まない</td>
+                </tr>
+                <tr>
+                  <th scope="row">好きな料理・お酒</th>
+                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="スパイスカレー、もんじゃ焼き、ワイン" name="" id=""></td>
+                </tr>
+                <tr>
+                  <th scope="row">苦手な料理・お酒</th>
+                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="焼酎、胡麻豆腐" name="" id=""></td>
+                </tr>
+                <tr>
+                  <th scope="row">自己紹介</th>
+                  <td><textarea class="col-xs-12 mypage-edit-textarea" name="" id="">新入社員の飯田です。学生時代はバレーボール部に所属していました。白ワインが好きです。よろしくお願いいたします。</textarea></td>
+                </tr>
+              </tbody>
+            </table>
+           <input type="submit" name="commit" value="Update" class="btn mypage-btn green-btn" data-disable-with=""> 
+            <%# <div class="actions"> %>
+              <%#= f.submit "Update", class: "btn mypage-btn green-btn" %>
+            <%# </div> %>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>

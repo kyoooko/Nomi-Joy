@@ -1,0 +1,55 @@
+<header class="public-header">
+  <%= render 'public/logging_out_header' %>
+</header>
+<main class="row">
+  <div class="sidebar">
+     <%= render 'public/logging_out_slidebar' %> 
+  </div>  
+  <div class="body body--logging-out">
+    <div class="heading">
+      <h1 class="heading__en">Sign up</h1>
+      <h3 class="heading__ja">新規登録</h3>
+    </div>
+    <div class="content">
+      <div class="content__block--new_user">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "public/users/shared/error_messages", resource: resource %>
+          <div class="field">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: true, autocomplete: "name",class:"input-form" %>
+          </div>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"input-form" %>
+          </div>
+          <div class="field">
+            <%= f.label :nomi_joy_id,"ノミジョイ！ID" %><br />
+            <%= f.text_field :nomi_joy_id, autofocus: true, autocomplete: "nomi_joy_id",class:"input-form" %>
+          </div>
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password",class:"input-form" %>
+          </div>
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"input-form" %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Sign up", class: "btn btn-lg login-btn green-btn" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+  
+
+  
+
+

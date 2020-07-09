@@ -1,0 +1,41 @@
+<header class="public-header">
+  <%= render 'public/logging_out_header' %>
+</header>
+<main class="row">
+  <div class="sidebar">
+     <%= render 'public/logging_out_slidebar' %> 
+  </div>  
+  <div class="body body--logging-out">
+    <div class="heading">
+      <h1 class="heading__en">Login</h1>
+      <h3 class="heading__ja">ログイン</h3>
+    </div>
+    <div class="content">
+      <div class="content__block--new_user">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"input-form" %>
+          </div>
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password",class:"input-form" %>
+          </div>
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me,id:"remember_me" %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+          <div class="actions">
+            <%= f.submit "Login", class: "btn btn-lg login-btn green-btn" %>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to new_user_password_path,class:"content__block--forget-pass" do %>Forgot your password?<% end %>
+    </div>
+  </div>
+</main>
