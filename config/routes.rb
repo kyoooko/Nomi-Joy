@@ -8,24 +8,29 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     resources :events, only: [:show, :index]
-    resources :users, only: [:show, :edit, :index]
-    resources :relationships, only: [:create, :destroy]
+    resources :users, only: [:show, :edit, :index,:update] do
+      resource :relationships, only: [:create, :destroy]
+      get :follows, on: :member 
+      get :followers, on: :member 
+    end
     resources :rooms, only: [:show, :index, :create]
     resources :direct_messages, only: [:create]
     resources :notifications, only: [:index, :destroy]
-    resources :searches, only: [:find_user, :find_member]
+    get 'searches/find_member'
+    get 'searches/find_user'
   end
 
   namespace :admin do
-    resources :users, only: [:show, :destroy]
-    get 'events/progress_status_update' => "events#progress_status_update"
+    resources :users, only: [:show, :destroy] 
+    # 下記メンバー使用のルーティングに変更要
+    resources :events, only: [:show, :index, :edit, :create, :update, :destroy]
+    get 'events/progress_status_update'
     get 'events/fee_status_update'
     get 'events/confirm_plan_remind'
     get 'events/send_plan_remind'
     get 'events/step1'
     get 'events/step2'
     get 'events/confirm'
-    resources :events, only: [:show, :index, :edit, :create, :update, :destroy]
     get 'event_users/fee_status_update'
     resources :rooms, only: [:show, :index, :create]
     resources :direct_messages, only: [:create]

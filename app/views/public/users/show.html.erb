@@ -2,7 +2,7 @@
   <%= render 'public/logging_in_header' %>
 </header>
 <main class="row">
-  <div class="sidebar">
+  <div class="sidebar public-sidebar">
     <%= render 'public/logging_in_slidebar' %>
   </div>  
   <div class="body">
@@ -11,58 +11,62 @@
       <h3 class="heading__ja">マイページ</h3>
     </div>
     <div class="content row">
-      <div class="content__block col-sm-4">
-        <%= image_tag("ajisai.JPG", class: "mypage-image") %>
+      <div class="content__block--mypage-image col-sm-4">
+        <%= attachment_image_tag current_user, :image, format: 'jpeg', size: "300x300", fallback: "no_image.jpg", class:"mypage-image" %>
       </div>
       <div class="content__block--data col-sm-8">
         <table class="table table-borderless">
           <tbody>
             <tr>
               <th scope="row">氏名</th>
-              <td>飯田恭子</td>
+              <td><%= current_user.name %></td>
             </tr>
             <tr>
               <th scope="row">所属</th>
-              <td>オーシャニック株式会社 東自損３課</td>
+              <td><%= current_user.belongs %></td>
             </tr>
             <tr>
               <th scope="row">役職</th>
-              <td>副主任</td>
+              <td><%= current_user.position %></td>
             </tr>
             <tr>
               <th scope="row">Email</th>
-              <td>111@yahoo.co.jp</td>
+              <td><%= current_user.email %></td>
             </tr>
             <tr>
               <th scope="row">ノミジョイ！ID</th>
-              <td>hogehoge1</td>
+              <td><%= current_user.nomi_joy_id %></td>
             </tr>
             <tr>
               <th scope="row">最寄駅</th>
-              <td>吉祥寺駅</td>
+              <td><%= current_user.nearest_station %></td>
             </tr>
             <tr>
               <th scope="row">お酒を飲むか</th>
-              <td>飲む</td>
+              <td>
+                <% if current_user.can_drink == true %>
+                  飲む
+                <% else %>
+                  飲まない
+                <% end %>
+              </td>
             </tr>
             <tr>
               <th scope="row">好きな料理・お酒</th>
-              <td>スパイスカレー、もんじゃ焼き、ワイン</td>
+              <td><%= current_user.favolite %></td>
             </tr>
             <tr>
               <th scope="row">苦手な料理・お酒</th>
-              <td>焼酎、胡麻豆腐</td>
+              <td><%= current_user.unfavolite %></td>
             </tr>
             <tr>
               <th scope="row">自己紹介</th>
-              <td>新入社員の飯田です。学生時代はバレーボール部に所属していました。白ワインが好きです。よろしくお願いいたします。</td>
+              <td><%= current_user.introduction %></td>
             </tr>
           </tbody>
         </table>
         <%= link_to "Edit", edit_user_path(current_user), class:"btn mypage-btn green-btn" %>
       </div>
     </div>
-    <!-- フッター -->
-    <!-- <div class="footer fixed-bottom">©Nomi-Joy!.inc</div> -->
   </div>
 </main>

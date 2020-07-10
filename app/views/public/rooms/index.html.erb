@@ -1,2 +1,55 @@
-<h1>Public::Rooms#index</h1>
-<p>Find me in app/views/public/rooms/index.html.erb</p>
+<header class="public-header">
+  <%= render 'public/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar public-sidebar">
+    <%= render 'public/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+        <h1 class="heading__en">Direct message</h1>
+        <h3 class="heading__ja">ダイレクトメッセージ</h3>
+      </div>
+      <div class="content">
+        <div class="content__block--search">
+          <form class="dm-search-form">  
+            <div class="form-group col-3">
+                <select class="form-control">
+                    <option>氏名</option>
+                    <option>会社名・所属</option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+              <input type="text" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="content__block--dm-menbers">
+          <table class="table dm-table">
+            <tbody>
+              <% @members.each do |member| %>
+                <tr>
+                  <th scope="row"><%= link_to user_path(member),class:"" do %><%= attachment_image_tag member, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+                  <td><%= member.name %></td>
+                  <td><%= member.belongs %></td>
+                  <td><%= member.position %></td>
+                  <td>
+                    <% if current_user != member %>
+                      <% if member.followed_by?(current_user) %>
+                          <p><%=link_to "フォロー済み", user_relationships_path(member.id), method: :delete, class:"btn small-btn white-btn" %></p>
+                      <% else %>
+                          <p><%=link_to "フォローする", user_relationships_path(member.id), method: :post, class:"btn small-btn green-btn" %></p>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <%# 対応要 %>
+                  <td><%#=link_to "DMを開始", rooms_path(@room.id), method: :post, class:"btn small-btn green-btn" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

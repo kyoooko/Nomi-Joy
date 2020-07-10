@@ -1,2 +1,33 @@
-<h1>Public::Rooms#show</h1>
-<p>Find me in app/views/public/rooms/show.html.erb</p>
+<header class="public-header">
+  <%= render 'public/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar public-sidebar">
+    <%= render 'public/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading dm-show-heading sticky-top">
+      <h1 class="heading__en">DM room</h1>
+      <h3 class="heading__ja">DMルーム</h3>
+      <%# 後ほどuser_path(@user)に変更要 %>
+      <div class="heading__image"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "responsive-dm-image") %><% end %></div>
+      <div class="heading__name"><%= link_to user_path(1),class:"" do %>井上唯<% end %></div>
+    </div>
+    <div class="content dm-content">
+      <div class="content__block--exchange row">
+        <div class="other col-7">
+          <div class="other__image"><%= image_tag("ajisai.JPG", class: "dm-small-image") %></div>
+          <p style="text-align: left; color:#93559b;" class="message other__message">すみません、７／５の暑気払い、子供の関係でいけなくなってしまいました。お手数かけますが欠席でお願いします。</p>
+        </div>
+        <div class="self col-5">
+          <br><br><br><br>
+          <p style="text-align: right; color:#1b515c;" class="message">承知しました！ご連絡ありがとうございます。</p>
+        </div>
+      </div>
+      <div class="content__block--dm-form">
+        <textarea class="dm-form__textarea" name="" id=""></textarea>
+        <input type="submit" name="commit" value="送信マーク" class="btn green-btn dm-form__btn" data-disable-with="">
+      </div>
+    </div>
+  </div>
+</main>

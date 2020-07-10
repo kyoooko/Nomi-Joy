@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "../colors";
-@import "custom";
 
 // ログイン・サインアップページ
 .sign-up-btn,.login-btn{
@@ -14,7 +13,7 @@
 /* マイページ */
 .mypage-image{
   border-radius: 50%;
-  width:100%;
+  width:105%;
 }
 .mypage-edit-form,.mypage-edit-textarea{
   line-height: 200%;
@@ -45,17 +44,24 @@
     float: none;
   }
 }
+// 編集ページ
+.mypage-edit-image{
+  margin-bottom: 20px;
+}
 
-// メンバーページ（index)
+// メンバー一覧ページ
 /* タブ(リンク)（修正要：hoverのとき白くなる） */
-.members-tab-link{
+.nav-tabs {
+  border-color: #1b515c;
+}
+.public-tab-link{
   width:150px;
   height:50px;
   font-size: 120%;
   padding-top: 3px;
   color: #1b515c;
 }
-.members-tab-link:hover{
+.public-tab-link:hover{
   color: #1b515c;
   border-color: #eee !important;
   border-radius: 10px 10px 0 0;
@@ -66,9 +72,6 @@
   border-color: #1b515c !important;
   border-radius: 10px 10px 0 0;
 }
-.nav-tabs {
-  border-color: #1b515c;
-}
 // タブ（中身）
 #members,#follow{
   padding-top: 5%;
@@ -77,12 +80,13 @@
 #members{
   height: 100vh;
 }
-.members-search-form{
-  display: flex;
-  justify-content: center;
-}
-.members-table td{
-  padding-top: 30px;
+.members-table {
+  td{
+    padding-top: 30px;
+  }
+  td:first-of-type{
+    font-size: 20px;
+  }
 }
 .content__block--menbers table{
   font-size: 12px;

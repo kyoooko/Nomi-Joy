@@ -2,7 +2,7 @@
   <%= render 'public/logging_in_header' %>
 </header>
 <main class="row">
-  <div class="sidebar">
+  <div class="sidebar public-sidebar">
     <%= render 'public/logging_in_slidebar' %>
   </div>  
   <div class="body">
@@ -11,64 +11,63 @@
         <h3 class="heading__ja">マイページ</h3>
         <h2 class="heading__sub">Edit</h2>
       </div>
-      <div class="content row">
-        <div class="col-sm-4">
-          <%= image_tag("ajisai.JPG", class: "mypage-image") %>
-        </div>
-        <div class="content__block--data col-sm-8">
-          <form class="" id="edit_book_25796" action="/books/25796" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓">
+      <%= form_with(model: @user, local: true) do |f| %>
+        <div class="content row">
+          <div class="col-sm-4">
+            <%= attachment_image_tag @user, :image, format: 'jpeg', size: "300x300", fallback: "no_image.jpg", class:"mypage-image mypage-edit-image" %>
+            <%= f.attachment_field :image %>
+          </div>
+          <div class="content__block--data col-sm-8">
             <table class="table table-borderless">
               <tbody>
                 <tr>
                   <th scope="row">氏名</th>
-                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="飯田恭子" name="" id=""></td>
+                  <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
-                  <th scope="row">所属</th>
-                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="オーシャニック株式会社 東自損３課" name="" id=""></td>
+                  <th scope="row">会社名・所属</th>
+                  <td><%= f.text_field :belongs, autofocus: true, autocomplete: "belongs", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
                   <th scope="row">役職</th>
-                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="副主任" name="" id=""></td>
+                  <td><%= f.text_field :position, autofocus: true, autocomplete: "position", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
                   <th scope="row">Email</th>
-                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="111@yahoo.co.jp" name="" id=""></td>
+                  <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
                   <th scope="row">ノミジョイ！ID</th>
-                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="hogehoge1" name="" id=""></td>
+                  <td><%= f.text_field :nomi_joy_id, autofocus: true, autocomplete: "nomi_joy_id", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
                   <th scope="row">最寄駅</th>
-                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="吉祥寺駅" name="" id=""></td>
+                  <td><%= f.text_field :nearest_station, autofocus: true, autocomplete: "nearest_station", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
                   <th scope="row">お酒を飲むか</th>
-                  <td><input type="radio" name="gender" value="true" disabled/>飲む
-                    <input type="radio" name="gender" value="false"/>飲まない</td>
+                  <td><%= f.radio_button :can_drink, true %>飲む&emsp;<%= f.radio_button :can_drink, false %> 飲まない
                 </tr>
                 <tr>
                   <th scope="row">好きな料理・お酒</th>
-                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="スパイスカレー、もんじゃ焼き、ワイン" name="" id=""></td>
+                  <td><%= f.text_field :favolite, autofocus: true, autocomplete: "favolite", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
                   <th scope="row">苦手な料理・お酒</th>
-                  <td><input class="col-xs-12  mypage-edit-form" type="text" value="焼酎、胡麻豆腐" name="" id=""></td>
+                  <td><%= f.text_field :unfavolite, autofocus: true, autocomplete: "unfavolite", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
                   <th scope="row">自己紹介</th>
-                  <td><textarea class="col-xs-12 mypage-edit-textarea" name="" id="">新入社員の飯田です。学生時代はバレーボール部に所属していました。白ワインが好きです。よろしくお願いいたします。</textarea></td>
+                  <td><%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class:"mypage-edit-textarea" %></textarea></td>
                 </tr>
               </tbody>
             </table>
-           <input type="submit" name="commit" value="Update" class="btn mypage-btn green-btn" data-disable-with=""> 
-            <%# <div class="actions"> %>
-              <%#= f.submit "Update", class: "btn mypage-btn green-btn" %>
-            <%# </div> %>
-          </form>
+            <div class="actions"> 
+              <%= f.submit "Update", class: "btn mypage-btn green-btn" %>
+            </div> 
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </main>
 </body>

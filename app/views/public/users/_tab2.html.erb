@@ -1,0 +1,76 @@
+<div class="content__block__search-users">
+  <h2 class="block-hedding">ユーザーを探す</h2>
+    <%# 検索フォーム %>
+    <%= render 'public/searches/member_search_form', find_users:@find_users %>
+</div>
+<div class="content__block__followed">
+  <h2 class="block-hedding">承認依頼の来ているユーザー</h2>
+  <table class="table members-table">
+    <tbody>
+      <% followers.each do |follower| %>
+        <tr>
+          <th scope="row"><%= link_to user_path(follower),class:"" do %><%= attachment_image_tag follower, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <td><%= follower.name %></td>
+          <td><%= follower.belongs %></td>
+          <td><%= follower.position %></td>
+          <td>
+            <% if current_user != follower %>
+              <% if follower.followed_by?(current_user) %>
+                  <p><%=link_to "フォロー済み", user_relationships_path(follower.id), method: :delete, class:"btn small-btn white-btn" %></p>
+              <% else %>
+                  <p><%=link_to "フォローする", user_relationships_path(follower.id), method: :post, class:"btn small-btn green-btn" %></p>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="content__block__followed">
+  <h2 class="block-hedding">全てのユーザー</h2>
+  <table class="table members-table">
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <th scope="row"><%= link_to user_path(user),class:"" do %><%= attachment_image_tag user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <td><%= user.name %></td>
+          <td><%= user.belongs %></td>
+          <td><%= user.position %></td>
+          <td>
+            <% if current_user != user %>
+              <% if user.followed_by?(current_user) %>
+                  <p><%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete, class:"btn small-btn white-btn" %></p>
+              <% else %>
+                  <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post, class:"btn small-btn green-btn" %></p>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="content__block__following">
+  <h2 class="block-hedding">申請中のユーザー</h2>
+  <table class="table members-table">
+    <tbody>
+        <% followings.each do |following| %>
+        <tr>
+          <th scope="row"><%= link_to user_path(following),class:"" do %><%= attachment_image_tag following, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <td><%=following.name %></td>
+          <td><%= following.belongs %></td>
+          <td><%= following.position %></td>
+          <td>
+            <% if current_user != following %>
+              <% if following.followed_by?(current_user) %>
+                  <p><%=link_to "フォロー済み", user_relationships_path(following.id), method: :delete, class:"btn small-btn white-btn" %></p>
+              <% else %>
+                  <p><%=link_to "フォローする", user_relationships_path(following.id), method: :post, class:"btn small-btn green-btn" %></p>
+              <% end %>
+            <% end %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

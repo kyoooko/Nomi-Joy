@@ -2,7 +2,7 @@
   <%= render 'public/logging_in_header' %>
 </header>
 <main class="row">
-  <div class="sidebar">
+  <div class="sidebar public-sidebar">
     <%= render 'public/logging_in_slidebar' %>
   </div>  
   <div class="body">
@@ -11,136 +11,29 @@
       <h3 class="heading__ja">メンバー & フォロー</h3>
     </div>
     <div class="content">
-      <!-- <main class="p-3"> -->
-        <!-- タブリンク -->
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a href="#members" class="nav-link members-tab-link active" data-toggle="tab">Members</a>
-          </li>
-          <li class="nav-item">
-            <a href="#follow" class="nav-link members-tab-link" data-toggle="tab">Follow</a>
-          </li>
-        </ul>
-        <!-- タブ中身 -->
-        <div class="tab-content">
-          <!-- タブ① -->
-          <div id="members" class="tab-pane active">
-            <!-- メンバー検索 -->
-            <div class="content__block--search-members">
-              <form class="members-search-form">  
-                <div class="form-group col-3">
-                    <select class="form-control">
-                        <option>氏名</option>
-                        <option>会社名・所属</option>
-                    </select>
-                </div>
-                <div class="form-group col-6">
-                  <input type="text" class="form-control">
-                </div>
-              </form>
-            </div>
-            <div class="content__block--menbers"> 
-              <table class="table members-table">
-                <tbody>
-                  <tr>
-                    <%# 後ほどuser_path(@user)に変更要 %>
-                    <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
-                    <td>オーシャンティック航空（株） 東自損3課</td>
-                    <td>副主任</td>
-                    <td>飯田恭子</td>
-                    <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
-                    <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
-                  </tr>
-                  <tr>
-                    <%# 後ほどuser_path(@user)に変更要 %>
-                    <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
-                    <td>青山商事（株） 総務２部１チーム</td>
-                    <td>主任</td>
-                    <td>秋山千紘</td>
-                    <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
-                    <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
-                  </tr>
-                  <tr>
-                    <%# 後ほどuser_path(@user)に変更要 %>
-                    <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
-                    <td>ワークスインターナショナル 営業４部１課</td>
-                    <td>課長代理</td>
-                    <td>西沢渉</td>
-                    <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
-                    <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-            <!-- タブ② -->
-          <div id="follow" class="tab-pane">
-            <div class="content__block__search-users">
-              <h2 class="block-hedding">ユーザーを探す</h2>
-                <form class="members-search-form">  
-                  <div class="form-group col-3">
-                      <label for="">ノミジョイ！ID</label>
-                  </div>
-                  <div class="form-group col-6">
-                    <input type="text" class="form-control">
-                  </div>
-                </form>
-            </div>
-            <div class="content__block__followed">
-              <h2 class="block-hedding">承認依頼の来ているユーザー</h2>
-              <table class="table members-table">
-                <tbody>
-                  <tr>
-                    <%# 後ほどuser_path(@user)に変更要 %>
-                    <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
-                    <td>オーシャンティック航空（株） 東自損3課</td>
-                    <td>副主任</td>
-                    <td>飯田恭子</td>
-                    <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
-                    <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
-                  </tr>
-                  <tr>
-                    <%# 後ほどuser_path(@user)に変更要 %>
-                    <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
-                    <td>青山商事（株） 総務２部１チーム</td>
-                    <td>主任</td>
-                    <td>秋山千紘</td>
-                    <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
-                    <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="content__block__following">
-              <h2 class="block-hedding">申請中のユーザー</h2>
-              <table class="table members-table">
-                <tbody>
-                  <tr>
-                    <%# 後ほどuser_path(@user)に変更要 %>
-                    <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
-                    <td>オーシャンティック航空（株） 東自損3課</td>
-                    <td>副主任</td>
-                    <td>飯田恭子</td>
-                    <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
-                    <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
-                  </tr>
-                  <tr>
-                    <%# 後ほどuser_path(@user)に変更要 %>
-                    <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
-                    <td>青山商事（株） 総務２部１チーム</td>
-                    <td>主任</td>
-                    <td>秋山千紘</td>
-                    <td><input type="submit" name="commit" value="フォロー中" class="btn small-btn green-btn" data-disable-with=""></td>
-                    <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+      <!-- タブリンク -->
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="#members" class="nav-link public-tab-link active" data-toggle="tab">Members</a>
+        </li>
+        <li class="nav-item">
+          <a href="#follow" class="nav-link public-tab-link" data-toggle="tab">Follow</a>
+        </li>
+      </ul>
+      <!-- タブ中身 -->
+      <div class="tab-content">
+        <!-- タブ１ -->
+        <div id="members" class="tab-pane active">
+          <%= render 'tab1', members: @members %>
+        </div>
+        <!-- タブ２ -->
+        <div id="follow" class="tab-pane">
+          <%= render 'tab2', users: @users, followers: @followers, followings: @followings, find_users:@find_users %>
         </div>
       </div>
     </div>
-  </main>
+  <div>
+</main>
 
 
 

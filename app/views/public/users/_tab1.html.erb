@@ -1,0 +1,39 @@
+<!-- メンバー検索 -->
+<div class="content__block--search-members">
+  <form class="members-search-form">  
+    <div class="form-group col-3">
+        <select class="form-control">
+            <option>氏名</option>
+            <option>会社名・所属</option>
+        </select>
+    </div>
+    <div class="form-group col-6">
+      <input type="text" class="form-control">
+    </div>
+  </form>
+</div>
+<%# メンバー一覧 %>
+<div class="content__block--menbers"> 
+  <table class="table members-table">
+    <tbody>
+      <% members.each do |member| %>
+        <tr>
+          <th scope="row"><%= link_to user_path(member),class:"" do %><%= attachment_image_tag member, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <td><%= member.name %></td>
+          <td><%= member.belongs %></td>
+          <td><%= member.position %></td>
+          <td>
+            <% if current_user != member %>
+              <% if member.followed_by?(current_user) %>
+                  <p><%=link_to "フォロー済み", user_relationships_path(member.id), method: :delete, class:"btn small-btn white-btn" %></p>
+              <% else %>
+                  <p><%=link_to "フォローする", user_relationships_path(member.id), method: :post, class:"btn small-btn green-btn" %></p>
+              <% end %>
+            <% end %>
+          </td>
+          <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

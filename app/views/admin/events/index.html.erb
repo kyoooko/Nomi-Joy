@@ -1,2 +1,233 @@
-<h1>Admin::Events#index</h1>
-<p>Find me in app/views/admin/events/index.html.erb</p>
+<header class="admin-header">
+  <%= render 'admin/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar admin-sidebar">
+    <%= render 'admin/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading-non--underline">
+      <span class="heading__top-welcome">Welcome to</span>
+      <div class="heading__top-logo"><%= image_tag("Kanjino-Heya_letter.png", class: "admin-top-logo") %></div>
+    </div>
+    <!-- 新規作成ボタン -->
+      <%= render 'create_event_button' %>
+    <div class="content">
+      <%# タブ（リンク） %>
+      <ul class="nav nav-tabs admin-nav-tabs">
+        <li class="nav-item">
+          <a href="#top" class="nav-link admin-tab-link active" data-toggle="tab">101号室</a>
+        </li>
+        <li class="nav-item">
+          <a href="#all" class="nav-link admin-tab-link" data-toggle="tab">202号室</a>
+        </li>
+        <li class="nav-item">
+          <a href="#fee" class="nav-link admin-tab-link" data-toggle="tab">303号室</a>
+        </li>
+      </ul>
+      <!-- タブ（中身） -->
+      <div class="tab-content">
+        <!-- タブ１ -->
+        <div id="top" class="tab-pane active">
+          <!-- 今日の飲み会 -->
+          <div class="content__block--today content__block">
+            <h2 class="block-hedding">Today's ノミカイ</h2>
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th scope="row">ノミカイ
+                    名</th>
+                    <%# 下記event_path(@event)に変更する %>
+                    <td><%= link_to event_path(1),class:"today-link" do %>2020年3課暑気払い<% end %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">日時</th>
+                    <td>7/10 &emsp; 18:00-21:00</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">場所</th>
+                    <td>上海庭 九段下駅前店</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td>東京メトロ東西線九段下駅徒歩５分</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td>千代田区三番町0−0−0</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td>https://github.com/twbs/bootstrap-rubygem</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">電話番号</th>
+                    <td>03-0000-0000</td>
+                  </tr>
+                <tr>
+                  <th scope="row">参加者</th>
+                  <td>32名</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- ToDoリスト -->
+          <div class="content__block--todo content__block">
+            <h2 class="block-hedding">ToDo List</h2>
+            <form class="">
+              <div>
+                <p><input type="checkbox" name="course" value="html">村瀬課長代理に締めの挨拶依頼</p>
+                <p><input type="checkbox" name="course" value="html">中堀さんに出席可否再確認</p>
+                <p><input type="checkbox" name="course" value="html">7/23 ４課懇親会お店に電話</p>
+              </div>
+              <input autofocus="autofocus" class="input-form" type="text" name="" id="">
+              <%= link_to "送信" , admin_events_path, class:"btn blue-btn" %>
+            </form>
+          </div>
+        </div>
+        <!-- タブ２ -->
+        <div id="all" class="tab-pane">
+          <!-- 全ての飲み会 -->
+           <%# 後ほどevent_path(@event)に変更要 %>
+          <div class="content__block__all-nomikai content__block">
+            <h2 class="block-hedding">開催予定のノミカイ</h2>
+            <div><%= image_tag("step-bar.png", class: "step-bar-202") %></div>
+            <div class="row all-nomikai">
+              <div class="col-3 all-nomikai__step">
+                <h4>招待済</h4>
+                <p><%= link_to admin_event_path(1),class:"" do %>7/18 送別会<% end %></p>
+                <p><%= link_to admin_event_path(1),class:"" do %>7/24 暑気払い<% end %></p>
+              </div>
+              <div class="col-3 all-nomikai__step">
+                <h4>お店予約済</h4>
+                <p><%= link_to admin_event_path(1),class:"" do %>7/8 上田さんを囲む会<% end %></p>
+                <p><%= link_to admin_event_path(1),class:"" do %>7/11 ４課合同飲み<% end %></p>
+              </div>
+              <div class="col-3 all-nomikai__step">
+                <h4>前日リマインド済</h4>
+                <p><%= link_to admin_event_path(1),class:"" do %>7/5 送別会<% end %></p>
+              </div>
+            </div>
+          </div>
+          <!-- カレンダー -->
+          <div class="content__block--calender">
+            <h2 class="block-hedding">2020/7</h2>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">月</th>
+                  <th scope="col">火</th>
+                  <th scope="col">水</th>
+                  <th scope="col">木</th>
+                  <th scope="col">金</th>
+                  <th scope="col">土</th>
+                  <th scope="col">日</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>18:00-20:00<br>３課加藤さん送別会<br>上海庵</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>18:00-20:00<br>営業懇親会<br>ベルサイユの豚</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr><tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr><tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- タブ３ -->
+        <div id="fee" class="tab-pane">
+          <!-- 未払い飲み会一覧 -->
+          <div class="content__block__unpaid-nomikai content__block">
+            <h2 class="block-hedding">集金中のノミカイ</h2>
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">日時</th>
+                  <th scope="col">ノミカイ名</th>
+                  <th scope="col">未払い人数</th>
+                </tr>
+              </thead>
+              <tbody>
+              <%# 後ほどuser_path(@user)に変更要 %>
+              <%# 後ほどevent_path(@event)に変更要 %>
+                <tr>
+                  <td>6/25 (金）</td>
+                  <th scope="row"><%= link_to admin_event_path(1),class:"" do %>３課歓迎会<% end %></th>
+                  <td>5名</td>
+                </tr>
+                <tr>
+                  <td>6/30 (火）</td>
+                  <th scope="row"><%= link_to admin_event_path(1),class:"" do %>日本酒の会<% end %></th>
+                  <td>15名</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="content__block__unpaid-user-sum content__block">
+            <h2 class="block-hedding">集金中のメンバー</h2>
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">氏名</th>
+                  <th scope="col">所属</th>
+                  <th scope="col">トータル額</th>
+                  <th scope="col">内訳</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <%# 後ほどuser_path(@user)に変更要 %>
+                  <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
+                  <th scope="row"><%= link_to "小野美紅", user_path(1), class:"" %></th>
+                  <td>東自損３課</td>
+                  <td>8000円</td>
+                  <td>6/25 ３課歓迎会 3500円<br>7/4 懇親会 4500円</td>
+                  <td><input type="submit" name="commit" value="DM" class="btn blue-btn" data-disable-with=""></td>
+                </tr>
+                <tr>
+                  <%# 後ほどuser_path(@user)に変更要 %>
+                  <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
+                  <th scope="row"><%= link_to "梶谷彩子", user_path(1), class:"" %></th>
+                  <td>東自損３課</td>
+                  <td>13000円</td>
+                  <td>6/25 ３課歓迎会 3000円<br>7/4 懇親会 6000円<br>7/6 暑気払い 4000円</td>
+                  <td><input type="submit" name="commit" value="DM" class="btn blue-btn" data-disable-with=""></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -28,9 +28,36 @@
   font-size: 150%;
   font-weight: bold;
 }
-
  @media (max-width: 767px) {
   .heading__top-welcome{
   font-size: 20px;
+  }
+}
+
+// show
+.content__block--overview{
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 5%;
+  /* margin-top:5%; */
+}
+.content__block--overview tr:first-child td{
+  font-size: 150%;
+  font-weight: bold;
+  /* background-color: cadetblue; */
+}
+.content__block--map{
+  margin-top:10%;
+}
+.google-map{
+  height: 500px;
+  background-color: cadetblue;
+}
+@media (max-width: 767px) {
+  .mypage-image{
+  width:50%;
+}
+.google-map{
+  height: 300px;
   }
 }

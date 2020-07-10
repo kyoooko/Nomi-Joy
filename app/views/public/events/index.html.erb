@@ -2,7 +2,7 @@
   <%= render 'public/logging_in_header' %>
 </header>
 <main class="row">
-  <div class="sidebar">
+  <div class="sidebar public-sidebar">
     <%= render 'public/logging_in_slidebar' %>
   </div>  
   <div class="body">
@@ -13,13 +13,13 @@
     <div class="content">
       <!-- 今日の飲み会 -->
       <div class="content__block--today">
-        <h2 class="block-hedding">Today's Nomikai</h2>
+        <h2 class="block-hedding">Today's ノミカイ</h2>
         <table class="table table-borderless">
           <tbody>
             <tr>
               <th scope="row">ノミカイ名</th>
               <%# 下記event_path(@event)に変更する %>
-              <td><%= link_to events_path,class:"today-link" do %>2020年3課暑気払い<% end %></td>
+              <td><%= link_to event_path(1),class:"today-link" do %>2020年3課暑気払い<% end %></td>
             </tr>
             <tr>
               <th scope="row">日時</th>
@@ -45,7 +45,7 @@
               <th scope="row">幹事</th>
               <td>オーシャンティック航空 東自損３課 飯田恭子</td>
               <%# 下記room_path（ルームの相手ユーザーIDが@user.idになるように変更要 %>
-              <td><%= link_to rooms_path,class:"" do %><input type="submit" name="commit" value="カンジに連絡する" class="btn green-btn" data-disable-with=""><% end %></td>
+              <td><%= link_to rooms_path,class:"btn green-btn" do %>カンジに連絡する<% end %></td>
             </tr>
           </tbody>
         </table>
@@ -107,18 +107,31 @@
       <div class="content__block__unpaid">
         <h2 class="block-hedding">未払いの飲み会一覧</h2>
         <table class="table table-borderless">
-          <tbody>
+          <thead>
             <tr>
-              <th scope="row">6/25 (金）</th>
-              <td>３課歓迎会</td>
+              <th scope="col">日時</th>
+              <th scope="col">ノミカイ名</th>
+              <th scope="col">金額</th>
+              <th scope="col">カンジ</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%# 後ほどuser_path(@user)に変更要 %>
+            <%# 後ほどevent_path(@event)に変更要 %>
+            <tr>
+              <td>6/25 (金）</td>
+              <th scope="row"><%= link_to event_path(1),class:"" do %>３課歓迎会<% end %></th>
               <td>3500円</td>
               <td>東自損3課 &emsp;飯田恭子</td>
+              <td><%= link_to rooms_path,class:"btn green-btn" do %>カンジに連絡する<% end %></td>
             </tr>
             <tr>
-              <th scope="row">6/30 (火）</th>
-              <td>日本酒の会</td>
+              <td>6/30 (火）</td>
+              <th scope="row"><%= link_to event_path(1),class:"" do %>日本酒の会<% end %></th>
               <td>4000円</td>
               <td>東自損3課 &emsp;森本瑠奈</td>
+              <td><%= link_to rooms_path,class:"btn green-btn" do %>カンジに連絡する<% end %></td>
             </tr>
           </tbody>
         </table>

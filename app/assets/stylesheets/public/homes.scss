@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "colors";
-@import "public/custom";
 
 .container{
   text-align: center;
@@ -19,13 +18,13 @@
 .main-visual__catch-copy{
   margin: 50px 0 50px 0;
 }
- .about__heading{
-  margin: 0 auto;
-  text-align: center;
-  height:100px;
-  line-height: 100px;
-  background-color: $public-main;
-  color:$white;
+.about__heading{
+margin: 0 auto;
+text-align: center;
+height:100px;
+line-height: 100px;
+background-color: $public-main;
+color:$white;
  }
  .about_heading-logo{
   height:60px;
