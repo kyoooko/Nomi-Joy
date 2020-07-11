@@ -18,12 +18,11 @@ class Public::UsersController < ApplicationController
   end
 
   def show
-    
-    
+    @members = current_user.matchers
   end
 
   def edit
-
+    
   end
 
   def update
@@ -34,7 +33,6 @@ class Public::UsersController < ApplicationController
       flash[:user_update] = "正しい情報を入力してください"
       render :edit
     end
-
   end
 
   
@@ -50,7 +48,7 @@ class Public::UsersController < ApplicationController
   def ensure_correct_user
     @user=User.find(params[:id])
     if current_user.id != @user.id
-    redirect_to user_path(current_user)
+      redirect_back(fallback_location: root_path)
     end
   end
 

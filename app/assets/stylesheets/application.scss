@@ -17,15 +17,3 @@
 @import "bootstrap";   
 @import "simple_calendar";     
 
-/* 共通 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color:#1b515c;
-}
-.clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
-}

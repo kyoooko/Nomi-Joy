@@ -13,16 +13,17 @@ Rails.application.routes.draw do
       get :follows, on: :member 
       get :followers, on: :member 
     end
-    resources :rooms, only: [:show, :index, :create]
+    resources :rooms, only: [:show, :index]
     resources :direct_messages, only: [:create]
     resources :notifications, only: [:index, :destroy]
-    get 'searches/find_member'
+    # 下記いらない？
+    # get 'searches/find_member'
     get 'searches/find_user'
   end
 
   namespace :admin do
     resources :users, only: [:show, :destroy] 
-    # 下記メンバー使用のルーティングに変更要
+    # 下記メンバー仕様のルーティングに変更要
     resources :events, only: [:show, :index, :edit, :create, :update, :destroy]
     get 'events/progress_status_update'
     get 'events/fee_status_update'
@@ -32,7 +33,7 @@ Rails.application.routes.draw do
     get 'events/step2'
     get 'events/confirm'
     get 'event_users/fee_status_update'
-    resources :rooms, only: [:show, :index, :create]
+    resources :rooms, only: [:show, :index]
     resources :direct_messages, only: [:create]
     resources :notifications, only: [:index, :destroy]
     resources :searches, only: [:find_restaurant, :find_member]

@@ -19,7 +19,7 @@
       <% members.each do |member| %>
         <tr>
           <th scope="row"><%= link_to user_path(member),class:"" do %><%= attachment_image_tag member, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-          <td><%= member.name %></td>
+          <td><%= link_to user_path(member),class:"" do %><%= member.name %><% end %></td>
           <td><%= member.belongs %></td>
           <td><%= member.position %></td>
           <td>
@@ -31,7 +31,7 @@
               <% end %>
             <% end %>
           </td>
-          <td><input type="submit" name="commit" value="連絡する" class="btn small-btn green-btn" data-disable-with=""></td>
+          <td><%= link_to 'DMを開始', room_path(member.id), class:"btn small-btn green-btn" %></td>
         </tr>
       <% end %>
     </tbody>

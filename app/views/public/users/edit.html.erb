@@ -14,8 +14,8 @@
       <%= form_with(model: @user, local: true) do |f| %>
         <div class="content row">
           <div class="col-sm-4">
-            <%= attachment_image_tag @user, :image, format: 'jpeg', size: "300x300", fallback: "no_image.jpg", class:"mypage-image mypage-edit-image" %>
-            <%= f.attachment_field :image %>
+            <div class="heading__image"><%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"mypage-edit-image" %></div>
+            <%= f.attachment_field :image, class:"mypage-edit-image-field" %>
           </div>
           <div class="content__block--data col-sm-8">
             <table class="table table-borderless">

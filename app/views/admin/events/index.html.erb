@@ -11,7 +11,7 @@
       <div class="heading__top-logo"><%= image_tag("Kanjino-Heya_letter.png", class: "admin-top-logo") %></div>
     </div>
     <!-- 新規作成ボタン -->
-      <%= render 'create_event_button' %>
+    <%= render 'create_event_button' %>
     <div class="content">
       <%# タブ（リンク） %>
       <ul class="nav nav-tabs admin-nav-tabs">
@@ -205,24 +205,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <%# 後ほどuser_path(@user)に変更要 %>
-                  <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
-                  <th scope="row"><%= link_to "小野美紅", user_path(1), class:"" %></th>
-                  <td>東自損３課</td>
-                  <td>8000円</td>
-                  <td>6/25 ３課歓迎会 3500円<br>7/4 懇親会 4500円</td>
-                  <td><input type="submit" name="commit" value="DM" class="btn blue-btn" data-disable-with=""></td>
-                </tr>
-                <tr>
-                  <%# 後ほどuser_path(@user)に変更要 %>
-                  <th scope="row"><%= link_to user_path(1),class:"" do %><%= image_tag("ajisai.JPG", class: "small-image") %><% end %></th>
-                  <th scope="row"><%= link_to "梶谷彩子", user_path(1), class:"" %></th>
-                  <td>東自損３課</td>
-                  <td>13000円</td>
-                  <td>6/25 ３課歓迎会 3000円<br>7/4 懇親会 6000円<br>7/6 暑気払い 4000円</td>
-                  <td><input type="submit" name="commit" value="DM" class="btn blue-btn" data-disable-with=""></td>
-                </tr>
+                <% @members.each do |member| %>
+                  <tr>
+                    <th scope="row"><%= link_to admin_user_path(member),class:"" do %><%= attachment_image_tag member, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+                    <td><%= link_to admin_user_path(member),class:"" do %><%= member.name %><% end %></td>
+                    <td><%= member.belongs %></td>
+                    <td>8000円</td>
+                    <td>6/25 ３課歓迎会 3000円<br>7/4 懇親会 6000円<br>7/6 暑気払い 4000円</td>
+                    <td><%=link_to "DMを始める", admin_room_path(member), class:"btn small-btn green-btn" %></td>
+                  </tr>
+                <% end %>
               </tbody>
             </table>
           </div>

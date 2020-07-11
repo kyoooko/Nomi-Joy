@@ -9,44 +9,9 @@
   /* margin-bottom:25%; */
   width:35%;
 }
-
-/* マイページ */
-.mypage-image{
-  border-radius: 50%;
-  width:105%;
-}
-.mypage-edit-form,.mypage-edit-textarea{
-  line-height: 200%;
-  width: 250px;
-  border-radius: 10px;
-}
-.mypage-edit-textarea{
-  height: 150px;
-}
-.content__block--data{
-  table{
-    font-size: 12px;
-  }
-  th{
-    width:30%;  
-  }
-}
-.mypage-btn{
-  float:right;
-  width:100px;
-}
-@media (max-width: 767px) {
-  .mypage-image{
-  width:50%;
-  margin-bottom: 5%;
-  }
-  .mypage-btn{
-    float: none;
-  }
-}
-// 編集ページ
-.mypage-edit-image{
-  margin-bottom: 20px;
+// マイページ
+.mypage-follow-btn{
+  margin-right: 5%;
 }
 
 // メンバー一覧ページ

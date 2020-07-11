@@ -44,8 +44,8 @@
             <tr>
               <th scope="row">幹事</th>
               <td>オーシャンティック航空 東自損３課 飯田恭子</td>
-              <%# 下記room_path（ルームの相手ユーザーIDが@user.idになるように変更要 %>
-              <td><%= link_to rooms_path,class:"btn green-btn" do %>カンジに連絡する<% end %></td>
+              <%# 下記room_path（ルームの相手ユーザーIDが幹事のidになるように変更要 %>
+              <td><%= link_to room_path(1),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
             </tr>
           </tbody>
         </table>
@@ -117,27 +117,26 @@
             </tr>
           </thead>
           <tbody>
-            <%# 後ほどuser_path(@user)に変更要 %>
             <%# 後ほどevent_path(@event)に変更要 %>
             <tr>
               <td>6/25 (金）</td>
               <th scope="row"><%= link_to event_path(1),class:"" do %>３課歓迎会<% end %></th>
               <td>3500円</td>
               <td>東自損3課 &emsp;飯田恭子</td>
-              <td><%= link_to rooms_path,class:"btn green-btn" do %>カンジに連絡する<% end %></td>
+              <%# 下記room_path（ルームの相手ユーザーIDが幹事のidになるように変更要 %>
+              <td><%= link_to room_path(1),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
             </tr>
             <tr>
               <td>6/30 (火）</td>
               <th scope="row"><%= link_to event_path(1),class:"" do %>日本酒の会<% end %></th>
               <td>4000円</td>
               <td>東自損3課 &emsp;森本瑠奈</td>
-              <td><%= link_to rooms_path,class:"btn green-btn" do %>カンジに連絡する<% end %></td>
+              <%# 下記room_path（ルームの相手ユーザーIDが幹事のidになるように変更要 %>
+              <td><%= link_to room_path(1),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <!-- フッター -->
-    <!-- <div class="footer fixed-bottom">©Nomi-Joy!.inc</div> -->
   </div>
 </main>

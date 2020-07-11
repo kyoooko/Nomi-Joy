@@ -1,5 +1,17 @@
 @import "colors";
 
+/* 共通 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color:#1b515c;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
 // contentの中のブロック
 .content__block{
   background-color: #eee;
@@ -11,6 +23,10 @@
 // ボタン
 .small-btn{
   font-size: 12px;
+}
+.right-btn{
+  float:right;
+  width:100px;
 }
 // 画像（丸型・小）
 .small-image{
@@ -75,3 +91,5 @@ margin-bottom: 3%;
     border-radius: 8px;
   }
 }
+
+

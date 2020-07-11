@@ -48,8 +48,8 @@
             <tr>
               <th scope="row">幹事</th>
               <td>オーシャンティック航空 東自損３課 飯田恭子</td>
-              <%# 下記room_path（ルームの相手ユーザーIDが@user.idになるように変更要 %>
-              <td><%= link_to rooms_path,class:"btn green-btn" do %>カンジに連絡する<% end %></td>
+              <%# 下記room_path（ルームの相手ユーザーIDが幹事のidになるように変更要 %>
+              <td><%= link_to room_path(1),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
             </tr>
           </tbody>
         </table>
