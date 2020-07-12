@@ -22,17 +22,18 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:show, :destroy] 
+    resources :users, only: [:show] 
     # 下記メンバー仕様のルーティングに変更要
     resources :events, only: [:show, :index, :edit, :create, :update, :destroy]
-    get 'events/progress_status_update'
-    get 'events/fee_status_update'
+    get 'step1',to:'events#step1'
+    get 'step2',to:'events#step2'
+    get 'confirm',to:'events#confirm'
     get 'events/confirm_plan_remind'
     get 'events/send_plan_remind'
-    get 'events/step1'
-    get 'events/step2'
-    get 'events/confirm'
-    get 'event_users/fee_status_update'
+    patch 'events/:event_id/progress_status_update',to:'events#progress_status_update', as: 'events_progress_status'
+    patch 'event_users/:event_user_id/fee_status',to:'event_users#fee_status_update', as: 'event_users_fee_status'
+    patch 'event_users/:event_user_id/fee',to:'event_users#fee_update', as: 'event_users_fee'
+    patch 'event_users/:event_user_id/participate_status',to:'event_users#participate_status_update', as: 'event_users_participate_status'
     resources :rooms, only: [:show, :index]
     resources :direct_messages, only: [:create]
     resources :notifications, only: [:index, :destroy]

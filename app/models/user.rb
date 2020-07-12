@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   # Refile 
   attachment :image
+
   # ==============バリデーション ================================
   validates :name, presence: true
   validates :email, presence: true
@@ -30,6 +31,15 @@ class User < ApplicationRecord
   has_many :entries
   has_many :direct_messages
   has_many :users, through: :entries
+
+  # ◆飲食店
+  has_many :restaurants, dependent: :destroy
+  # ◆ノミカイユーザー（中間テーブル）
+  has_many :event_users, dependent: :destroy
+  # ◆ノミカイ（中間テーブルを介す）
+  has_many :events, through: :event_users
+  # ◆ノミカイ（中間テーブル介さない、幹事とノミカイの関係性）
+  # has_many :admin_events,class_name:"Event",foreign_key: :user_id
 
   # ==================メソッド===================================
   # ◆マッチング機能

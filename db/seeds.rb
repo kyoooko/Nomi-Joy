@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# ◆ユーザー
 User.create!(name:"能美ジョイ子", email: "test.kyoooko@gmail.com", password: "hanadan628", nomi_joy_id:"nomijoy1", belongs: "オーシャンティック航空（株） 東自損3課 ", position: "副主任",image:File.open("./app/assets/images/ajisai.JPG", ?r),nearest_station:"吉祥寺", can_drink: true, favolite:"ワイン、もんじゃ焼き、スパイスカレー",unfavolite:"焼酎、胡麻豆腐", introduction:"新入社員の能美です。学生時代はバレーボール部に所属していました。白ワインが好きです。よろしくお願いいたします。")
 
 User.create!(name:"能美ジョイ男", email: "liliuokalani_618@yahoo.co.jp", password: "hanadan628", nomi_joy_id:"nomijoy2", belongs: "パシフィックインターナショナル ", position: "代表取締役",image:"",nearest_station:"恵比寿", can_drink: true, favolite:"ビール、ワイン",unfavolite:"生魚", introduction:"麻布十番・恵比寿・代官山開拓中です！クラフトビール にハマっています！ぜひお声がけください！")
@@ -25,3 +26,15 @@ User.create!(name:"木村真梨子", email: "test8@test.co.jp", password: "aaaaa
 User.create!(name:"加藤菜々子", email: "test9@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy9", belongs: "オーシャンティック航空（株） 東自損3課", position: "",image:File.open("./app/assets/images/pink_cake.jpeg", ?r),nearest_station:"清瀬", can_drink: true, favolite:"中華、韓国料理",unfavolite:"えび", introduction:"韓国料理にハマっているのでぜひ食べに行きたいです。よろしくお願いします。")
 
 User.create!(name:"小野美紅", email: "test10@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy10", belongs: "オーシャンティック航空（株） 埼玉支社１チーム", position: "副主任",image:File.open("./app/assets/images/nomikai.png", ?r),nearest_station:"上板橋", can_drink: true, favolite:"もつ鍋、カレー",unfavolite:"トマト", introduction:"本年度より埼玉支社にて勤務しております。食べログ有料会員です(^ ^)")
+
+#◆飲食店
+Restaurant.create!(user_id: 1,name:"上海庭 九段下駅前店",adress:"千代田区三番町0−0−0",access:"東京メトロ東西線九段下駅徒歩５分",latitude: "",longitude: "",url:"https://github.com/twbs/bootstrap-rubygem",shop_image:"",tel:"03-0000-0000",opentime:"11~24時",holiday:"休業日")
+
+# ◆ノミカイ
+Event.create!(restaurant_id:1,user_id:1,name:"2020年3課暑気払い",date:"",start_time:"",end_time:"",memo:"締めは林さんにお願いする。お店に1名欠席の連絡",progress_status:0,fee_status:false)
+
+# ◆ノミカイユーザー（中間モデル）
+EventUser.create!(user_id:1,event_id:1,fee:"3000",fee_status:false,deleted_at:"")
+EventUser.create!(user_id:2,event_id:1,fee:"3500",fee_status:false,deleted_at:"")
+EventUser.create!(user_id:3,event_id:1,fee:"4000",fee_status:true,deleted_at:"")
+EventUser.create!(user_id:4,event_id:1,fee:"4500",fee_status:true,deleted_at:"")

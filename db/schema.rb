@@ -32,31 +32,31 @@ ActiveRecord::Schema.define(version: 2020_07_08_175805) do
   end
 
   create_table "event_users", force: :cascade do |t|
-    t.integer "user_id_id", null: false
-    t.integer "event_id_id", null: false
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
     t.integer "fee"
     t.boolean "fee_status", default: false, null: false
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id_id"], name: "index_event_users_on_event_id_id"
-    t.index ["user_id_id"], name: "index_event_users_on_user_id_id"
+    t.index ["event_id"], name: "index_event_users_on_event_id"
+    t.index ["user_id"], name: "index_event_users_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "restaurant_id_id"
-    t.integer "user_id_id", null: false
+    t.integer "restaurant_id"
+    t.integer "user_id", null: false
     t.string "name", null: false
-    t.date "date", null: false
-    t.datetime "start_time", null: false
-    t.datetime "end_time", null: false
+    t.date "date"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.string "memo"
     t.integer "progress_status", default: 0, null: false
     t.boolean "fee_status", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["restaurant_id_id"], name: "index_events_on_restaurant_id_id"
-    t.index ["user_id_id"], name: "index_events_on_user_id_id"
+    t.index ["restaurant_id"], name: "index_events_on_restaurant_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_175805) do
   end
 
   create_table "restaurants", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "name", null: false
     t.string "adress"
     t.string "access"
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_175805) do
     t.string "holiday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|

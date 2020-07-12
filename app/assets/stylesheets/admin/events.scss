@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// adminトップページ
+// adminトップページ(index)
 // トップページの見出し
 .heading__top-welcome{
   font-size: 40px;
@@ -33,5 +33,35 @@
     background-color: #dfdfdf;
     border-radius: 30px;
     font-size: 12px;
+  }
+}
+
+
+// イベント詳細
+/* ここ変更 */
+.stepbar{
+  margin-bottom: 30px;
+}
+/* タブ２ */
+.content__block--participants table,.content__block__unpaid-participants table{
+  font-size: 10px;
+}
+/* タブ４ */
+.content__block--admin-map{
+  width: 60%;
+  height: 300px;
+  background-color: chocolate;
+  margin: 0 auto;
+}
+.admin-restaurant-image{
+  width:100%;
+}
+.event-fee-form,.participant-fee-status-form{
+  display: flex;
+  &__btn{
+    font-size: 5px !important;
+  }
+  &__form{
+    border-radius: 5px;
   }
 }

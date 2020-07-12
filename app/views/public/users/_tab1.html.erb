@@ -15,6 +15,20 @@
 <%# メンバー一覧 %>
 <div class="content__block--menbers"> 
   <table class="table members-table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">氏名</th>
+        <th scope="col">会社名・所属</th>
+        <th scope="col">役職</th>
+        <th scope="col">お酒</th>
+        <th scope="col">好きな食べ物・お酒</th>
+        <th scope="col">苦手な食べ物・お酒</th>
+        <th scope="col">最寄駅</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
     <tbody>
       <% members.each do |member| %>
         <tr>
@@ -22,6 +36,10 @@
           <td><%= link_to user_path(member),class:"" do %><%= member.name %><% end %></td>
           <td><%= member.belongs %></td>
           <td><%= member.position %></td>
+          <td><% if  member.can_drink == true %>○<% else%>×<% end%></td>
+          <td><%= member.favolite %></td>
+          <td><%= member.unfavolite %></td>
+          <td><%= member.nearest_station %></td>
           <td>
             <% if current_user != member %>
               <% if member.followed_by?(current_user) %>
