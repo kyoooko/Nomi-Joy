@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                   <th scope="row">参加者</th>
-                  <td><%= @event.event_users.count %>名</td>
+                  <td><%= @event.event_users.count %>名&ensp;（欠席 <%= @event.event_users.only_deleted.count %>名）</td>
                 </tr>
                 <tr>
                   <th scope="row">メモ</th>
@@ -107,7 +107,7 @@
         <div id="participants" class="tab-pane">
           <!-- 参加メンバー一覧 -->
             <div class="content__block--participants"> 
-              <h2 class="block-hedding"><%= @event.event_users.count %>名</h2>
+              <h2 class="block-hedding">参加者 <%= @event.event_users.count %>名&ensp;（欠席 <%= @event.event_users.only_deleted.count %>名）</h2>
               <table class="table members-table">
                 <thead>
                   <tr>
@@ -137,17 +137,10 @@
                       <td><%= event_user.user.unfavolite %></td>
                       <td><%= event_user.user.nearest_station %></td>
                       <td>
-                        <%= form_with model:event_user,url: admin_event_users_participate_status_path(event_user.id), method: :patch, local: true do |f| %>
-                          <% if event_user.deleted_at == nil %>
-                            <%= f.radio_button :deleted_at,  {value: ""}, {checked: true} %>参加
-                            <%= f.radio_button :deleted_at, value: Time.now %>欠席
-                          <% else %>
-                            <%= f.radio_button :deleted_at,  value: "" %>参加
-                            <%= f.radio_button :deleted_at, {value: Time.now}, {checked: true} %>欠席
-                          <% end %>
-                          <%= f.hidden_field :user_id, value: event_user.user_id %>
-                          <%= f.hidden_field :event_id, value: event_user.event_id %>
-                          <%= f.submit "Update",class:"btn white-btn" %>
+                        <% if event_user.deleted_at == nil %>
+                            <p><%=link_to "参加", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: Time.now ), method: :patch, class:"btn small-btn blue-btn" %></p>
+                        <% else %>
+                            <p><%=link_to "欠席", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: "" ), method: :patch, class:"btn small-btn white-btn" %></p>
                         <% end %>
                       </td>
                        <td><%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn small-btn blue-btn" %></td>
@@ -161,8 +154,8 @@
         <div id="nomikai-fee" class="tab-pane">
           <!-- 未払いメンバー一覧 -->
           <div class="content__block__unpaid-participants content__block">
-            <h2 class="block-hedding">未払いのメンバー</h2>
-            <h2 class="block-hedding"><%= @unpaid_members.count %>名</h2>
+            <h2 class="block-hedding">集金中のメンバー</h2>
+            <h2 class="block-hedding"><%= @unpaid_members.with_deleted.count %>名</h2>
             <table class="table members-table">
               <thead>
                 <tr>

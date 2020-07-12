@@ -36,15 +36,15 @@
   }
 }
 
-
 // イベント詳細
-/* ここ変更 */
 .stepbar{
   margin-bottom: 30px;
 }
 /* タブ２ */
-.content__block--participants table,.content__block__unpaid-participants table{
+.content{
+  &__block--participants table,&__unpaid-participants table{
   font-size: 10px;
+  }
 }
 /* タブ４ */
 .content__block--admin-map{

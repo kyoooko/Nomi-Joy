@@ -1,8 +1,8 @@
 class Admin::EventUsersController < ApplicationController
   # 欠席の場合、論理削除
   def participate_status_update
-    event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id],user_id: params[:event_user][:user_id])
-    event_user.update(event_user_params)
+    event_user = EventUser.with_deleted.find_by(event_id: params[:event_id],user_id: params[:user_id])
+    event_user.update(deleted_at: params[:deleted_at])
     flash[:success] = "参加ステータスを”欠席”に変更しました"
     redirect_back(fallback_location: root_path)
   end

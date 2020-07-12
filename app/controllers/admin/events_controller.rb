@@ -10,7 +10,7 @@ class Admin::EventsController < ApplicationController
 
   def show
     # 当該飲み会に関して未払いのメンバー（欠席者含む）
-    @unpaid_members = EventUser.with_deleted.where(event_id: @event.id, fee_status: true)
+    @unpaid_members = EventUser.with_deleted.where(event_id: @event.id, fee_status: false)
     #  当該飲み会の参加メンバー全員（欠席者含む）
     @event_users = EventUser.with_deleted.where(event_id: @event.id)
   end
