@@ -82,6 +82,22 @@ class Admin::EventsController < ApplicationController
 
   def step1
       @event=Event.new
+      # ぐるなびAPI
+      api_key= Rails.application.credentials.grunavi[:api_key]
+      url='https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid='
+      url << api_key  
+      #名前で検索
+      if params[:freeword]
+      word=params[:freeword]
+      url << "&name=" << word 
+      end
+      url=URI.encode(url) #エスケープ
+      uri = URI.parse(url)
+      json = Net::HTTP.get(uri)
+      result = JSON.parse(json)
+      @rests=result["rest"]
+      
+      @selected_restaurant = params[:restaurant]
   end
 
   def step2

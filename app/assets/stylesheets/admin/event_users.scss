@@ -8,6 +8,10 @@
 }
 
 // 新規作成ページ（step１）
+.restaurant-image{
+  width:10%;
+  border-radius: 50%;
+}
 .create-event-form{
   @include  event-form;
   width: 400px;

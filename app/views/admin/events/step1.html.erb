@@ -42,11 +42,7 @@
                 
                 
                 
-                
-                
-                
-                
-                
+      
                 
                 </td>
               </tr>
@@ -60,6 +56,36 @@
             <%= f.submit "Next", class: "btn blue-btn" %>
           </div> 
         <% end %>
+
+        <h4>お店を検索（例：魚金 新宿）</h4>
+        <%= form_tag(admin_step1_path, method: :get) do %>
+          <%= text_field_tag :freeword %>
+          <%= submit_tag 'Search' %>
+            <% if @rests %>
+              <% @rests.each do |rest| %>
+                <p>
+                  <%= check_box_tag :restaurant, rest %>
+                  <%= image_tag(rest["image_url"]["shop_image1"], class: "restaurant-image") %>
+                  <%= rest["name"] %>
+                </p>
+              <% end %>
+                  <%= submit_tag '決定' %>
+            <% end %>
+         <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
     </div>
   </div>
