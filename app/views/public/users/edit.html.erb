@@ -11,7 +11,7 @@
         <h3 class="heading__ja">マイページ</h3>
         <h2 class="heading__sub">Edit</h2>
       </div>
-      <%= form_with(model: @user, local: true) do |f| %>
+      <%= form_with model: @user, local: true do |f| %>
         <div class="content row">
           <div class="col-sm-4">
             <div class="heading__image"><%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"mypage-edit-image" %></div>

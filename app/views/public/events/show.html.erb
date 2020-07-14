@@ -11,45 +11,53 @@
       <h3 class="heading__ja">ノミカイ詳細</h3>
     </div>
     <div class="content">
-      <!-- 今日の飲み会 -->
       <div class="content__block--overview">
         <table class="table table-borderless">
           <tbody>
             <tr>
               <th scope="row">ノミカイ名</th>
-              <%# 下記event_path(@event)に変更する %>
-              <td>2020年3課暑気払い</td>
+              <td><%= @event.name %></td>
             </tr>
             <tr>
-              <th scope="row">日時</th>
-              <td>7/10 &emsp; 18:00-21:00</td>
+              <th scope="row">日にち</th>
+              <td><%= @event.date.to_s(:date_jp) %>（<%= @day_of_the_week %>）</td>
+            </tr>
+            <tr>
+              <th scope="row">時間</th>
+              <td><%= @event.start_time.to_s(:time) %> 〜 <%= @event.end_time.to_s(:time) %></td>
             </tr>
             <tr>
               <th scope="row">場所</th>
-              <td>上海庭 九段下駅前店</td>
+              <td><%= @event.restaurant.name %></td>
             </tr>
             <tr>
               <th scope="row"></th>
-              <td>東京メトロ東西線九段下駅徒歩５分</td>
+              <td><%= @event.restaurant.access %></td>
             </tr>
             <tr>
               <th scope="row"></th>
-              <td>千代田区三番町0−0−0</td>
+              <td><%= @event.restaurant.adress %></td>
             </tr>
             <tr>
               <th scope="row"></th>
-              <td>https://github.com/twbs/bootstrap-rubygem</td>
+              <td><%= @event.restaurant.url %></td>
             </tr>
             <tr>
-                <th scope="row">会費</th>
-                <td> 3000円</td>
-                <td> 支払済</td>
-              </tr>
+              <th scope="row">会費</th>
+              <td><%= @event_user.fee %>円</td>
+            </tr>
             <tr>
-              <th scope="row">幹事</th>
-              <td>オーシャンティック航空 東自損３課 飯田恭子</td>
-              <%# 下記room_path（ルームの相手ユーザーIDが幹事のidになるように変更要 %>
-              <td><%= link_to room_path(1),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
+              <th scope="row">支払いステータス</th>
+              <td><% if @event_user.fee_status == true %>支払済<% else %>未払い<% end %></td>
+            </tr>
+            <tr>
+              <th scope="row">カンジ</th>
+              <td><%= link_to user_path(@admin),class:"" do %><%= attachment_image_tag @admin, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %><%= @admin.belongs %><%= @admin.position %></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td><%= link_to user_path(@admin),class:"" do %><%= @admin.name %><% end %></td>
+              <td><%= link_to room_path(@admin.id),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
             </tr>
           </tbody>
         </table>

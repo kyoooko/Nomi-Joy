@@ -26,8 +26,8 @@ Rails.application.routes.draw do
     # 下記メンバー仕様のルーティングに変更要
     resources :events, only: [:show, :index, :edit, :create, :update, :destroy]
     get 'step1',to:'events#step1'
-    get 'step2',to:'events#step2'
-    get 'confirm',to:'events#confirm'
+    post 'step2',to:'events#step2'
+    post 'confirm',to:'events#confirm'
     get 'events/confirm_plan_remind'
     get 'events/send_plan_remind'
     patch 'events/:event_id/progress_status_update',to:'events#progress_status_update', as: 'events_progress_status'

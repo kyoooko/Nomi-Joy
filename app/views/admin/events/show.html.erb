@@ -42,8 +42,12 @@
                   <td><%= @event.name %></td>
                 </tr>
                 <tr>
-                  <th scope="row">日時</th>
-                  <td><%= @event.date %></td>
+                  <th scope="row">日にち</th>
+                  <td><%= @event.date.to_s(:date_jp) %>（<%= @day_of_the_week %>）</td>
+                </tr>
+                <tr>
+                  <th scope="row">時間</th>
+                  <td><%= @event.start_time.to_s(:time) %> 〜 <%= @event.end_time.to_s(:time) %></td>
                 </tr>
                 <tr>
                   <th scope="row">場所</th>
@@ -155,7 +159,7 @@
           <!-- 未払いメンバー一覧 -->
           <div class="content__block__unpaid-participants content__block">
             <h2 class="block-hedding">集金中のメンバー</h2>
-            <h2 class="block-hedding"><%= @unpaid_members.with_deleted.count %>名</h2>
+            <h2 class="block-hedding"><%= @unpaying_event_users.with_deleted.count %>名</h2>
             <table class="table members-table">
               <thead>
                 <tr>
@@ -168,14 +172,14 @@
                 </tr>
               </thead>
               <tbody>
-                <% @unpaid_members.each do |unpaid_member| %>
+                <% @unpaying_event_users.each do |unpaying_event_user| %>
                   <tr>
-                    <th scope="row"><%= link_to admin_user_path(unpaid_member.user.id),class:"" do %><%= attachment_image_tag unpaid_member.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-                    <td><%= link_to admin_user_path(unpaid_member.user.id),class:"" do %><%= unpaid_member.user.name %><% end %></td>
-                    <td><%= unpaid_member.user.belongs %></td>
-                    <td><%= unpaid_member.user.position %></td>
-                    <td><%= unpaid_member.fee %></td>
-                    <td><%= link_to 'DM', admin_room_path(unpaid_member.user.id), class:"btn small-btn blue-btn" %></td>
+                    <th scope="row"><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= attachment_image_tag unpaying_event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+                    <td><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= unpaying_event_user.user.name %><% end %></td>
+                    <td><%= unpaying_event_user.user.belongs %></td>
+                    <td><%= unpaying_event_user.user.position %></td>
+                    <td><%= unpaying_event_user.fee %></td>
+                    <td><%= link_to 'DM', admin_room_path(unpaying_event_user.user.id), class:"btn small-btn blue-btn" %></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -235,7 +239,7 @@
                 <tbody>
                   <tr>
                     <th scope="row">お店名</th>
-                    <td>><%= @event.restaurant.name %></td>
+                    <td><%= @event.restaurant.name %></td>
                   </tr>
                   <tr>
                     <th scope="row">アクセス</th>

@@ -32,44 +32,51 @@
           <!-- 今日の飲み会 -->
           <div class="content__block--today content__block">
             <h2 class="block-hedding">Today's ノミカイ</h2>
-            <table class="table table-borderless">
-              <tbody>
-                <tr>
-                  <th scope="row">ノミカイ
+            <% if @today_event.present? %>
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row">ノミカイ
                     名</th>
-                    <%# 下記admin_event_path(@today_event)に変更する %>
-                    <td><%= link_to admin_event_path(1),class:"today-link" do %>2020年3課暑気払い<% end %></td>
+                    <td><%= link_to admin_event_path(@today_event),class:"today-link" do %><%= @today_event.name %><% end %></td>
                   </tr>
                   <tr>
-                    <th scope="row">日時</th>
-                    <td>7/10 &emsp; 18:00-21:00</td>
+                    <th scope="row">日にち</th>
+                    <td><%= @today_event.date.to_s(:date_jp) %>（<%= @day_of_the_week %>）</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">時間</th>
+                    <td><%= @today_event.start_time.to_s(:time)%>〜<%= @today_event.end_time.to_s(:time) %></td>
                   </tr>
                   <tr>
                     <th scope="row">場所</th>
-                    <td>上海庭 九段下駅前店</td>
+                    <td><%= @today_event.restaurant.name %></td>
                   </tr>
                   <tr>
                     <th scope="row"></th>
-                    <td>東京メトロ東西線九段下駅徒歩５分</td>
+                    <td><%= @today_event.restaurant.access %></td>
                   </tr>
                   <tr>
                     <th scope="row"></th>
-                    <td>千代田区三番町0−0−0</td>
+                    <td><%= @today_event.restaurant.adress %></td>
                   </tr>
                   <tr>
                     <th scope="row"></th>
-                    <td>https://github.com/twbs/bootstrap-rubygem</td>
+                    <td><%= @today_event.restaurant.url %></td>
                   </tr>
                   <tr>
                     <th scope="row">電話番号</th>
-                    <td>03-0000-0000</td>
+                    <td><%= @today_event.restaurant.tel %></td>
                   </tr>
-                <tr>
-                  <th scope="row">参加者</th>
-                  <td>32名</td>
-                </tr>
-              </tbody>
-            </table>
+                  <tr>
+                    <th scope="row">参加者</th>
+                    <td><%= @today_event.event_users.count %>名&ensp;（欠席 <%= @today_event.event_users.only_deleted.count %>名）</td>
+                  </tr>
+                </tbody>
+              </table>
+            <% else %>
+              今日のノミカイの予定はありません
+            <% end %>
           </div>
           <!-- ToDoリスト -->
           <div class="content__block--todo content__block">
@@ -95,17 +102,21 @@
             <div class="row all-nomikai">
               <div class="col-3 all-nomikai__step">
                 <h4>招待済</h4>
-                <p><%= link_to admin_event_path(1),class:"" do %>7/18 送別会<% end %></p>
-                <p><%= link_to admin_event_path(1),class:"" do %>7/24 暑気払い<% end %></p>
+                <% @status0_events.each do |status0_event| %>
+                  <p><%= link_to admin_event_path(status0_event),class:"" do %><%= status0_event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[status0_event.date.wday] %>)&emsp;<%= status0_event.name %><% end %></p>
+                <% end %>
               </div>
               <div class="col-3 all-nomikai__step">
                 <h4>お店予約済</h4>
-                <p><%= link_to admin_event_path(1),class:"" do %>7/8 上田さんを囲む会<% end %></p>
-                <p><%= link_to admin_event_path(1),class:"" do %>7/11 ４課合同飲み<% end %></p>
+                <%  @status1_events.each do |status1_event| %>
+                  <p><%= link_to admin_event_path(status1_event),class:"" do %><%= status1_event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[status1_event.date.wday] %>)&emsp;<%= status1_event.name %><% end %></p>
+                <% end %>
               </div>
               <div class="col-3 all-nomikai__step">
                 <h4>前日リマインド済</h4>
-                <p><%= link_to admin_event_path(1),class:"" do %>7/5 送別会<% end %></p>
+                 <%  @status2_events.each do |status2_event| %>
+                  <p><%= link_to admin_event_path(status2_event),class:"" do %><%= status2_event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[status2_event.date.wday] %>)&emsp;<%= status2_event.name %><% end %></p>
+                <% end %>
               </div>
             </div>
           </div>
@@ -173,27 +184,22 @@
                 <tr>
                   <th scope="col">日時</th>
                   <th scope="col">ノミカイ名</th>
-                  <th scope="col">未払い人数</th>
+                  <th scope="col">集金中の人数</th>
                 </tr>
               </thead>
               <tbody>
-              <%# 後ほどuser_path(@user)に変更要 %>
-              <%# 後ほどevent_path(@event)に変更要 %>
-                <tr>
-                  <td>6/25 (金）</td>
-                  <th scope="row"><%= link_to admin_event_path(1),class:"" do %>３課歓迎会<% end %></th>
-                  <td>5名</td>
-                </tr>
-                <tr>
-                  <td>6/30 (火）</td>
-                  <th scope="row"><%= link_to admin_event_path(1),class:"" do %>日本酒の会<% end %></th>
-                  <td>15名</td>
-                </tr>
+                <% @unpaid_events.each do |unpaid_event| %>
+                  <tr>
+                    <td><%= unpaid_event.date.to_s(:date) %>（<%= %w(日 月 火 水 木 金 土)[unpaid_event.date.wday] %>）</td>
+                    <td><%= link_to admin_event_path(unpaid_event),class:"" do %><%= unpaid_event.name %><% end %></td>
+                    <td><%= EventUser.with_deleted.where(event_id: unpaid_event.id, fee_status: false).count %></td>
+                  </tr>
+                <% end %>
               </tbody>
             </table>
           </div>
           <div class="content__block__unpaid-user-sum content__block">
-            <h2 class="block-hedding">集金中のメンバー</h2>
+            <h2 class="block-hedding">【対応要】集金中のメンバー</h2>
             <table class="table table-borderless">
               <thead>
                 <tr>
@@ -205,14 +211,14 @@
                 </tr>
               </thead>
               <tbody>
-                <% @users.each do |user| %>
+                <% @unpaying_event_users.each do |unpaying_event_user| %>
                   <tr>
-                    <th scope="row"><%= link_to user_path(user),class:"" do %><%= attachment_image_tag user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-                    <td><%= link_to user_path(user),class:"" do %><%= user.name %><% end %></td>
-                    <td><%= user.belongs %></td>
+                    <th scope="row"><%= link_to admin_user_path(unpaying_event_user.user),class:"" do %><%= attachment_image_tag unpaying_event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+                    <td><%= link_to admin_user_path(unpaying_event_user.user),class:"" do %><%= unpaying_event_user.user.name %><% end %></td>
+                    <td><%= unpaying_event_user.user.belongs %></td>
                     <td>8000円</td>
                     <td>6/25 ３課歓迎会 3000円<br>7/4 懇親会 6000円<br>7/6 暑気払い 4000円</td>
-                    <td><%=link_to "DMを始める", admin_room_path(user.id), method: :post, class:"btn small-btn green-btn" %></td>
+                    <td><%=link_to "DMを始める", admin_room_path(unpaying_event_user.user), method: :post, class:"btn small-btn green-btn" %></td>
                   </tr>
                 <% end %>
               </tbody>

@@ -59,7 +59,7 @@
         <tr>
           <%# 申請中のユーザーはユーザー詳細ページにいけない %>
           <th scope="row"><%= attachment_image_tag following, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %></th>
-          <td><%= following.name %></td>
+          <td><%= link_to user_path(following),class:"" do %><%= following.name %><% end %></td>
           <td><%= following.belongs %></td>
           <td><%= following.position %></td>
           <td>

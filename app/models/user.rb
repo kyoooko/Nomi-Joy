@@ -9,10 +9,11 @@ class User < ApplicationRecord
   attachment :image
 
   # ==============バリデーション ================================
-  validates :name, presence: true
-  validates :email, presence: true
-  validates :introduction, presence: true
-
+  with_options presence: true do
+    validates :name
+    validates :email
+    validates :introduction
+  end
   # ==============アソシエーション ================================
   # ◆マッチング機能
   # A：自分がフォローしているユーザーとの関連 
@@ -38,7 +39,7 @@ class User < ApplicationRecord
   has_many :event_users, dependent: :destroy
   # ◆ノミカイ（中間テーブルを介す）
   has_many :events, through: :event_users
-  # ◆ノミカイ（中間テーブル介さない、幹事とノミカイの関係性）
+  # 【確認要】◆ノミカイ（中間テーブル介さない、幹事とノミカイの関係性）
   # has_many :admin_events,class_name:"Event",foreign_key: :user_id
 
   # ==================メソッド===================================

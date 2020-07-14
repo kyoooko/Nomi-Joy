@@ -14,41 +14,51 @@
       <!-- 今日の飲み会 -->
       <div class="content__block--today">
         <h2 class="block-hedding">Today's ノミカイ</h2>
-        <table class="table table-borderless">
-          <tbody>
-            <tr>
-              <th scope="row">ノミカイ名</th>
-              <%# 下記event_path(@event)に変更する %>
-              <td><%= link_to event_path(1),class:"today-link" do %>2020年3課暑気払い<% end %></td>
-            </tr>
-            <tr>
-              <th scope="row">日時</th>
-              <td>7/10 &emsp; 18:00-21:00</td>
-            </tr>
-            <tr>
-              <th scope="row">場所</th>
-              <td>上海庭 九段下駅前店</td>
-            </tr>
-            <tr>
-              <th scope="row"></th>
-              <td>東京メトロ東西線九段下駅徒歩５分</td>
-            </tr>
-            <tr>
-              <th scope="row"></th>
-              <td>千代田区三番町0−0−0</td>
-            </tr>
-            <tr>
-              <th scope="row"></th>
-              <td>https://github.com/twbs/bootstrap-rubygem</td>
-            </tr>
-            <tr>
-              <th scope="row">幹事</th>
-              <td>オーシャンティック航空 東自損３課 飯田恭子</td>
-              <%# 下記room_path（ルームの相手ユーザーIDが幹事のidになるように変更要 %>
-              <td><%= link_to room_path(1),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
-            </tr>
-          </tbody>
-        </table>
+          <% if @today_event.present? %>
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th scope="row">ノミカイ名</th>
+                  <td><%= link_to event_path(@today_event),class:"today-link" do %><%= @today_event.name %><% end %></td>
+                </tr>
+                <tr>
+                  <th scope="row">日にち</th>
+                  <td><%= @today_event.date.to_s(:date_jp) %>（<%= @day_of_the_week %>）</td>
+                </tr>
+                <tr>
+                  <th scope="row">時間</th>
+                  <td><%= @today_event.start_time.to_s(:time) %>〜<%= @today_event.end_time.to_s(:time) %></td>
+                </tr>
+                <tr>
+                  <th scope="row">場所</th>
+                  <td><%= @today_event.restaurant.name %></td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td><%= @today_event.restaurant.access %></td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td><%= @today_event.restaurant.adress %></td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td><%= @today_event.restaurant.url %></td>
+                </tr>
+                <tr>
+                  <th scope="row">カンジ</th>
+                  <td><%= link_to user_path(@today_admin),class:"" do %><%= attachment_image_tag @today_admin, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %><%= @today_admin.belongs %><%= @today_admin.position %></td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td><%= link_to user_path(@today_admin),class:"" do %><%= @today_admin.name %><% end %></td>
+                  <td><%= link_to room_path(@today_admin.id),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
+                </tr>
+              </tbody>
+            </table>
+        <% else %>
+        今日のノミカイの予定はありません
+        <% end %>
       </div>
       <!-- カレンダー -->
       <div class="content__block--calender">
@@ -117,23 +127,18 @@
             </tr>
           </thead>
           <tbody>
-            <%# 後ほどevent_path(@event)に変更要 %>
-            <tr>
-              <td>6/25 (金）</td>
-              <th scope="row"><%= link_to event_path(1),class:"" do %>３課歓迎会<% end %></th>
-              <td>3500円</td>
-              <td>東自損3課 &emsp;飯田恭子</td>
-              <%# 下記room_path（ルームの相手ユーザーIDが幹事のidになるように変更要 %>
-              <td><%= link_to room_path(1),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
-            </tr>
-            <tr>
-              <td>6/30 (火）</td>
-              <th scope="row"><%= link_to event_path(1),class:"" do %>日本酒の会<% end %></th>
-              <td>4000円</td>
-              <td>東自損3課 &emsp;森本瑠奈</td>
-              <%# 下記room_path（ルームの相手ユーザーIDが幹事のidになるように変更要 %>
-              <td><%= link_to room_path(1),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
-            </tr>
+            <% @unpaying_event_users.each do |unpaying_event_user| %>
+              <tr>
+                <td><%= unpaying_event_user.event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[unpaying_event_user.event.date.wday] %>)</td>
+                <td><%= link_to event_path(unpaying_event_user.event_id ),class:"" do %><%= unpaying_event_user.event.name %><% end %></td>
+                <td><%= unpaying_event_user.fee %></td>
+                <%# <td> 【対応要：下記２行をアソシーエション使って書き換えたい】【★幹事＝user_id使用】 %>
+                  <%#= my_unpaid_event.event.admin_user.name %>
+                <%# </td> %>
+                <td><%= User.find(unpaying_event_user.event.user_id).belongs%><%= User.find(unpaying_event_user.event.user_id).position%><%= link_to user_path(unpaying_event_user.event.user_id ),class:"" do %><%= User.find(unpaying_event_user.event.user_id).name%><% end %></td>
+                <td><%=link_to "DMを始める", room_path(unpaying_event_user.event.user_id), class:"btn small-btn green-btn" %></td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>

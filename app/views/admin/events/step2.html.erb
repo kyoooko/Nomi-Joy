@@ -1,2 +1,41 @@
-<h1>Admin::Events#step2</h1>
-<p>Find me in app/views/admin/events/step2.html.erb</p>
+<header class="admin-header">
+  <%= render 'admin/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar admin-sidebar">
+    <%= render 'admin/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+      <h1 class="heading__en">Nomikai Create Step2</h1>
+      <h3 class="heading__ja">ノミカイ新規作成</h3>
+    </div>
+    <div class="content">
+      <div class="content__block--step-bar">
+        <div><%= image_tag("step-bar.png", class: "") %>
+      </div> 
+      <div class="content__block--step2 content__block">
+        <%= form_with model: @event, url: admin_confirm_path,  local: true do |f| %>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th scope="row">参加者</th>
+                <td class="event-create-member-form"><%#= collection_check_boxes(:user, :id, @members, :id, :name) %><%= f.collection_check_boxes :event_user_ids, @members, :id, :name %></td>
+              </tr>
+            </tbody>
+          </table>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :date %>
+          <%= f.hidden_field :start_time %>
+          <%= f.hidden_field :end_time %>
+          <%= f.hidden_field :restaurant_id %>
+          <%= f.hidden_field :memo %>
+          <div class="actions"> 
+            <%= f.submit "Next", class: "btn blue-btn" %>
+            <%= f.submit "Back", name: :back, class: "btn white-btn" %>
+          </div> 
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
