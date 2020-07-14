@@ -15,27 +15,49 @@
         <div><%= image_tag("step-bar.png", class: "") %>
       </div> 
       <div class="content__block--step2 content__block">
-        <%= form_with model: @event, url: admin_confirm_path,  local: true do |f| %>
-          <table class="table table-borderless">
-            <tbody>
-              <tr>
-                <th scope="row">参加者</th>
-                <td class="event-create-member-form"><%#= collection_check_boxes(:user, :id, @members, :id, :name) %><%= f.collection_check_boxes :event_user_ids, @members, :id, :name %></td>
-              </tr>
-            </tbody>
-          </table>
+        <h4>お店を検索<span class="must">&emsp;*</span></h4>
+        <p>（例："魚金 新宿", &emsp;"イタリアン 新宿"）</p>
+        <%= form_with model: @event, url: admin_step2_path, local: true do |f| %>
+          <%= text_field_tag :freeword %>
+          <%= submit_tag '検索',class: "" %>
+          <% if @rests %>
+            <% @rests.each do |rest| %>
+              <p>
+                <%= radio_button_tag :restaurant, rest  %>
+                <%= image_tag(rest["image_url"]["shop_image1"], class: "restaurant-image") %>
+                <%= rest["name"] %>
+              </p>
+            <% end %>
+          <% end %>
           <%= f.hidden_field :name %>
           <%= f.hidden_field :date %>
           <%= f.hidden_field :start_time %>
           <%= f.hidden_field :end_time %>
-          <%= f.hidden_field :restaurant_id %>
           <%= f.hidden_field :memo %>
-          <div class="actions"> 
-            <%= f.submit "Next", class: "btn blue-btn" %>
-            <%= f.submit "Back", name: :back, class: "btn white-btn" %>
-          </div> 
+          <%= f.submit "Next", name: :next, class: "btn blue-btn" %>
+          <%= f.submit "Back", name: :back, class: "btn white-btn" %>
         <% end %>
+
+
+
+
+        <%#= form_with model: @event, url: admin_step3_path,  local: true do |f| %>
+          <%#= f.hidden_field :name %>
+          <%#= f.hidden_field :date %>
+          <%#= f.hidden_field :start_time %>
+          <%#= f.hidden_field :end_time %>
+          <%#= f.hidden_field :memo %>
+          <%# <div class="actions">  %>
+            <%#= f.submit "Next", class: "btn blue-btn" %>
+            <%#= f.submit "Back", name: :back, class: "btn white-btn" %>
+          <%# </div>  %>
+        <%# end %>
+
+
+
       </div>
     </div>
   </div>
 </main>
+
+

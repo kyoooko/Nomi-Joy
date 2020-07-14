@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   # ==============バリデーション ================================
+  # user_id,restaurant_idはコントローラーで代入、progress_status,fee_statusはデフォルトで設定あり
   with_options presence: true do
-    validates_presence_of :user_id
     validates :name
     validates :date
     validates :start_time

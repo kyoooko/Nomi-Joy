@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
     # 登録時の登録情報追加（deviseのデフォルトはメール、パス）
     before_action :configure_permitted_parameters, if: :devise_controller?
+    # ログインしてなかったらログイン画面に返す（URL直打ちも不可。deviseのメソッド。homesコントローラーのみスキップ記述。）
+    before_action :authenticate_user!
 
     protected
     def configure_permitted_parameters

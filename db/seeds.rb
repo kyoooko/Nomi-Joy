@@ -48,7 +48,7 @@ Relationship.create!(following_id:9,follower_id:1)
 
 
 #◆ノミカイ１（カンジ：user1、参加メンバー：user1~4、お店：restaurant1)
-Restaurant.create!(user_id: 1,name:"上海庭 九段下駅前店",adress:"千代田区三番町0−0−0",access:"東京メトロ東西線九段下駅徒歩５分",latitude: "",longitude: "",url:"https://github.com/twbs/bootstrap-rubygem",shop_image:"",tel:"03-0000-0000",opentime:"11~24時",holiday:"水曜日")
+Restaurant.create!(user_id: 1,name:"上海庭 九段下駅前店",address:"千代田区三番町0−0−0",access:"東京メトロ東西線九段下駅徒歩５分",latitude: "",longitude: "",url:"https://github.com/twbs/bootstrap-rubygem",shop_image:"",tel:"03-0000-0000",opentime:"11~24時",holiday:"水曜日")
 Event.create!(restaurant_id:1,user_id:1,name:"2020年3課暑気払い",date:"2020-07-22",start_time:"2020-07-22 18:00:00",end_time:"2020-07-22 21:00:00",memo:"締めは林さんにお願いする。お店に1名欠席の連絡",progress_status:0,fee_status:false)
 EventUser.create!(user_id:1,event_id:1,fee:3000,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:2,event_id:1,fee:3500,fee_status:false,deleted_at:"")
@@ -57,7 +57,7 @@ EventUser.create!(user_id:4,event_id:1,fee:4500,fee_status:true,deleted_at:"")
 
 
 # ◆ノミカイ２（カンジ：user2、参加メンバー：user1,2,5,6、お店：restaurant2)
-Restaurant.create!(user_id: 2,name:"魚金 市ヶ谷店",adress:"千代田区三番町0−0−0",access:"東京メトロ東西線市ヶ谷駅徒歩1分",latitude: "",longitude: "",url:"https://github.com/twbs/bootstrap-rubygem",shop_image:"",tel:"03-0000-0000",opentime:"17~25時",holiday:"火曜日")
+Restaurant.create!(user_id: 2,name:"魚金 市ヶ谷店",address:"千代田区三番町0−0−0",access:"東京メトロ東西線市ヶ谷駅徒歩1分",latitude: "",longitude: "",url:"https://github.com/twbs/bootstrap-rubygem",shop_image:"",tel:"03-0000-0000",opentime:"17~25時",holiday:"火曜日")
 Event.create!(restaurant_id:2,user_id:2,name:"野澤さん送別会",date:"2020-07-28",start_time:"2020-07-28 18:30:00",end_time:"2020-07-28 21:00:00",memo:"吉田さんは19時から参加",progress_status:1,fee_status:false)
 EventUser.create!(user_id:1,event_id:2,fee:3000,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:2,event_id:2,fee:3500,fee_status:false,deleted_at:"")
@@ -65,7 +65,7 @@ EventUser.create!(user_id:5,event_id:2,fee:4000,fee_status:true,deleted_at:"")
 EventUser.create!(user_id:6,event_id:2,fee:4500,fee_status:true,deleted_at:"")
 
 # ◆ノミカイ３（カンジ：user1、参加メンバー：user1~6、お店：restaurant3)
-Restaurant.create!(user_id: 1,name:"KITIRI 新宿東口店",adress:"新宿区百人町0−0−0",access:"JR新宿駅徒歩2分",latitude: "",longitude: "",url:"https://github.com/twbs/bootstrap-rubygem",shop_image:"",tel:"03-0000-0000",opentime:"11~26時",holiday:"なし")
+Restaurant.create!(user_id: 1,name:"KITIRI 新宿東口店",address:"新宿区百人町0−0−0",access:"JR新宿駅徒歩2分",latitude: "",longitude: "",url:"https://github.com/twbs/bootstrap-rubygem",shop_image:"",tel:"03-0000-0000",opentime:"11~26時",holiday:"なし")
 Event.create!(restaurant_id:3,user_id:1,name:"3課新人歓迎会",date:"2020-07-30",start_time:"2020-07-13 19:00:00",end_time:"2020-07-13 21:00:00",memo:"新人さんに挨拶を依頼する。",progress_status:2,fee_status:false)
 EventUser.create!(user_id:1,event_id:3,fee:3000,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:2,event_id:3,fee:3500,fee_status:false,deleted_at:"")

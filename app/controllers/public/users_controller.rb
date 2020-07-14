@@ -1,6 +1,4 @@
 class Public::UsersController < ApplicationController
-  # ログインしてなかったらログイン画面に返す（URL直打ちも不可。deviseのメソッド）
-  before_action :authenticate_user!
   # current_user以外がedit,updateできないようにする（URL直打ちも不可）
   before_action :ensure_correct_user, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update]

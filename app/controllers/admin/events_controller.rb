@@ -1,6 +1,6 @@
 class Admin::EventsController < ApplicationController
-
   before_action :set_event, only: [:show, :edit, :update,:destroy]
+  before_action :ensure_admin?, only: [:show, :edit, :update,:destroy, :progress_status_update]
 
   def index
     # 下記集金中メンバーに変更要
@@ -12,7 +12,7 @@ class Admin::EventsController < ApplicationController
     to = Time.current.end_of_day
     @today_event = Event.find_by(date: from..to, user_id: current_user.id) 
     # 曜日
-    @day_of_the_week= %w(日 月 火 水 木 金 土)[@today_event.date.wday]
+    @day_of_the_week= %w(日 月 火 水 木 金 土)[@today_event.date.wday] if @today_event.present?
 
     # タブ２
     # 全ての飲み会
@@ -82,31 +82,58 @@ class Admin::EventsController < ApplicationController
 
   def step1
       @event=Event.new
-      # ぐるなびAPI
-      api_key= Rails.application.credentials.grunavi[:api_key]
-      url='https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid='
-      url << api_key  
-      #名前で検索
-      if params[:freeword]
-      word=params[:freeword]
-      url << "&name=" << word 
-      end
-      url=URI.encode(url) #エスケープ
-      uri = URI.parse(url)
-      json = Net::HTTP.get(uri)
-      result = JSON.parse(json)
-      @rests=result["rest"]
-      
-      @selected_restaurant = params[:restaurant]
   end
 
   def step2
+    @event=Event.new(event_params)
+    # 【★幹事＝user_id使用】
+    @event.user_id = current_user.id
+    # ぐるなびAPI
+    api_key= Rails.application.credentials.grunavi[:api_key]
+    url='https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid='
+    url << api_key  
+    if params[:freeword]
+    word=params[:freeword]
+    url << "&name=" << word 
+    end
+    url=URI.encode(url) 
+    uri = URI.parse(url)
+    json = Net::HTTP.get(uri)
+    result = JSON.parse(json)
+    @rests=result["rest"]
+    if params[:next]
+      # お店を選択していない場合は同じページに戻る
+      if params[:restaurant]
+        session[:name] = params[:restaurant]["name"]
+        session[:address] = params[:restaurant]["address"]
+        session[:station] = params[:restaurant]["station"] 
+        session[:station_exit] = params[:restaurant]["station_exit"] 
+        session[:walk] = params[:restaurant]["walk"]
+        session[:latitude] = params[:restaurant]["latitude"]
+        session[:longitude] = params[:restaurant]["longitude"]
+        session[:url] = params[:restaurant]["url"]
+        session[:tel] = params[:restaurant]["tel"]
+        session[:shop_image] = params[:restaurant]["image_url"]["shop_image1"]
+        session[:opentime] = params[:restaurant]["opentime"]
+        session[:holiday] = params[:restaurant]["holiday"]
+
+        
+        # 【対応要：sessionが変】binding.pry
+        redirect_to admin_step3_path(event: event_params) 
+      else
+        flash[:danger] = "お店を選択してください"
+        render :step2
+      end
+    end
+    render :step1 and return if params[:back]
+    render :step1 if @event.invalid? 
+  end
+  def step3
     @members = current_user.matchers
     @event=Event.new(event_params)
     # 【★幹事＝user_id使用】
     @event.user_id = current_user.id
-    @event.restaurant_id = params[:event][:restaurant_id].to_i
-    render :step1 if @event.invalid?
+    render :step2 if @event.invalid? 
   end
 
   def confirm
@@ -115,14 +142,14 @@ class Admin::EventsController < ApplicationController
     @day_of_the_week= %w(日 月 火 水 木 金 土)[@event.date.wday]
     # 【★幹事＝user_id使用】
     @event.user_id = current_user.id
-    @event.restaurant_id = params[:event][:restaurant_id].to_i
+    @restautant_name = session[:name]
+    # @event.restaurant_id = params[:event][:restaurant_id].to_i
     # collection_check_boxesの場合下記
     # session[:event_users] = params[:user][:id] 
-    session[:event_users] = params[:event][:event_user_ids]
-    # drop(1)は、sessionの配列の要素１つ目に""(nil)が渡されてしまい参加メンバーの一覧表示ができないため、１つ目を除いている
-    @event_users = session[:event_users].drop(1)
-    render :step1 and return if params[:back]
-    render :step2 if @event.invalid?
+    session[:event_users] = params[:event][:event_user_ids].drop(1)
+    @event_users = session[:event_users]
+    render :step2 and return if params[:back]
+    render :step3 if @event.invalid?
   end
 
   def create
@@ -131,17 +158,32 @@ class Admin::EventsController < ApplicationController
     @event=Event.new(event_params)
     # 【★幹事＝user_id使用】
     @event.user_id = current_user.id
-    @event.restaurant_id = params[:event][:restaurant_id].to_i
+    # お店の作成
+    @restaurant = Restaurant.create(
+      user_id: current_user.id,
+      name: session[:name],
+      address: session[:address],
+      access: session[:station],
+      latitude: session[:latitude].to_f,
+      longitude: session[:longitude].to_f,
+      url: session[:url], 
+      shop_image: session[:shop_image], 
+      tel: session[:tel], 
+      opentime: session[:opentime],
+      holiday: session[:holiday])
+    @event.restaurant_id = @restaurant.id
+    # 【対応要】 session[:station_exit]  session[:walk] 
     # binding.pry
-    render :step2 and return if params[:back]
+    render :step3 and return if params[:back]
     render :confirm and return if !@event.save 
+    # drop(1)は、sessionの配列の要素１つ目に""(nil)が渡されてしまい参加メンバーの一覧表示ができないため、１つ目を除いている
     event_users = session[:event_users]
     # 【模索中】Backボタンで戻った時、選択されたままにしたいのでsessionを使わずf.hiddenを使って実装をしたい
     # event_users = params [:event][:event_user_ids]
     event_users.map { |event_user| EventUser.create(user_id: event_user, event_id: @event.id, fee: 3000)}
     # 自分（カンジ）のevent_userも作成
     EventUser.create(user_id: current_user.id, event_id: @event.id, fee: 3000)
-     redirect_to admin_event_path(@event)
+    redirect_to admin_event_path(@event)
   end
 
 
@@ -152,6 +194,13 @@ class Admin::EventsController < ApplicationController
 
   def event_params
     # event_user_idsはconfirmページのBackボタン押した際にもcheck_boxesの選択idを保持するため作成した
-    params.require(:event).permit(:name, :date, :start_time, :end_time, :memo, :progress_status, :fee_status,:event_user_ids)
+    # 【模索中】event_user_idsいる？
+    params.require(:event).permit(:name, :date, :start_time, :end_time, :memo, :progress_status)
+  end
+
+  # 自分がカンジでないノミカイはアクセス(URL検索含む）できないようにする
+  def ensure_admin?
+     @event=Event.find(params[:id])
+     redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id
   end
 end
