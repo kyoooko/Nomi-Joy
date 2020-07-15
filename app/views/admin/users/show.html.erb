@@ -1,0 +1,75 @@
+<header class="admin-header">
+  <%= render 'admin/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar admin-sidebar">
+    <%= render 'admin/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+      <h1 class="heading__en"><%= @user.name %></h1>
+      <h3 class="heading__ja">Member's detail</h3>
+      <div class="heading__image"><%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"header-mypage-image" %></div>
+    </div>
+    <!-- 新規作成ボタン -->
+    <%= render 'admin/events/create_event_button' %>
+    <div class="content content--mypage">
+      <div class="content__block--mypage-image">
+        <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "no_image.jpg", class:"mypage-image" %>
+      </div>
+      <div class="content__block--data">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th scope="row">氏名</th>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <th scope="row">所属</th>
+              <td><%= @user.belongs %></td>
+            </tr>
+            <tr>
+              <th scope="row">役職</th>
+              <td><%= @user.position %></td>
+            </tr>
+            <tr>
+              <th scope="row">Email</th>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <th scope="row">ノミジョイ！ID</th>
+              <td><%= @user.nomi_joy_id %></td>
+            </tr>
+            <tr>
+              <th scope="row">最寄駅</th>
+              <td><%= @user.nearest_station %></td>
+            </tr>
+            <tr>
+              <th scope="row">お酒を飲むか</th>
+              <td>
+                <% if @user.can_drink == true %>
+                  飲む
+                <% else %>
+                  飲まない
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">好きな料理・お酒</th>
+              <td><%= @user.favolite %></td>
+            </tr>
+            <tr>
+              <th scope="row">苦手な料理・お酒</th>
+              <td><%= @user.unfavolite %></td>
+            </tr>
+            <tr>
+              <th scope="row">自己紹介</th>
+              <td><%= @user.introduction %></td>
+            </tr>
+          </tbody>
+        </table>
+        <%= link_to 'DMを開始', admin_room_path(@user.id), class:"btn mypage-btn blue-btn" %>
+      </div>
+    </div>
+  </div>
+</main>

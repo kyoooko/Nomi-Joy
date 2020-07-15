@@ -13,32 +13,7 @@
  *= require_tree .
  *= require_self
  */
+@import "colors";
 @import "bootstrap";   
 @import "simple_calendar";     
 
-// 色
-/* public側 */
-/* background-color:#1b515c; */
-/* 幹事の部屋 */
-/* background-color:#267594; */
-/* グレーはeeeに統一
-background-color:#eee; */
-/* 紫 */
-/* background-color: rgb(200, 142, 207); */
-// 濃い緑
-/* background-color:#153940; */
-/* 少し濃いグレー
-background-color: #dfdfdf; */
-
-/* 共通 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color:#1b515c;
-}
-.clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
-}

@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top header-nav">
+  <%= link_to events_path do %><%= image_tag("Nomi-Joy.png", class: "header-logo") %><% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li><%= link_to "Home", events_path, class:"nav-item" %></li>
+      <li><%= link_to "My page", user_path(current_user), class:"nav-item" %></li>
+      <li><%= link_to "Members", users_path, class:"nav-item" %></li>
+      <li><%= link_to "Notice", notifications_path, class:"nav-item" %></li>
+      <li><%= link_to "DM", rooms_path, class:"nav-item" %></li>
+      <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"nav-item" %></li>
+      <li><%= link_to admin_events_path,class:"nav-item" do %>Go to &ensp;<%= image_tag("Kanjino-Heya.png", class: "go-to-otherside__logo") %><% end %></li>
+    </ul>
+  </div>
+</nav>

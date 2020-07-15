@@ -1,0 +1,39 @@
+<header class="public-header">
+  <%= render 'public/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar public-sidebar">
+    <%= render 'public/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading--non-underline">
+      <h1 class="heading__en">Members & Follow</h1>
+      <h3 class="heading__ja">メンバー & フォロー</h3>
+    </div>
+    <div class="content">
+      <!-- タブリンク -->
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="#members" class="nav-link public-tab-link active" data-toggle="tab">Members</a>
+        </li>
+        <li class="nav-item">
+          <a href="#follow" class="nav-link public-tab-link" data-toggle="tab">Follow</a>
+        </li>
+      </ul>
+      <!-- タブ中身 -->
+      <div class="tab-content">
+        <!-- タブ１ -->
+        <div id="members" class="tab-pane active">
+          <%= render 'tab1', members: @members %>
+        </div>
+        <!-- タブ２ -->
+        <div id="follow" class="tab-pane">
+          <%= render 'tab2', users: @users, followers: @followers, followings: @followings, find_users:@find_users %>
+        </div>
+      </div>
+    </div>
+  <div>
+</main>
+
+
+

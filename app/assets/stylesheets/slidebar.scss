@@ -1,0 +1,43 @@
+@import "colors";
+// 共通
+.sidebar{
+  text-align:center;
+  padding:0;
+  width:25%;
+  &__room-logo{
+    width:60%;
+    margin-top:30%;
+  }
+  &__nav{
+    margin-top:30%;
+  }
+  // ログイン後のスライドバー
+  &__go-to-otherside{
+    margin-top: 40%;
+  }
+  .go-to-otherside{
+    &__letter{
+      color:#fff;
+    }
+    &__logo{
+      width:40%;
+      height: 40%;
+    }
+  }
+}
+@media (max-width: 767px) {
+  /* 767px以下の場合、スライドバーを消す */
+  .sidebar{
+    display: none;
+  }
+}
+
+// public
+.public-sidebar{
+  background-color:#1b515c;
+}
+// admin
+.admin-sidebar{
+  background-color:#267594 !important;
+
+}

@@ -1,0 +1,88 @@
+@import "colors";
+// 共通
+// ログイン後のヘッダー(public側とadmin側共通）
+.go-to-otherside__logo{
+  height:48px;
+}
+
+// public
+/* ヘッダーは見えない状態 */
+.public-header{
+  display:none;
+}
+@media (max-width: 767px) {
+/* 767px以下の場合、スライドバーを消しヘッダーを表示 */
+.public-header{
+  display:block;
+}
+.header-nav{
+  background-color:#1b515c ;
+  text-align: center;
+  padding: 0 !important;
+    &:hover{
+      padding:0;
+    }
+  /* ヘッダー：ロゴの大きさと位置 */
+    > a{
+      width:30%;
+      padding-top:1%;
+      padding-bottom:1%;
+    }
+}
+.header-logo{
+  width:30%;
+}
+/* ハンバーガの枠線をなくす(!important被るので対応要） */
+  // .navbar-light .navbar-toggler {
+  //   border-color: #1b515c !important;
+  // }
+  /* ハンバーガーの色（修正要：白に直す） */
+  .navbar-light .navbar-toggler-icon {
+    background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%255,255,255,1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+  }
+}
+// admin
+.admin{
+  &-nav-item{
+    color:#fff;
+    line-height: 3rem;
+    display: block;
+  }
+  &-nav-item:hover{
+    color:#267594;
+    text-decoration: none;
+    background-color: #eee;
+  }
+   /* ヘッダーは見えない状態 */
+   &-header{
+      display:none;
+  }
+  &-header-nav{
+    background-color: #267594;
+  }
+}
+@media (max-width: 767px) {
+  .admin-header{
+    display:block;
+    &-nav{
+      padding:0 !important;
+      text-align: center;
+      &:hover{
+        padding:0;
+      }
+    }
+    &-nav > a{
+      width:30%;
+      padding-top:1%;
+      padding-bottom:1%;
+    }
+  /* ハンバーガーの色(対応要） */
+  // .navbar-light .navbar-toggler-icon {
+  //   background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(245, 245, 245, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+  // }
+  /* ハンバーガの枠線をなくす (!important被るので対応要） */
+  // .admin-navbar-toggler {
+  //   border-color: #267594 !important;
+  // }
+  }
+}

@@ -1,0 +1,93 @@
+<header class="public-header">
+  <%= render 'public/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar public-sidebar">
+    <%= render 'public/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <%# 見出し %>
+    <div class="heading">
+      <h1 class="heading__en">My page</h1>
+      <h3 class="heading__ja">マイページ</h3>
+      <div class="heading__image"><%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"header-mypage-image" %></div>
+    </div>
+    <%# コンテンツ %>
+    <div class="content content--mypage">
+      <div class="content__block--mypage-image">
+        <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "no_image.jpg", class:"mypage-image" %>
+      </div>
+      <div class="content__block--data">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th scope="row">氏名</th>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <th scope="row">所属</th>
+              <td><%= @user.belongs %></td>
+            </tr>
+            <tr>
+              <th scope="row">役職</th>
+              <td><%= @user.position %></td>
+            </tr>
+            <%# emailとノミジョイ！IDはメンバー（相互フォローのみ表示) %>
+            <% if  @members.any? { |member| member.id == @user.id } %>
+              <tr>
+                <th scope="row">Email</th>
+                <td><%= @user.email %></td>
+              </tr>
+              <tr>
+                <th scope="row">ノミジョイ！ID</th>
+                <td><%= @user.nomi_joy_id %></td>
+              </tr>
+            <% end %>
+            <tr>
+              <th scope="row">最寄駅</th>
+              <td><%= @user.nearest_station %></td>
+            </tr>
+            <tr>
+              <th scope="row">お酒を飲むか</th>
+              <td>
+                <% if @user.can_drink == true %>
+                  飲む
+                <% else %>
+                  飲まない
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">好きな料理・お酒</th>
+              <td><%= @user.favolite %></td>
+            </tr>
+            <tr>
+              <th scope="row">苦手な料理・お酒</th>
+              <td><%= @user.unfavolite %></td>
+            </tr>
+            <tr>
+              <th scope="row">自己紹介</th>
+              <td><%= @user.introduction %></td>
+            </tr>
+          </tbody>
+        </table>
+        <%# current_userなら編集ボタンを表示 %>
+        <% if @user == current_user %>
+          <%= link_to "Edit", edit_user_path(@user), class:"btn mypage-btn green-btn" %>
+        <% else %>
+          <%# current_user以外なら下記２つ %>
+          <%# メンバー（相互フォロー）ならDMボタンを表示 %>
+          <% if  @members.any? { |member| member.id == @user.id } %>
+            <%= link_to "DMを開始する", room_path(@user), class:"btn right-btn green-btn" %>
+          <% end %>
+          <%# フォローボタン %>
+          <% if @user.followed_by?(current_user) %>
+              <%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete, class:"btn white-btn right-btn mypage-follow-btn" %>
+          <% else %>
+              <%=link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"btn green-btn right-btn" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
