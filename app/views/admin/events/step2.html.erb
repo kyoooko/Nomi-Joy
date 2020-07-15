@@ -1,0 +1,63 @@
+<header class="admin-header">
+  <%= render 'admin/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar admin-sidebar">
+    <%= render 'admin/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+      <h1 class="heading__en">Nomikai Create Step2</h1>
+      <h3 class="heading__ja">ノミカイ新規作成</h3>
+    </div>
+    <div class="content">
+      <div class="content__block--step-bar">
+        <div><%= image_tag("step-bar.png", class: "") %>
+      </div> 
+      <div class="content__block--step2 content__block">
+        <h4>お店を検索<span class="must">&emsp;*</span></h4>
+        <p>（例："魚金 新宿", &emsp;"イタリアン 新宿"）</p>
+        <%= form_with model: @event, url: admin_step2_path, local: true do |f| %>
+          <%= text_field_tag :freeword %>
+          <%= submit_tag '検索',class: "" %>
+          <% if @rests %>
+            <% @rests.each do |rest| %>
+              <p>
+                <%= radio_button_tag :restaurant, rest  %>
+                <%= image_tag(rest["image_url"]["shop_image1"], class: "restaurant-image") %>
+                <%= rest["name"] %>
+              </p>
+            <% end %>
+          <% end %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :date %>
+          <%= f.hidden_field :start_time %>
+          <%= f.hidden_field :end_time %>
+          <%= f.hidden_field :memo %>
+          <%= f.submit "Next", name: :next, class: "btn blue-btn" %>
+          <%= f.submit "Back", name: :back, class: "btn white-btn" %>
+        <% end %>
+
+
+
+
+        <%#= form_with model: @event, url: admin_step3_path,  local: true do |f| %>
+          <%#= f.hidden_field :name %>
+          <%#= f.hidden_field :date %>
+          <%#= f.hidden_field :start_time %>
+          <%#= f.hidden_field :end_time %>
+          <%#= f.hidden_field :memo %>
+          <%# <div class="actions">  %>
+            <%#= f.submit "Next", class: "btn blue-btn" %>
+            <%#= f.submit "Back", name: :back, class: "btn white-btn" %>
+          <%# </div>  %>
+        <%# end %>
+
+
+
+      </div>
+    </div>
+  </div>
+</main>
+
+

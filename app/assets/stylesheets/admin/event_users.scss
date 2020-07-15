@@ -1,0 +1,50 @@
+// Place all the styles related to the admin/EventUsers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin event-form{
+  line-height: 200%;
+  border-radius: 10px;
+}
+
+// 新規作成ページ（step１）
+.restaurant-image{
+  width:10%;
+  border-radius: 50%;
+}
+.create-event-form{
+  @include  event-form;
+  width: 400px;
+  &--time{
+    @include  event-form;
+    width: 175px;
+  }
+}
+.create-event-textarea{
+  @include  event-form;
+  width: 400px;
+  height: 150px;
+}
+
+@media (max-width: 767px) {
+  .create-event-form{
+    width: 80%;
+    &--time{
+      width: 33%;
+    }
+  }
+  .create-event-textarea{
+    width: 80%;
+    height: 100px;
+  }
+}
+// 新規作成ページ（confirm）
+.event-create-member-form{
+  display: flex;
+  flex-direction: column;
+  label{
+    // 【対応要】
+    // margin-bottom: 0;
+    // margin-top: -10px !important;
+  }
+}

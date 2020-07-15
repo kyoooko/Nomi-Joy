@@ -1,0 +1,195 @@
+<header class="admin-header">
+  <%= render 'admin/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar admin-sidebar">
+    <%= render 'admin/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading-non--underline">
+      <span class="heading__top-welcome">Welcome to</span>
+      <div class="heading__top-logo"><%= image_tag("Kanjino-Heya_letter.png", class: "admin-top-logo") %></div>
+    </div>
+    <!-- 新規作成ボタン -->
+    <%= render 'create_event_button' %>
+    <div class="content">
+      <%# タブ（リンク） %>
+      <ul class="nav nav-tabs admin-nav-tabs">
+        <li class="nav-item">
+          <a href="#top" class="nav-link admin-tab-link active" data-toggle="tab">101号室</a>
+        </li>
+        <li class="nav-item">
+          <a href="#all" class="nav-link admin-tab-link" data-toggle="tab">202号室</a>
+        </li>
+        <li class="nav-item">
+          <a href="#fee" class="nav-link admin-tab-link" data-toggle="tab">303号室</a>
+        </li>
+      </ul>
+      <!-- タブ（中身） -->
+      <div class="tab-content">
+        <!-- タブ１ -->
+        <div id="top" class="tab-pane active">
+          <!-- 今日の飲み会 -->
+          <div class="content__block--today content__block">
+            <h2 class="block-hedding">Today's ノミカイ</h2>
+            <% if @today_event.present? %>
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row">ノミカイ
+                    名</th>
+                    <td><%= link_to admin_event_path(@today_event),class:"today-link" do %><%= @today_event.name %><% end %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">日にち</th>
+                    <td><%= @today_event.date.to_s(:date_jp) %>（<%= @day_of_the_week %>）</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">時間</th>
+                    <td><%= @today_event.start_time.to_s(:time)%>〜<%= @today_event.end_time.to_s(:time) %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">場所</th>
+                    <td><%= @today_event.restaurant.name %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><%= @today_event.restaurant.access %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><%= @today_event.restaurant.address %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><%= @today_event.restaurant.url %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">電話番号</th>
+                    <td><%= @today_event.restaurant.tel %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">参加者</th>
+                    <td><%= @today_event.event_users.count %>名&ensp;（欠席 <%= @today_event.event_users.only_deleted.count %>名）</td>
+                  </tr>
+                </tbody>
+              </table>
+            <% else %>
+              今日のノミカイの予定はありません
+            <% end %>
+          </div>
+          <!-- ToDoリスト -->
+          <div class="content__block--todo content__block">
+            <h2 class="block-hedding">ToDo List</h2>
+            <form class="">
+              <div>
+                <p><input type="checkbox" name="course" value="html">村瀬課長代理に締めの挨拶依頼</p>
+                <p><input type="checkbox" name="course" value="html">中堀さんに出席可否再確認</p>
+                <p><input type="checkbox" name="course" value="html">7/23 ４課懇親会お店に電話</p>
+              </div>
+              <input autofocus="autofocus" class="input-form" type="text" name="" id="">
+              <%= link_to "送信" , admin_events_path, class:"btn blue-btn" %>
+            </form>
+          </div>
+        </div>
+        <!-- タブ２ -->
+        <div id="all" class="tab-pane">
+          <!-- 全ての飲み会 -->
+           <%# 後ほどevent_path(@event)に変更要 %>
+          <div class="content__block__all-nomikai content__block">
+            <h2 class="block-hedding">開催予定のノミカイ</h2>
+            <div><%= image_tag("step-bar.png", class: "step-bar-202") %></div>
+            <div class="row all-nomikai">
+              <div class="col-3 all-nomikai__step">
+                <h4>招待済</h4>
+                <% @status0_events.each do |status0_event| %>
+                  <p><%= link_to admin_event_path(status0_event),class:"" do %><%= status0_event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[status0_event.date.wday] %>)&emsp;<%= status0_event.name %><% end %></p>
+                <% end %>
+              </div>
+              <div class="col-3 all-nomikai__step">
+                <h4>お店予約済</h4>
+                <%  @status1_events.each do |status1_event| %>
+                  <p><%= link_to admin_event_path(status1_event),class:"" do %><%= status1_event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[status1_event.date.wday] %>)&emsp;<%= status1_event.name %><% end %></p>
+                <% end %>
+              </div>
+              <div class="col-3 all-nomikai__step">
+                <h4>前日リマインド済</h4>
+                 <%  @status2_events.each do |status2_event| %>
+                  <p><%= link_to admin_event_path(status2_event),class:"" do %><%= status2_event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[status2_event.date.wday] %>)&emsp;<%= status2_event.name %><% end %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <!-- カレンダー -->
+          <div class="content__block--calender">
+            <%= month_calendar events: @events do |date, events| %>
+              <%= date.day %>
+              <% events.each do |event| %>
+                <div>
+                  <p class="calendar__time">
+                    <%= event.start_time.to_s(:time)%> 〜 <%= event.end_time.to_s(:time) %>
+                  </p>
+                  <%= link_to event_path(event),class:"event-link" do %><%= event.name%><% end %>
+                  <p class="calendar__restaurant">＠<%= event.restaurant.name %></p>
+                  <%# 【対応要：お店の写真】 %>
+                  <%#= attachment_image_tag event, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <!-- タブ３ -->
+        <div id="fee" class="tab-pane">
+          <!-- 未払い飲み会一覧 -->
+          <div class="content__block__unpaid-nomikai content__block">
+            <h2 class="block-hedding">集金中のノミカイ</h2>
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">日時</th>
+                  <th scope="col">ノミカイ名</th>
+                  <th scope="col">集金中の人数</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @unpaid_events.each do |unpaid_event| %>
+                  <tr>
+                    <td><%= unpaid_event.date.to_s(:date) %>（<%= %w(日 月 火 水 木 金 土)[unpaid_event.date.wday] %>）</td>
+                    <td><%= link_to admin_event_path(unpaid_event),class:"" do %><%= unpaid_event.name %><% end %></td>
+                    <td><%= EventUser.with_deleted.where(event_id: unpaid_event.id, fee_status: false).count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="content__block__unpaid-user-sum content__block">
+            <h2 class="block-hedding">【対応要】集金中のメンバー</h2>
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">氏名</th>
+                  <th scope="col">所属</th>
+                  <th scope="col">トータル額</th>
+                  <th scope="col">内訳</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @unpaying_event_users.each do |unpaying_event_user| %>
+                  <tr>
+                    <th scope="row"><%= link_to admin_user_path(unpaying_event_user.user),class:"" do %><%= attachment_image_tag unpaying_event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+                    <td><%= link_to admin_user_path(unpaying_event_user.user),class:"" do %><%= unpaying_event_user.user.name %><% end %></td>
+                    <td><%= unpaying_event_user.user.belongs %></td>
+                    <td>8000円</td>
+                    <td>6/25 ３課歓迎会 3000円<br>7/4 懇親会 6000円<br>7/6 暑気払い 4000円</td>
+                    <td><%=link_to "DMを始める", admin_room_path(unpaying_event_user.user), method: :post, class:"btn small-btn green-btn" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

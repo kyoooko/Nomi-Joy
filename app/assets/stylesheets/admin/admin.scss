@@ -1,0 +1,74 @@
+@import "../colors";
+
+// ボタン
+.blue-btn{
+  background-color: $admin-main !important;
+  color:$white  !important;
+  &:hover{
+    background-color: $light-gray !important;
+    color:$admin-main !important;
+  }
+}
+/* プラスボタン (調整要）*/
+.plus-button{
+  font-size:80px;
+}
+.create-event{
+  background-color: #267594;
+  border-radius: 50%;
+  position:fixed;
+  right:50px;
+  bottom:50px;
+  // height: 80px !important;
+}
+.create-event:hover{
+  background-color: #dfdfdf;
+}
+.bi-plus{
+  fill:#eee;
+}
+.bi-plus:hover{
+  fill:#267594;
+}
+// タブ
+.admin-nav-tabs{
+  border-color: $admin-main !important;
+}
+.admin-tab-link{
+  width:150px;
+  height:50px;
+  font-size: 120%;
+  padding-top: 3px;
+  color:  $admin-main;
+  &:hover{
+    color:  $admin-main;
+    border-color: #eee !important;
+    border-radius: 10px 10px 0 0;
+  }
+  &.active{
+    // 対応要（タブリンクの色）
+    background-color:  $admin-main !important;
+    color: #fff !important;
+    border-color:  $admin-main !important;
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+ /* 下記ベースカラー変更要 */
+//  * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+//   color:#1b515c;
+// }
+// a{
+//   color:#1b515c;
+// }
+/* body見出しに下線 */
+// .heading{
+//   border-bottom: 1px solid #1b515c;
+//   padding-bottom: 5%;
+// }
+
+
+

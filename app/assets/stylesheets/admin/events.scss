@@ -1,0 +1,67 @@
+// Place all the styles related to the admin/Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// adminトップページ(index)
+// トップページの見出し
+.heading__top-welcome{
+  font-size: 40px;
+}
+.admin-top-logo{
+  width: 70%;
+}
+@media (max-width: 767px) {
+  .heading__top-welcome{
+  font-size: 20px;
+  }
+}
+// タブ１
+.content__block--today tr:first-child td{
+  font-size: 150%;
+  font-weight: bold;
+}
+// タブ２ 
+.step-bar-202{
+  width:50%;
+  height: 50px;
+  margin-bottom: 5%;
+}
+.all-nomikai{
+  display: flex;
+  justify-content:space-around;
+  &__step{
+    background-color: #dfdfdf;
+    border-radius: 30px;
+    font-size: 12px;
+  }
+}
+
+// イベント詳細
+.stepbar{
+  margin-bottom: 30px;
+}
+/* タブ２ */
+.content{
+  &__block--participants table,&__unpaid-participants table{
+  font-size: 10px;
+  }
+}
+/* タブ４ */
+.content__block--admin-map{
+  width: 60%;
+  height: 300px;
+  background-color: chocolate;
+  margin: 0 auto;
+}
+.admin-restaurant-image{
+  width:100%;
+}
+.event-fee-form,.participant-fee-status-form{
+  display: flex;
+  &__btn{
+    font-size: 5px !important;
+  }
+  &__form{
+    border-radius: 5px;
+  }
+}

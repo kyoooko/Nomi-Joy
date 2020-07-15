@@ -1,0 +1,9 @@
+// Place all the styles related to the public/searches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// メンバー一覧ページ（タブ１）・DM一覧ページ
+.dm-search-form,.members-search-form{
+  display: flex;
+  justify-content: center;
+}

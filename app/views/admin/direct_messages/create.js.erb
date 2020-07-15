@@ -1,0 +1,4 @@
+<%# .appendは引数を追加するメソッド %>
+$('.content__block--exchange').append(" <div class='self'><p class='message self__message' style='text-align: right; color:#bc7395;'><%= @dm.message %></p></div>");
+<%# valメソッドはコメント送信後のコメント入力フォームを空に %>
+$('input[type=text]').val("");

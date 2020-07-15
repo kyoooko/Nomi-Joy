@@ -1,0 +1,19 @@
+// Place all the styles related to the public/rooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// 一覧ページ
+.content__block--dm-menbers table{
+  font-size: 12px;
+}
+.dm-table {
+  td{
+    padding-top: 30px;
+  }
+  td:first-of-type{
+    font-size: 20px;
+  }
+}
+
+
+

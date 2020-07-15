@@ -1,0 +1,51 @@
+<main>
+  <div class="main-visual">
+    <div class="container">
+      <%= image_tag("Nomi-Joy.png", class: "main-visual__logo") %>
+      <h2 class="main-visual__catch-copy">飲み会を楽しく、便利に。</h2>
+      <div class="main-visual__sign">
+        <%= link_to new_user_session_path,class:"btn btn-info" do %>Login<% end %>
+        <%= link_to new_user_registration_path,class:"btn btn-success" do %>Sign up<% end %>
+      </div>   
+    </div>
+  </div>
+  <div class="about">
+    <h1 class="about__heading">What about <%= image_tag("Nomi-Joy_letter.png", class: "about_heading-logo") %> ?</h1>
+    <div class="about__content">
+      <div class="about-all">
+        <p class="">ノミジョイ！は、飲み会の準備を楽しく、便利にするためのサービスです。参加者の方も、幹事の方もご利用いただけます。</p>
+      </div>
+      <div class="about-2way row">
+        <div class="about-Nomi-Joy col-sm-5">
+          <%= image_tag("Nomi-Joy.png", class: "about-Nomi-Joy__logo") %>
+          <div class="about-Nomi-Joy__content">
+            <p class="">ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。</p>
+          </div>
+          <div class="about-Nomi-Joy__content">
+            <p class="">ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。</p>
+          </div>
+          <div class="about-Nomi-Joy__content">
+            <p class="">ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。</p>
+          </div>
+        </div>
+        <div class="about-Kanjino-Heya col-sm-5">
+          <%= image_tag("Kanjino-Heya.png", class: "about-Kanjino-Heya__logo") %>
+          <div class="about-Kanjino-Heya__content">
+            <p class="">カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。</p>
+          </div>
+          <div class="about-Kanjino-Heya__content">
+            <p class="">カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。</p>
+          </div>
+          <div class="about-Kanjino-Heya__content">
+            <p class="">カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="container">
+    <p class="">©Nomi-Joy!.inc</p>
+  </div>
+</footer>

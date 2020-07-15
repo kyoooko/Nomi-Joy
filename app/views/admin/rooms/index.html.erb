@@ -1,0 +1,54 @@
+<header class="admin-header">
+  <%= render 'admin/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar admin-sidebar">
+    <%= render 'admin/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+      <h1 class="heading__en">Direct message</h1>
+      <h3 class="heading__ja">ダイレクトメッセージ</h3>
+    </div>
+    <!-- 新規作成ボタン -->
+    <%= render 'admin/events/create_event_button' %>
+    <div class="content">
+      <div class="content__block--search">
+        <form class="dm-search-form">  
+          <div class="form-group col-3">
+              <select class="form-control">
+                  <option>氏名</option>
+                  <option>会社名・所属</option>
+              </select>
+          </div>
+          <div class="form-group col-6">
+            <input type="text" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="content__block--dm-menbers">
+        <table class="table dm-table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">氏名</th>
+              <th scope="col">会社名・所属</th>
+              <th scope="col">役職</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @members.each do |member| %>
+              <tr>
+                <th scope="row"><%= link_to admin_user_path(member),class:"" do %><%= attachment_image_tag member, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+                <td><%= link_to admin_user_path(member),class:"" do %><%= member.name %><% end %></td>
+                <td><%= member.belongs %></td>
+                <td><%= member.position %></td>
+                <td><%= link_to 'DMを開始', admin_room_path(member.id), class:"btn small-btn blue-btn" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

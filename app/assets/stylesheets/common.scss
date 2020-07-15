@@ -1,0 +1,98 @@
+@import "colors";
+
+/* 共通 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color:#1b515c;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+// contentの中のブロック
+.content__block{
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 5%;
+  margin-top:5%;
+  margin-bottom: 10%;
+}
+// ボタン
+.small-btn{
+  font-size: 12px;
+}
+.right-btn{
+  float:right;
+  width:100px;
+}
+// 画像（丸型・小）
+.small-image{
+  width:80px;
+  height: 80px;
+  border-radius: 50%;
+ }
+ /* フォーム */
+ .input-form{
+  line-height: 200%;
+  width: 250px;
+  border-radius: 10px;
+}
+.field,.actions{
+margin-bottom: 3%;
+}
+// ボディ
+.body{
+  background-color:rgb(213, 230, 139);
+  text-align:center;
+  padding:5% 8% 5%;
+  width:75%;
+}
+/* ボディ：見出しに下線 */
+// 色は今後調整要
+.heading{
+  border-bottom: 1px solid #1b515c;
+  padding-bottom: 5%;
+  // ボディ：見出しの大きさ調整
+  &__en{
+    font-size: 100px;
+  }
+  &__ja{
+    font-size: 30px;
+  }
+}
+// ボディ：内容
+.content{
+  margin-top:10%;
+}
+// ボディ内ブロックの見出し（publicとadmin共通）
+.block-hedding{
+  margin-bottom: 20px;
+}
+.must{
+  color: rgb(177, 74, 74);
+}
+
+@media (max-width: 767px) {
+  /* ボディ */
+  .body{
+    width:100%
+  }
+  .heading{
+    padding-top: 10%;
+    &__en{
+      font-size: 70px;
+    }
+    &__ja{
+      font-size: 20px;
+    }
+  }
+  .input-form{
+    line-height: 150%;
+    border-radius: 8px;
+  }
+}
+
+

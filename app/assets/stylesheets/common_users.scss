@@ -1,0 +1,92 @@
+/* マイページ */
+.content{
+  &__block--data{
+  width: 80%;
+  }
+  &__block--mypage-image{
+  width: 40%;
+  }
+} 
+.content--mypage{
+  display: flex;
+}
+.content__block--data{
+  table{
+    font-size: 12px;
+  }
+  th{
+    width:30%;  
+  }
+}
+.header-mypage-image{
+  display: none;
+}
+.mypage-edit-form,.mypage-edit-textarea{
+  line-height: 200%;
+  width: 250px;
+  border-radius: 10px;
+}
+.mypage-edit-textarea{
+  height: 150px;
+}
+.mypage-btn{
+  float:right;
+  width:100px;
+}
+.mypage-image{
+  border-radius: 50%;
+  width:300px;
+  height:300px;
+}
+@media (max-width: 1200px) {
+  .mypage-image{
+    width:200px;
+    height:200px;
+    }
+}
+@media (max-width: 767px) {
+  .content{
+    &__block--data{
+    width: 100%;
+    }
+    &__block--mypage-image{
+      width: 0%;
+    }
+  }
+  .header-mypage-image{
+    display: block;
+    border-radius: 50%;
+    width:150px;
+    height:150px;
+  }
+  .mypage-image{
+    display: none;
+  }
+  .mypage-btn{
+    float: none;
+  }
+}
+
+// 編集ページ
+.mypage-edit-image{
+  border-radius: 50%;
+  width:300px;
+  height:300px;
+  margin-bottom: 20px;
+}
+.mypage-edit-image-field{
+  font-size: 80%;
+}
+@media (max-width: 1200px) {
+  .mypage-edit-image{
+    width:150px;
+    height:150px;
+    }
+}
+@media (max-width: 767px) {
+  .mypage-edit-image{
+    width:150px;
+    height:150px;
+    margin-bottom: 20px;
+  }
+}

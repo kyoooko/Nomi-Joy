@@ -1,0 +1,85 @@
+<header class="admin-header">
+  <%= render 'admin/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar admin-sidebar">
+    <%= render 'admin/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+      <h1 class="heading__en">Nomikai Create Confirm</h1>
+      <h3 class="heading__ja">ノミカイ新規作成</h3>
+    </div>
+    <div class="content">
+      <div class="content__block--step-bar">
+        <div><%= image_tag("step-bar.png", class: "") %>
+      </div> 
+      <div class="content__block--confirm content__block">
+        <%= form_with model: @event, url: admin_events_path, local: true do |f| %>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th scope="row">ノミカイ名</th>
+                <td><%= @event.name %></td>
+              </tr>
+              <tr>
+                <th scope="row">日にち</th>
+                <td><%= @event.date.to_s(:date_jp) %>（<%= @day_of_the_week %>）</td>
+              </tr>
+              <tr>
+                <th scope="row">時間</th>
+                <td><%= @event.start_time.to_s(:time) %>&emsp;〜&emsp;<%= @event.end_time.to_s(:time) %></td>
+              </tr>
+              <tr>
+                <th scope="row">場所</th>
+                <td><%= @restautant_name %></td>
+              </tr>
+              <tr>
+                <th scope="row">メモ</th>
+                <td><%= @event.memo %></td>
+              </tr>
+              <tr>
+                <th scope="row">参加者</th>
+                <td>
+                 <%# 【★幹事＝user_id使用】 %>
+                 <p><%= User.find(@event.user_id).name %>（カンジ）</p>
+                 <% @event_users.each do |event_user| %>
+                  <p><%= User.find(event_user.to_i).name %>
+
+                  <%# 対応要 %>
+                  <%#= text_field_tag 'event_users[][fee]', event_user.fee %></p>
+                 <% end %>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :date %>
+          <%= f.hidden_field :start_time %>
+          <%= f.hidden_field :end_time %>
+          <%= f.hidden_field :restaurant_id %>
+          <%= f.hidden_field :memo %>
+          <%# 下記模索中 %>
+          <%#= f.hidden_field :event_user_ids, value: params[:event_user_ids] %>
+          <div class="actions"> 
+            <%= f.submit "Create", class: "btn blue-btn" %>
+            <%= f.submit "戻る", name: :back, class: "btn white-btn" %>
+          </div> 
+        <% end %>
+        <%# 戻るボタン:情報を保持するためにf.hidden_fieldでstep2へ送る %>
+        <%#= form_with model: @event, url: admin_step2_path,  local: true do |f| %>
+          <%#= f.hidden_field :name %>
+          <%#= f.hidden_field :date %>
+          <%#= f.hidden_field :start_time %>
+          <%#= f.hidden_field :end_time %>
+          <%#= f.hidden_field :restaurant_id %>
+          <%#= f.hidden_field :memo %>
+          <%# <div class="actions">  %>
+            <%#= f.submit "Back", class: "btn white-btn" %>
+          <%# </div>  %>
+        <%# end %>
+      </div>
+    </div>
+  </div>
+</main>
