@@ -19,6 +19,8 @@ module NomiJoy
     # 日本時間に設定
     config.time_zone = "Tokyo"
     config.active_record.default_timezone = :local
+    # カレンダー
+    config.beginning_of_week = :sunday
   end
 end
 

@@ -58,7 +58,7 @@
                   </tr>
                   <tr>
                     <th scope="row"></th>
-                    <td><%= @today_event.restaurant.adress %></td>
+                    <td><%= @today_event.restaurant.address %></td>
                   </tr>
                   <tr>
                     <th scope="row"></th>
@@ -122,56 +122,20 @@
           </div>
           <!-- カレンダー -->
           <div class="content__block--calender">
-            <h2 class="block-hedding">2020/7</h2>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">月</th>
-                  <th scope="col">火</th>
-                  <th scope="col">水</th>
-                  <th scope="col">木</th>
-                  <th scope="col">金</th>
-                  <th scope="col">土</th>
-                  <th scope="col">日</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>18:00-20:00<br>３課加藤さん送別会<br>上海庵</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>18:00-20:00<br>営業懇親会<br>ベルサイユの豚</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr><tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr><tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
+            <%= month_calendar events: @events do |date, events| %>
+              <%= date.day %>
+              <% events.each do |event| %>
+                <div>
+                  <p class="calendar__time">
+                    <%= event.start_time.to_s(:time)%> 〜 <%= event.end_time.to_s(:time) %>
+                  </p>
+                  <%= link_to event_path(event),class:"event-link" do %><%= event.name%><% end %>
+                  <p class="calendar__restaurant">＠<%= event.restaurant.name %></p>
+                  <%# 【対応要：お店の写真】 %>
+                  <%#= attachment_image_tag event, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %>
+                </div>
+              <% end %>
+            <% end %>
           </div>
         </div>
         <!-- タブ３ -->

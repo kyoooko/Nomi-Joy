@@ -20,6 +20,9 @@ class Admin::EventsController < ApplicationController
     @status0_events = Event.where(progress_status: 0, user_id:current_user.id)
     @status1_events = Event.where(progress_status: 1, user_id:current_user.id)
     @status2_events = Event.where(progress_status: 2, user_id:current_user.id)
+    # 全てのノミカイ（カレンダー）
+     # includesはN+1問題の解消
+     @events = Event.where(user_id:current_user.id).includes([:restaurant])
 
     # タブ３ 
     # 集金中の飲み会
@@ -117,7 +120,7 @@ class Admin::EventsController < ApplicationController
         session[:opentime] = params[:restaurant]["opentime"]
         session[:holiday] = params[:restaurant]["holiday"]
 
-        
+        # binding.pry
         # 【対応要：sessionが変】binding.pry
         redirect_to admin_step3_path(event: event_params) 
       else
