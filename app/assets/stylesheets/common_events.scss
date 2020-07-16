@@ -50,7 +50,7 @@
     font-size: 10px;
   }
   &__days td{
-    height: 150px !important;
+    height: 220px !important;
   }
 }
 .next-back{
@@ -79,6 +79,9 @@
     }
     &__restaurant{
       display: none;
+    }
+    &__days td{
+      height: 150px !important;
     }
   }
   .event-link{

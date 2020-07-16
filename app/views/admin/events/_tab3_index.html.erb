@@ -1,0 +1,48 @@
+<!-- 未払い飲み会一覧 -->
+<div class="content__block__unpaid-nomikai content__block">
+  <h2 class="block-hedding">集金中のノミカイ</h2>
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">日時</th>
+        <th scope="col">ノミカイ名</th>
+        <th scope="col">集金中の人数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% unpaid_events.each do |unpaid_event| %>
+        <tr>
+          <td><%= unpaid_event.date.to_s(:date) %>（<%= %w(日 月 火 水 木 金 土)[unpaid_event.date.wday] %>）</td>
+          <td><%= link_to admin_event_path(unpaid_event),class:"" do %><%= unpaid_event.name %><% end %></td>
+          <td><%= EventUser.with_deleted.where(event_id: unpaid_event.id, fee_status: false).count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="content__block__unpaid-user-sum content__block">
+  <h2 class="block-hedding">【対応要】集金中のメンバー</h2>
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">氏名</th>
+        <th scope="col">所属</th>
+        <th scope="col">トータル額</th>
+        <th scope="col">内訳</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% unpaying_event_users.each do |unpaying_event_user| %>
+        <tr>
+          <th scope="row"><%= link_to admin_user_path(unpaying_event_user.user),class:"" do %><%= attachment_image_tag unpaying_event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <td><%= link_to admin_user_path(unpaying_event_user.user),class:"" do %><%= unpaying_event_user.user.name %><% end %></td>
+          <td><%= unpaying_event_user.user.belongs %></td>
+          <td>8000円</td>
+          <td>6/25 ３課歓迎会 3000円<br>7/4 懇親会 6000円<br>7/6 暑気払い 4000円</td>
+          <td><%=link_to "DMを始める", admin_room_path(unpaying_event_user.user), method: :post, class:"btn small-btn green-btn" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

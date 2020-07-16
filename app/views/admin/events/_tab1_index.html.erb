@@ -1,0 +1,64 @@
+<!-- 今日の飲み会 -->
+<div class="content__block--today content__block">
+  <h2 class="block-hedding">Today's ノミカイ</h2>
+  <div class="row">
+    <% if today_event.present? %>
+      <table class="table table-borderless col-8">
+        <tbody>
+          <tr>
+            <th scope="row">ノミカイ
+            名</th>
+            <td><%= link_to admin_event_path(today_event),class:"today-link" do %><%= today_event.name %><% end %></td>
+          </tr>
+          <tr>
+            <th scope="row">日にち</th>
+            <td><%= today_event.date.to_s(:date_jp) %>（<%= day_of_the_week %>）</td>
+          </tr>
+          <tr>
+            <th scope="row">時間</th>
+            <td><%= today_event.begin_time.to_s(:time)%>〜<%= today_event.end_time.to_s(:time) %></td>
+          </tr>
+          <tr>
+            <th scope="row">場所</th>
+            <td><%= today_event.restaurant.name %>&emsp;&emsp;<%= link_to today_event.restaurant.url, target: :_blank, class: "btn blue-btn" do %>ぐるなびで見る<% end %></td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td><%= today_event.restaurant.access %></td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td><%= today_event.restaurant.address %></td>
+          </tr>
+          <tr>
+            <th scope="row">電話番号</th>
+            <td><%= @today_event.restaurant.tel %></td>
+          </tr>
+          <tr>
+            <th scope="row">参加者</th>
+            <td><%= today_event.event_users.count %>名&ensp;（欠席 <%= today_event.event_users.only_deleted.count %>名）</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class= "col-4">
+        <%= image_tag(today_event.restaurant.shop_image, class: "middle-image") %>
+        <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
+      </div>
+    </div>
+  <% else %>
+    今日のノミカイの予定はありません
+  <% end %>
+</div>
+<!-- ToDoリスト -->
+<div class="content__block--todo content__block">
+  <h2 class="block-hedding">ToDo List</h2>
+  <form class="">
+    <div>
+      <p><input type="checkbox" name="course" value="html">村瀬課長代理に締めの挨拶依頼</p>
+      <p><input type="checkbox" name="course" value="html">中堀さんに出席可否再確認</p>
+      <p><input type="checkbox" name="course" value="html">7/23 ４課懇親会お店に電話</p>
+    </div>
+    <input autofocus="autofocus" class="input-form" type="text" name="" id="">
+    <%= link_to "送信" ,admin_events_path, class:"btn blue-btn" %>
+  </form>
+</div>
