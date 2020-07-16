@@ -26,6 +26,7 @@
                 <%= radio_button_tag :restaurant, rest  %>
                 <%= image_tag(rest["image_url"]["shop_image1"], class: "restaurant-image") %>
                 <%= rest["name"] %>
+                <%= link_to rest["url"], target: :_blank, class: "btn blue-btn" do %>ぐるなびで見る<% end %>
               </p>
             <% end %>
           <% end %>
@@ -34,27 +35,12 @@
           <%= f.hidden_field :begin_time %>
           <%= f.hidden_field :end_time %>
           <%= f.hidden_field :memo %>
-          <%= f.submit "Next", name: :next, class: "btn blue-btn" %>
-          <%= f.submit "Back", name: :back, class: "btn white-btn" %>
+          <p class="step2-button">
+            <%= f.submit "Next", name: :next, class: "btn blue-btn" %>
+            <%= f.submit "Back", name: :back, class: "btn white-btn" %>
+          </p>
         <% end %>
-
-
-
-
-        <%#= form_with model: @event, url: admin_step3_path,  local: true do |f| %>
-          <%#= f.hidden_field :name %>
-          <%#= f.hidden_field :date %>
-          <%#= f.hidden_field :start_time %>
-          <%#= f.hidden_field :end_time %>
-          <%#= f.hidden_field :memo %>
-          <%# <div class="actions">  %>
-            <%#= f.submit "Next", class: "btn blue-btn" %>
-            <%#= f.submit "Back", name: :back, class: "btn white-btn" %>
-          <%# </div>  %>
-        <%# end %>
-
-
-
+        <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank,class: "step2-gurunave" do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
       </div>
     </div>
   </div>

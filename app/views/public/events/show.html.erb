@@ -59,6 +59,7 @@
           </table>
           <div class= "col-4">
               <%= image_tag(@event.restaurant.shop_image, class: "middle-image") %>
+              <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
           </div>
         </div>
       </div>
@@ -75,4 +76,4 @@
 
 <%# マップ(JS)  %>
 <script sec="javascripts/address_map.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyC7wALtCD2-jLMnFfdOUaxxfvOtA_wKqs8&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

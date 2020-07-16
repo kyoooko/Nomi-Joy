@@ -84,7 +84,7 @@ gem 'rubocop-airbnb'
 gem 'paranoia'
 # カレンダー
 gem 'simple_calendar', '~> 2.0'
-# 環境変数
+# 環境変数（GoogleMapで使用）
 gem 'dotenv-rails'
 
 group :production do

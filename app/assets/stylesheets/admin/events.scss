@@ -23,14 +23,19 @@
 .admin-nomikai-overview-btn{
   margin-top: 50%;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .admin-nomikai-overview-btn{
     margin-top: 300px;
   }
 }
+@media (max-width: 1000px) {
+  .admin-nomikai-overview-btn{
+    margin-top: 400px;
+  }
+}
 @media (max-width: 767px) {
   .admin-nomikai-overview-btn{
-    margin-top: 350px;
+    margin-top: 500px;
   }
 }
 // タブ２ 
@@ -79,6 +84,11 @@
   }
 }
 // 新規作成
+// step2
+.step2-gurunave,.step2-button{
+  display: block;
+  margin-top: 20px;
+}
 // step3
 .event-create-member-form {
   width:20%;
