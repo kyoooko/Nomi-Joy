@@ -29,15 +29,15 @@
       <div class="tab-content">
         <!-- タブ１ -->
         <div id="top" class="tab-pane active">
-          <%= render 'tab1', today_event: @today_event, day_of_the_week: @day_of_the_week %>
+          <%= render 'tab1_index', today_event: @today_event, day_of_the_week: @day_of_the_week %>
         </div>
         <!-- タブ２ -->
         <div id="all" class="tab-pane">
-          <%= render 'tab2', status0_events: @status0_events, status1_events: @status_events, status2_events: @status2_events, events: @events %>
+          <%= render 'tab2_index', status0_events: @status0_events, status1_events: @status1_events, status2_events: @status2_events, events: @events %>
         </div>
         <!-- タブ３ -->
         <div id="fee" class="tab-pane">
-          <%= render 'tab2', unpaid_events: @unpaid_events, unpaying_event_users: @unpaying_event_users %>
+          <%= render 'tab3_index', unpaid_events: @unpaid_events, unpaying_event_users: @unpaying_event_users %>
         </div>
       </div>
     </div>

@@ -62,23 +62,7 @@
         <% end %>
       </div>
       <!-- カレンダー -->
-      <div class="content__block--calender">
-        <%= month_calendar events: @events do |date, events| %>
-          <%= date.day %>
-          <% events.each do |event| %>
-            <div>
-              <p class="calendar__time">
-                 <%= event.begin_time.to_s(:time)%> 〜 <%= event.end_time.to_s(:time) %>
-              </p>
-              <p><%= link_to event_path(event),class:"event-link" do %><%= event.name%><% end %></p>
-              <%= image_tag(event.restaurant.shop_image, class: "small-square-image") %>
-              <p class="calendar__restaurant">＠<%= event.restaurant.name %></p>
-            </div>
-            <%# 【対応要：お店の写真】 %>
-            <%#= attachment_image_tag event, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render '/calendar', events: @events %>
       <!-- 未払い飲み会一覧 -->
       <div class="content__block__unpaid">
         <h2 class="block-hedding">未払いの飲み会一覧</h2>
