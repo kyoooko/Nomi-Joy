@@ -82,8 +82,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_175805) do
     t.string "name", null: false
     t.string "address"
     t.string "access"
-    t.float "latitude"
-    t.float "longitude"
     t.string "url"
     t.string "shop_image"
     t.string "tel"

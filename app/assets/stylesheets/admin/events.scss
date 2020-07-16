@@ -19,6 +19,19 @@
 .content__block--today tr:first-child td{
   font-size: 150%;
   font-weight: bold;
+} 
+.admin-nomikai-overview-btn{
+  margin-top: 50%;
+}
+@media (max-width: 1200px) {
+  .admin-nomikai-overview-btn{
+    margin-top: 300px;
+  }
+}
+@media (max-width: 767px) {
+  .admin-nomikai-overview-btn{
+    margin-top: 350px;
+  }
 }
 // タブ２ 
 .step-bar-202{

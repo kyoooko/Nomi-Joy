@@ -2,11 +2,11 @@
 <div class="content__block--restaurant content__block">
   <h2 class="block-hedding">お店情報</h2>
   <div class="row">
-    <table class="table table-borderless col-sm-8">
+    <table class="table table-borderless col-8">
       <tbody>
         <tr>
           <th scope="row">お店名</th>
-          <td><%= event.restaurant.name %></td>
+          <td><%= event.restaurant.name %>&emsp;<%= link_to event.restaurant.url, target: :_blank, class: "btn blue-btn" do %>ぐるなびで見る<% end %></td>
         </tr>
         <tr>
           <th scope="row">アクセス</th>
@@ -15,10 +15,6 @@
         <tr>
           <th scope="row">住所</th>
           <td><%= event.restaurant.address %></td>
-        </tr>
-        <tr>
-          <th scope="row">URL</th>
-          <td><%= event.restaurant.url %></td>
         </tr>
         <tr>
           <th scope="row">電話番号</th>
@@ -34,8 +30,8 @@
         </tr>
       </tbody>
     </table>
-    <div class="col-sm-4">
-      <%= image_tag("Kanjino-Heya.png", class: "admin-restaurant-image") %>
+     <div class= "col-4">
+      <%= image_tag(event.restaurant.shop_image, class: "middle-image") %>
     </div>
   </div>
 </div>

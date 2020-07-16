@@ -27,12 +27,12 @@
         <li class="nav-item">
           <a href="#restaurant" class="nav-link members-tab-link" data-toggle="tab">お店</a>
         </li>
-      </ul>
+      </ul> 
       <!-- タブ中身 -->
       <div class="tab-content">
         <!-- タブ１ -->
         <div id="top" class="tab-pane active">
-          <%= render 'tab1', event: @event %>
+          <%= render 'tab1', event: @event, day_of_the_week: @day_of_the_week %>
         </div>
         <!-- タブ２ -->
         <div id="participants" class="tab-pane">

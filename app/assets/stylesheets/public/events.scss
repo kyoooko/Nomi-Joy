@@ -33,7 +33,6 @@
 .simple-calendar {
   .day {
   }
-
   .wday-0 {
     color:rgb(177, 74, 74);
     background-color: rgb(233, 207, 207);
@@ -134,9 +133,14 @@
 .content__block--map{
   margin-top:10%;
 }
+// マップ
 .google-map{
+  display: flex;
+  justify-content: center;
+}
+#map {
   height: 500px;
-  background-color: cadetblue;
+  width: 80%;
 }
 @media (max-width: 767px) {
   .mypage-image{

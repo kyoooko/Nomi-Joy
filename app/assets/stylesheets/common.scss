@@ -34,6 +34,10 @@
   height: 80px;
   border-radius: 50%;
  }
+ //  画像（四角型・中）
+ .middle-image{
+  border-radius: 10%;
+ }
  /* フォーム */
  .input-form{
   line-height: 200%;
@@ -74,6 +78,11 @@ margin-bottom: 3%;
 .must{
   color: rgb(177, 74, 74);
 }
+@media (max-width: 1200px) {
+  .middle-image{
+    width: 150px;
+   }
+}
 
 @media (max-width: 767px) {
   /* ボディ */
@@ -93,6 +102,9 @@ margin-bottom: 3%;
     line-height: 150%;
     border-radius: 8px;
   }
+ .middle-image{
+  width: 100px;
+ }
 }
 
 

@@ -14,8 +14,9 @@
       <!-- 今日の飲み会 -->
       <div class="content__block--today">
         <h2 class="block-hedding">Today's ノミカイ</h2>
-          <% if @today_event.present? %>
-            <table class="table table-borderless">
+        <% if @today_event.present? %>
+          <div class="row">
+            <table class="table table-borderless col-8">
               <tbody>
                 <tr>
                   <th scope="row">ノミカイ名</th>
@@ -31,7 +32,7 @@
                 </tr>
                 <tr>
                   <th scope="row">場所</th>
-                  <td><%= @today_event.restaurant.name %></td>
+                  <td><%= @today_event.restaurant.name %>&emsp;&emsp;<%= link_to @today_event.restaurant.url, target: :_blank, class: "btn blue-btn" do %>ぐるなびで見る<% end %></td>
                 </tr>
                 <tr>
                   <th scope="row"></th>
@@ -42,20 +43,19 @@
                   <td><%= @today_event.restaurant.address %></td>
                 </tr>
                 <tr>
-                  <th scope="row"></th>
-                  <td><%= @today_event.restaurant.url %></td>
-                </tr>
-                <tr>
                   <th scope="row">カンジ</th>
                   <td><%= link_to user_path(@today_admin),class:"" do %><%= attachment_image_tag @today_admin, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %><%= @today_admin.belongs %><%= @today_admin.position %></td>
                 </tr>
                 <tr>
                   <th scope="row"></th>
-                  <td><%= link_to user_path(@today_admin),class:"" do %><%= @today_admin.name %><% end %></td>
-                  <td><%= link_to room_path(@today_admin.id),class:"btn green-btn" do %>カンジに連絡する<% end %></td>
+                  <td><%= link_to user_path(@today_admin),class:"" do %><%= @today_admin.name %><% end %>&ensp;&emsp;<%= link_to room_path(@today_admin.id),class:"btn green-btn" do %>カンジに連絡<% end %></td>
                 </tr>
               </tbody>
             </table>
+            <div class= "col-4">
+              <%= image_tag(@today_event.restaurant.shop_image, class: "middle-image") %>
+            </div>
+          </div>
         <% else %>
         今日のノミカイの予定はありません
         <% end %>
@@ -96,9 +96,6 @@
                 <td><%= unpaying_event_user.event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[unpaying_event_user.event.date.wday] %>)</td>
                 <td><%= link_to event_path(unpaying_event_user.event_id ),class:"" do %><%= unpaying_event_user.event.name %><% end %></td>
                 <td><%= unpaying_event_user.fee %></td>
-                <%# <td> 【対応要：下記２行をアソシーエション使って書き換えたい】【★幹事＝user_id使用】 %>
-                  <%#= my_unpaid_event.event.admin_user.name %>
-                <%# </td> %>
                 <td><%= User.find(unpaying_event_user.event.user_id).belongs%><%= User.find(unpaying_event_user.event.user_id).position%><%= link_to user_path(unpaying_event_user.event.user_id ),class:"" do %><%= User.find(unpaying_event_user.event.user_id).name%><% end %></td>
                 <td><%=link_to "DMを始める", room_path(unpaying_event_user.event.user_id), class:"btn small-btn green-btn" %></td>
               </tr>

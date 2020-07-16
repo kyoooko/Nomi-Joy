@@ -105,24 +105,20 @@ class Admin::EventsController < ApplicationController
     json = Net::HTTP.get(uri)
     result = JSON.parse(json)
     @rests=result["rest"]
+    restaurant = eval("#{params[:restaurant]}")
     if params[:next]
       # お店を選択していない場合は同じページに戻る
       if params[:restaurant]
-        session[:name] = params[:restaurant]["name"]
-        session[:address] = params[:restaurant]["address"]
-        session[:station] = params[:restaurant]["station"] 
-        session[:station_exit] = params[:restaurant]["station_exit"] 
-        session[:walk] = params[:restaurant]["walk"]
-        session[:latitude] = params[:restaurant]["latitude"]
-        session[:longitude] = params[:restaurant]["longitude"]
-        session[:url] = params[:restaurant]["url"]
-        session[:tel] = params[:restaurant]["tel"]
-        session[:shop_image] = params[:restaurant]["image_url"]["shop_image1"]
-        session[:opentime] = params[:restaurant]["opentime"]
-        session[:holiday] = params[:restaurant]["holiday"]
-
-        # binding.pry
-        # 【対応要：sessionが変】binding.pry
+        session[:name] = restaurant["name"]
+        session[:address] = restaurant["address"]
+        session[:access] = restaurant["access"]["line"]  + " " + restaurant["access"]["station"] +  restaurant["access"]["station_exit"] + " 徒歩" + restaurant["access"]["walk"] + "分"
+        # session[:latitude] = restaurant["latitude"].to_f
+        # session[:longitude] = restaurant["longitude"].to_f
+        session[:url] = restaurant["url"]
+        session[:tel] = restaurant["tel"]
+        session[:shop_image] = restaurant["image_url"]["shop_image1"]
+        session[:opentime] = restaurant["opentime"]
+        session[:holiday] = restaurant["holiday"]
         # step3をgetにしたためf.hiddenで渡せないので redirect_toのオプションでparamsを送る
         redirect_to admin_step3_path(event: event_params) 
       else
@@ -164,17 +160,9 @@ class Admin::EventsController < ApplicationController
     # session[:event_users] = params[:user][:id] 
     # 選択されたメンバーのIDの配列
     @event_user_ids = session[:event_user_ids]
-
-
-    # ここから
     @admin_fee = session[:admin_fee]= params[:admin_fee]
-    @event_user_fees = session[:fees] = params[:fees]
-    # binding.pry
-    
+    @event_user_fees = session[:fees] = params[:fees]  
     render :step3 and return if params[:back]
-    # ここ！！！
-    # render :step4 if @event.invalid?
-    #  render :step4 if @admin_fee.nil? || @event_user_fees.nil?
   end
 
   def create
@@ -188,17 +176,15 @@ class Admin::EventsController < ApplicationController
       user_id: current_user.id,
       name: session[:name],
       address: session[:address],
-      access: session[:station],
-      latitude: session[:latitude].to_f,
-      longitude: session[:longitude].to_f,
+      access: session[:access],
+      # latitude: session[:latitude],
+      # longitude: session[:longitude],
       url: session[:url], 
       shop_image: session[:shop_image], 
       tel: session[:tel], 
       opentime: session[:opentime],
       holiday: session[:holiday])
     @event.restaurant_id = @restaurant.id
-    # 【対応要】 session[:station_exit]  session[:walk] 
-    # binding.pry
     render :step4 and return if params[:back]
     render :confirm and return if !@event.save 
     # drop(1)は、sessionの配列の要素１つ目に""(nil)が渡されてしまい参加メンバーの一覧表示ができないため、１つ目を除いている
