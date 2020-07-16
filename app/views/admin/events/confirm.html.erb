@@ -41,15 +41,16 @@
               <tr>
                 <th scope="row">参加者</th>
                 <td>
-                 <%# 【★幹事＝user_id使用】 %>
-                 <p><%= User.find(@event.user_id).name %>（カンジ）</p>
-                 <% @event_users.each do |event_user| %>
-                  <p><%= User.find(event_user.to_i).name %>
-
-                  <%# 対応要 %>
-                  <%#= text_field_tag 'event_users[][fee]', event_user.fee %></p>
-                 <% end %>
-
+                  <%# カンジ %>
+                  <%# 【★幹事＝user_id使用】 %>
+                  <%= User.find(@event.user_id).name %>（カンジ）&emsp;<%= @admin_fee %>円<br />
+                  <%# カンジ以外の参加メンバー %>
+                  <%# 参加メンバーを選択しなかった場合でもエラーにならないようにするためのif文 %>
+                  <% if @event_user_ids.present? %>
+                    <% @event_user_ids.zip(@event_user_fees).each do |event_user_id,event_user_fee| %>
+                      <%= User.find(event_user_id.to_i).name %>&emsp;<%= event_user_fee %>円<br />
+                    <% end %>
+                  <% end %>
                 </td>
               </tr>
             </tbody>

@@ -12,11 +12,11 @@
     </div>
     <div class="content">
       <div class="content__block--step-bar">
+        <h3>お店を検索<span class="must">&emsp;*</span></h3>
         <div><%= image_tag("step-bar.png", class: "") %>
       </div> 
       <div class="content__block--step2 content__block">
-        <h4>お店を検索<span class="must">&emsp;*</span></h4>
-        <p>（例："魚金 新宿", &emsp;"イタリアン 新宿"）</p>
+        <p>（例："魚金 新宿", &emsp;"イタリアン,新宿"）</p>
         <%= form_with model: @event, url: admin_step2_path, local: true do |f| %>
           <%= text_field_tag :freeword %>
           <%= submit_tag '検索',class: "" %>

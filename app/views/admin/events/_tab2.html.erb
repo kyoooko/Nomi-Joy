@@ -1,0 +1,44 @@
+<!-- 参加メンバー一覧 -->
+<div class="content__block--participants"> 
+  <h2 class="block-hedding">参加者 <%= event.event_users.count %>名&ensp;（欠席 <%= event.event_users.only_deleted.count %>名）</h2>
+  <table class="table members-table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">氏名</th>
+        <th scope="col">会社名・所属</th>
+        <th scope="col">役職</th>
+        <th scope="col">会費</th>
+        <th scope="col">お酒</th>
+        <th scope="col">好きな食べ物・お酒</th>
+        <th scope="col">苦手な食べ物・お酒</th>
+        <th scope="col">最寄駅</th>
+        <th scope="col">参加可否</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% event_users.each do |event_user| %>
+        <tr>
+          <th scope="row"><%= link_to admin_user_path(event_user.user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <td><%= link_to admin_user_path(event_user.user),class:"" do %><%= event_user.user.name %><% end %></td>
+          <td><%= event_user.user.belongs %></td>
+          <td><%= event_user.user.position %></td>
+          <td><%= event_user.fee %></td>
+          <td><% if  event_user.user.can_drink == true %>○<% else%>×<% end%></td>
+          <td><%= event_user.user.favolite %></td>
+          <td><%= event_user.user.unfavolite %></td>
+          <td><%= event_user.user.nearest_station %></td>
+          <td>
+            <% if event_user.deleted_at == nil %>
+                <p><%=link_to "参加", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: Time.now ), method: :patch, class:"btn small-btn blue-btn" %></p>
+            <% else %>
+                <p><%=link_to "欠席", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: "" ), method: :patch, class:"btn small-btn white-btn" %></p>
+            <% end %>
+          </td>
+            <td><%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn small-btn blue-btn" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

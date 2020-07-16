@@ -27,4 +27,7 @@ class Event < ApplicationRecord
   # ビューに
   # <%= :day_of_the_week( @today_event.date) %>
 
+  def start_time
+    self.date
+  end
 end

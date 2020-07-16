@@ -7,20 +7,28 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <h1 class="heading__en">Nomikai Create Step3</h1>
+      <h1 class="heading__en">Nomikai Create Step4</h1>
       <h3 class="heading__ja">ノミカイ新規作成</h3>
     </div>
     <div class="content">
       <div class="content__block--step-bar">
-        <h3>参加者選択</h3>
+        <h3>会費設定</h3>
+        <p class="fee-annotion">※ 後ほど設定できます</p>
         <div><%= image_tag("step-bar.png", class: "") %>
       </div> 
-      <div class="content__block--step3 content__block">
-        <%= form_with model: @event, url: admin_step4_path,  local: true do |f| %>
+      <div class="content__block--step4 content__block">
+        <%= form_with  model: @event, url: admin_confirm_path,  local: true do |f| %>
           <table class="table table-borderless">
             <tbody>
-              <tr class= "">
-                <td class="event-create-member-form"><%#= collection_check_boxes(:user, :id, @members, :id, :name) %><%= f.collection_check_boxes :event_user_ids, @members, :id, :name %></td>
+              <tr>
+                <td class="">
+                  <%# カンジ %>
+                  <span class="fee-name"><%= User.find(@event.user_id).name %>（カンジ）</span>&emsp;<%= text_field_tag "admin_fee","",class:"fee-form" %>円<br />
+                  <%# カンジ以外の参加メンバー %>
+                  <% @event_user_ids.each do |event_user_id| -%>
+                    <span class="fee-name"><%= User.find(event_user_id).name %></span>&emsp;<%= text_field_tag "fees[]","",class:"fee-form" %>円<br>
+                  <% end -%>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -39,6 +47,7 @@
     </div>
   </div>
 </main>
+
 
 
 

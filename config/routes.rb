@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get 'step1',to:'events#step1'
     post 'step2',to:'events#step2'
     get 'step3',to:'events#step3'
+    post 'step4',to:'events#step4'
     post 'confirm',to:'events#confirm'
     get 'events/confirm_plan_remind'
     get 'events/send_plan_remind'

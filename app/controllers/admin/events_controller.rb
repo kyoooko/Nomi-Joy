@@ -1,6 +1,7 @@
 class Admin::EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update,:destroy]
-  before_action :ensure_admin?, only: [:show, :edit, :update,:destroy, :progress_status_update]
+  before_action :ensure_admin?, only: [:show, :edit, :update,:destroy]
+  before_action :ensure_admin_for_update_progress_status?, only: [ :progress_status_update]
 
   def index
     # 下記集金中メンバーに変更要
@@ -122,6 +123,7 @@ class Admin::EventsController < ApplicationController
 
         # binding.pry
         # 【対応要：sessionが変】binding.pry
+        # step3をgetにしたためf.hiddenで渡せないので redirect_toのオプションでparamsを送る
         redirect_to admin_step3_path(event: event_params) 
       else
         flash[:danger] = "お店を選択してください"
@@ -139,28 +141,48 @@ class Admin::EventsController < ApplicationController
     render :step2 if @event.invalid? 
   end
 
+  # step4のみ検討要
+  def step4
+    @event=Event.new(event_params)
+    # # 【★幹事＝user_id使用】
+    @event.user_id = current_user.id
+    @event_user_ids = session[:event_user_ids] = params[:event][:event_user_ids].drop(1)
+    render :step2 and return if params[:back]
+  end
+
   def confirm
     @event=Event.new(event_params)
     # 曜日
     @day_of_the_week= %w(日 月 火 水 木 金 土)[@event.date.wday]
+    # Backボタンで戻ってきた時renderでstep3に戻るので下記追記が必要
+    @members = current_user.matchers
+    # カンジ
     # 【★幹事＝user_id使用】
     @event.user_id = current_user.id
     @restautant_name = session[:name]
-    # @event.restaurant_id = params[:event][:restaurant_id].to_i
     # collection_check_boxesの場合下記
     # session[:event_users] = params[:user][:id] 
-    session[:event_users] = params[:event][:event_user_ids].drop(1)
-    @event_users = session[:event_users]
-    render :step2 and return if params[:back]
-    render :step3 if @event.invalid?
+    # 選択されたメンバーのIDの配列
+    @event_user_ids = session[:event_user_ids]
+
+
+    # ここから
+    @admin_fee = session[:admin_fee]= params[:admin_fee]
+    @event_user_fees = session[:fees] = params[:fees]
+    # binding.pry
+    
+    render :step3 and return if params[:back]
+    # ここ！！！
+    # render :step4 if @event.invalid?
+    #  render :step4 if @admin_fee.nil? || @event_user_fees.nil?
   end
 
   def create
-    # Backボタンで戻ってきた時renderなので下記追記が必要
-    @members = current_user.matchers
     @event=Event.new(event_params)
     # 【★幹事＝user_id使用】
     @event.user_id = current_user.id
+    # Backボタンで戻ってきた時renderなので下記追記が必要
+    @event_user_ids = session[:event_user_ids] 
     # お店の作成
     @restaurant = Restaurant.create(
       user_id: current_user.id,
@@ -177,15 +199,30 @@ class Admin::EventsController < ApplicationController
     @event.restaurant_id = @restaurant.id
     # 【対応要】 session[:station_exit]  session[:walk] 
     # binding.pry
-    render :step3 and return if params[:back]
+    render :step4 and return if params[:back]
     render :confirm and return if !@event.save 
     # drop(1)は、sessionの配列の要素１つ目に""(nil)が渡されてしまい参加メンバーの一覧表示ができないため、１つ目を除いている
-    event_users = session[:event_users]
-    # 【模索中】Backボタンで戻った時、選択されたままにしたいのでsessionを使わずf.hiddenを使って実装をしたい
-    # event_users = params [:event][:event_user_ids]
-    event_users.map { |event_user| EventUser.create(user_id: event_user, event_id: @event.id, fee: 3000)}
+    event_user_ids = session[:event_user_ids]
+
+    
+    event_fees = session[:fees] 
+    # 参加メンバーを選択しなかった場合でもエラーにならないようにするためのif文
+    if event_user_ids.present?
+      
+      event_user_ids.zip(event_fees).each { |event_user_id, event_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_fee)}
+
+      # event_users = event_user_ids.map { |event_user_id| EventUser.create(user_id: event_user_id, event_id: @event.id)}
+      # event_users.zip(event_fees).each do |event_user, event_fee| 
+      # event_user.fee = event_fee.to_i 
+      # event_user.save 
+      # end
+    end
+
+
+
+
     # 自分（カンジ）のevent_userも作成
-    EventUser.create(user_id: current_user.id, event_id: @event.id, fee: 3000)
+    EventUser.create(user_id: current_user.id, event_id: @event.id, fee: session[:admin_fee].to_i)
     redirect_to admin_event_path(@event)
   end
 
@@ -205,5 +242,9 @@ class Admin::EventsController < ApplicationController
   def ensure_admin?
      @event=Event.find(params[:id])
      redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id
+  end
+  def ensure_admin_for_update_progress_status?
+    @event=Event.find(params[:event_id])
+    redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id
   end
 end

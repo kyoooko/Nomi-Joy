@@ -1,0 +1,48 @@
+<!-- お店情報 -->
+<div class="content__block--restaurant content__block">
+  <h2 class="block-hedding">お店情報</h2>
+  <div class="row">
+    <table class="table table-borderless col-sm-8">
+      <tbody>
+        <tr>
+          <th scope="row">お店名</th>
+          <td><%= event.restaurant.name %></td>
+        </tr>
+        <tr>
+          <th scope="row">アクセス</th>
+          <td><%= event.restaurant.access %></td>
+        </tr>
+        <tr>
+          <th scope="row">住所</th>
+          <td><%= event.restaurant.address %></td>
+        </tr>
+        <tr>
+          <th scope="row">URL</th>
+          <td><%= event.restaurant.url %></td>
+        </tr>
+        <tr>
+          <th scope="row">電話番号</th>
+          <td><%= event.restaurant.tel %></td>
+        </tr>
+        <tr>
+          <th scope="row">営業時間</th>
+          <td><%= event.restaurant.opentime %></td>
+        </tr>
+        <tr>
+          <th scope="row">定休日</th>
+          <td><%= event.restaurant.holiday %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="col-sm-4">
+      <%= image_tag("Kanjino-Heya.png", class: "admin-restaurant-image") %>
+    </div>
+  </div>
+</div>
+<!-- お店マップ -->
+<div class="content__block--admin-map">
+  <h2 class="block-hedding">お店のMap</h2>
+  <div class="admin-google-map">
+    ここに地図
+  </div>
+</div>
