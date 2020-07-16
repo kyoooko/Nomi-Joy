@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 2020_07_08_175805) do
     t.integer "restaurant_id"
     t.integer "user_id", null: false
     t.string "name", null: false
-    t.date "date", null: false
-    t.datetime "start_time", null: false
+    t.datetime "date", null: false
+    t.datetime "begin_time", null: false
     t.datetime "end_time", null: false
     t.string "memo"
     t.integer "progress_status", default: 0, null: false

@@ -20,13 +20,7 @@ class Event < ApplicationRecord
   # belongs_to :admin_user,class_name:"User"
 
 
-  # 【検討要】
-  # def day_of_the_week(date)
-  #   %w(日 月 火 水 木 金 土)[date.wday]
-  # end
-  # ビューに
-  # <%= :day_of_the_week( @today_event.date) %>
-
+  # カレンダー：gem simple_calendarでは"start_time"ベースでカレンダーのdayに入るため、今回はdateカラムをstart_timeに設定する
   def start_time
     self.date
   end

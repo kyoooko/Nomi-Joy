@@ -46,7 +46,7 @@
                   </tr>
                   <tr>
                     <th scope="row">時間</th>
-                    <td><%= @today_event.start_time.to_s(:time)%>〜<%= @today_event.end_time.to_s(:time) %></td>
+                    <td><%= @today_event.begin_time.to_s(:time)%>〜<%= @today_event.end_time.to_s(:time) %></td>
                   </tr>
                   <tr>
                     <th scope="row">場所</th>
@@ -127,7 +127,7 @@
               <% events.each do |event| %>
                 <div>
                   <p class="calendar__time">
-                    <%= event.start_time.to_s(:time)%> 〜 <%= event.end_time.to_s(:time) %>
+                    <%= event.begin_time.to_s(:time)%> 〜 <%= event.end_time.to_s(:time) %>
                   </p>
                   <%= link_to event_path(event),class:"event-link" do %><%= event.name%><% end %>
                   <p class="calendar__restaurant">＠<%= event.restaurant.name %></p>

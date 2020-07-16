@@ -235,7 +235,7 @@ class Admin::EventsController < ApplicationController
   def event_params
     # event_user_idsはconfirmページのBackボタン押した際にもcheck_boxesの選択idを保持するため作成した
     # 【模索中】event_user_idsいる？
-    params.require(:event).permit(:name, :date, :start_time, :end_time, :memo, :progress_status)
+    params.require(:event).permit(:name, :date, :begin_time, :end_time, :memo, :progress_status)
   end
 
   # 自分がカンジでないノミカイはアクセス(URL検索含む）できないようにする
