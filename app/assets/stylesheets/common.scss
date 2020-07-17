@@ -111,5 +111,30 @@ margin-bottom: 3%;
   width: 100px;
  }
 }
-
-
+// ページネーション
+.paginate-bar{
+  display: flex;
+  justify-content: center;
+}
+// fontawesome
+.n-circle {
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: #efa04c;
+  // color: rgb(213, 230, 139);
+}
+// fontawesome（public側)
+.public-icon{
+  color: #eee !important;
+  &:hover{
+    color: #1b515c;
+  }
+}
+// fontawesome（admin側)
+.admin-icon{
+  color: #eee !important;
+  &:hover{
+    color: #267594;
+  }
+}

@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
     <ul class="admin-navbar-nav">
       <li><%= link_to "Home", admin_events_path, class:"admin-nav-item" %></li>
-      <li><%= link_to "Notice", admin_notifications_path, class:"admin-nav-item" %></li>
+      <li><%= link_to admin_notifications_path, class:"admin-nav-item" do %><%= render "admin/notifications/circle" %><% end %></li>
       <li><%= link_to "DM", admin_rooms_path, class:"admin-nav-item" %></li>
       <li><%= link_to events_path,class:"admin-nav-item" do %>Back to &ensp;<%= image_tag("Nomi-Joy.png", class: "go-to-otherside__logo") %><% end %></li>
     </ul>

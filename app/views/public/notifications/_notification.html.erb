@@ -1,0 +1,23 @@
+<div class= "col-lg-6 mx-auto">
+  <div>
+    <%= link_to user_path(notification.visitor) do %>
+      <%= attachment_image_tag notification.visitor, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %>
+      <strong>
+        <%= notification.visitor.name %>
+      </strong>
+    <% end %>
+    さんが
+    <% case notification.action %>
+      <% when 'follow' then %>
+        あなたをフォローしました
+      <% when 'dm' then%>
+        <%= "DM" %>
+      <% when 'fee' then %>
+        <%= "fee" %>
+    <% end %>
+  </div>
+  <div class="small text-muted text-right">
+    <%= time_ago_in_words(notification.created_at).upcase %>前
+  </div>
+  <hr>
+</div>

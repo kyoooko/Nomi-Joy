@@ -112,8 +112,6 @@ class Admin::EventsController < ApplicationController
         session[:name] = restaurant["name"]
         session[:address] = restaurant["address"]
         session[:access] = restaurant["access"]["line"]  + " " + restaurant["access"]["station"] +  restaurant["access"]["station_exit"] + " 徒歩" + restaurant["access"]["walk"] + "分"
-        # session[:latitude] = restaurant["latitude"].to_f
-        # session[:longitude] = restaurant["longitude"].to_f
         session[:url] = restaurant["url"]
         session[:tel] = restaurant["tel"]
         session[:shop_image] = restaurant["image_url"]["shop_image1"]
@@ -177,8 +175,6 @@ class Admin::EventsController < ApplicationController
       name: session[:name],
       address: session[:address],
       access: session[:access],
-      # latitude: session[:latitude],
-      # longitude: session[:longitude],
       url: session[:url], 
       shop_image: session[:shop_image], 
       tel: session[:tel], 
@@ -189,24 +185,11 @@ class Admin::EventsController < ApplicationController
     render :confirm and return if !@event.save 
     # drop(1)は、sessionの配列の要素１つ目に""(nil)が渡されてしまい参加メンバーの一覧表示ができないため、１つ目を除いている
     event_user_ids = session[:event_user_ids]
-
-    
     event_fees = session[:fees] 
     # 参加メンバーを選択しなかった場合でもエラーにならないようにするためのif文
     if event_user_ids.present?
-      
       event_user_ids.zip(event_fees).each { |event_user_id, event_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_fee)}
-
-      # event_users = event_user_ids.map { |event_user_id| EventUser.create(user_id: event_user_id, event_id: @event.id)}
-      # event_users.zip(event_fees).each do |event_user, event_fee| 
-      # event_user.fee = event_fee.to_i 
-      # event_user.save 
-      # end
     end
-
-
-
-
     # 自分（カンジ）のevent_userも作成
     EventUser.create(user_id: current_user.id, event_id: @event.id, fee: session[:admin_fee].to_i)
     redirect_to admin_event_path(@event)
@@ -219,8 +202,6 @@ class Admin::EventsController < ApplicationController
   end
 
   def event_params
-    # event_user_idsはconfirmページのBackボタン押した際にもcheck_boxesの選択idを保持するため作成した
-    # 【模索中】event_user_idsいる？
     params.require(:event).permit(:name, :date, :begin_time, :end_time, :memo, :progress_status)
   end
 

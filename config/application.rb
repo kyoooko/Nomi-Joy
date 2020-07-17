@@ -21,6 +21,8 @@ module NomiJoy
     config.active_record.default_timezone = :local
     # カレンダー
     config.beginning_of_week = :sunday
+    # 通知機能の「○分前」を日本語表示にするため
+    config.i18n.default_locale = :ja
   end
 end
 
