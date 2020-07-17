@@ -26,7 +26,7 @@
       <% end %>
     </tbody>
   </table>
-  <input type="submit" name="commit" value="全員に支払い依頼通知を送る" class="btn blue-btn" data-disable-with="">
+  <%= link_to "全員に支払い依頼通知を送る",admin_notice_to_unpaying_users_path(@event), class:"btn blue-btn"%>
 </div>
 <!-- メンバーごとの会費、支払いステータス変更 -->
 <div class="content__block__participants-fee-status">

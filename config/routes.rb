@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get 'events/confirm_plan_remind'
     get 'events/send_plan_remind'
     patch 'events/:event_id/progress_status_update',to:'events#progress_status_update', as: 'events_progress_status'
+    get 'events/:event_id/notice_to_unpaying_users', to: 'events#notice_to_unpaying_users', as: 'notice_to_unpaying_users'
     patch 'event_users/:event_user_id/fee_status',to:'event_users#fee_status_update', as: 'event_users_fee_status'
     patch 'event_users/:event_user_id/fee',to:'event_users#fee_update', as: 'event_users_fee'
     patch 'event_users/:event_user_id/participate_status',to:'event_users#participate_status_update', as: 'event_users_participate_status'

@@ -44,11 +44,12 @@
         <%= image_tag(today_event.restaurant.shop_image, class: "middle-image") %>
         <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
       </div>
-    </div>
-  <% else %>
-    今日のノミカイの予定はありません
-  <% end %>
+    <% else %>
+      今日のノミカイの予定はありません
+    <% end %>
+   </div>
 </div>
+
 <!-- ToDoリスト -->
 <div class="content__block--todo content__block">
   <h2 class="block-hedding">ToDo List</h2>

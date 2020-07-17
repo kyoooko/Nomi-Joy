@@ -1,7 +1,7 @@
 class Admin::EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update,:destroy]
   before_action :ensure_admin?, only: [:show, :edit, :update,:destroy]
-  before_action :ensure_admin_for_update_progress_status?, only: [ :progress_status_update]
+  before_action :ensure_admin_event_id?, only: [:progress_status_update, :notice_to_unpaying_users]
 
   def index
     # 下記集金中メンバーに変更要
@@ -57,6 +57,15 @@ class Admin::EventsController < ApplicationController
     @event_users = EventUser.with_deleted.includes([:user]).where(event_id: @event.id)
     # 曜日
     @day_of_the_week= %w(日 月 火 水 木 金 土)[@event.date.wday]
+  end
+
+  def notice_to_unpaying_users
+    @event=Event.find(params[:event_id])
+    @unpaying_event_users = EventUser.with_deleted.includes([:user]).where(event_id: @event.id, fee_status: false)
+    @unpaying_event_users.each do |unpaying_event_user|
+    @event.create_notification_require_fee(current_user,unpaying_event_user.user_id)
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   def edit
@@ -195,6 +204,7 @@ class Admin::EventsController < ApplicationController
     redirect_to admin_event_path(@event)
   end
 
+  
 
   private
   def set_event
@@ -210,7 +220,7 @@ class Admin::EventsController < ApplicationController
      @event=Event.find(params[:id])
      redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id
   end
-  def ensure_admin_for_update_progress_status?
+  def ensure_admin_event_id?
     @event=Event.find(params[:event_id])
     redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id
   end

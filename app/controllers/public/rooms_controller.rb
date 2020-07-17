@@ -23,5 +23,7 @@ class Public::RoomsController < ApplicationController
     @dm = DirectMessage.new(room_id: @room.id)
     # 自分と相手Aとの部屋のdmの全て
     @dms = @room.direct_messages
+    # 通知機能
+    session[:user_id] =  @user.id
   end
 end

@@ -1,4 +1,4 @@
-<div class= "col-lg-6 mx-auto">
+<div class= "col-lg-8 mx-auto">
   <div>
     <%= link_to admin_user_path(notification.visitor) do %>
       <%= attachment_image_tag notification.visitor, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %>
@@ -6,14 +6,21 @@
         <%= notification.visitor.name %>
       </strong>
     <% end %>
-    さんが
+    さんから
     <% case notification.action %>
       <% when 'follow' then %>
-        あなたをフォローしました
+        メンバー承認依頼が届いています
       <% when 'dm' then%>
-        <%= "DM" %>
-      <% when 'fee' then %>
-        <%= "fee" %>
+        <%= link_to 'DM', admin_room_path(notification.visitor), style: "font-weight: bold;" %>が届いています
+        <p class="text-muted mb-0 small" >
+          <%= notification.direct_message.message %>
+        </p>
+      <% when 'require_fee' then %>
+        下記のお支払いについて確認の依頼があります
+        <p class="text-muted mb-0 small" >
+          <%= link_to admin_event_path(notification.event_id), class: "" do %><%= notification.event.date.to_s(:date) %>&emsp;<%= notification.event.name %><% end %>&emsp;
+          会費：<%= EventUser.find_by(user_id: notification.visitor_id,event_id: notification.event_id).fee %>円
+        </p>
     <% end %>
   </div>
   <div class="small text-muted text-right">
