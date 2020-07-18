@@ -48,7 +48,11 @@
                 </tr>
                 <tr>
                   <th scope="row"></th>
-                  <td><%= link_to user_path(@today_admin),class:"" do %><%= @today_admin.name %><% end %>&ensp;&emsp;<%= link_to room_path(@today_admin.id),class:"btn green-btn" do %>カンジに連絡<% end %></td>
+                  <td>
+                    <% unless @today_admin == current_user%>
+                     <%= link_to user_path(@today_admin),class:"" do %><%= @today_admin.name %><% end %>&emsp;&emsp;<%= link_to room_path(@today_admin.id),class:"btn green-btn" do %>カンジに連絡する<% end %>
+                     <% end %>
+                  </td>
                 </tr>
               </tbody>
             </table>

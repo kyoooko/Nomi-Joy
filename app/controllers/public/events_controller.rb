@@ -1,5 +1,6 @@
 class Public::EventsController < ApplicationController
   before_action :ensure_current_user?, only: [:show]
+  
   def index
     # 今日の飲み会
     from = Time.current.beginning_of_day

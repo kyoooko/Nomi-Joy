@@ -1,4 +1,6 @@
 class Public::RoomsController < ApplicationController
+  before_action :ensure_room?, only: [:show]
+
   def index
     @members = current_user.matchers
   end
@@ -25,5 +27,12 @@ class Public::RoomsController < ApplicationController
     @dms = @room.direct_messages
     # 通知機能
     session[:user_id] =  @user.id
+  end
+
+  private
+  # 自分のDM roomへはアクセスできないようにする（URL検索含む）
+  def ensure_room?
+    room = Room.find(params[:id])
+    redirect_to rooms_path if room.id == current_user.id
   end
 end

@@ -36,10 +36,14 @@
     </div>
   </div>
 </div>
-<!-- お店マップ -->
-<div class="content__block--admin-map">
+ <!-- マップ -->
+<div class="content__block--map">
   <h2 class="block-hedding">お店のMap</h2>
-  <div class="admin-google-map">
-    ここに地図
+  <div class="google-map">
+    <div id='map' class="<%= event.restaurant.address %>"> </div>
   </div>
 </div>
+
+<%# マップ(JS)  %>
+<script sec="javascripts/address_map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

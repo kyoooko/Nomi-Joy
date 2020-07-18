@@ -21,7 +21,7 @@ User.create!(name:"林健太", email: "test6@test.co.jp", password: "aaaaaa", no
 
 User.create!(name:"井上葉月", email: "test7@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy7", belongs: "オーシャンティック航空（株） 東自損3課", position: "主任",image:File.open("./app/assets/images/guruguru.jpeg", ?r),nearest_station:"五反田", can_drink: true, favolite:"日本酒、ハイボール、辛いもの",unfavolite:"ラム", introduction:"火鍋やタイ料理など辛いものにハマってます！今は市ヶ谷勤務です！")
 
-User.create!(name:"木村真梨子", email: "test8@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy8", belongs: "オーシャンティック航空（株） 東自損3課", position: "副主任",image:File.open("./app/assets/images/candy.jpeg", ?r),nearest_station:"三軒茶屋", can_drink: false, favolite:"イタリアン",unfavolite:"パクチー", introduction:"最近ヨガにハマっている木村です。よろしくお願いします。")
+User.create!(name:"梶谷真梨子", email: "test8@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy8", belongs: "オーシャンティック航空（株） 東自損3課", position: "副主任",image:File.open("./app/assets/images/candy.jpeg", ?r),nearest_station:"三軒茶屋", can_drink: false, favolite:"イタリアン",unfavolite:"パクチー", introduction:"最近ヨガにハマっている木村です。よろしくお願いします。")
 
 User.create!(name:"加藤菜々子", email: "test9@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy9", belongs: "オーシャンティック航空（株） 東自損3課", position: "",image:File.open("./app/assets/images/pink_cake.jpeg", ?r),nearest_station:"清瀬", can_drink: true, favolite:"中華、韓国料理",unfavolite:"えび", introduction:"韓国料理にハマっているのでぜひ食べに行きたいです。よろしくお願いします。")
 
@@ -46,26 +46,37 @@ Relationship.create!(following_id:8,follower_id:1)
 Relationship.create!(following_id:9,follower_id:1)
 # user1とuser10はお互いに申請していない
 
+# ◆Room
+Room.create!
+
+# ◆Entry
+Entry.create!(user_id: 1, room_id: 1)
+Entry.create!(user_id: 5, room_id: 1)
+
+# ◆DM
+DirectMessage.create!(user_id:5, room_id:1, message: "お疲れ様です。7/30の歓迎会ですが、子供の関係でいけなくなってしました・・・残念ですが欠席でお願いします。" )
+DirectMessage.create!(user_id:1, room_id:1, message: "承知致しました。ご連絡ありがとうございます。" )
 
 #◆ノミカイ１（カンジ：user1、参加メンバー：user1~4、お店：restaurant1)
-Restaurant.create!(user_id: 1,name:"上海庭 九段下駅前店",address:"千代田区三番町0−0−0",access:"東京メトロ東西線九段下駅徒歩５分",url:"https://github.com/twbs/bootstrap-rubygem",shop_image:"",tel:"03-0000-0000",opentime:"11~24時",holiday:"水曜日")
+Restaurant.create!(user_id: 1,name:"上海庭 九段南店",address:"〒102-0074  東京都千代田区九段南3-2-12 上海庭ビル1～3F ＪＲ中央線 市ヶ谷駅 徒歩8分",access:"東京メトロ東西線九段下駅徒歩５分",url:"https://r.gnavi.co.jp/e263700/",shop_image:"shanhaitei.png",tel:"050-3490-6986",opentime:"月～土 ランチ 11:00～15:00 ディナー 17:00～22:00",holiday:"年中無休
+年末年始のみお休みを頂きます。")
 Event.create!(restaurant_id:1,user_id:1,name:"2020年3課暑気払い",date:"2020-07-22 00:00:00",begin_time:"2020-07-22 18:00:00",end_time:"2020-07-22 21:00:00",memo:"締めは林さんにお願いする。お店に1名欠席の連絡",progress_status:0,fee_status:false)
-EventUser.create!(user_id:1,event_id:1,fee:3000,fee_status:false,deleted_at:"")
+EventUser.create!(user_id:1,event_id:1,fee:4000,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:2,event_id:1,fee:3500,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:3,event_id:1,fee:4000,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:4,event_id:1,fee:4500,fee_status:true,deleted_at:"")
 
 
 # ◆ノミカイ２（カンジ：user2、参加メンバー：user1,2,5,6、お店：restaurant2)
-Restaurant.create!(user_id: 2,name:"魚金 市ヶ谷店",address:"千代田区三番町0−0−0",access:"東京メトロ東西線市ヶ谷駅徒歩1分",url:"https://github.com/twbs/bootstrap-rubygem",shop_image:"",tel:"03-0000-0000",opentime:"17~25時",holiday:"火曜日")
+Restaurant.create!(user_id: 2,name:"市ヶ谷魚金",address:"東京都千代田区五番町6-5 クレスト五番町 1・2F",access:"JR市ヶ谷駅から徒歩3分",url:"https://tabelog.com/tokyo/A1309/A130904/13217305/",shop_image:"uokin.png",tel:"050-5596-0401",opentime:"［日曜～土曜]11:30～23:00",holiday:"年末年始")
 Event.create!(restaurant_id:2,user_id:2,name:"野澤さん送別会",date:"2020-07-28 00:00:00",begin_time:"2020-07-28 18:30:00",end_time:"2020-07-28 21:00:00",memo:"吉田さんは19時から参加、花束と色紙用意する",progress_status:1,fee_status:false)
-EventUser.create!(user_id:1,event_id:2,fee:3000,fee_status:false,deleted_at:"")
+EventUser.create!(user_id:1,event_id:2,fee:3500,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:2,event_id:2,fee:3500,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:5,event_id:2,fee:4000,fee_status:true,deleted_at:"")
 EventUser.create!(user_id:6,event_id:2,fee:4500,fee_status:true,deleted_at:"")
 
 # ◆ノミカイ３（カンジ：user1、参加メンバー：user1~6、お店：restaurant3)
-Restaurant.create!(user_id: 1,name:"KITIRI 新宿東口店",address:"新宿区百人町0−0−0",access:"JR新宿駅徒歩2分",url:"https://github.com/twbs/bootstrap-rubygem",shop_image:"",tel:"03-0000-0000",opentime:"11~26時",holiday:"なし")
+Restaurant.create!(user_id: 1,name:"KICHIRI 新宿",address:"〒160-0022  東京都新宿区新宿3-36-10 ミラザ新宿4F",access:"ＪＲ 新宿駅 中央東口 徒歩1分",url:"https://r.gnavi.co.jp/b441509/",shop_image:"kichiri.png",tel:"050-3464-0249",opentime:"月～金・日・祝日 17:00～23:00（L.O.22:00、ドリンクL.O.22:00）",holiday:"無")
 Event.create!(restaurant_id:3,user_id:1,name:"3課新人歓迎会",date:"2020-07-30 00:00:00",begin_time:"2020-07-30 18:30:00",end_time:"2020-07-30 21:00:00",memo:"新人さんに着任挨拶を依頼する、最初の挨拶→林課長、中締め→村瀬課長代理",progress_status:2,fee_status:false)
 EventUser.create!(user_id:1,event_id:3,fee:3000,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:2,event_id:3,fee:3500,fee_status:false,deleted_at:"")
@@ -81,4 +92,9 @@ EventUser.create!(user_id:6,event_id:3,fee:5500,fee_status:true,deleted_at:"")
 # EventUser.create!(user_id:2,event_id:3,fee:3000,fee_status:true,deleted_at:"")
 # EventUser.create!(user_id:3,event_id:3,fee:3000,fee_status:false,deleted_at:"")
 
+# ◆通知
+Notification.create!(visitor_id:8, visited_id:1, action: "follow")
+Notification.create!(visitor_id:5, visited_id:1, action: "dm", direct_message_id: 1)
+Notification.create!(visitor_id:2, visited_id:1, action: "require_fee",event_id: 2)
+Notification.create!(visitor_id:1, visited_id:5, action: "dm", direct_message_id: 2)
 
