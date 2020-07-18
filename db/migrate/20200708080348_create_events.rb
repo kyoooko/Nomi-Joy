@@ -9,7 +9,6 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.datetime :end_time, null: false
       t.string :memo
       t.integer :progress_status, default: 0, null: false
-      t.boolean :fee_status, default: false, null: false
 
       t.timestamps
     end

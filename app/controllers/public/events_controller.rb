@@ -11,11 +11,11 @@ class Public::EventsController < ApplicationController
     # 今日のノミカイのカンジ
     # 【★幹事＝user_id使用】
     @today_admin = User.find(@today_event.user_id) if @today_event.present?
-    # 未払いのevent_userのうち自分にあたるもの
-    @unpaying_event_users = EventUser.includes([:event]).where(user_id: current_user.id, fee_status: false)
     # 全てのノミカイ（カレンダー）
-     # includesはN+1問題の解消
+    # includesはN+1問題の解消
     @events = Event.joins(:event_users).where(event_users: {user_id: current_user.id}).includes([:restaurant])
+    # 未払いのevent_userのうち自分にあたるもの(欠席のノミカイも含む)
+    @unpaying_event_users = EventUser.with_deleted.includes([:event]).where(user_id: current_user.id, fee_status: false)
   end
 
   def show

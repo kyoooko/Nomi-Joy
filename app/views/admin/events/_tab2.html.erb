@@ -20,7 +20,7 @@
     <tbody>
       <% event_users.each do |event_user| %>
         <tr>
-          <th scope="row"><%= link_to admin_user_path(event_user.user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <td scope="row"><%= link_to admin_user_path(event_user.user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></td>
           <td><%= link_to admin_user_path(event_user.user),class:"" do %><%= event_user.user.name %><% end %></td>
           <td><%= event_user.user.belongs %></td>
           <td><%= event_user.user.position %></td>
@@ -31,9 +31,9 @@
           <td><%= event_user.user.nearest_station %></td>
           <td>
             <% if event_user.deleted_at == nil %>
-                <p><%=link_to "参加", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: Time.now ), method: :patch, class:"btn small-btn blue-btn" %></p>
+                <p><%=link_to "参加", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: Time.now ), method: :patch, class:"btn btn-secondary btn-sm" %></p>
             <% else %>
-                <p><%=link_to "欠席", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: "" ), method: :patch, class:"btn small-btn white-btn" %></p>
+                <p><%=link_to "欠席", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: "" ), method: :patch, class:"btn btn-danger btn-sm" %></p>
             <% end %>
           </td>
             <td><%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn small-btn blue-btn" %></td>
@@ -41,4 +41,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= link_to '参加メンバーを追加', admin_add_event_user_path(event), class:"btn blue-btn" %>
 </div>

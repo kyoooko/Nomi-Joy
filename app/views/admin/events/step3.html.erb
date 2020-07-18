@@ -20,7 +20,9 @@
           <table class="table table-borderless">
             <tbody>
               <tr class= "">
-                <td class="event-create-member-form"><%#= collection_check_boxes(:user, :id, @members, :id, :name) %><%= f.collection_check_boxes :event_user_ids, @members, :id, :name %></td>
+                <td class="event-create-member-form">
+                 <%= collection_check_boxes(:event_user, :ids, @members, :id, :name) %>
+                </td>
               </tr>
             </tbody>
           </table>

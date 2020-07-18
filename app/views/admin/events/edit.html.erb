@@ -1,2 +1,45 @@
-<h1>Admin::Events#edit</h1>
-<p>Find me in app/views/admin/events/edit.html.erb</p>
+<header class="admin-header">
+  <%= render 'admin/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar admin-sidebar">
+    <%= render 'admin/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+      <h1 class="heading__en">Fee</h1>
+      <h3 class="heading__ja">会費設定</h3>
+    </div>
+    <%= form_with model: @event,url: admin_event_path(@event.id), local: true do |f| %>
+      <div class="content row">
+        <table class="table table-borderless col-8">
+          <tbody>
+            <tr>
+              <th scope="row">ノミカイ名<span class="must">&emsp;*</span></th>
+              <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class:"create-event-form" %></td>
+            </tr>
+            <tr>
+              <th scope="row">日にち<span class="must">&emsp;*</span></th>
+              <td><%= f.date_field :date, autofocus: true, autocomplete: "date", class:"create-event-form" %></td>
+            </tr>
+            <tr>
+              <th scope="row">時間<span class="must">&emsp;*</span></th>
+              <td><%= f.time_field :begin_time, autofocus: true, autocomplete: "start_time", class:"create-event-form--time" %>&emsp;〜&emsp;<%= f.time_field :end_time, autofocus: true, autocomplete: "end_time", class:"create-event-form--time" %></td>
+            </tr>
+            <tr>
+              <th scope="row">メモ</th>
+              <td><%= f.text_area :memo, autofocus: true, autocomplete: "memo", class:"create-event-textarea" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class= "col-4">
+          <%= image_tag(@event.restaurant.shop_image, class: "middle-image") %>
+          <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
+          <div class="admin-nomikai-overview-btn">
+            <%= f.submit "更新", class:"btn blue-btn" %>
+          </div>
+        </div>
+      </div>  
+    <% end %>
+  </div>
+</main>

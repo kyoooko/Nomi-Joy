@@ -10,39 +10,62 @@
       </tr>
     </thead>
     <tbody>
-      <% unpaid_events.each do |unpaid_event| %>
-        <tr>
-          <td><%= unpaid_event.date.to_s(:date) %>（<%= %w(日 月 火 水 木 金 土)[unpaid_event.date.wday] %>）</td>
-          <td><%= link_to admin_event_path(unpaid_event),class:"" do %><%= unpaid_event.name %><% end %></td>
-          <td><%= EventUser.with_deleted.where(event_id: unpaid_event.id, fee_status: false).count %></td>
-        </tr>
+      <% events.each do |event| %>
+        <% unpaying_users = EventUser.with_deleted.where(event_id: event.id, fee_status: false) %>
+        <% if unpaying_users.present? %>
+          <tr>
+            <td><%= event.date.to_s(:date) %>（<%= %w(日 月 火 水 木 金 土)[event.date.wday] %>）</td>
+            <td><%= link_to admin_event_path(event),class:"" do %><%= event.name %><% end %></td>
+            <td><%= unpaying_users.count %></td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
 </div>
 <div class="content__block__unpaid-user-sum content__block">
-  <h2 class="block-hedding">【対応要】集金中のメンバー</h2>
+  <h2 class="block-hedding">集金中のメンバー</h2>
   <table class="table table-borderless">
     <thead>
       <tr>
         <th scope="col"></th>
         <th scope="col">氏名</th>
         <th scope="col">所属</th>
-        <th scope="col">トータル額</th>
         <th scope="col">内訳</th>
+        <th scope="col">トータル額</th>
       </tr>
     </thead>
     <tbody>
-      <% unpaying_event_users.each do |unpaying_event_user| %>
+      <% @users.each do |user| %>
         <tr>
-          <th scope="row"><%= link_to admin_user_path(unpaying_event_user.user),class:"" do %><%= attachment_image_tag unpaying_event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-          <td><%= link_to admin_user_path(unpaying_event_user.user),class:"" do %><%= unpaying_event_user.user.name %><% end %></td>
-          <td><%= unpaying_event_user.user.belongs %></td>
-          <td>8000円</td>
-          <td>6/25 ３課歓迎会 3000円<br>7/4 懇親会 6000円<br>7/6 暑気払い 4000円</td>
-          <td><%=link_to "DMを始める", admin_room_path(unpaying_event_user.user), method: :post, class:"btn small-btn green-btn" %></td>
+          <th scope="row"><%= link_to admin_user_path(user),class:"" do %><%= attachment_image_tag user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <td><%= link_to admin_user_path(user),class:"" do %><%= user.name %><% end %></td>
+          <td><%= user.belongs %></td>
+          <td>
+            <%# 「current_userが幹事のノミカイで、未支払いの飲み会があるUser」に紐づく、current_userが幹事のノミカイのevent_userの配列 %>
+            <% event_users = user.event_users.with_deleted.where(fee_status: false).includes(:event).where(events:{user_id: current_user.id}) %>
+            <% sum = 0 %>
+            <% event_users.each do |event_user| %>
+              <% unless event_user.deleted_at.nil? %>
+                <span class="badge badge-danger">欠席</span>
+              <% end %>
+              <%= link_to admin_event_path(event_user.event_id) do %>
+                <%= event_user.event.date.to_s(:date) %>
+                <%= event_user.event.name %>
+              <% end %>
+              <%= event_user.fee %>円
+              <% sum = sum + event_user.fee.to_i %>
+              <br>
+            <% end %>
+          </td>
+          <td><%= sum  %>円</td>
+          <td><%=link_to "DMを始める", admin_room_path(user), method: :post, class:"btn small-btn green-btn" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+
+
+
+

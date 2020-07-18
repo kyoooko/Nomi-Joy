@@ -66,13 +66,14 @@
         <% end %>
       </div>
       <!-- カレンダー -->
-      <%= render '/calendar', events: @events %>
+      <%= render 'calendar', events: @events %>
       <!-- 未払い飲み会一覧 -->
       <div class="content__block__unpaid">
         <h2 class="block-hedding">未払いの飲み会一覧</h2>
         <table class="table table-borderless">
           <thead>
             <tr>
+              <th scope="col"></th>
               <th scope="col">日時</th>
               <th scope="col">ノミカイ名</th>
               <th scope="col">金額</th>
@@ -83,6 +84,11 @@
           <tbody>
             <% @unpaying_event_users.each do |unpaying_event_user| %>
               <tr>
+                <% if unpaying_event_user.deleted_at.nil? %>
+                  <td></td>
+                <% else%>
+                 <td><span class="badge badge-danger">欠席</span></td>
+                <% end %>
                 <td><%= unpaying_event_user.event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[unpaying_event_user.event.date.wday] %>)</td>
                 <td><%= link_to event_path(unpaying_event_user.event_id ),class:"" do %><%= unpaying_event_user.event.name %><% end %></td>
                 <td><%= unpaying_event_user.fee %></td>

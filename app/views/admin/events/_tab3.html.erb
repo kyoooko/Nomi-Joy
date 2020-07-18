@@ -1,32 +1,41 @@
 <!-- 未払いメンバー一覧 -->
 <div class="content__block__unpaid-participants content__block">
   <h2 class="block-hedding">集金中のメンバー</h2>
-  <h2 class="block-hedding"><%= unpaying_event_users.with_deleted.count %>名</h2>
-  <table class="table members-table">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">氏名</th>
-        <th scope="col">所属</th>
-        <th scope="col">役職</th>
-        <th scope="col">会費</th> 
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% unpaying_event_users.each do |unpaying_event_user| %>
+  <% if unpaying_event_users.with_deleted.present? %>
+    <h2 class="block-hedding"><%= unpaying_event_users.with_deleted.count %>名</h2>
+    <table class="table members-table">
+      <thead>
         <tr>
-          <th scope="row"><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= attachment_image_tag unpaying_event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-          <td><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= unpaying_event_user.user.name %><% end %></td>
-          <td><%= unpaying_event_user.user.belongs %></td>
-          <td><%= unpaying_event_user.user.position %></td>
-          <td><%= unpaying_event_user.fee %></td>
-          <td><%= link_to 'DM', admin_room_path(unpaying_event_user.user.id), class:"btn small-btn blue-btn" %></td>
+          <th scope="col"></th>
+          <th scope="col">氏名</th>
+          <th scope="col">所属</th>
+          <th scope="col">役職</th>
+          <th scope="col">会費</th> 
+          <th scope="col"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= link_to "全員に支払い依頼通知を送る",admin_notice_to_unpaying_users_path(@event), class:"btn blue-btn"%>
+      </thead>
+      <tbody>
+        <% unpaying_event_users.each do |unpaying_event_user| %>
+          <tr>
+            <% if unpaying_event_user.deleted_at.nil? %>
+              <td></td>
+            <% else%>
+              <td><span class="badge badge-danger">欠席</span></td>
+            <% end %>
+            <td scope="row"><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= attachment_image_tag unpaying_event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></td>
+            <td><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= unpaying_event_user.user.name %><% end %></td>
+            <td><%= unpaying_event_user.user.belongs %></td>
+            <td><%= unpaying_event_user.user.position %></td>
+            <td><%= unpaying_event_user.fee %></td>
+            <td><%= link_to 'DM', admin_room_path(unpaying_event_user.user.id), class:"btn small-btn blue-btn" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to "全員に支払い依頼通知を送る",admin_notice_to_unpaying_users_path(@event), class:"btn blue-btn"%>
+  <% else %>
+  全員領収済
+  <% end %>
 </div>
 <!-- メンバーごとの会費、支払いステータス変更 -->
 <div class="content__block__participants-fee-status">
@@ -45,7 +54,12 @@
     <tbody>
         <% event_users.each do |event_user| %>
         <tr>
-          <th scope="row"><%= link_to admin_user_path(event_user.user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <% if event_user.deleted_at.nil? %>
+            <td></td>
+          <% else%>
+            <td><span class="badge badge-danger">欠席</span></td>
+          <% end %>
+          <td scope="row"><%= link_to admin_user_path(event_user.user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></td>
           <td><%= link_to admin_user_path(event_user.user),class:"" do %><%= event_user.user.name %><% end %></td>
           <td><%= event_user.user.belongs %></td>
           <td><%= event_user.user.position %></td>

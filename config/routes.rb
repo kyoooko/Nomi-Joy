@@ -37,6 +37,9 @@ Rails.application.routes.draw do
     patch 'event_users/:event_user_id/fee_status',to:'event_users#fee_status_update', as: 'event_users_fee_status'
     patch 'event_users/:event_user_id/fee',to:'event_users#fee_update', as: 'event_users_fee'
     patch 'event_users/:event_user_id/participate_status',to:'event_users#participate_status_update', as: 'event_users_participate_status'
+    get 'event/:event_id/add_event_user',to:'events#add_event_user', as: 'add_event_user'
+    post 'event/:event_id/add_event_user_fee',to:'events#add_event_user_fee', as: 'add_event_user_fee'
+    post 'event/:event_id/add_event_user',to:'events#add_event_user_create', as: 'add_event_user_create'
     resources :rooms, only: [:show, :index]
     resources :direct_messages, only: [:create]
     resources :notifications, only: [:index, :destroy]

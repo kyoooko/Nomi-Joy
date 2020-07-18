@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_175805) do
     t.datetime "end_time", null: false
     t.string "memo"
     t.integer "progress_status", default: 0, null: false
-    t.boolean "fee_status", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_events_on_restaurant_id"
