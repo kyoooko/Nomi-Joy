@@ -1,0 +1,41 @@
+<header class="admin-header">
+  <%= render 'admin/logging_in_header' %>
+</header>
+<main class="row">
+  <div class="sidebar admin-sidebar">
+    <%= render 'admin/logging_in_slidebar' %>
+  </div>  
+  <div class="body">
+    <div class="heading">
+      <h1 class="heading__en">Restaurant</h1>
+      <h3 class="heading__ja">お店変更</h3>
+    </div>
+    <div class="content">
+      <div class="content__block--change-restaurant content__block">
+        <h3>お店を検索<span class="must">&emsp;*</span></h3>
+        <p>（例："魚金 新宿", &emsp;"イタリアン,新宿"）</p>
+        <%= form_with model: @event, url: admin_change_restaurant_path(@event), method: :get, local: true do |f| %>
+          <%= text_field_tag :freeword %>
+          <%= submit_tag '検索',class: "" %>
+          <% if @rests %>
+            <% @rests.each do |rest| %>
+              <p>
+                <%= radio_button_tag :restaurant, rest  %>
+                <%= image_tag(rest["image_url"]["shop_image1"], class: "restaurant-image") %>
+                <%= rest["name"] %>
+                <%= link_to rest["url"], target: :_blank, class: "btn blue-btn" do %>ぐるなびで見る<% end %>
+              </p>
+            <% end %>
+          <% end %>
+          <p class="step2-button">
+            <%= f.submit "変更", name: :change, class: "btn blue-btn" %>
+            <%= f.submit "Back", name: :back, class: "btn white-btn" %>
+          </p>
+        <% end %>
+        <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank,class: "step2-gurunave" do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
+      </div>
+    </div>
+  </div>
+</main>
+
+

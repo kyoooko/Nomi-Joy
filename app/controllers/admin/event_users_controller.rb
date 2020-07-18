@@ -24,13 +24,7 @@ class Admin::EventUsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  # 参加メンバーの追加（編集）
-  # def add
-  #   @members = current_user.matchers
-  #   @event = Event.find(1)
-
-  # end
-
+  
   private
   def set_event_user
     event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id],user_id: params[:event_user][:user_id])

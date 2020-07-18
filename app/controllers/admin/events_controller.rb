@@ -1,6 +1,6 @@
 class Admin::EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update,:destroy]
-  before_action :set_event_by_event_id, only: [:notice_to_unpaying_users, :progress_status_update, :add_event_user,:add_event_user_fee,:add_event_user_create]
+  before_action :set_event_by_event_id, only: [:notice_to_unpaying_users, :progress_status_update, :add_event_user,:add_event_user_fee,:add_event_user_create, :change_restaurant, :change_restaurant_update]
   before_action :ensure_admin?, only: [:show, :edit, :update,:destroy]
   before_action :ensure_admin_event_id?, only: [:progress_status_update, :notice_to_unpaying_users]
 
@@ -57,8 +57,50 @@ class Admin::EventsController < ApplicationController
   def edit
   end
 
+  # ノミカイ基本情報の編集
   def update
     redirect_to admin_event_path(@event) if @event.update(event_params)
+  end
+
+  # お店の変更ページ
+  # form内にsubmitボタンが複数ある。このアクション自体はGET（PATCHでも記述を変えれば問題はない）
+  def change_restaurant
+    # ぐるなびAPI
+    api_key= Rails.application.credentials.grunavi[:api_key]
+    url='https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid='
+    url << api_key  
+    if params[:freeword]
+    word=params[:freeword]
+    url << "&name=" << word 
+    end
+    url=URI.encode(url) 
+    uri = URI.parse(url)
+    json = Net::HTTP.get(uri)
+    result = JSON.parse(json)
+    @rests=result["rest"]
+    restaurant = eval("#{params[:restaurant]}")
+    if params[:change]
+      # お店を選択していない場合は同じページに戻る
+      if params[:restaurant]
+        @restaurant = Restaurant.create(
+          user_id: current_user.id,
+          name: restaurant["name"],
+          address: restaurant["address"],
+          access: restaurant["access"]["line"]  + " " + restaurant["access"]["station"] +  restaurant["access"]["station_exit"] + " 徒歩" + restaurant["access"]["walk"] + "分",
+          url: restaurant["url"], 
+          shop_image: restaurant["image_url"]["shop_image1"], 
+          tel: restaurant["tel"], 
+          opentime:  restaurant["opentime"],
+          holiday: restaurant["holiday"]      
+          )
+        @event.update(restaurant_id: @restaurant.id)
+        redirect_to admin_event_path(@event)
+      else
+        flash[:danger] = "お店を選択してください"
+        render :change_restaurant 
+      end
+    end
+    redirect_to admin_event_path(@event) if params[:back]
   end
 
   def destroy
@@ -83,6 +125,7 @@ class Admin::EventsController < ApplicationController
       @event=Event.new
   end
 
+  # form内にsubmitボタンが複数ある。このアクション自体はPOST。正しく選択されていれば次のアクション（step3)へリダイレクトされ（リダイレクトのためstep3はGET）、createされる
   def step2
     @event=Event.new(event_params)
     # 【★幹事＝user_id使用】

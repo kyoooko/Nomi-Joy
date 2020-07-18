@@ -33,6 +33,9 @@
      <div class= "col-4">
       <%= image_tag(event.restaurant.shop_image, class: "middle-image") %>
       <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
+      <div class="admin-nomikai-overview-btn">
+        <%= link_to "お店の変更", admin_change_restaurant_path(event), class:"btn blue-btn" %>
+      </div>
     </div>
   </div>
 </div>
