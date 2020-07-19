@@ -44,6 +44,11 @@ group :development, :test do
   gem 'rspec-rails'
   # N+1問題
   gem "bullet"
+  # デプロイ自動化
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
