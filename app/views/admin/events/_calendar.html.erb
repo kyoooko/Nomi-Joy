@@ -1,0 +1,17 @@
+<div class="content__block--calender">
+  <%# N+1問題の解消 %>
+  <% events = events.includes([:restaurant]) %>
+  <%= month_calendar events: events do |date, events| %>
+    <%= date.day %>
+    <% events.each do |event| %>
+      <div>
+        <p class="calendar__time">
+          <%= event.begin_time.to_s(:time)%> 〜 <%= event.end_time.to_s(:time) %>
+        </p>
+        <p><%= link_to admin_event_path(event),class:"event-link" do %><%= event.name%><% end %></p>
+        <%= image_tag(event.restaurant.shop_image, class: "small-square-image") %>
+        <p class="calendar__restaurant">＠<%= event.restaurant.name %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

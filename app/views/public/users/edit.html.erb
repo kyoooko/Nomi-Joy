@@ -7,6 +7,12 @@
   </div>  
   <div class="body">
       <div class="heading">
+        <%# フラッシュメッセージ %>
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <%= message %>
+          </div>
+        <% end %>
         <h1 class="heading__en">My page</h1>
         <h3 class="heading__ja">マイページ</h3>
         <h2 class="heading__sub">Edit</h2>
@@ -21,7 +27,7 @@
             <table class="table table-borderless">
               <tbody>
                 <tr>
-                  <th scope="row">氏名</th>
+                  <th scope="row">氏名<span class="must">&emsp;*</span></th>
                   <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
@@ -33,11 +39,11 @@
                   <td><%= f.text_field :position, autofocus: true, autocomplete: "position", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
-                  <th scope="row">Email</th>
+                  <th scope="row">Email<span class="must">&emsp;*</span></th>
                   <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>
-                  <th scope="row">ノミジョイ！ID</th>
+                  <th scope="row">ノミジョイ！ID<span class="must">&emsp;*</span></th>
                   <td><%= f.text_field :nomi_joy_id, autofocus: true, autocomplete: "nomi_joy_id", class:"mypage-edit-form" %></td>
                 </tr>
                 <tr>

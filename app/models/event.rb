@@ -18,13 +18,22 @@ class Event < ApplicationRecord
   has_many :users, through: :event_users
   # 【確認要】 ◆ユーザー（中間テーブル介さない、幹事とノミカイの関係性）
   # belongs_to :admin_user,class_name:"User"
+  # ◆通知
+  has_many :notifications, dependent: :destroy
 
+  # ==================メソッド=====================================
+  # ◆カレンダー：gem simple_calendarでは"start_time"ベースでカレンダーのdayに入るため、今回はdateカラムをstart_timeに設定する
+  def start_time
+    self.date
+  end
 
-  # 【検討要】
-  # def day_of_the_week(date)
-  #   %w(日 月 火 水 木 金 土)[date.wday]
-  # end
-  # ビューに
-  # <%= :day_of_the_week( @today_event.date) %>
-
+  # ◆通知機能（未払いのメンバーへの一斉支払い確認通知）
+  def create_notification_require_fee(current_user,visited_id)
+    notification = current_user.active_notifications.new(
+      event_id: id,
+      visited_id: visited_id,
+      action: 'require_fee'
+    )
+    notification.save if notification.valid?
+  end
 end

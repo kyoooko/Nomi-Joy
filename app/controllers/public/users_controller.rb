@@ -20,20 +20,17 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    
   end
 
   def update
     if @user.update(user_params)
-      flash[:user_update] = "マイページの情報が更新されました"
+      flash[:success] = "マイページの情報が更新されました"
       redirect_to user_path(current_user.id)
     else
-      flash[:user_update] = "正しい情報を入力してください"
+      flash[:danger] = "正しい情報を入力してください"
       render :edit
     end
   end
-
-
 
 
   private

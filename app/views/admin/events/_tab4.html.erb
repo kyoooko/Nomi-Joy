@@ -1,0 +1,52 @@
+<!-- お店情報 -->
+<div class="content__block--restaurant content__block">
+  <h2 class="block-hedding">お店情報</h2>
+  <div class="row">
+    <table class="table table-borderless col-8">
+      <tbody>
+        <tr>
+          <th scope="row">お店名</th>
+          <td><%= event.restaurant.name %>&emsp;<%= link_to event.restaurant.url, target: :_blank, class: "btn blue-btn" do %>ぐるなびで見る<% end %></td>
+        </tr>
+        <tr>
+          <th scope="row">アクセス</th>
+          <td><%= event.restaurant.access %></td>
+        </tr>
+        <tr>
+          <th scope="row">住所</th>
+          <td><%= event.restaurant.address %></td>
+        </tr>
+        <tr>
+          <th scope="row">電話番号</th>
+          <td><%= event.restaurant.tel %></td>
+        </tr>
+        <tr>
+          <th scope="row">営業時間</th>
+          <td><%= event.restaurant.opentime %></td>
+        </tr>
+        <tr>
+          <th scope="row">定休日</th>
+          <td><%= event.restaurant.holiday %></td>
+        </tr>
+      </tbody>
+    </table>
+     <div class= "col-4">
+      <%= image_tag(event.restaurant.shop_image, class: "middle-image") %>
+      <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
+      <div class="admin-nomikai-overview-btn">
+        <%= link_to "お店の変更", admin_change_restaurant_path(event), class:"btn blue-btn" %>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- マップ -->
+<div class="content__block--map">
+  <h2 class="block-hedding">お店のMap</h2>
+  <div class="google-map">
+    <div id='map' class="<%= event.restaurant.address %>"> </div>
+  </div>
+</div>
+
+<%# マップ(JS)  %>
+<script sec="javascripts/address_map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

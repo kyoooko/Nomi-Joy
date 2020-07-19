@@ -1,0 +1,73 @@
+<!-- 概要 -->
+<div class="content__block--nomikai-overview content__block">
+  <h2 class="block-hedding">ノミカイ概要</h2>
+  <div class="row">
+    <table class="table table-borderless col-8">
+      <tbody>
+        <tr>
+          <th scope="row">ノミカイ名</th>
+          <td><%= event.name %></td>
+        </tr>
+        <tr>
+          <th scope="row">日にち</th>
+          <td><%= event.date.to_s(:date_jp) %>（<%= day_of_the_week %>）</td>
+        </tr>
+        <tr>
+          <th scope="row">時間</th>
+          <td><%= event.begin_time.to_s(:time) %> 〜 <%= event.end_time.to_s(:time) %></td>
+        </tr>
+        <tr>
+          <th scope="row">場所</th>
+          <td><%= event.restaurant.name %>&emsp;<%= link_to event.restaurant.url, target: :_blank, class: "btn blue-btn" do %>ぐるなびで見る<% end %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td><%= event.restaurant.access %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td><%= event.restaurant.address %></td>
+        </tr>
+        <tr>
+          <th scope="row">電話番号</th>
+          <td><%= event.restaurant.tel %></td>
+        </tr>
+        <tr>
+          <th scope="row">参加者</th>
+          <td><%= event.event_users.count %>名&ensp;（欠席 <%= event.event_users.only_deleted.count %>名）</td>
+        </tr>
+        <tr>
+          <th scope="row">メモ</th>
+          <td><%= event.memo %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class= "col-4">
+      <%= image_tag(event.restaurant.shop_image, class: "middle-image") %>
+      <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
+      <div class="admin-nomikai-overview-btn">
+        <%= link_to "編集", edit_admin_event_path(event), class:"btn blue-btn" %>&emsp;<%= link_to "削除", admin_event_path(event),method: :delete,data:{confirm:"このノミカイを削除しますか？"}, class:"btn blue-btn" %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 進捗ステータス -->
+<div class="content__block--progress content__block">
+  <h2 class="block-hedding">進捗ステータス</h2>
+  <div>
+    <%= form_with model: event, url: admin_events_progress_status_path(event.id), local: true, class:"progress-status"  do |f| %>
+      <%= f.select :progress_status, [ ["招待済",0], ["お店予約済", 1], ["リマインド済", 2 ] ,["終了済", 3] ], class: ""   %>
+      <%= f.submit "Update",class:"btn blue-btn" %>
+    <% end %>
+  </div>
+  <!-- ステップバー -->
+  <div class="stepbar">
+    <%= image_tag("step-bar.png", class: "") %>
+  </div>
+  <div>
+  <%# 対応要 %>
+    <form class="remind-mail">  
+        <input type="submit" name="commit" value="全員にリマインドメールを送る" class="btn blue-btn" data-disable-with="">
+    </form>
+  </div>
+</div>

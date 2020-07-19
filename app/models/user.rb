@@ -12,7 +12,7 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :email
-    validates :introduction
+    validates :nomi_joy_id
   end
   # ==============アソシエーション ================================
   # ◆マッチング機能
@@ -42,6 +42,10 @@ class User < ApplicationRecord
   # 【確認要】◆ノミカイ（中間テーブル介さない、幹事とノミカイの関係性）
   # has_many :admin_events,class_name:"Event",foreign_key: :user_id
 
+  # ◆通知機能
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
   # ==================メソッド===================================
   # ◆マッチング機能
   # follow済みかどうか判定（引数のuserには自分を入れる）
@@ -58,5 +62,17 @@ class User < ApplicationRecord
   def self.search(word)
     self.where("nomi_joy_id =?", "#{word}")
   end
-  
+
+  # ◆通知機能
+  def create_notification_followed_by(current_user)
+    # 「連続でフォローボタンを押す」ことに備えて、同じ通知レコードが存在しないときだけ、レコードを作成
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
 end
