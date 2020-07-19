@@ -239,7 +239,14 @@ class Admin::EventsController < ApplicationController
   # 参加メンバーの追加ページ（編集）
   def add_event_user
     members = current_user.matchers
-    @unselected_members = members - User.joins(:event_users).where(event_users: {event_id:@event.id})    
+    @unselected_members = members - User.joins(:event_users).where(event_users: {event_id:@event.id}) 
+
+    # @unselected_members = members - User.joins(:event_users).with_deleted.to_sql.where(event_users: {event_id:@event.id}) 
+
+    # @unselected_members = members - User.joins(:event_users).where('event_users.event_id = ? event_users.deleted_at != ?', mailing_id, nil) 
+
+
+
   end
 
   # 参加メンバーの追加後会費設定ページ（編集）
