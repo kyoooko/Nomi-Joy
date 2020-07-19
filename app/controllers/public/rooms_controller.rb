@@ -1,5 +1,4 @@
 class Public::RoomsController < ApplicationController
-  before_action :ensure_room?, only: [:show]
 
   def index
     @members = current_user.matchers
@@ -7,12 +6,12 @@ class Public::RoomsController < ApplicationController
 
   def show
     # 相手A
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) 
     # 自分(current_user)の中間テーブル(entry)を全て取り出しpluckメソッドで:room_idを配列にしたものがroom。この時点では相手A以外の人との中間テーブル(entry)も含まれる
     rooms = current_user.entries.pluck(:room_id)
     # user_id:が相手Aでroom_idが roomsのもの（自分との部屋）を取り出す（これが自分と相手Aとの部屋）
     entry = Entry.find_by(user_id: @user.id, room_id: rooms)
-    if entry.nil?
+    if entry.nil? 
       # 自分と相手Aとの部屋がまだなければ新たに作成し保存。同時に中間テーブルを自分用と相手A用にそれぞれ作る
       @room = Room.create
       Entry.create(user_id: current_user.id, room_id: @room.id)
@@ -29,10 +28,4 @@ class Public::RoomsController < ApplicationController
     session[:user_id] =  @user.id
   end
 
-  private
-  # 自分のDM roomへはアクセスできないようにする（URL検索含む）
-  def ensure_room?
-    room = Room.find(params[:id])
-    redirect_to rooms_path if room.id == current_user.id
-  end
 end

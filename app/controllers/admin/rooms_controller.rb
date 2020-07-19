@@ -1,5 +1,4 @@
 class Admin::RoomsController < ApplicationController
-  before_action :ensure_room?, only: [:show]
   
   def index
     @members = current_user.matchers
@@ -29,10 +28,4 @@ class Admin::RoomsController < ApplicationController
     session[:user_id] =  @user.id
   end
 
-  private
-  # 自分のDM roomへはアクセスできないようにする（URL検索含む）
-  def ensure_room?
-    room = Room.find(params[:id])
-    redirect_to admin_rooms_path if room.id == current_user.id
-  end
 end
