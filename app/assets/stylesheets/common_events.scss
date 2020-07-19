@@ -1,0 +1,105 @@
+// カレンダー
+.simple-calendar {
+  .day {
+  }
+  .wday-0 {
+    color:rgb(177, 74, 74);
+    background-color: rgb(233, 207, 207);
+  }
+  .wday-1 {
+    background-color: #fff;
+  }
+  .wday-2 {
+    background-color: #fff;
+  }
+  .wday-3 {
+    background-color: #fff;
+  }
+  .wday-4 {
+    background-color: #fff;
+  }
+  .wday-5 {
+    background-color: #fff;
+  }
+  .wday-6 {
+    color:rgb(82, 110, 189);
+    background-color: rgb(178, 219, 235);
+  }
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {
+  }
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+}
+.calendar-heading{
+  font-size: 50px;
+}
+.calendar{
+  &__time{
+  font-size: 10px;
+  }
+  &__restaurant{
+    font-size: 10px;
+  }
+  &__days td{
+    height: 220px !important;
+  }
+}
+.next-back{
+  margin: 0 5%;
+  font-size: 30px;
+  &:hover{
+    text-decoration: none;
+  }
+}
+// .day_of_the_week{
+  // background-color: #1b515c;
+  // &:first-child{
+  //   color: rgb(177, 74, 74) !important;
+  // }
+// }
+
+@media (max-width: 767px) {
+  // カレンダー
+  .calendar-heading{
+    font-size: 40px;
+  }
+  .calendar{
+    &__time{
+      font-size: 3px;
+      margin-bottom: 5px;
+    }
+    &__restaurant{
+      display: none;
+    }
+    &__days td{
+      height: 150px !important;
+    }
+  }
+  .event-link{
+    font-size: 10px;
+  }
+}
+// マップ
+.google-map{
+  display: flex;
+  justify-content: center;
+}
+#map {
+  height: 500px;
+  width: 80%;
+}
+
+@media (max-width: 767px) {
+  .google-map{
+    height: 300px;
+    }
+}

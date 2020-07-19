@@ -47,12 +47,11 @@ ActiveRecord::Schema.define(version: 2020_07_08_175805) do
     t.integer "restaurant_id"
     t.integer "user_id", null: false
     t.string "name", null: false
-    t.date "date", null: false
-    t.datetime "start_time", null: false
+    t.datetime "date", null: false
+    t.datetime "begin_time", null: false
     t.datetime "end_time", null: false
     t.string "memo"
     t.integer "progress_status", default: 0, null: false
-    t.boolean "fee_status", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_events_on_restaurant_id"
@@ -60,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_175805) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "visiter_id"
+    t.integer "visitor_id"
     t.integer "visited_id"
     t.integer "event_id"
     t.integer "direct_message_id"
@@ -82,8 +81,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_175805) do
     t.string "name", null: false
     t.string "address"
     t.string "access"
-    t.float "latitude"
-    t.float "longitude"
     t.string "url"
     t.string "shop_image"
     t.string "tel"

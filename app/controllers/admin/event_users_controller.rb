@@ -1,9 +1,11 @@
 class Admin::EventUsersController < ApplicationController
+  before_action :set_event_user, only: [:fee_update, :fee_status_update]
+
   # 欠席の場合、論理削除
   def participate_status_update
     event_user = EventUser.with_deleted.find_by(event_id: params[:event_id],user_id: params[:user_id])
     event_user.update(deleted_at: params[:deleted_at])
-    flash[:success] = "参加ステータスを”欠席”に変更しました"
+    flash[:success] = "参加ステータスを変更しました"
     redirect_back(fallback_location: root_path)
   end
 
@@ -23,7 +25,12 @@ class Admin::EventUsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  
   private
+  def set_event_user
+    event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id],user_id: params[:event_user][:user_id])
+  end
+
   def event_user_params
     params.require(:event_user).permit(:fee, :fee_status,:deleted_at)
   end

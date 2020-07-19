@@ -1,14 +1,15 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation">
+  <div id="error_explanation" class="devise-alert" style="background-color:#F8D7DA; padding:20px; margin-bottom:10px;">
     <h2>
-      <%= I18n.t("errors.messages.not_saved",
+      <%#= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
                  resource: resource.class.model_name.human.downcase)
        %>
+      <%# 必要情報を入力してください %>
     </h2>
-    <ul>
+    <ul style="list-style: none;">
       <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li style="color:rgb(114, 31, 31) !important;"><%= message %></li>
       <% end %>
     </ul>
   </div>

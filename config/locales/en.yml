@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+
+# kaminariのバーを文字なしにする
+en:
+  views:
+    pagination:
+      first: "«"
+      last: "»"
+      previous: "‹"
+      next: "›"
+      truncate: "…"
