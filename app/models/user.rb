@@ -36,7 +36,7 @@ class User < ApplicationRecord
   # ◆飲食店
   has_many :restaurants, dependent: :destroy
   # ◆ノミカイユーザー（中間テーブル）
-  has_many :event_users, dependent: :destroy
+  has_many :event_users, -> { with_deleted }, dependent: :destroy
   # ◆ノミカイ（中間テーブルを介す）
   has_many :events, through: :event_users
   # 【確認要】◆ノミカイ（中間テーブル介さない、幹事とノミカイの関係性）
