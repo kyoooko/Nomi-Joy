@@ -7,6 +7,12 @@
   </div>  
   <div class="body">
     <div class="heading--non-underline">
+      <%# フラッシュメッセージ %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
       <h1 class="heading__en">Members & Follow</h1>
       <h3 class="heading__ja">メンバー & フォロー</h3>
     </div>

@@ -94,9 +94,10 @@ class Admin::EventsController < ApplicationController
           holiday: restaurant["holiday"]      
           )
         @event.update(restaurant_id: @restaurant.id)
+        flash[:success] = "お店を変更しました"
         redirect_to admin_event_path(@event)
       else
-        flash[:danger] = "お店を選択してください"
+        flash.now[:danger] = "お店を選択してください"
         render :change_restaurant 
       end
     end
@@ -128,6 +129,10 @@ class Admin::EventsController < ApplicationController
   # form内にsubmitボタンが複数ある。このアクション自体はPOST。正しく選択されていれば次のアクション（step3)へリダイレクトされ（リダイレクトのためstep3はGET）、createされる
   def step2
     @event=Event.new(event_params)
+    if @event.invalid? 
+      flash.now[:danger]= "必要情報を入力してください"
+      render :step1 
+    end
     # 【★幹事＝user_id使用】
     @event.user_id = current_user.id
     # ぐるなびAPI
@@ -158,12 +163,11 @@ class Admin::EventsController < ApplicationController
         # step3をgetにしたためf.hiddenで渡せないので redirect_toのオプションでparamsを送る
         redirect_to admin_step3_path(event: event_params) 
       else
-        flash[:danger] = "お店を選択してください"
+        flash.now[:danger]= "お店を選択してください"
         render :step2
       end
     end
     render :step1 and return if params[:back]
-    render :step1 if @event.invalid? 
   end
   def step3
     @members = current_user.matchers
@@ -241,9 +245,12 @@ class Admin::EventsController < ApplicationController
   # 参加メンバーの追加後会費設定ページ（編集）
   def add_event_user_fee
     @event_user_ids = session[:event_user_ids] = params[:event_user][:ids].drop(1)
-    # メンバーを選択せずNextボタンを押した場合進めない
     redirect_to admin_event_path(@event) and return if params[:back]
-    redirect_to admin_add_event_user_path(@event) if @event_user_ids.blank?
+    # メンバーを選択せずNextボタンを押した場合進めない
+    if @event_user_ids.blank?
+      flash[:danger]= "メンバーを選択してください"
+      redirect_to admin_add_event_user_path(@event) 
+    end
   end
 
   # 参加メンバーの追加（編集）
@@ -257,6 +264,7 @@ class Admin::EventsController < ApplicationController
     event_user_ids = session[:event_user_ids] 
     event_user_fees = session[:fees] = params[:fees]  
     event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee)}
+    flash[:success]= "参加メンバーを追加しました"
     redirect_to admin_event_path(@event)
   end
 

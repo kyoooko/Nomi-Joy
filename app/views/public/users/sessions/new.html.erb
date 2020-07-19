@@ -14,11 +14,11 @@
       <div class="content__block--new_user">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
-            <%= f.label :email %><br />
+            <%= f.label :email %><span class="must">&emsp;*</span><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"input-form" %>
           </div>
           <div class="field">
-            <%= f.label :password %>
+            <%= f.label :password %><span class="must">&emsp;*</span>
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %><br />
@@ -35,7 +35,9 @@
           </div>
         <% end %>
       </div>
-      <%= link_to new_user_password_path,class:"content__block--forget-pass" do %>Forgot your password?<% end %>
+      <%#= link_to new_user_password_path,class:"content__block--forget-pass" do %>
+       <%# Forgot your password? %>
+      <%# end %>
     </div>
   </div>
 </main>

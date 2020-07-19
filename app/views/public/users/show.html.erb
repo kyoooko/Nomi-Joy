@@ -6,13 +6,17 @@
     <%= render 'public/logging_in_slidebar' %>
   </div>  
   <div class="body">
-    <%# 見出し %>
     <div class="heading">
+      <%# フラッシュメッセージ %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
       <h1 class="heading__en">My page</h1>
       <h3 class="heading__ja">マイページ</h3>
       <div class="heading__image"><%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"header-mypage-image" %></div>
     </div>
-    <%# コンテンツ %>
     <div class="content content--mypage">
       <div class="content__block--mypage-image">
         <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "no_image.jpg", class:"mypage-image" %>
@@ -32,8 +36,8 @@
               <th scope="row">役職</th>
               <td><%= @user.position %></td>
             </tr>
-            <%# emailとノミジョイ！IDはメンバー（相互フォローのみ表示) %>
-            <% if  @members.any? { |member| member.id == @user.id } %>
+            <%# emailとノミジョイ！IDはメンバー（相互フォロー)もしくはcurrent_userのみ表示 %>
+            <% if  @members.any? { |member| member.id == @user.id } || @user == current_user %>
               <tr>
                 <th scope="row">Email</th>
                 <td><%= @user.email %></td>

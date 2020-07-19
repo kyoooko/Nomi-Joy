@@ -1,0 +1,21 @@
+<%# 今回はflashメッセージのみ使用予定（新規登録ページ除く） %>
+<%# 下記をビューに挿入 %>
+<%#= render 'layouts/error_messages', model: f.object %>
+
+<% if model.errors.any? %>
+    <%# alert-warningが黄色背景のBootstrap %>
+  <div class="error_explanation alert-warning">
+    <h2 class="error-prohibited">
+      <%= pluralize(model.errors.count, "error") %> prohibited this user from being saved:
+    </h2>
+    <div class="alert">
+      <ul>
+        <% model.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+

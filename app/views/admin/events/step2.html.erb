@@ -7,6 +7,12 @@
   </div>  
   <div class="body">
     <div class="heading">
+      <%# フラッシュメッセージ %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
       <h1 class="heading__en">Nomikai Create Step2</h1>
       <h3 class="heading__ja">ノミカイ新規作成</h3>
     </div>
