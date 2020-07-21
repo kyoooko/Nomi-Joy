@@ -14,7 +14,7 @@
       <div class="content__block--add-event-user-fee content__block">
          <p>会費は後から入力・変更できます</p>
          <p>※ 半角数字で入力</p>
-        <%= form_with model: @event_user, url: admin_add_event_user_create_path,  local: true do |f| %>
+        <%= form_with model: @event_user, url: admin_add_event_user_create_path(room: "303"),  local: true do |f| %>
           <table class="table table-borderless">
               <tbody>
                 <tr>

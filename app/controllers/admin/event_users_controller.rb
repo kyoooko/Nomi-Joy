@@ -3,26 +3,26 @@ class Admin::EventUsersController < ApplicationController
 
   # 欠席の場合、論理削除
   def participate_status_update
-    event_user = EventUser.with_deleted.find_by(event_id: params[:event_id],user_id: params[:user_id])
-    event_user.update(deleted_at: params[:deleted_at])
-    flash[:success] = "参加ステータスを変更しました"
-    redirect_back(fallback_location: root_path)
+    @event_user = EventUser.with_deleted.find_by(event_id: params[:event_id],user_id: params[:user_id])
+    @event_user.update(deleted_at: params[:deleted_at])
+    # 非同期のため下記削除
+    # redirect_back(fallback_location: root_path)
   end
 
   # 参加メンバーことの会費変更（欠席者含む）
   def fee_update
-    event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id],user_id: params[:event_user][:user_id])
-    event_user.update(event_user_params)
-    flash[:success] = "会費を更新しました"
-    redirect_back(fallback_location: root_path)
+    @event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id],user_id: params[:event_user][:user_id])
+    @event_user.update(event_user_params)
+    # 非同期のため下記削除
+    # redirect_back(fallback_location: root_path)
   end
 
   # 参加メンバーことの会費ステータス変更（欠席者含む）
   def fee_status_update
-    event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id],user_id: params[:event_user][:user_id])
-    event_user.update(event_user_params)
-    flash[:success] = "支払いステータスを更新しました"
-    redirect_back(fallback_location: root_path)
+    @event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id],user_id: params[:event_user][:user_id])
+    @event_user.update(event_user_params)
+    # 非同期のため下記削除
+    # redirect_back(fallback_location: root_path)
   end
 
   

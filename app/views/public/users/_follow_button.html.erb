@@ -1,0 +1,14 @@
+<% if current_user != member %>
+  <div id="follow-button_<%= member.id %>">
+    <% if member.followed_by?(current_user) %>
+        <p>
+          <%= render "unfollow", member: member %>
+        </p>
+    <% else %>
+        <p>
+          <%= render "follow", member: member %>
+        </p>
+    <% end %>
+  </div>
+<% end %>
+

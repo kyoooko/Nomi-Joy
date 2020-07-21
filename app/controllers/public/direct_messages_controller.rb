@@ -5,6 +5,7 @@ class Public::DirectMessagesController < ApplicationController
     if @dm.save 
       # 通知機能(session[:user_id]はDM相手のid)
       @dm.create_notification_dm(current_user,session[:user_id])
+      # 非同期のためredirectなし
     else
       redirect_back(fallback_location: root_path)
     end

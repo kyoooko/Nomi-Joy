@@ -5,11 +5,23 @@ class Admin::EventsController < ApplicationController
   before_action :ensure_admin_event_id?, only: [:progress_status_update, :notice_to_unpaying_users]
 
   # 以下、includesはN+1問題の解消
-    # 以下、with_deletedは欠席者も含むための記述（gem paranoia）
+  # 以下、with_deletedは欠席者も含むための記述（gem paranoia）
 
   def index
     # 下記集金中メンバーに変更要
-    @users = User.all
+    # @users = User.all
+    # case params[:room]
+    # when "302"
+    #   redirect_to root_path
+    # when "303"
+    #   redirect_to events_path
+    # end
+    # if params[:room] == "303"
+    #   redirect_to root_path
+    # end
+
+
+
     # タブ１
     # 今日のノミカイ
     # 【★幹事＝user_id使用】
@@ -47,11 +59,12 @@ class Admin::EventsController < ApplicationController
   end
 
   def notice_to_unpaying_users
-    @unpaying_event_users = EventUser.with_deleted.includes([:user]).where(event_id: @event.id, fee_status: false)
+    @unpaying_event_users = EventUser.with_deleted.where(event_id: @event.id, fee_status: false)
     @unpaying_event_users.each do |unpaying_event_user|
     @event.create_notification_require_fee(current_user,unpaying_event_user.user_id)
     end
-    redirect_back(fallback_location: root_path)
+    # 非同期のため下記削除
+    # redirect_back(fallback_location: root_path)
   end
 
   def edit
@@ -94,8 +107,9 @@ class Admin::EventsController < ApplicationController
           holiday: restaurant["holiday"]      
           )
         @event.update(restaurant_id: @restaurant.id)
+        # 下記非同期実装中
         flash[:success] = "お店を変更しました"
-        redirect_to admin_event_path(@event)
+        redirect_to admin_event_path(@event,room: "304")
       else
         flash.now[:danger] = "お店を選択してください"
         render :change_restaurant 
@@ -240,13 +254,6 @@ class Admin::EventsController < ApplicationController
   def add_event_user
     members = current_user.matchers
     @unselected_members = members - User.joins(:event_users).where(event_users: {event_id:@event.id}) 
-
-    # @unselected_members = members - User.joins(:event_users).with_deleted.to_sql.where(event_users: {event_id:@event.id}) 
-
-    # @unselected_members = members - User.joins(:event_users).where('event_users.event_id = ? event_users.deleted_at != ?', mailing_id, nil) 
-
-
-
   end
 
   # 参加メンバーの追加後会費設定ページ（編集）
@@ -271,8 +278,10 @@ class Admin::EventsController < ApplicationController
     event_user_ids = session[:event_user_ids] 
     event_user_fees = session[:fees] = params[:fees]  
     event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee)}
+    # 非同期なら下記削除予定（JSファイルあり）
     flash[:success]= "参加メンバーを追加しました"
     redirect_to admin_event_path(@event)
+
   end
 
   

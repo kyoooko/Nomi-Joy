@@ -18,7 +18,7 @@
       <% when 'require_fee' then %>
         下記のお支払いについて確認の依頼があります
         <p class="text-muted mb-0 small" >
-          <%= link_to admin_event_path(notification.event_id), class: "" do %><%= notification.event.date.to_s(:date) %>&emsp;<%= notification.event.name %><% end %>&emsp;
+          <%= notification.event.date.to_s(:date) %>&emsp;<%= notification.event.name %>&emsp;
           会費：<%= EventUser.find_by(user_id: notification.visitor_id,event_id: notification.event_id).fee %>円
         </p>
     <% end %>
