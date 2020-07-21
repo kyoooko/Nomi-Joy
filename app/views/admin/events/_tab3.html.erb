@@ -7,6 +7,7 @@
       <thead>
         <tr>
           <th scope="col"></th>
+          <th scope="col"></th>
           <th scope="col">氏名</th>
           <th scope="col">所属</th>
           <th scope="col">役職</th>
@@ -26,13 +27,15 @@
             <td><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= unpaying_event_user.user.name %><% end %></td>
             <td><%= unpaying_event_user.user.belongs %></td>
             <td><%= unpaying_event_user.user.position %></td>
-            <td><%= unpaying_event_user.fee %></td>
+            <td><%= unpaying_event_user.fee %>円</td>
             <td><%= link_to 'DM', admin_room_path(unpaying_event_user.user.id), class:"btn small-btn blue-btn" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <%= link_to "全員に支払い依頼通知を送る",admin_notice_to_unpaying_users_path(@event), class:"btn blue-btn"%>
+    <div class="notice-to-unpaying-users-button">
+      <%= link_to "集金中のメンバー全員に支払い依頼通知を送る",admin_notice_to_unpaying_users_path(@event), class:"btn blue-btn", remote: true %>
+    </div>
   <% else %>
   全員領収済
   <% end %>
@@ -43,6 +46,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th scope="col"></th>
         <th scope="col"></th>
         <th scope="col">氏名</th>
         <th scope="col">会社名・所属</th>
@@ -63,21 +67,14 @@
           <td><%= link_to admin_user_path(event_user.user),class:"" do %><%= event_user.user.name %><% end %></td>
           <td><%= event_user.user.belongs %></td>
           <td><%= event_user.user.position %></td>
-          <td>
-            <%= form_with model: event_user,url: admin_event_users_fee_path(event_user.id), local: true, class:"event-fee-form" do |f| %>
-              <%= f.text_field :fee, class:"event-fee-form__form", size: 7 %>
-              <%= f.hidden_field :user_id, value: event_user.user_id %>
-              <%= f.hidden_field :event_id, value: event_user.event_id %>
-              <%= f.submit "Update",class:"btn white-btn event-fee-form__btn" %>
-            <% end %>
+          <td class="event-users-fee_<%= event_user.id %>">
+            <%# 会員ごとの会費変更フォーム(非同期) %>
+            <%= render 'admin/event_users/event_users_fee', event_user: event_user %>
           </td>
-          <td>
-            <%= form_with model: event_user, url: admin_event_users_fee_status_path(event_user.id), local: true, class:"participant-fee-status-form"  do |f| %>
-              <%= f.select :fee_status, [ ["未領収",0], ["領収済", 1] ],  class: "participant-fee-status-form__form",selected: event_user.fee_status_before_type_cast %>
-              <%= f.hidden_field :user_id, value: event_user.user_id %>
-              <%= f.hidden_field :event_id, value: event_user.event_id %>
-              <%= f.submit "Update",class:"btn white-btn participant-fee-status-form__btn" %>
-            <% end %>
+          <td class="event-users-fee-status_<%= event_user.id %>">
+            <%# 会員ごとの会費ステータス変更フォーム(非同期) %>
+            <%= render 'admin/event_users/event_users_fee_status', event_user: event_user %>
+            </td>
           <td><%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn small-btn blue-btn" %></td>
         </tr>
       <% end %>

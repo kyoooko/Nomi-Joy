@@ -1,0 +1,10 @@
+$(".search-form").on('ajax:success', function(event) {
+    $(".result").html(event.detail[0].response); 
+    <%# console.log("こんにちは"); %>
+});
+
+
+<%# 対応要："こんにちは" %>
+<%# event.detail[0].response %>
+
+

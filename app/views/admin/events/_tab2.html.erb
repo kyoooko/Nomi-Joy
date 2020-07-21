@@ -29,12 +29,9 @@
           <td><%= event_user.user.favolite %></td>
           <td><%= event_user.user.unfavolite %></td>
           <td><%= event_user.user.nearest_station %></td>
-          <td>
-            <% if event_user.deleted_at == nil %>
-                <p><%=link_to "参加", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: Time.now ), method: :patch, class:"btn btn-secondary btn-sm" %></p>
-            <% else %>
-                <p><%=link_to "欠席", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: "" ), method: :patch, class:"btn btn-danger btn-sm" %></p>
-            <% end %>
+          <%# 参加不参加ボタン(非同期実装済み） %>
+          <td class="participate_<%= event_user.id %>">
+            <%= render 'admin/event_users/participate_button', event_user: event_user %>
           </td>
             <td><%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn small-btn blue-btn" %></td>
         </tr>

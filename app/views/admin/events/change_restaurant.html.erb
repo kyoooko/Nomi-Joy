@@ -7,12 +7,7 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <%# フラッシュメッセージ %>
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>">
-          <%= message %>
-        </div>
-      <% end %>
+      
       <h1 class="heading__en">Restaurant</h1>
       <h3 class="heading__ja">お店変更</h3>
     </div>
@@ -20,6 +15,7 @@
       <div class="content__block--change-restaurant content__block">
         <h3>お店を検索<span class="must">&emsp;*</span></h3>
         <p>（例："魚金 新宿", &emsp;"イタリアン,新宿"）</p>
+        <%# 下記非同期変更予定 %>
         <%= form_with model: @event, url: admin_change_restaurant_path(@event), method: :get, local: true do |f| %>
           <%= text_field_tag :freeword %>
           <%= submit_tag '検索',class: "" %>
