@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Admin::Rooms", type: :request do
-
   describe "GET /show" do
     it "returns http success" do
       get "/admin/rooms/show"
@@ -15,5 +14,4 @@ RSpec.describe "Admin::Rooms", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 end

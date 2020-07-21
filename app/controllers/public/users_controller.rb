@@ -4,13 +4,13 @@ class Public::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def index
-    @users=User.all
+    @users = User.all
     # マッチングしたユーザー（＝「メンバー」となる。matchersはモデルに定義したインスタンスメソッド）
     @members = current_user.matchers
     # 申請中のユーザー
-    @followings=current_user.followings - current_user.matchers
+    @followings = current_user.followings - current_user.matchers
     # 承認依頼のきているユーザー
-    @followers=current_user.followers - current_user.matchers
+    @followers = current_user.followers - current_user.matchers
     # 検索機能
     @find_users = User.search(params[:word])
   end
@@ -32,20 +32,20 @@ class Public::UsersController < ApplicationController
     end
   end
 
-
   private
+
   def user_params
-    params.require(:user).permit(:name, :belongs, :position, :email, :nomi_joy,:nearest_station, :can_drink, :favolite, :unfavolite, :introduction, :image)
+    params.require(:user).permit(:name, :belongs, :position, :email, :nomi_joy, :nearest_station, :can_drink, :favolite, :unfavolite, :introduction, :image)
   end
 
   def ensure_correct_user
-    @user=User.find(params[:id])
+    @user = User.find(params[:id])
     if current_user.id != @user.id
       redirect_back(fallback_location: root_path)
     end
   end
 
   def set_user
-    @user=User.find(params[:id])
+    @user = User.find(params[:id])
   end
 end
