@@ -8,26 +8,21 @@ class Admin::EventsController < ApplicationController
   # 以下、with_deletedは欠席者も含むための記述（gem paranoia）
 
   def index
-    # 下記集金中メンバーに変更要
-    # @users = User.all
-    # case params[:room]
-    # when "302"
-    #   redirect_to root_path
-    # when "303"
-    #   redirect_to events_path
-    # end
-    # if params[:room] == "303"
-    #   redirect_to root_path
-    # end
-
-
-
+     # redirectされるタブをparamsで条件分岐
+     case params[:room].to_i
+     when 2
+      @room = 2
+     when 3
+       @room = 3
+     else
+       @room = 1
+     end
     # タブ１
     # 今日のノミカイ
     # 【★幹事＝user_id使用】
     from = Time.current.beginning_of_day
     to = Time.current.end_of_day
-    @today_event = Event.includes([:restaurant]).find_by(date: from..to, user_id: current_user.id) 
+    @today_event = Event.find_by(date: from..to, user_id: current_user.id) 
     # 曜日
     @day_of_the_week= %w(日 月 火 水 木 金 土)[@today_event.date.wday] if @today_event.present?
 
@@ -38,7 +33,7 @@ class Admin::EventsController < ApplicationController
     @status1_events = Event.where(progress_status: 1, user_id:current_user.id)
     @status2_events = Event.where(progress_status: 2, user_id:current_user.id)
     # 全てのノミカイ（カレンダー）
-     @events = Event.where(user_id:current_user.id).includes([:restaurant])
+     @events = Event.where(user_id:current_user.id) 
 
     # タブ３ 
     # 集金中のノミカイ
@@ -50,6 +45,17 @@ class Admin::EventsController < ApplicationController
    end
 
   def show
+    # redirectされるタブをparamsで条件分岐
+    case params[:room].to_i
+    when 2
+     @room = 2
+    when 3
+      @room = 3
+    when 4
+      @room = 4
+    else
+      @room = 1
+    end
     # 当該飲み会に関して未払いのメンバー（欠席者含む）
     @unpaying_event_users = EventUser.with_deleted.includes([:user]).where(event_id: @event.id, fee_status: false)
     # 当該飲み会の参加メンバー全員（欠席者含む）
@@ -109,13 +115,13 @@ class Admin::EventsController < ApplicationController
         @event.update(restaurant_id: @restaurant.id)
         # 下記非同期実装中
         flash[:success] = "お店を変更しました"
-        redirect_to admin_event_path(@event,room: "304")
+        redirect_to admin_event_path(@event, room: 4)
       else
         flash.now[:danger] = "お店を選択してください"
         render :change_restaurant 
       end
     end
-    redirect_to admin_event_path(@event) if params[:back]
+    redirect_to admin_event_path(@event, room: 4) if params[:back]
   end
 
   def destroy
@@ -259,7 +265,7 @@ class Admin::EventsController < ApplicationController
   # 参加メンバーの追加後会費設定ページ（編集）
   def add_event_user_fee
     @event_user_ids = session[:event_user_ids] = params[:event_user][:ids].drop(1)
-    redirect_to admin_event_path(@event) and return if params[:back]
+    redirect_to admin_event_path(@event, room: 2) and return if params[:back]
     # メンバーを選択せずNextボタンを押した場合進めない
     if @event_user_ids.blank?
       flash[:danger]= "メンバーを選択してください"
@@ -280,8 +286,7 @@ class Admin::EventsController < ApplicationController
     event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee)}
     # 非同期なら下記削除予定（JSファイルあり）
     flash[:success]= "参加メンバーを追加しました"
-    redirect_to admin_event_path(@event)
-
+    redirect_to admin_event_path(@event, room: 2)
   end
 
   

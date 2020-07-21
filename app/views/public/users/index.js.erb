@@ -1,10 +1,21 @@
+/*
 $(".search-form").on('ajax:success', function(event) {
-    $(".result").html(event.detail[0].response); 
-    <%# console.log("こんにちは"); %>
+    <%# $(".result").html(event.detail[0].response);  %>
+
+    console.log(event.detail[2].response); 
+     <%# $(".result").html(event.detail[0].response);   %>
+   
+     
+     
 });
+*/
 
+<% @find_users.each do |user| %>
 
-<%# 対応要："こんにちは" %>
+ $(".result").append('<%= user.name %>')
+
+<% end %>
+
 <%# event.detail[0].response %>
-
-
+<%# console.log("こんにちは"); %>
+<%# alert('createアクション'); %>

@@ -22,34 +22,34 @@
       <!-- タブリンク -->
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a href="#top" class="nav-link members-tab-link active" data-toggle="tab">概要</a>
+          <a href="#top" class="nav-link members-tab-link <%= 'active' if @room == 1 %>" data-toggle="tab">概要</a>
         </li>
         <li class="nav-item">
-          <a href="#participants" class="nav-link members-tab-link" data-toggle="tab">メンバー</a>
+          <a href="#participants" class="nav-link members-tab-link  <%= 'active' if @room == 2 %>" data-toggle="tab">メンバー</a>
         </li>
         <li class="nav-item">
-          <a href="#nomikai-fee" class="nav-link members-tab-link" data-toggle="tab">集金状況</a>
+          <a href="#nomikai-fee" class="nav-link members-tab-link  <%= 'active' if @room == 3 %>" data-toggle="tab">集金状況</a>
         </li>
         <li class="nav-item">
-          <a href="#restaurant" class="nav-link members-tab-link" data-toggle="tab">お店</a>
+          <a href="#restaurant" class="nav-link members-tab-link  <%= 'active' if @room == 4 %>" data-toggle="tab">お店</a>
         </li>
       </ul> 
       <!-- タブ中身 -->
       <div class="tab-content">
         <!-- タブ１ -->
-        <div id="top" class="tab-pane active">
+        <div id="top" class="tab-pane <%= 'active' if @room == 1 %>">
           <%= render 'tab1', event: @event, day_of_the_week: @day_of_the_week %>
         </div>
         <!-- タブ２ -->
-        <div id="participants" class="tab-pane">
+        <div id="participants" class="tab-pane <%= 'active' if @room == 2 %>">
           <%= render 'tab2', event: @event, event_users: @event_users %>
         </div>
         <!-- タブ３ -->
-        <div id="nomikai-fee" class="tab-pane">
+        <div id="nomikai-fee" class="tab-pane <%= 'active' if @room == 3 %>">
           <%= render 'tab3', unpaying_event_users: @unpaying_event_users, event_users: @event_users  %>
         </div>
         <!-- タブ４ -->
-        <div id="restaurant" class="tab-pane">
+        <div id="restaurant" class="tab-pane <%= 'active' if @room == 4 %>">
           <%= render 'tab4', event: @event %>
         </div> 
       </div>

@@ -3,18 +3,20 @@
     <label>ノミジョイ！ID</label>
   </div>
   <div class="form-group col-6">
-    <%= form_with url: users_path, method: :get, class: "search-form" do |f|  %>
+    <%= form_with url: users_path, method: :get,remote: true, class: "search-form" do |f|  %>
       <%= f.text_field :word, class:"input-form" %>
       <%= f.submit "Search", class:"btn small-btn green-btn"  %>
     <% end %>
   </div>
 </div>
-<table class="table members-table">
-  <tbody>
-    <% find_users.each do |find_user| %>
-      <tr class="result">
-        <%= render "public/searches/member_search_result", find_user: find_user %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<div class="result"></div>
+  <table class="table members-table">
+    <tbody>
+      <% find_users.each do |find_user| %>
+        <tr class="">
+          <%= render "public/searches/member_search_result", find_user: find_user %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
