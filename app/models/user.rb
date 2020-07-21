@@ -14,6 +14,9 @@ class User < ApplicationRecord
     validates :email
     validates :nomi_joy_id
   end
+  # ノミジョイ！IDは半角英数字（大文字も可能）、６文字以上
+  validates :nomi_joy_id, length: { minimum: 6 }, format: { with: /\A[a-zA-Z0-9]+\z/ }
+  # アカウント作成時の郵便番号はハイフンなしの7桁のみ登録可能とするバリデーション
   # ==============アソシエーション ================================
   # ◆マッチング機能
   # A：自分がフォローしているユーザーとの関連 

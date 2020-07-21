@@ -14,13 +14,8 @@
           <td><%= follower.belongs %></td>
           <td><%= follower.position %></td>
           <td>
-            <% if current_user != follower %>
-              <% if follower.followed_by?(current_user) %>
-                  <p><%=link_to "フォロー済み", user_relationships_path(follower.id), method: :delete, class:"btn small-btn white-btn" %></p>
-              <% else %>
-                  <p><%=link_to "フォローする", user_relationships_path(follower.id), method: :post, class:"btn small-btn green-btn" %></p>
-              <% end %>
-            <% end %>
+            <%# フォローボタン（非同期） %>
+            <%= render "follow_button", member: follower %>
           </td>
         </tr>
       <% end %>
@@ -38,13 +33,8 @@
           <td><%= user.belongs %></td>
           <td><%= user.position %></td>
           <td>
-            <% if current_user != user %>
-              <% if user.followed_by?(current_user) %>
-                  <p><%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete, class:"btn small-btn white-btn" %></p>
-              <% else %>
-                  <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post, class:"btn small-btn green-btn" %></p>
-              <% end %>
-            <% end %>
+            <%# フォローボタン（非同期） %>
+            <%= render "follow_button", member: user %>
           </td>
         </tr>
       <% end %>
@@ -59,17 +49,12 @@
         <tr>
           <%# 申請中のユーザーはユーザー詳細ページにいけない %>
           <th scope="row"><%= attachment_image_tag following, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %></th>
-          <td><%= link_to user_path(following),class:"" do %><%= following.name %><% end %></td>
+          <td><%= following.name %></td>
           <td><%= following.belongs %></td>
           <td><%= following.position %></td>
           <td>
-            <% if current_user != following %>
-              <% if following.followed_by?(current_user) %>
-                  <p><%=link_to "フォロー済み", user_relationships_path(following.id), method: :delete, class:"btn small-btn white-btn" %></p>
-              <% else %>
-                  <p><%=link_to "フォローする", user_relationships_path(following.id), method: :post, class:"btn small-btn green-btn" %></p>
-              <% end %>
-            <% end %>
+             <%# フォローボタン（非同期） %>
+            <%= render "follow_button", member: following %>
           </td>
       <% end %>
     </tbody>

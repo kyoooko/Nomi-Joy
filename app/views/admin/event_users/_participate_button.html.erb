@@ -1,0 +1,5 @@
+<% if event_user.deleted_at == nil %>
+  <p><%=link_to "参加", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: Time.now ), method: :patch, remote: true, class:"btn btn-secondary btn-sm" %></p>
+<% else %>
+  <p><%=link_to "欠席", admin_event_users_participate_status_path(event_user.id, user_id: event_user.user_id, event_id: event_user.event_id, deleted_at: "" ), method: :patch, remote: true, class:"btn btn-danger btn-sm" %></p>
+<% end %>

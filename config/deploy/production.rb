@@ -60,4 +60,4 @@
 #     # password: "please use keys"
 #   }
 
-server 'nomi-joy.com', user: 'ec2-user', roles: %w{app web db}
+server '54.248.25.200', user: 'ec2-user', roles: %w{app web db}

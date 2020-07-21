@@ -1,10 +1,9 @@
-<%# 対応要：searchesコントローラーのfind_memberメソッド使わず実装した %>
 <div class="members-search-form">  
   <div class="form-group col-3">   
     <label>ノミジョイ！ID</label>
   </div>
   <div class="form-group col-6">
-    <%= form_with url: users_path, method: :get, local: true do |f|  %>
+    <%= form_with url: users_path, method: :get, class: "search-form" do |f|  %>
       <%= f.text_field :word, class:"input-form" %>
       <%= f.submit "Search", class:"btn small-btn green-btn"  %>
     <% end %>
@@ -13,22 +12,9 @@
 <table class="table members-table">
   <tbody>
     <% find_users.each do |find_user| %>
-      <tr>
-        <th scope="row"><%= link_to user_path(find_user),class:"" do %><%= attachment_image_tag find_user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-        <td><%= find_user.name %></td>
-        <td><%= find_user.belongs %></td>
-        <td><%= find_user.position %></td>
-        <td>
-          <% if current_user != find_user %>
-            <% if find_user.followed_by?(current_user) %>
-                <p><%=link_to "フォロー済み", user_relationships_path(find_user.id), method: :delete, class:"btn small-btn white-btn" %></p>
-            <% else %>
-                <p><%=link_to "フォローする", user_relationships_path(find_user.id), method: :post, class:"btn small-btn green-btn" %></p>
-            <% end %>
-          <% end %>
-        </td>
+      <tr class="result">
+        <%= render "public/searches/member_search_result", find_user: find_user %>
       </tr>
     <% end %>
   </tbody>
 </table>
-

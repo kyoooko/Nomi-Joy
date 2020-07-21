@@ -1,0 +1,3 @@
+<%= form_with  model:@follow, url: user_relationships_path(member), method: :post, data: {remote: true} do |f| %>
+  <%= f.submit "フォローする", class: "btn small-btn green-btn" %>
+<% end %>
