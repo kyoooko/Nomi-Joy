@@ -2,7 +2,7 @@ class Public::EventsController < ApplicationController
   before_action :ensure_current_user?, only: [:show]
 
   def index
-    # 今日の飲み会
+    # 今日のノミカイ
     from = Time.current.beginning_of_day
     to = Time.current.end_of_day
     @today_event = Event.joins(:event_users).where(event_users: { user_id: current_user.id }).find_by(date: from..to)
@@ -28,7 +28,6 @@ class Public::EventsController < ApplicationController
   end
 
   private
-
   # 自分の参加するノミカイ以外はアクセス(URL検索含む）できないようにする
   def ensure_current_user?
     event = Event.find(params[:id])

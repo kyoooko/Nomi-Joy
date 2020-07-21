@@ -1,3 +1,4 @@
+<%# 検索フォーム(非同期) %>
 <div class="members-search-form">  
   <div class="form-group col-3">   
     <label>ノミジョイ！ID</label>
@@ -13,10 +14,12 @@
 <div class="result"></div>
   <table class="table members-table">
     <tbody>
-      <% find_users.each do |find_user| %>
-        <tr class="">
-          <%= render "public/searches/member_search_result", find_user: find_user %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+      <tr>
+        <th scope="row"><div class="result1"></div></th>
+        <td><div class="result2"></div></td>
+        <td><div class="result3"></div></td>
+        <td><div class="result4"></div></td>
+        <td><div class="result5"></div></td>
+      </tr>
+  </tbody>
+</table>

@@ -17,7 +17,7 @@ class Admin::EventsController < ApplicationController
     else
       @room = 1
     end
-    # タブ１
+     # ================タブ１===============
     # 今日のノミカイ
     # 【★幹事＝user_id使用】
     from = Time.current.beginning_of_day
@@ -26,7 +26,7 @@ class Admin::EventsController < ApplicationController
     # 曜日
     @day_of_the_week = %w(日 月 火 水 木 金 土)[@today_event.date.wday] if @today_event.present?
 
-    # タブ２
+     # ================タブ２===============
     # 全てのノミカイ
     # 【★幹事＝user_id使用】
     @status0_events = Event.where(progress_status: 0, user_id: current_user.id)
@@ -35,7 +35,7 @@ class Admin::EventsController < ApplicationController
     # 全てのノミカイ（カレンダー）
     @events = Event.where(user_id: current_user.id)
 
-    # タブ３
+     # ================タブ３===============
     # 集金中のノミカイ
     @events = Event.where(user_id: current_user.id)
     # 集金中のノミカイ参加メンバー
@@ -56,14 +56,74 @@ class Admin::EventsController < ApplicationController
     else
       @room = 1
     end
-    # 当該飲み会に関して未払いのメンバー（欠席者含む）
-    @unpaying_event_users = EventUser.with_deleted.includes([:user]).where(event_id: @event.id, fee_status: false)
-    # 当該飲み会の参加メンバー全員（欠席者含む）
-    @event_users = EventUser.with_deleted.includes([:user]).where(event_id: @event.id)
+    # ================タブ１===============
     # 曜日
     @day_of_the_week = %w(日 月 火 水 木 金 土)[@event.date.wday]
+    # ================タブ２===============
+    # 当該飲み会の参加メンバー全員（欠席者含む）
+    @event_users = EventUser.with_deleted.includes([:user]).where(event_id: @event.id)
+    # ================タブ３===============
+    # 当該飲み会に関して未払いのメンバー（欠席者含む）
+    @unpaying_event_users = EventUser.with_deleted.includes([:user]).where(event_id: @event.id, fee_status: false)
   end
 
+  # show(タブ１）：ノミカイ基本情報の編集ページ
+  def edit
+  end
+
+  # show(タブ１）：ノミカイ基本情報の更新
+  def update
+    redirect_to admin_event_path(@event) if @event.update(event_params)
+  end
+
+  # show(タブ１）：ノミカイ基本情報の削除
+  def destroy
+    # dependent: :destroyとしているので紐づいているevent_usersも同時に全て削除される
+    @event.destroy
+    redirect_to admin_events_path
+  end
+
+  # show(タブ１）：ノミカイ進捗ステータスの更新
+  def progress_status_update
+    @event.update(event_params)
+    flash[:success] = "進捗ステータスを更新しました"
+    redirect_back(fallback_location: root_path)
+  end
+
+  # show(タブ２）：参加メンバーの追加編集ページ
+  def add_event_user
+    members = current_user.matchers
+    @unselected_members = members - User.joins(:event_users).where(event_users: { event_id: @event.id })
+  end
+
+  # show(タブ２）：参加メンバーの追加後会費設定編集ページ
+  def add_event_user_fee
+    @event_user_ids = session[:event_user_ids] = params[:event_user][:ids].drop(1)
+    redirect_to(admin_event_path(@event, room: 2)) && return if params[:back]
+    # メンバーを選択せずNextボタンを押した場合進めない
+    if @event_user_ids.blank?
+      flash[:danger] = "メンバーを選択してください"
+      redirect_to admin_add_event_user_path(@event)
+    end
+  end
+
+  # show(タブ２）：参加メンバーの追加更新
+  def add_event_user_create
+    @event_user_ids = session[:event_user_ids]
+    # 下記、Backボタン押した場合renderするための記述
+    members = current_user.matchers
+    @unselected_members = members - User.joins(:event_users).where(event_users: { event_id: @event.id })
+    render(:add_event_user) && return if params[:back]
+    # 確定ボタン押した場合
+    event_user_ids = session[:event_user_ids]
+    event_user_fees = session[:fees] = params[:fees]
+    event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
+    # 非同期なら下記削除予定（JSファイルあり）
+    flash[:success] = "参加メンバーを追加しました"
+    redirect_to admin_event_path(@event, room: 2)
+  end
+
+  # show(タブ３）：未払いの参加メンバー全員に通知を送る
   def notice_to_unpaying_users
     @unpaying_event_users = EventUser.with_deleted.where(event_id: @event.id, fee_status: false)
     @unpaying_event_users.each do |unpaying_event_user|
@@ -73,15 +133,7 @@ class Admin::EventsController < ApplicationController
     # redirect_back(fallback_location: root_path)
   end
 
-  def edit
-  end
-
-  # ノミカイ基本情報の編集
-  def update
-    redirect_to admin_event_path(@event) if @event.update(event_params)
-  end
-
-  # お店の変更ページ
+  # show(タブ４）：お店の変更ページ
   # form内にsubmitボタンが複数ある。このアクション自体はGET（PATCHでも記述を変えれば問題はない）
   def change_restaurant
     # ぐるなびAPI
@@ -124,29 +176,14 @@ class Admin::EventsController < ApplicationController
     redirect_to admin_event_path(@event, room: 4) if params[:back]
   end
 
-  def destroy
-    # dependent: :destroyとしているので紐づいているevent_usersも同時に全て削除される
-    @event.destroy
-    redirect_to admin_events_path
-  end
 
-  def progress_status_update
-    @event.update(event_params)
-    flash[:success] = "進捗ステータスを更新しました"
-    redirect_back(fallback_location: root_path)
-  end
-
-  def confirm_plan_remind
-  end
-
-  def send_plan_remind
-  end
-
+  # 新規作成(1)：基本情報入力ページ表示（GET)
   def step1
     @event = Event.new
   end
 
-  # form内にsubmitボタンが複数ある。このアクション自体はPOST。正しく選択されていれば次のアクション（step3)へリダイレクトされ（リダイレクトのためstep3はGET）、createされる
+  # 新規作成(2)：step1更新＋お店検索ページ表示＋正しく選択されていればstep3へリダイレクト（POST：vieあり)
+  # form内にsubmitボタンが複数ある。リダイレクトのためstep3はGET、createされる
   def step2
     @event = Event.new(event_params)
     if @event.invalid?
@@ -190,6 +227,7 @@ class Admin::EventsController < ApplicationController
     render(:step1) && return if params[:back]
   end
 
+  # 新規作成(3)：メンバー選択ページの表示（GET)
   def step3
     @members = current_user.matchers
     @event = Event.new(event_params)
@@ -198,7 +236,7 @@ class Admin::EventsController < ApplicationController
     render :step2 if @event.invalid?
   end
 
-  # step4のみ検討要
+  # 新規作成(4)：step3のparamsの値をsessionに代入＋会費設定ページの表示（POST：vieあり)
   def step4
     @event = Event.new(event_params)
     # # 【★幹事＝user_id使用】
@@ -207,6 +245,7 @@ class Admin::EventsController < ApplicationController
     render(:step2) && return if params[:back]
   end
 
+  # 新規作成(5)：step4のparamsの値をsessionに代入＋step4のparamsの値をsessionに代入＋確認ページの表示（POST：vieあり)
   def confirm
     @event = Event.new(event_params)
     # 曜日
@@ -224,6 +263,7 @@ class Admin::EventsController < ApplicationController
     render(:step3) && return if params[:back]
   end
 
+  # 新規作成(6)：sessionからrestaurant,event,event_userを新規作成（POST：viewなし)
   def create
     @event = Event.new(event_params)
     # 【★幹事＝user_id使用】
@@ -257,41 +297,14 @@ class Admin::EventsController < ApplicationController
     redirect_to admin_event_path(@event)
   end
 
-  # 参加メンバーの追加ページ（編集）
-  def add_event_user
-    members = current_user.matchers
-    @unselected_members = members - User.joins(:event_users).where(event_users: { event_id: @event.id })
+  def confirm_plan_remind
   end
 
-  # 参加メンバーの追加後会費設定ページ（編集）
-  def add_event_user_fee
-    @event_user_ids = session[:event_user_ids] = params[:event_user][:ids].drop(1)
-    redirect_to(admin_event_path(@event, room: 2)) && return if params[:back]
-    # メンバーを選択せずNextボタンを押した場合進めない
-    if @event_user_ids.blank?
-      flash[:danger] = "メンバーを選択してください"
-      redirect_to admin_add_event_user_path(@event)
-    end
+  def send_plan_remind
   end
 
-  # 参加メンバーの追加（編集）
-  def add_event_user_create
-    @event_user_ids = session[:event_user_ids]
-    # 下記、Backボタン押した場合renderするための記述
-    members = current_user.matchers
-    @unselected_members = members - User.joins(:event_users).where(event_users: { event_id: @event.id })
-    render(:add_event_user) && return if params[:back]
-    # 確定ボタン押した場合
-    event_user_ids = session[:event_user_ids]
-    event_user_fees = session[:fees] = params[:fees]
-    event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
-    # 非同期なら下記削除予定（JSファイルあり）
-    flash[:success] = "参加メンバーを追加しました"
-    redirect_to admin_event_path(@event, room: 2)
-  end
 
   private
-
   def set_event
     @event = Event.find(params[:id])
   end
@@ -315,3 +328,4 @@ class Admin::EventsController < ApplicationController
     redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id
   end
 end
+
