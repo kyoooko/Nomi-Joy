@@ -4,14 +4,14 @@ module ApplicationHelper
     {
       site: 'サイト名',
       title:       "ノミジョイ！",
-      description: "ノミジョイ！は、「飲み会の準備を楽しく、便利に」するためのサービスです。登録をすることで、簡単に参加者の方も幹事の方もご利用いただけます。",
+      description: "ノミジョイ！は、「飲み会の準備を楽しく、便利に」するためのサービスです。参加者の方も幹事の方も簡単にご利用いただけます。",
       keywords:    "飲み会,幹事,準備,管理,サービス", #キーワードを「,」で区切る
       icon: [
         { href: image_url('Nomi-Joy.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png' },
       ],
-    #   noindex: ! Rails.env.production?, # production環境以外はnoindex
-	  #   canonical: request.original_url,  # 優先されるurl
-    #   charset: "UTF-8",
+      #   noindex: ! Rails.env.production?, # production環境以外はnoindex
+      #   canonical: request.original_url,  # 優先されるurl
+      #   charset: "UTF-8",
       # OGPの設定をしておくとfacebook, twitterなどの投稿を見た目よくしてくれる
       og: {
         title: :title,                #上のtitleと同じ値とするなら「:title」とする
@@ -23,14 +23,14 @@ module ApplicationHelper
         locale: "ja_JP"
       },
       twitter: {
-        site: '@Kyoko72483556',
+        site: ENV['TWITTER_ACCOUNT'],
         card: 'summary_large_image',
         image: image_url("Nomi-Joy.png") # ツイッター専用にイメージを設定する場合
       }
-    # ,
-    #   fb: {
-    #     app_id: '***************'    #ご自身のfacebookのapplication IDを設定
-    #   }
+      # ,
+      #   fb: {
+      #     app_id: '***************'    #ご自身のfacebookのapplication IDを設定
+      #   }
     }
   end
 end
