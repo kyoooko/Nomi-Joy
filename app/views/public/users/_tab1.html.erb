@@ -1,5 +1,10 @@
+<%# 説明 %>
+<div class="content__block--member-description">
+  <p class="text-secondary font-sm">このページは「ノミカイメンバー」の一覧です。<br>お互いにフォローしているユーザーは「ノミカイメンバー」となります。</p>
+</div>
 <!-- メンバー検索 -->
-<div class="content__block--search-members">
+<div class="content__block--search-members content__block">
+  <h2 class="block-hedding">メンバーを探す</h2>
   <form class="members-search-form">  
     <div class="form-group col-3">
         <select class="form-control">
@@ -8,13 +13,14 @@
         </select>
     </div>
     <div class="form-group col-6">
-      <input type="text" class="form-control">
+      <input type="text" class="form-control input-form-sm">
     </div>
   </form>
 </div>
 <%# メンバー一覧 %>
 <div class="content__block--menbers"> 
-  <table class="table members-table">
+  <h2 class="block-hedding">メンバー一覧</h2>
+  <table class="table members-table font-sm">
     <thead>
       <tr>
         <th scope="col"></th>
@@ -44,7 +50,7 @@
           <%# フォローボタン（非同期） %>
             <%= render "follow_button", member: member %>
           </td>
-          <td><%= link_to 'DMを開始', room_path(member.id), class:"btn small-btn green-btn" %></td>
+          <td><br><%= link_to 'DM', room_path(member.id), class:"btn btn-sm green-btn" %></td>
         </tr>
       <% end %>
     </tbody>

@@ -5,14 +5,14 @@
   </div>
   <div class="form-group col-6">
     <%= form_with url: users_path, method: :get,remote: true, class: "search-form" do |f|  %>
-      <%= f.text_field :word, class:"input-form" %>
-      <%= f.submit "Search", class:"btn small-btn green-btn"  %>
+      <%= f.text_field :word, class:"input-form-sm" %>
+      <%= f.submit "Search", class:"btn btn-sm green-btn"  %>
     <% end %>
   </div>
 </div>
 
 <div class="result"></div>
-  <table class="table members-table">
+  <table class="table members-table font-sm">
     <tbody>
       <tr>
         <th scope="row"><div class="result1"></div></th>
