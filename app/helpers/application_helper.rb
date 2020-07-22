@@ -24,7 +24,7 @@ module ApplicationHelper
       },
       twitter: {
         site: '@Kyoko72483556',
-        card: 'ノミジョイ！は、「飲み会の準備を楽しく、便利に」するためのサービスです。登録をすることで、簡単に参加者の方も幹事の方もご利用いただけます。',
+        card: 'summary_large_image',
         image: image_url("Nomi-Joy.png") # ツイッター専用にイメージを設定する場合
       }
     # ,
