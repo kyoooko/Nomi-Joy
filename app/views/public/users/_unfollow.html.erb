@@ -1,3 +1,3 @@
 <%= form_with  model:@follow, url: user_relationships_path(member), method: :delete, data: {remote: true} do |f| %>
-  <%= f.submit "フォロー済み", class: "btn small-btn white-btn" %>
+  <%= f.submit "フォロー済み", class: "btn btn-sm white-btn" %>
 <% end %>

@@ -6,6 +6,7 @@
   padding: 0;
   box-sizing: border-box;
   color:#1b515c;
+  font-family: "GN-Kin-iro_SansSerif","Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", sans-serif;
 }
 .clearfix::after {
   content: "";
@@ -19,6 +20,13 @@
   padding: 5%;
   margin-top:5%;
   margin-bottom: 10%;
+}
+// フォントサイズ
+.font-xs{
+  font-size: 8px;
+}
+.font-sm{
+  font-size: 12px;
 }
 // ボタン
 .small-btn{
@@ -50,6 +58,11 @@
   width: 250px;
   border-radius: 10px;
 }
+ .input-form-sm{
+  line-height: 200%;
+  width: 60%;
+  border-radius: 10px;
+ }
 .field,.actions{
 margin-bottom: 3%;
 }
