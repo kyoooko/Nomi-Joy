@@ -10,7 +10,7 @@ module ApplicationHelper
         { href: image_url('Nomi-Joy.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png' },
       ],
     #   noindex: ! Rails.env.production?, # production環境以外はnoindex
-	  # canonical: request.original_url,  # 優先されるurl
+	  #   canonical: request.original_url,  # 優先されるurl
     #   charset: "UTF-8",
       # OGPの設定をしておくとfacebook, twitterなどの投稿を見た目よくしてくれる
       og: {
@@ -21,13 +21,13 @@ module ApplicationHelper
         image: image_url("Nomi-Joy.png"),
         site_name: "ノミジョイ！",
         locale: "ja_JP"
+      },
+      twitter: {
+        site: '@Kyoko72483556',
+        card: 'ノミジョイ！は、「飲み会の準備を楽しく、便利に」するためのサービスです。登録をすることで、簡単に参加者の方も幹事の方もご利用いただけます。',
+        image: image_url("Nomi-Joy.png") # ツイッター専用にイメージを設定する場合
       }
-    #   ,
-    #   twitter: {
-    #     site: '@ツイッターのアカウント名',
-    #     card: 'summary',
-    #     image: image_url("sample_twitter.png") # ツイッター専用にイメージを設定する場合
-	  # },
+    # ,
     #   fb: {
     #     app_id: '***************'    #ご自身のfacebookのapplication IDを設定
     #   }
