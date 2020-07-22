@@ -92,9 +92,9 @@ gem 'simple_calendar', '~> 2.0'
 # 環境変数（GoogleMapで使用）
 gem 'dotenv-rails'
 # 多言語化
-gem 'rails-i18n', '~> 5.1' 
+gem 'rails-i18n', '~> 5.1'
 
 group :production do
-# 本番環境はmysql
+  # 本番環境はmysql
   gem 'mysql2'
 end

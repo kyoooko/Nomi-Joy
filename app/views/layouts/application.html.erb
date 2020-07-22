@@ -4,7 +4,12 @@
     <title>ノミジョイ！</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%# レスポンシブ %>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <%# 検索エンジンと検索ユーザーへ、ページの概要を伝えるためのタグ %>
+    <meta name="descriptioin" consent=“「ノミジョイ！」は、「飲み会の準備を楽しく、便利に」サポートするサービスです。新規登録（無料）をすることで、幹事の方、参加者の方どちらも簡単にご利用いただけます。”>
+    <%# アイコン %>
+    <%= favicon_link_tag 'Nomi-Joy.png', rel: "icon", type: "image/png" %>
     <%= stylesheet_link_tag    'application', media: 'all'%>
     <%= javascript_include_tag 'application' %>
     <script src="https://kit.fontawesome.com/7728ca00d3.js" crossorigin="anonymous"></script>
