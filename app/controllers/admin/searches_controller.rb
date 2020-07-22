@@ -4,5 +4,4 @@ class Admin::SearchesController < ApplicationController
 
   def find_member
   end
-  
 end

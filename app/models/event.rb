@@ -24,11 +24,11 @@ class Event < ApplicationRecord
   # ==================メソッド=====================================
   # ◆カレンダー：gem simple_calendarでは"start_time"ベースでカレンダーのdayに入るため、今回はdateカラムをstart_timeに設定する
   def start_time
-    self.date
+    date
   end
 
   # ◆通知機能（未払いのメンバーへの一斉支払い確認通知）
-  def create_notification_require_fee(current_user,visited_id)
+  def create_notification_require_fee(current_user, visited_id)
     notification = current_user.active_notifications.new(
       event_id: id,
       visited_id: visited_id,

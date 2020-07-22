@@ -1,20 +1,25 @@
+<%# 検索フォーム(非同期) %>
 <div class="members-search-form">  
   <div class="form-group col-3">   
     <label>ノミジョイ！ID</label>
   </div>
   <div class="form-group col-6">
-    <%= form_with url: users_path, method: :get, class: "search-form" do |f|  %>
+    <%= form_with url: users_path, method: :get,remote: true, class: "search-form" do |f|  %>
       <%= f.text_field :word, class:"input-form" %>
       <%= f.submit "Search", class:"btn small-btn green-btn"  %>
     <% end %>
   </div>
 </div>
-<table class="table members-table">
-  <tbody>
-    <% find_users.each do |find_user| %>
-      <tr class="result">
-        <%= render "public/searches/member_search_result", find_user: find_user %>
+
+<div class="result"></div>
+  <table class="table members-table">
+    <tbody>
+      <tr>
+        <th scope="row"><div class="result1"></div></th>
+        <td><div class="result2"></div></td>
+        <td><div class="result3"></div></td>
+        <td><div class="result4"></div></td>
+        <td><div class="result5"></div></td>
       </tr>
-    <% end %>
   </tbody>
 </table>

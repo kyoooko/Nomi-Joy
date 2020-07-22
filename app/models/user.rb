@@ -2,10 +2,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  #devise
+  # devise
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  # Refile 
+  # Refile
   attachment :image
 
   # ==============バリデーション ================================
@@ -19,13 +19,13 @@ class User < ApplicationRecord
   # アカウント作成時の郵便番号はハイフンなしの7桁のみ登録可能とするバリデーション
   # ==============アソシエーション ================================
   # ◆マッチング機能
-  # A：自分がフォローしているユーザーとの関連 
+  # A：自分がフォローしているユーザーとの関連
   # フォローする場合の中間テーブルを「active_relationships」と名付ける。外部キーは「following_id」
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
   # 中間テーブルを介してfollowerモデル（＝フォローされた側のUser)を集めることを「followings」と定義
   has_many :followings, through: :active_relationships, source: :follower
 
-  # B：自分がフォローされるユーザーとの関連 
+  # B：自分がフォローされるユーザーとの関連
   # フォローする場合の中間テーブルを「passive_relationships」と名付ける。外部キーは「follower_id」
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
   # 中間テーブルを介してfollowingモデル(=フォローする側のUser)を集めることを「followers」と定義
@@ -63,13 +63,13 @@ class User < ApplicationRecord
 
   # ◆検索機能（部分検索）
   def self.search(word)
-    self.where("nomi_joy_id =?", "#{word}")
+    where("nomi_joy_id =?", "#{word}")
   end
 
   # ◆通知機能
   def create_notification_followed_by(current_user)
     # 「連続でフォローボタンを押す」ことに備えて、同じ通知レコードが存在しないときだけ、レコードを作成
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,

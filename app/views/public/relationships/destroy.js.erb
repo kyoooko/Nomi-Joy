@@ -1,3 +1,4 @@
+<%# @userはrelationshipsコントローラーに定義したもの %>
 $("#follow-button_<%= @user.id %>").html("<%= j(render 'public/users/follow', member: @user) %>");
 
 

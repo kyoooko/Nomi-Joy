@@ -1,12 +1,12 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.1"
 
-set :application, "Nomi-Joy" 
+set :application, "Nomi-Joy"
 set :repo_url, "git@github.com:kyoooko/Nomi-Joy.git"
 
 set :deploy_to, "/home/ec2-user/Nomi-Joy"
 set :rbenv_ruby, '2.5.7'
-set :linked_files, %w{config/master.key .env}
+set :linked_files, %w(config/master.key .env)
 append :linked_dirs, "log", "public/system", "tmp"
 
 # Default branch is :master
@@ -42,4 +42,3 @@ append :linked_dirs, "log", "public/system", "tmp"
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-

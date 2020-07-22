@@ -1,5 +1,4 @@
 class Admin::RoomsController < ApplicationController
-  
   def index
     @members = current_user.matchers
   end
@@ -25,7 +24,6 @@ class Admin::RoomsController < ApplicationController
     # 自分と相手Aとの部屋のdmの全て
     @dms = @room.direct_messages
     # 通知機能
-    session[:user_id] =  @user.id
+    session[:user_id] = @user.id
   end
-
 end
