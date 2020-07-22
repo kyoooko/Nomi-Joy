@@ -93,6 +93,8 @@ gem 'simple_calendar', '~> 2.0'
 gem 'dotenv-rails'
 # 多言語化
 gem 'rails-i18n', '~> 5.1'
+# メタタグ
+gem 'meta-tags'
 
 group :production do
   # 本番環境はmysql
