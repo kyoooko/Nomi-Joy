@@ -72,7 +72,23 @@
   font-size: 10px;
   }
 }
+/* タブ3(show) */
+.event-fee-form,.participant-fee-status-form{
+  display: flex;
+  &__form{
+    border-radius: 5px;
+  }
+}
 /* タブ４(show) */
+.content__block--restaurant tr:first-child td{
+  font-size: 130%;
+  font-weight: bold;
+}
+@media (max-width: 767px) {
+  .content__block--restaurant tr:first-child td{
+    font-size: 110%;
+  }
+}
 .content__block--admin-map{
   width: 60%;
   height: 300px;
@@ -82,35 +98,52 @@
 .admin-restaurant-image{
   width:100%;
 }
-.event-fee-form,.participant-fee-status-form{
-  display: flex;
-  &__btn{
-    font-size: 5px !important;
-  }
-  &__form{
-    border-radius: 5px;
-  }
+// メンバー追加ページ + step2
+// 背景色が切れてしまうため
+.content__block--add-event-user{
+  margin-bottom: 70% !important;
 }
-// メンバー追加ページ
-.event-add-member-form label{
+// メンバー追加ページ（会費）
+// 背景色が切れてしまうため
+.content__block--add-event-user-fee {
+  margin-bottom: 35% !important;
+}
+.event-add-member-form label,.event-create-member-form label{
   font-family: "MPLUS-Regular", "Yu Gothic", "游ゴシック", sans-serif !important;
 }
 @media (max-width: 767px) {
-  .event-add-member-form label{
+  .event-create-member-form label{
   font-size: 12px;
   }
-  .event-add-member-form{
+  .event-create-member-form{
     width: 50% !important;
     margin: 0 auto !important;
     display: flex;
     flex-direction: column;
   }
 }
+// お店変更ページ
+.restaurant-result{
+  font-family: "MPLUS-Regular", "Yu Gothic", "游ゴシック", sans-serif !important;
+}
 // 新規作成
 // step2
 .step2-gurunave,.step2-button{
   display: block;
   margin-top: 20px;
+}
+.choose-restaurant{
+  margin-left: 10%;
+}
+.gurunavi-sm-btn{
+font-size: 8px !important;
+}
+@media (max-width: 1000px) {
+  .choose-restaurant{
+    margin-left: 0;
+    border: 0em;
+    // padding:0px !important;
+  }
 }
 // step3
 .event-create-member-form {

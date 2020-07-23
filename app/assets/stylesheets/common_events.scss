@@ -12,7 +12,7 @@
   .heading__top-welcome{
   font-size: 20px;
   }
-  .content__block--today,.content__block--nomikai-overview {
+  .content__block--today,.content__block--nomikai-overview, .content__block--restaurant, .content__block--overview{
     // 今日のノミカイの画像(767px以上）
     .restaurant-image{
       display:none;
@@ -70,7 +70,6 @@
   font-size: 50px;
 }
 .calendar{
-  line-height: 1.1 !important;
   p{
     margin: 0 !important;
   }
@@ -104,12 +103,13 @@
     font-size: 40px;
   }
   .calendar{
+    line-height: 1.1 !important;
     &__time{
-      font-size: 3px;
+      font-size: 6px;
       margin-bottom: 1px;
     }
     &__restaurant{
-      font-size: 3px;
+      font-size: 6px;
     }
     &__days td{
       height: 130px !important;
@@ -129,4 +129,7 @@
   .google-map{
     height: 300px;
     }
+  #map{
+    height: 300px;
+  }
 }

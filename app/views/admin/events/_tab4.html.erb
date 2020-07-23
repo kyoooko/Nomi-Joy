@@ -1,43 +1,51 @@
 <!-- お店情報 -->
 <div class="content__block--restaurant content__block">
   <h2 class="block-hedding">お店情報</h2>
+  <span class="restaurant mt-2">
+    <%# この箇所の画像は767px未満のみ表示 %>
+    <span class= "restaurant-image-responsive">
+      <%= image_tag(event.restaurant.shop_image, class: "middle-image") %>
+    </span>
+  </span>
   <div class="row">
-    <table class="table table-borderless col-8">
+    <table class="table table-borderless col-md-8">
       <tbody>
         <tr>
           <th scope="row">お店名</th>
-          <td><%= event.restaurant.name %>&emsp;<%= link_to event.restaurant.url, target: :_blank, class: "btn blue-btn" do %>ぐるなびで見る<% end %></td>
+          <td class="nomal-font"><%= event.restaurant.name %>&emsp;<%= link_to event.restaurant.url, target: :_blank, class: "btn blue-btn btn-sm" do %>ぐるなびで見る<% end %></td>
         </tr>
         <tr>
           <th scope="row">アクセス</th>
-          <td><%= event.restaurant.access %></td>
+          <td class="nomal-font responsive-font-sm"><%= event.restaurant.access %></td>
         </tr>
         <tr>
           <th scope="row">住所</th>
-          <td><%= event.restaurant.address %></td>
+          <td class="nomal-font responsive-font-sm"><%= event.restaurant.address %></td>
         </tr>
         <tr>
-          <th scope="row">電話番号</th>
-          <td><%= event.restaurant.tel %></td>
+          <th scope="row">TEL</th>
+          <td class="nomal-font responsive-font-sm"><%= event.restaurant.tel %></td>
         </tr>
         <tr>
           <th scope="row">営業時間</th>
-          <td><%= event.restaurant.opentime %></td>
+          <td class="nomal-font responsive-font-sm"><%= event.restaurant.opentime %></td>
         </tr>
         <tr>
           <th scope="row">定休日</th>
-          <td><%= event.restaurant.holiday %></td>
+          <td class="nomal-font responsive-font-sm"><%= event.restaurant.holiday %></td>
         </tr>
       </tbody>
     </table>
-     <div class= "col-4">
+    <%# この箇所の画像は767px以上のみ表示 %>
+     <div class="col-md-4 restaurant-image">
       <%= image_tag(event.restaurant.shop_image, class: "middle-image") %>
-      <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
-      <div class="admin-nomikai-overview-btn">
-        <%= link_to "お店の変更", admin_change_restaurant_path(event), class:"btn blue-btn" %>
-      </div>
     </div>
   </div>
+  <div class="row">
+    <div class="d-flex justify-content-end col-12">
+          <%= link_to "お店の変更", admin_change_restaurant_path(event), class:"btn blue-btn" %>
+        </div>
+    </div>
 </div>
  <!-- マップ -->
 <div class="content__block--map">

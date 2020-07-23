@@ -19,12 +19,12 @@
           <% @dms.each do |dm| %>
             <% if dm.user_id == current_user.id %>
               <div class="self">
-                <p  class="self__message nomal-font responsive-font-sm" style="text-align: right;  color:#bc7395;"><%= dm.message %></p>
+                <p  class="self__message nomal-font responsive-font-sm" style="text-align: right; color:#fff; background-color:#a6c2b8;"><%= dm.message %></p>
               </div>
             <% else %>
               <div class="other">
                 <%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"other__image" %>
-                <p class="other__message nomal-font responsive-font-sm" style="text-align: left; color:#355384;"><%= dm.message %></p>
+                <p class="other__message nomal-font responsive-font-sm" style="text-align: left; color:#1b515c;"><%= dm.message %></p>
               </div>
             <% end %>
           <% end %>

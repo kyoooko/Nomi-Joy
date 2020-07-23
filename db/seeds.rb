@@ -68,7 +68,7 @@ EventUser.create!(user_id:4,event_id:1,fee:4500,fee_status:true,deleted_at:"")
 
 
 # ◆ノミカイ２（カンジ：user2、参加メンバー：user1,2,5,6、お店：restaurant2)
-Restaurant.create!(user_id: 2,name:"市ヶ谷魚金",address:"東京都千代田区五番町6-5 クレスト五番町 1・2F",access:"JR市ヶ谷駅から徒歩3分",url:"https://tabelog.com/tokyo/A1309/A130904/13217305/",shop_image:"uokin.png",tel:"050-5596-0401",opentime:"［日曜～土曜]11:30～23:00",holiday:"年末年始")
+Restaurant.create!(user_id: 2,name:"魚民 市ヶ谷駅前店",address:"〒162-0844  東京都新宿区市谷八幡町2-1 DS市ヶ谷ビル8F",access:"地下鉄南北線 市ケ谷駅 徒歩2分",url:"https://r.gnavi.co.jp/hr6cjkc90000/",shop_image:"uotami.png",tel:"03-3268-6088",opentime:"月～木 16:00～翌1:00 金・土・祝前日 16:00～翌5:00 日・祝日 16:00～24:00",holiday:"無")
 Event.create!(restaurant_id:2,user_id:2,name:"野澤さん送別会",date:"2020-07-28 00:00:00",begin_time:"2020-07-28 18:30:00",end_time:"2020-07-28 21:00:00",memo:"吉田さんは19時から参加、花束と色紙用意する",progress_status:1)
 EventUser.create!(user_id:1,event_id:2,fee:3500,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:2,event_id:2,fee:3500,fee_status:false,deleted_at:"")

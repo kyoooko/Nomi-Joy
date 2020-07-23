@@ -8,7 +8,7 @@
   <div class="body">
     <div class="heading">
       
-      <h1 class="heading__en">Restaurant</h1>
+      <h1 class="heading__en">Chenge Restaurant</h1>
       <h3 class="heading__ja">お店変更</h3>
     </div>
     <div class="content">
@@ -23,8 +23,8 @@
               <p>
                 <%= radio_button_tag :restaurant, rest  %>
                 <%= image_tag(rest["image_url"]["shop_image1"], class: "restaurant-image") %>
-                <%= rest["name"] %>
-                <%= link_to rest["url"], target: :_blank, class: "btn blue-btn" do %>ぐるなびで見る<% end %>
+                <span class="restaurant-result responsive-font-sm"><%= rest["name"] %></span>
+                <%= link_to rest["url"], target: :_blank, class: "btn blue-btn btn-sm" do %>ぐるなびで見る<% end %>
               </p>
             <% end %>
           <% end %>
@@ -33,9 +33,9 @@
             <%= f.submit "Back", name: :back, class: "btn white-btn" %>
           </p>
         <% end %>
-        <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank,class: "step2-gurunave" do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
       </div>
     </div>
+    <%= render "layouts/footer" %>
   </div>
 </main>
 

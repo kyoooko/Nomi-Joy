@@ -11,6 +11,9 @@
   // position: fixed;
 // }
 // メッセージがない状態だと入力フォームが上に来てしまうため
+.dm-content{
+  margin-top: 20% !important;
+}
 .dm-no-content{
   // background-color: red;
   height:20vh;

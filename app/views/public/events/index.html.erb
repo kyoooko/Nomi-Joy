@@ -62,7 +62,7 @@
                       <%= @today_admin.position %><br><br>
                       <%= link_to user_path(@today_admin),class:"nomal-font" do %><%= @today_admin.name %><% end %>&emsp;&emsp;
                       <% unless @today_admin == current_user%>
-                      <%= link_to room_path(@today_admin.id),class:"btn green-btn btn-sm" do %>カンジに連絡する<% end %>
+                      <%= link_to room_path(@today_admin.id),class:"btn green-btn btn-sm" do %>DM<% end %>
                       <% end %>
                      </div>
                   </td>
