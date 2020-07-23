@@ -7,7 +7,7 @@ module ApplicationHelper
       description: "ノミジョイ！は、「飲み会の準備を楽しく、便利に」するためのサービスです。参加者の方も幹事の方も簡単にご利用いただけます。",
       keywords:    "飲み会,幹事,準備,管理,サービス", #キーワードを「,」で区切る
       icon: [
-        { href: image_url('Nomi-Joy.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png' },
+        { href: image_url('Nomi-Joy-square.jpg'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png' },
       ],
       #   noindex: ! Rails.env.production?, # production環境以外はnoindex
       #   canonical: request.original_url,  # 優先されるurl

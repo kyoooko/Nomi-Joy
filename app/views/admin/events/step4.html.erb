@@ -13,11 +13,19 @@
     <div class="content">
       <div class="content__block--step-bar">
         <h3>会費設定</h3>
-        <p class="fee-annotion">※ 後ほど設定できます</p>
-        <p class="fee-annotion">※ 半角数字で入力</p>
-        <div><%= image_tag("step-bar.png", class: "") %>
+        <%# ステップバー（Bootstrap・見た目のみ） %>
+        <div class="create-nomikai-stepbar">
+          <ul class="bootstrapWizard form-wizard">
+            <li class="" data-target="#step1"><span class="step">1</span></li>
+            <li data-target="#step2" class=""><span class="step">2</span></li>
+            <li data-target="#step3" class=""><span class="step">3</span></li>
+            <li data-target="#step3" class="active"><span class="step">4</span></li>
+            <li data-target="#step3" class=""><span class="step">5</span></li>
+          </ul>
+          <div class="clearfix"></div>
       </div> 
       <div class="content__block--step4 content__block">
+        <p class="text-muted">※ 後ほど設定できます<br>※ 半角数字で入力</p>
         <%= form_with  model: @event, url: admin_confirm_path,  local: true do |f| %>
           <table class="table table-borderless">
             <tbody>

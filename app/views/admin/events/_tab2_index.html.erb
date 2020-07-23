@@ -1,21 +1,29 @@
 <!-- 全ての飲み会 -->
 <div class="content__block__all-nomikai content__block-wide">
   <h2 class="block-hedding">開催予定のノミカイ</h2>
-  <div><%= image_tag("step-bar.png", class: "step-bar-202") %></div>
-  <div class="all-nomikai">
-    <div class="all-nomikai__step">
+  <%# ステップバー（Bootstrap・見た目のみ） %>
+  <div class="all-nomikai__stepbar">
+    <ul class="bootstrapWizard form-wizard">
+      <li class="active" data-target="#step1"><span class="step">1</span></li>
+      <li data-target="#step2" class="active"><span class="step">2</span></li>
+      <li data-target="#step3" class="active"><span class="step">3</span></li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="all-nomikai__content">
+    <div class="partition">
       <h4>招待済</h4>
       <% status0_events.each do |status0_event| %>
         <p><%= link_to admin_event_path(status0_event),class:"nomal-font responsive-font-sm" do %><%= status0_event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[status0_event.date.wday] %>)&emsp;<%= status0_event.name %><% end %></p>
       <% end %>
     </div>
-    <div class="all-nomikai__step">
+    <div class="partition">
       <h4>お店予約済</h4>
       <%  status1_events.each do |status1_event| %>
         <p><%= link_to admin_event_path(status1_event),class:"nomal-font responsive-font-sm" do %><%= status1_event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[status1_event.date.wday] %>)&emsp;<%= status1_event.name %><% end %></p>
       <% end %>
     </div>
-    <div class="all-nomikai__step">
+    <div class="partition">
       <h4>前日リマインド済</h4>
         <%  status2_events.each do |status2_event| %>
         <p><%= link_to admin_event_path(status2_event),class:"nomal-font responsive-font-sm" do %><%= status2_event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[status2_event.date.wday] %>)&emsp;<%= status2_event.name %><% end %></p>
