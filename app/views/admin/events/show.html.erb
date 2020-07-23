@@ -13,25 +13,25 @@
           <%= message %>
         </div>
       <% end %>
-      <h1 class="heading__en">Nomikai Detail</h1>
-      <h3 class="heading__ja">ノミカイ詳細</h3>
+      <h3 class="heading__event-date"><%= @event.date.to_s(:date) %>（<%= @day_of_the_week %>）</h3>
+      <h1 class="heading__event-name"><%= @event.name %></h1>
     </div>
     <!-- 新規作成ボタン -->
     <%= render 'admin/events/create_event_button' %>
     <div class="content">
       <!-- タブリンク -->
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs sm-nav-tabs">
         <li class="nav-item">
-          <a href="#top" class="nav-link members-tab-link <%= 'active' if @room == 1 %>" data-toggle="tab">概要</a>
+          <a href="#top" class="nav-link sm-nav-link <%= 'active' if @room == 1 %>" data-toggle="tab">About</a>
         </li>
         <li class="nav-item">
-          <a href="#participants" class="nav-link members-tab-link  <%= 'active' if @room == 2 %>" data-toggle="tab">メンバー</a>
+          <a href="#participants" class="nav-link sm-nav-link  <%= 'active' if @room == 2 %>" data-toggle="tab">Member</a>
         </li>
         <li class="nav-item">
-          <a href="#nomikai-fee" class="nav-link members-tab-link  <%= 'active' if @room == 3 %>" data-toggle="tab">集金状況</a>
+          <a href="#nomikai-fee" class="nav-link sm-nav-link  <%= 'active' if @room == 3 %>" data-toggle="tab">Fee</a>
         </li>
         <li class="nav-item">
-          <a href="#restaurant" class="nav-link members-tab-link  <%= 'active' if @room == 4 %>" data-toggle="tab">お店</a>
+          <a href="#restaurant" class="nav-link sm-nav-link  <%= 'active' if @room == 4 %>" data-toggle="tab">Restaurant</a>
         </li>
       </ul> 
       <!-- タブ中身 -->
@@ -54,5 +54,6 @@
         </div> 
       </div>
     </div>
+    <%= render "layouts/footer" %>
   </div>
 </main>

@@ -1,30 +1,34 @@
 <div class= "col-lg-8 mx-auto">
-  <div>
-    <%= link_to user_path(notification.visitor) do %>
-      <%= attachment_image_tag notification.visitor, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %>
-      <strong>
-        <%= notification.visitor.name %>
-      </strong>
-    <% end %>
-      さんから
-    <% case notification.action %>
+  <div class="row">
+    <div class="col-3">
+      <%= link_to user_path(notification.visitor) do %>
+        <%= attachment_image_tag notification.visitor, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %>
+      <% end %>
+    </div>
+    <div class="col-9">
+        <strong>
+          <%= notification.visitor.name %>
+        </strong>
+        さんから
+      <% case notification.action %>
       <% when 'follow' then %>
         メンバー承認依頼が届いています
       <% when 'dm' then%>
         <%= link_to 'DM', room_path(notification.visitor), style: "font-weight: bold;" %>が届いています
-        <p class="text-muted mb-0 small" >
+        <p class="text-muted mb-0 font-xs nomal-font" >
         <%= notification.direct_message.message %>
         </p>
       <% when 'require_fee' then %>
         下記のお支払いについて確認の依頼があります
-        <p class="text-muted mb-0 small" >
-          <%= link_to event_path(notification.event_id), class: "" do %><%= notification.event.date.to_s(:date) %>&emsp;<%= notification.event.name %><% end %>&emsp;
+        <p class="text-muted mb-0 nomal-font font-xs " >
+          <%= link_to event_path(notification.event_id), class: "nomal-font" do %><%= notification.event.date.to_s(:date) %>&emsp;<%= notification.event.name %><% end %>&emsp;
           会費：<%= EventUser.find_by(user_id: notification.visitor_id,event_id: notification.event_id).fee %>円
         </p>
-    <% end %>
-  </div>
-  <div class="small text-muted text-right">
-    <%= time_ago_in_words(notification.created_at).upcase %>前
+      <% end %>
+    </div>
+    <div class="text-muted text-right nomal-font font-sm" style="width:100%;">
+      <%= time_ago_in_words(notification.created_at).upcase %>前
+    </div>
   </div>
   <hr>
 </div>

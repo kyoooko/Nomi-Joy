@@ -23,17 +23,6 @@
   padding: 5%;
   margin-top:5%;  
 }
-// 飲み会名を大きく表示
-.content__block--today tr:first-child td{
-  font-size: 150%;
-  font-weight: bold;
-}
-
-@media (max-width: 767px) {
-  .heading__top-welcome{
-  font-size: 20px;
-  }
-}
 // show
 .content__block--overview{
   background-color: #eee;
@@ -44,14 +33,7 @@
 .content__block--overview tr:first-child td{
   font-size: 150%;
   font-weight: bold;
-  /* background-color: cadetblue; */
 }
 .content__block--map{
   margin-top:10%;
-}
-
-@media (max-width: 767px) {
-  .mypage-image{
-  width:50%;
-  }
 }

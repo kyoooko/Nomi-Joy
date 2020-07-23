@@ -13,9 +13,12 @@
           <%= message %>
         </div>
       <% end %>
-      <h1 class="heading__en">My page</h1>
-      <h3 class="heading__ja">マイページ</h3>
-      <div class="heading__image"><%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"header-mypage-image" %></div>
+      <% if  @user == current_user %>
+        <h1 class="heading__en">My page</h1>
+        <h3 class="heading__ja">マイページ</h3>
+      <% else %>
+        <h1 class="heading__en"><%= @user.name %></h1>
+      <% end %>
     </div>
     <div class="content content--mypage">
       <div class="content__block--mypage-image">
@@ -93,5 +96,6 @@
         <% end %>
       </div>
     </div>
+    <%= render "layouts/footer" %>
   </div>
 </main>

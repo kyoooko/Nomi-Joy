@@ -13,9 +13,8 @@
             <%= message %>
           </div>
         <% end %>
-        <h1 class="heading__en">My page</h1>
-        <h3 class="heading__ja">マイページ</h3>
-        <h2 class="heading__sub">Edit</h2>
+        <h1 class="heading__en">My page &lt;Edit&gt;</h1>
+        <h3 class="heading__ja">マイページ &lt;編集&gt;</h3>
       </div>
       <%= form_with model: @user, local: true do |f| %>
         <div class="content row">
@@ -74,6 +73,7 @@
           </div>
         </div>
       <% end %>
+    <%= render "layouts/footer" %>
     </div>
   </main>
 </body>

@@ -6,7 +6,7 @@
   <div class="form-group col-6">
     <%= form_with url: users_path, method: :get,remote: true, class: "search-form" do |f|  %>
       <%= f.text_field :word, class:"input-form-sm" %>
-      <%= f.submit "Search", class:"btn btn-sm green-btn"  %>
+      <%= f.button type: "submit", class:"btn green-btn btn-sm"  do %><i class="fas fa-search public-search-btn"></i><% end %>
     <% end %>
   </div>
 </div>

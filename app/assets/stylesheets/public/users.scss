@@ -13,49 +13,10 @@
 .mypage-follow-btn{
   margin-right: 5%;
 }
+.content__block--data td{
+  font-family: "MPLUS-Regular", "Yu Gothic", "游ゴシック", sans-serif !important;
+}
 
-// メンバー一覧ページ
-/* タブ(リンク)（修正要：hoverのとき白くなる） */
-.nav-tabs {
-  border-color: #1b515c;
-}
-.public-tab-link{
-  width:150px;
-  height:50px;
-  font-size: 120%;
-  padding-top: 3px;
-  color: #1b515c;
-}
-.public-tab-link:hover{
-  color: #1b515c;
-  border-color: #eee !important;
-  border-radius: 10px 10px 0 0;
-}
-.nav-link.active{
-  background-color: #1b515c !important;
-  color: #fff !important;
-  border-color: #1b515c !important;
-  border-radius: 10px 10px 0 0;
-}
-// タブ（中身）
-#members,#follow{
-  padding-top: 5%;
-}
-// タブ１
-#members{
-  height: 100vh;
-}
-.members-table {
-  td{
-    padding-top: 30px;
-  }
-  td:first-of-type{
-    font-size: 15px;
-  }
-}
-// .content__block--menbers table{
-//   font-size: 12px;
-//   }
 /* タブ２ */
 .content__block__following,.content__block__followed,.content__block__search-users{
   margin-bottom: 10%;
@@ -63,10 +24,19 @@
 .block-hedding{
   margin-bottom: 5%;
 }
+.content__block--menbers-responsive{
+  display: none;
+}
 @media (max-width: 767px) {
   // ヘッダーと見出しが被らないようにする
   .heading--non-underline{
     margin-top: 10%;
+  }
+  .content__block--menbers{
+    display: none;
+  }
+  .content__block--menbers-responsive{
+    display: block;
   }
 }
   

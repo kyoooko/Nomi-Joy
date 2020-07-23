@@ -18,9 +18,6 @@
     width:30%;  
   }
 }
-.header-mypage-image{
-  display: none;
-}
 .mypage-edit-form,.mypage-edit-textarea{
   line-height: 200%;
   width: 250px;
@@ -40,8 +37,9 @@
 }
 @media (max-width: 1200px) {
   .mypage-image{
-    width:200px;
-    height:200px;
+    width:150px;
+    height:150px;
+    margin-bottom: 30px;
     }
 }
 @media (max-width: 767px) {
@@ -50,17 +48,12 @@
     width: 100%;
     }
     &__block--mypage-image{
-      width: 0%;
+      width: 100%;
     }
   }
-  .header-mypage-image{
-    display: block;
-    border-radius: 50%;
-    width:150px;
-    height:150px;
-  }
-  .mypage-image{
-    display: none;
+  .content--mypage{
+    display: flex;
+    flex-direction: column;
   }
   .mypage-btn{
     float: none;

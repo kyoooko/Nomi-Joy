@@ -8,7 +8,7 @@
   <div class="body">
     <div class="heading">
       <h1 class="heading__en">Notice</h1>
-      <h3 class="heading__ja">通知一覧</h3>
+      <h3 class="heading__ja">通知</h3>
     </div>
     <div class="content">
       <% if @notifications.exists? %>
@@ -17,9 +17,10 @@
           <%= paginate @notifications %>
         </div>
       <% else %>
-          新しい通知はありません
+        <p class="text-secondary">まだ通知はありません</p>
       <% end %>
     </div>
+    <%= render "layouts/footer" %>
   </div>
 </main>
 

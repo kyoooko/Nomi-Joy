@@ -1,3 +1,30 @@
+// 今日のノミカイ・カンジ側show
+// ノミカイ名を大きく表示
+.content__block--today tr:first-child td, .content__block--nomikai-overview tr:first-child td{
+  font-size: 150%;
+  font-weight: bold;
+}
+// 今日のノミカイの画像(767px未満）
+.restaurant-image-responsive{
+  display:none;
+}
+@media (max-width: 767px) {
+  .heading__top-welcome{
+  font-size: 20px;
+  }
+  .content__block--today,.content__block--nomikai-overview {
+    // 今日のノミカイの画像(767px以上）
+    .restaurant-image{
+      display:none;
+    }
+    .restaurant-image-responsive{
+      display:inline-block;
+    }
+    .restaurant{
+      display: block;
+    }
+  }
+}
 // カレンダー
 .simple-calendar {
   .day {
@@ -43,6 +70,10 @@
   font-size: 50px;
 }
 .calendar{
+  line-height: 1.1 !important;
+  p{
+    margin: 0 !important;
+  }
   &__time{
   font-size: 10px;
   }
@@ -50,7 +81,7 @@
     font-size: 10px;
   }
   &__days td{
-    height: 220px !important;
+    height: 170px !important;
   }
 }
 .next-back{
@@ -75,17 +106,14 @@
   .calendar{
     &__time{
       font-size: 3px;
-      margin-bottom: 5px;
+      margin-bottom: 1px;
     }
     &__restaurant{
-      display: none;
+      font-size: 3px;
     }
     &__days td{
-      height: 150px !important;
+      height: 130px !important;
     }
-  }
-  .event-link{
-    font-size: 10px;
   }
 }
 // マップ
@@ -97,7 +125,6 @@
   height: 500px;
   width: 80%;
 }
-
 @media (max-width: 767px) {
   .google-map{
     height: 300px;

@@ -16,53 +16,66 @@
         <h2 class="block-hedding">今日のノミカイ</h2>
         <% if @today_event.present? %>
           <div class="row">
-            <table class="table table-borderless col-8">
+            <table class="table table-borderless col-md-8 ">
               <tbody>
                 <tr>
                   <th scope="row">ノミカイ名</th>
-                  <td><%= link_to event_path(@today_event),class:"today-link" do %><%= @today_event.name %><% end %></td>
+                  <td><%= link_to event_path(@today_event),class:"today-link nomal-font" do %><%= @today_event.name %><% end %></td>
                 </tr>
                 <tr>
                   <th scope="row">日にち</th>
-                  <td><%= @today_event.date.to_s(:date_jp) %>（<%= @day_of_the_week %>）</td>
+                  <td class="nomal-font"><%= @today_event.date.to_s(:date_jp) %>（<%= @day_of_the_week %>）</td>
                 </tr>
                 <tr>
                   <th scope="row">時間</th>
-                  <td><%= @today_event.begin_time.to_s(:time) %>〜<%= @today_event.end_time.to_s(:time) %></td>
+                  <td class="nomal-font"><%= @today_event.begin_time.to_s(:time) %>〜<%= @today_event.end_time.to_s(:time) %></td>
                 </tr>
                 <tr>
                   <th scope="row">場所</th>
-                  <td><%= @today_event.restaurant.name %>&emsp;&emsp;<%= link_to @today_event.restaurant.url, target: :_blank, class: "btn blue-btn" do %>ぐるなびで見る<% end %></td>
+                  <td class="nomal-font">
+                    <%= @today_event.restaurant.name %>
+                    <span class="restaurant mt-2">
+                      <%# この箇所の画像は767px未満のみ表示 %>
+                      <span class= "restaurant-image-responsive">
+                        <%= image_tag(@today_event.restaurant.shop_image, class: "middle-image") %>
+                      </span>
+                      <%= link_to @today_event.restaurant.url, target: :_blank, class: "btn green-btn btn-sm" do %>ぐるなびで見る<% end %>
+                    </span>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row"></th>
-                  <td><%= @today_event.restaurant.access %></td>
+                  <td class="nomal-font font-xs text-muted"><%= @today_event.restaurant.access %></td>
                 </tr>
                 <tr>
                   <th scope="row"></th>
-                  <td><%= @today_event.restaurant.address %></td>
+                  <td class="nomal-font font-xs text-muted"><%= @today_event.restaurant.address %></td>
                 </tr>
                 <tr>
-                  <th scope="row">カンジ</th>
-                  <td><%= link_to user_path(@today_admin),class:"" do %><%= attachment_image_tag @today_admin, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %><%= @today_admin.belongs %><%= @today_admin.position %></td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td>
-                    <% unless @today_admin == current_user%>
-                     <%= link_to user_path(@today_admin),class:"" do %><%= @today_admin.name %><% end %>&emsp;&emsp;<%= link_to room_path(@today_admin.id),class:"btn green-btn" do %>カンジに連絡する<% end %>
-                     <% end %>
+                  <th scope="row">カンジ</th> 
+                  <td class="d-inline-flex">
+                    <div>
+                      <%= link_to user_path(@today_admin),class:"" do %><%= attachment_image_tag @today_admin, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %>
+                    </div>&emsp;
+                    <div class="nomal-font font-sm">
+                      <%= @today_admin.belongs %>
+                      <%= @today_admin.position %><br><br>
+                      <%= link_to user_path(@today_admin),class:"nomal-font" do %><%= @today_admin.name %><% end %>&emsp;&emsp;
+                      <% unless @today_admin == current_user%>
+                      <%= link_to room_path(@today_admin.id),class:"btn green-btn btn-sm" do %>カンジに連絡する<% end %>
+                      <% end %>
+                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <div class= "col-4">
+            <%# この箇所の画像は767px以上のみ表示 %>
+            <div class= "col-md-4 restaurant-image">
               <%= image_tag(@today_event.restaurant.shop_image, class: "middle-image") %>
-              <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank do %><%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %><% end %>
             </div>
           </div>
         <% else %>
-        ノミカイの予定はありません
+          <p class="text-muted">ノミカイの予定はありません</p>
         <% end %>
       </div>
       <!-- カレンダー -->
@@ -70,37 +83,50 @@
       <!-- 未払い飲み会一覧 -->
       <div class="content__block__unpaid">
         <h2 class="block-hedding">会費を支払っていないノミカイ</h2>
-        <table class="table font-sm">
-          <thead>
-            <tr>
-              <th scope="col">日時</th>
-              <th scope="col">ノミカイ名</th>
-              <th scope="col">金額</th>
-              <th scope="col">カンジ</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @unpaying_event_users.each do |unpaying_event_user| %>
+        <% if @unpaying_event_users.present? %>
+          <table class="table font-sm">
+            <thead>
               <tr>
-                <td><%= unpaying_event_user.event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[unpaying_event_user.event.date.wday] %>)
-                  <div>
-                    <% if unpaying_event_user.deleted_at.nil? %>
-                    <span></span>
-                    <% else%>
-                    <span class="badge badge-danger">欠席</span>
-                    <% end %>
-                  </div>
-                </td>
-                <td><%= link_to event_path(unpaying_event_user.event_id ) do %><%= unpaying_event_user.event.name %><% end %></td>
-                <td><%= unpaying_event_user.fee %>円</td>
-                <td><div class="font-xs"><%= User.find(unpaying_event_user.event.user_id).belongs%></div><div class="font-xs"><%= User.find(unpaying_event_user.event.user_id).position%></div><br><%= link_to user_path(unpaying_event_user.event.user_id ),class:"" do %><%= User.find(unpaying_event_user.event.user_id).name%><% end %></td>
-                <td><%=link_to "DM", room_path(unpaying_event_user.event.user_id), class:"btn btn-sm green-btn" %></td>
+                <th scope="col">日時</th>
+                <th scope="col">ノミカイ名</th>
+                <th scope="col">金額</th>
+                <th scope="col">カンジ</th>
+                <th scope="col"></th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @unpaying_event_users.each do |unpaying_event_user| %>
+                <tr>
+                  <td class="nomal-font"><%= unpaying_event_user.event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[unpaying_event_user.event.date.wday] %>)
+                    <div>
+                      <% if unpaying_event_user.deleted_at.nil? %>
+                      <span></span>
+                      <% else%>
+                      <span class="badge badge-danger">欠席</span>
+                      <% end %>
+                    </div>
+                  </td>
+                  <td><%= link_to event_path(unpaying_event_user.event_id ),class:"nomal-font  font-sm" do %><%= unpaying_event_user.event.name %><% end %></td>
+                  <td class="nomal-font font-sm"><%= unpaying_event_user.fee %>円</td>
+                  <td>
+                    <div class="font-xs nomal-font">
+                      <%= User.find(unpaying_event_user.event.user_id).belongs%>
+                    </div>
+                    <div class="font-xs nomal-font">
+                      <%= User.find(unpaying_event_user.event.user_id).position%>
+                    </div><br>
+                    <%= link_to user_path(unpaying_event_user.event.user_id ),class:"nomal-font font-sm" do %><%= User.find(unpaying_event_user.event.user_id).name%><% end %>
+                  </td>
+                  <td><%=link_to "DM", room_path(unpaying_event_user.event.user_id), class:"btn btn-sm green-btn" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else%>
+          <p class="text-muted">未支払いのノミカイはありません</p>
+        <% end %>
       </div>
     </div>
+    <%= render "layouts/footer" %>
   </div>
 </main>
