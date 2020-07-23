@@ -35,9 +35,11 @@
           </div>
         <% end %>
       </div>
+      <%# パスワード変更のリンクを作る場合は下記 %>
       <%#= link_to new_user_password_path,class:"content__block--forget-pass" do %>
        <%# Forgot your password? %>
       <%# end %>
     </div>
+    <%= render "layouts/footer" %>
   </div>
 </main>

@@ -1,4 +1,4 @@
-// 詳細ページ
+// DMトークページ
 @mixin message{
   background-color:#dfdfdf;
   border-radius:8px;
@@ -10,8 +10,11 @@
 // .dm-sidebar{
   // position: fixed;
 // }
-// .dm-body{
-// }
+// メッセージがない状態だと入力フォームが上に来てしまうため
+.dm-no-content{
+  // background-color: red;
+  height:20vh;
+}
 .content__block{
   &--exchange{
     margin-bottom: 20%;
@@ -60,7 +63,7 @@
 }
 .dm-form{
   &__textarea{
-    width: 400px;
+    width: 300px;
     line-height: 250%;
     border-radius: 5px;
   }
@@ -115,7 +118,7 @@
   }
   .dm-form{
     &__textarea{
-      width: 250px;
+      width: 200px;
     }
   }
 }

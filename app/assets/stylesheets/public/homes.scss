@@ -53,11 +53,12 @@ color:$white;
    margin-bottom:30px;
    background-color: $light-gray;
  }
- footer{
+ .top-footer{
   height:80px;
   line-height: 80px;
   background-color:$white-gray;
   background-color:$main;
  }
-/* @media (max-width: 767px) {
-} */
+ @media (max-width: 767px) {
+  
+ }

@@ -9,23 +9,28 @@
   </div>  
   <div class="body dm-body">
     <div class="heading dm-show-heading sticky-top">
-      <h1 class="heading__en">DM room</h1>
       <div class="heading__image"><%= link_to user_path(@user),class:"" do %><%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"responsive-dm-image" %><% end %></div>
-      <div class="heading__name"><%= link_to user_path(@user),class:"" do %><%= @user.name %><% end %></div>
+      <div class="heading__name"><%= link_to user_path(@user),style:"font-size:3rem" do %><%= @user.name %><% end %></div>
     </div>
     <div class="content dm-content">
       <div class="content__block--exchange">
-        <% @dms.each do |dm| %>
-          <% if dm.user_id == current_user.id %>
-            <div class="self">
-              <p  class="self__message" style="text-align: right;  color:#bc7395;"><%= dm.message %></p>
-            </div>
-          <% else %>
-            <div class="other">
-              <%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"other__image" %>
-              <p class="other__message" style="text-align: left; color:#355384;"><%= dm.message %></p>
-            </div>
+        <%# 下記の条件分岐は、メッセージがない状態だと入力フォームが上に来てしまうため %>
+        <% if @dms.present?%>
+          <% @dms.each do |dm| %>
+            <% if dm.user_id == current_user.id %>
+              <div class="self">
+                <p  class="self__message nomal-font responsive-font-sm" style="text-align: right;  color:#bc7395;"><%= dm.message %></p>
+              </div>
+            <% else %>
+              <div class="other">
+                <%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"other__image" %>
+                <p class="other__message nomal-font responsive-font-sm" style="text-align: left; color:#355384;"><%= dm.message %></p>
+              </div>
+            <% end %>
           <% end %>
+        <% else %>
+          <%# メッセージが何もない場合 %>
+          <div class="dm-no-content"></div>
         <% end %>
       </div>
       <div class="content__block--dm-form">
@@ -33,9 +38,10 @@
           <%= f.text_field :message, class:"dm-form__textarea" %>
           <%= f.hidden_field :room_id %>
           <%# 767px以下のみ表示 %>
-          <%= f.submit "送信", class:"btn small-btn green-btn dm-btn" %>
+          <%= f.button type: "submit", class:"btn green-btn btn-sm"  do %><i class="far fa-paper-plane public-search-btn"></i><% end %>
         <% end %>
       </div>
     </div>
+    <%= render "layouts/footer" %>
   </div>
 </main>

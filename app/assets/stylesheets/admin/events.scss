@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // adminトップページ(index)
-// トップページの見出し
+// 見出し
 .heading__top-welcome{
   font-size: 40px;
 }
@@ -15,30 +15,19 @@
   font-size: 20px;
   }
 }
-// タブ１
-.content__block--today tr:first-child td{
-  font-size: 150%;
-  font-weight: bold;
-} 
-.admin-nomikai-overview-btn{
-  margin-top: 50%;
+/* タブ1(index) */
+.stepbar{
+  margin-bottom: 30px;
 }
-@media (max-width: 1400px) {
-  .admin-nomikai-overview-btn{
-    margin-top: 300px;
-  }
-}
-@media (max-width: 1000px) {
-  .admin-nomikai-overview-btn{
-    margin-top: 400px;
-  }
+// タブ２(index)
+.content__block__all-nomikai h4{
+  margin-top: 5px;
 }
 @media (max-width: 767px) {
-  .admin-nomikai-overview-btn{
-    margin-top: 500px;
+  .content__block__all-nomikai h4{
+    font-size: 16px;
   }
 }
-// タブ２ 
 .step-bar-202{
   width:50%;
   height: 50px;
@@ -49,22 +38,41 @@
   justify-content:space-around;
   &__step{
     background-color: #dfdfdf;
-    border-radius: 30px;
+    border-radius: 20px;
     font-size: 12px;
+    width:31%;
   }
 }
 
-// イベント詳細
-.stepbar{
-  margin-bottom: 30px;
+// イベント詳細(show)
+.heading__event-date{
+  font-size: 3rem;
 }
-/* タブ２ */
+.heading__event-name{
+  font-size: 5rem;
+}
+@media (max-width: 767px) {
+  .heading-non--underline{
+    margin-top: 10%;
+ }
+  .heading__event-date{
+    font-size: 2rem;
+  }
+  .heading__event-name{
+    font-size: 3rem;
+  }
+}
+/* タブ1(show) */
+.admin-nomikai-overview-btn{
+  width:100%;
+}
+/* タブ２(show) */
 .content{
   &__block--participants table,&__unpaid-participants table{
   font-size: 10px;
   }
 }
-/* タブ４ */
+/* タブ４(show) */
 .content__block--admin-map{
   width: 60%;
   height: 300px;
@@ -81,6 +89,21 @@
   }
   &__form{
     border-radius: 5px;
+  }
+}
+// メンバー追加ページ
+.event-add-member-form label{
+  font-family: "MPLUS-Regular", "Yu Gothic", "游ゴシック", sans-serif !important;
+}
+@media (max-width: 767px) {
+  .event-add-member-form label{
+  font-size: 12px;
+  }
+  .event-add-member-form{
+    width: 50% !important;
+    margin: 0 auto !important;
+    display: flex;
+    flex-direction: column;
   }
 }
 // 新規作成

@@ -3,6 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // 一覧ページ
+// メッセージがない状態だと入力フォームが上に来てしまうため
+.dm-index-no-content{
+  height:30vh;
+  // background-color: red;
+}
 .content__block--dm-menbers table{
   font-size: 12px;
 }

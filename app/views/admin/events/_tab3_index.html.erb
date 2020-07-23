@@ -14,9 +14,9 @@
         <% unpaying_users = EventUser.with_deleted.where(event_id: event.id, fee_status: false) %>
         <% if unpaying_users.present? %>
           <tr>
-            <td><%= event.date.to_s(:date) %>（<%= %w(日 月 火 水 木 金 土)[event.date.wday] %>）</td>
-            <td><%= link_to admin_event_path(event),class:"" do %><%= event.name %><% end %></td>
-            <td><%= unpaying_users.count %></td>
+            <td class="nomal-font font-xs-responsive"><%= event.date.to_s(:date) %>（<%= %w(日 月 火 水 木 金 土)[event.date.wday] %>）</td>
+            <td><%= link_to admin_event_path(event),class:"nomal-font  font-xs-responsive" do %><%= event.name %><% end %></td>
+            <td class="nomal-font  font-xs-responsive"><%= unpaying_users.count %></td>
           </tr>
         <% end %>
       <% end %>
@@ -39,9 +39,9 @@
       <% @users.each do |user| %>
         <tr>
           <th scope="row"><%= link_to admin_user_path(user),class:"" do %><%= attachment_image_tag user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-          <td><%= link_to admin_user_path(user),class:"" do %><%= user.name %><% end %></td>
-          <td><%= user.belongs %></td>
-          <td>
+          <td><%= link_to admin_user_path(user),class:"nomal-font responsive-font-sm" do %><%= user.name %><% end %></td>
+          <td class="nomal-font responsive-font-sm"><%= user.belongs %></td>
+          <td class="nomal-font responsive-font-sm">
             <%# 「current_userが幹事のノミカイで、未支払いの飲み会があるUser」に紐づく、current_userが幹事のノミカイのevent_userの配列 %>
             <% event_users = user.event_users.with_deleted.where(fee_status: false).includes(:event).where(events:{user_id: current_user.id}) %>
             <% sum = 0 %>
@@ -49,7 +49,7 @@
               <% unless event_user.deleted_at.nil? %>
                 <span class="badge badge-danger">欠席</span>
               <% end %>
-              <%= link_to admin_event_path(event_user.event_id) do %>
+              <%= link_to admin_event_path(event_user.event_id),class:"nomal-font responsive-font-sm" do %>
                 <%= event_user.event.date.to_s(:date) %>
                 <%= event_user.event.name %>
               <% end %>
@@ -58,8 +58,8 @@
               <br>
             <% end %>
           </td>
-          <td><%= sum  %>円</td>
-          <td><%=link_to "DMを始める", admin_room_path(user), class:"btn small-btn green-btn" %></td>
+          <td class="nomal-font responsive-font-sm"><%= sum %>円</td>
+          <td><%=link_to "DM", admin_room_path(user), class:"btn btn-sm green-btn" %></td>
         </tr>
       <% end %>
     </tbody>

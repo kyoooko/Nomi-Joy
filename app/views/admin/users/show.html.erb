@@ -7,9 +7,12 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <h1 class="heading__en"><%= @user.name %></h1>
-      <h3 class="heading__ja">Member's detail</h3>
-      <div class="heading__image"><%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"header-mypage-image" %></div>
+      <% if  @user == current_user %>
+        <h1 class="heading__en">My page</h1>
+        <h3 class="heading__ja">マイページ</h3>
+      <% else %>
+        <h1 class="heading__en"><%= @user.name %></h1>
+      <% end %>
     </div>
     <!-- 新規作成ボタン -->
     <%= render 'admin/events/create_event_button' %>

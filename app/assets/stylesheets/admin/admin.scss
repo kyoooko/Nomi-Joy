@@ -30,29 +30,7 @@
 .bi-plus:hover{
   fill:#267594;
 }
-// タブ
-.admin-nav-tabs{
-  border-color: $admin-main !important;
-}
-.admin-tab-link{
-  width:150px;
-  height:50px;
-  font-size: 120%;
-  padding-top: 3px;
-  color:  $admin-main;
-  &:hover{
-    color:  $admin-main;
-    border-color: #eee !important;
-    border-radius: 10px 10px 0 0;
-  }
-  &.active{
-    // 対応要（タブリンクの色）
-    background-color:  $admin-main !important;
-    color: #fff !important;
-    border-color:  $admin-main !important;
-    border-radius: 10px 10px 0 0;
-  }
-}
+
 
  /* 下記ベースカラー変更要 */
 //  * {

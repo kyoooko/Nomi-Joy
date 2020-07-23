@@ -1,22 +1,31 @@
 @import "colors";
 
 /* 共通 */
-@font-face {
-  font-family: 'きんいろサンセリフ';
-  src: font-url('GN-Kin-iro_SansSerif.ttf') format('truetype');
-}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color:#1b515c;
-  font-family: "きんいろサンセリフ","Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", sans-serif;
-  // GN-きんいろサンセリフ："GN-Kin-iro_SansSerif",
+  font-family: "きんいろサンセリフ", sans-serif;
+  // GN-きんいろサンセリフ："GN-Kin-iro_SansSerif"
 }
+
 .clearfix::after {
   content: "";
   display: block;
   clear: both;
+}
+// フォント
+@font-face {
+  font-family: 'きんいろサンセリフ';
+  src: font-url('GN-Kin-iro_SansSerif.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'MPLUS-Regular';
+  src: font-url('MPLUS1p-Regular.ttf') format('truetype');
+}
+.nomal-font{
+  font-family: "MPLUS-Regular", "Yu Gothic", "游ゴシック", sans-serif !important;
 }
 // contentの中のブロック
 .content__block{
@@ -26,12 +35,38 @@
   margin-top:5%;
   margin-bottom: 10%;
 }
+.content__block-wide{
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 2%;
+  margin-top:5%;
+  margin-bottom: 10%;
+}
 // フォントサイズ
-.font-xs{
-  font-size: 8px;
+.font-md{
+  font-size: 15px;
 }
 .font-sm{
   font-size: 12px;
+}
+.font-xs{
+  font-size: 8px;
+}
+// 通常12px、767px未満の時8px
+.responsive-font-sm{
+  font-size: 12px;
+}
+@media (max-width: 767px) {
+  .font-xs-responsive{
+    font-size: 8px;
+  }
+  .font-sm-responsive{
+    font-size: 12px;
+  }
+  // 通常12px、767px未満の時8px
+  .responsive-font-sm{
+    font-size: 8px;
+  }
 }
 // ボタン
 .small-btn{
@@ -70,6 +105,52 @@
  }
 .field,.actions{
 margin-bottom: 3%;
+}
+// タブ
+.common-nav-tabs {
+  border-color: $gray !important;
+}
+.common-nav-link{
+  width:100px;
+  height:50px;
+  font-size: 150%;
+  padding-top: 3px;
+  color: $gray;
+}
+.nav-link.active{
+  background-color: $gray !important;
+  color: #fff !important;
+  border-color: $gray !important;
+  border-radius: 10px 10px 0 0;
+}
+// タブ(767PX未満小）
+.sm-nav-tabs {
+  border-color: $gray !important;
+}
+.sm-nav-link{
+  width:100px;
+  height:50px;
+  font-size: 130%;
+  padding-top: 3px;
+  color: $gray;
+}
+.nav-link.active{
+  background-color: $gray !important;
+  color: #fff !important;
+  border-color: $gray !important;
+  border-radius: 10px 10px 0 0;
+}
+@media (max-width: 767px){
+  .sm-nav-link{
+    width:80px;
+    height:45px;
+    font-size: 100%;
+    padding-top: 1px;
+  }
+}
+// タブ（中身）
+#members,#follow{
+  padding-top: 5%;
 }
 // ボディ
 .body{
@@ -155,5 +236,16 @@ margin-bottom: 3%;
   color: #eee !important;
   &:hover{
     color: #267594;
+  }
+}
+// 検索ボタン（public側)
+.public-search-btn{
+  color:#fff !important;
+}
+// フッター
+@media (max-width: 767px) {
+  .footer{
+    flex-direction:column;
+    line-height:1 !important;
   }
 }

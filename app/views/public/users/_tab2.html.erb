@@ -5,22 +5,34 @@
 </div>
 <div class="content__block__followed">
   <h2 class="block-hedding">承認依頼の来ているユーザー</h2>
-  <table class="table members-table font-sm">
-    <tbody>
-      <% followers.each do |follower| %>
+  <p class="text-secondary">下記のユーザーから承認申請が来ています<br>フォローを返して&ensp;「ノミカイメンバー」&ensp;になりましょう！</p>
+  <% if followers.present? %>
+    <table class="table members-table font-sm">
+      <thead>
         <tr>
-          <th scope="row"><%= link_to user_path(follower),class:"" do %><%= attachment_image_tag follower, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-          <td><%= link_to user_path(follower),class:"" do %><%= follower.name %><% end %></td>
-          <td><%= follower.belongs %></td>
-          <td><%= follower.position %></td>
-          <td>
-            <%# フォローボタン（非同期） %>
-            <%= render "follow_button", member: follower %>
-          </td>
+          <th scope="col"></th>
+          <th scope="col">氏名</th>
+          <th scope="col">会社名・所属・役職</th>
+          <th scope="col"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% followers.each do |follower| %>
+          <tr>
+            <th scope="row"><%= link_to user_path(follower),class:"" do %><%= attachment_image_tag follower, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+            <td><%= link_to user_path(follower),class:"nomal-font font-sm" do %><%= follower.name %><% end %></td>
+            <td class="nomal-font responsive-font-sm"><%= follower.belongs %><br><%= follower.position %></td>
+            <td>
+              <%# フォローボタン（非同期） %>
+              <%= render "follow_button", member: follower %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+   <p class="text-secondary">他のユーザーからの承認依頼はありません</p>
+  <% end %>
 </div>
 <div class="content__block__followed">
   <h2 class="block-hedding">全てのユーザー</h2>
@@ -29,9 +41,9 @@
       <% users.each do |user| %>
         <tr>
           <th scope="row"><%= link_to user_path(user),class:"" do %><%= attachment_image_tag user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-          <td><%= link_to user_path(user),class:"" do %><%= user.name %><% end %></td>
-          <td><%= user.belongs %></td>
-          <td><%= user.position %></td>
+          <td><%= link_to user_path(user),class:"nomal-font" do %><%= user.name %><% end %></td>
+          <td class="nomal-font"><%= user.belongs %></td>
+          <td class="nomal-font"><%= user.position %></td>
           <td>
             <%# フォローボタン（非同期） %>
             <%= render "follow_button", member: user %>
@@ -42,21 +54,33 @@
   </table>
 </div>
 <div class="content__block__following">
-  <h2 class="block-hedding">申請中のユーザー</h2>
-  <table class="table members-table font-sm">
-    <tbody>
-        <% followings.each do |following| %>
+  <h2 class="block-hedding">承認申請中のユーザー</h2>
+  <p class="text-secondary">下記のユーザーへ承認申請を送信済みです<br>相手が承認をしてくれると&ensp;「ノミカイメンバー」&ensp;になり、あなたがカンジをするノミカイに招待できます！</p>
+  <% if followings.present? %>
+    <table class="table members-table font-sm">
+      <thead>
         <tr>
-          <%# 申請中のユーザーはユーザー詳細ページにいけない %>
-          <th scope="row"><%= attachment_image_tag following, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %></th>
-          <td><%= following.name %></td>
-          <td><%= following.belongs %></td>
-          <td><%= following.position %></td>
-          <td>
-             <%# フォローボタン（非同期） %>
-            <%= render "follow_button", member: following %>
-          </td>
-      <% end %>
-    </tbody>
-  </table>
+          <th scope="col"></th>
+          <th scope="col">氏名</th>
+          <th scope="col">会社名・所属・役職</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+          <% followings.each do |following| %>
+          <tr>
+            <%# 申請中のユーザーはユーザー詳細ページにいけない %>
+            <th scope="row"><%= attachment_image_tag following, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %></th>
+            <td class="nomal-font font-sm"><%= following.name %></td>
+            <td class="nomal-font responsive-font-sm"><%= following.belongs %><br><%= following.position %></td>
+            <td>
+              <%# フォローボタン（非同期） %>
+              <%= render "follow_button", member: following %>
+            </td>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+   <p class="text-secondary">承認依頼をしているユーザーはいません</p>
+  <% end %>
 </div>

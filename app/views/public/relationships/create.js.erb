@@ -1,2 +1,2 @@
 <%# @userはrelationshipsコントローラーに定義したもの %>
-$("#follow-button_<%= @user.id %>").html("<%= j(render 'public/users/unfollow', member: @user) %>");
+$(".follow-button_<%= @user.id %>").html("<%= j(render 'public/users/unfollow', member: @user) %>");
