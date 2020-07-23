@@ -1,5 +1,5 @@
 <%# 会員ごとの会費変更フォーム(非同期) %>
-<%= form_with model: event_user,url: admin_event_users_fee_path(event_user.id), romote: true, class:"event-fee-form" do |f| %>
+<%= form_with model: event_user,url: admin_event_users_fee_path(event_user.id), romote: true, class:"event-fee-form nomal-font font-xs-responsive" do |f| %>
   <%= f.text_field :fee, class:"event-fee-form__form", size: 7 %>
   <%= f.hidden_field :user_id, value: event_user.user_id %>
   <%= f.hidden_field :event_id, value: event_user.event_id %>

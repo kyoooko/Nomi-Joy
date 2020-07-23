@@ -13,42 +13,45 @@
     <!-- 新規作成ボタン -->
     <%= render 'admin/events/create_event_button' %>
     <div class="content">
-      <div class="content__block--search">
-        <form class="dm-search-form">  
-          <div class="form-group col-3">
-              <select class="form-control">
-                  <option>氏名</option>
-                  <option>会社名・所属</option>
-              </select>
-          </div>
-          <div class="form-group col-6">
-            <input type="text" class="form-control">
-          </div>
-        </form>
-      </div>
-      <div class="content__block--dm-menbers">
-        <table class="table dm-table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">氏名</th>
-              <th scope="col">会社名・所属</th>
-              <th scope="col">役職</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @members.each do |member| %>
+      <% if @members.present?%>
+        <div class="content__block--search">
+          <form class="dm-search-form">  
+            <div class="form-group col-3">
+                <select class="form-control">
+                    <option>氏名</option>
+                    <option>会社名・所属</option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+              <input type="text" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="content__block--dm-menbers">
+          <table class="table dm-table">
+            <thead>
               <tr>
-                <th scope="row"><%= link_to admin_user_path(member),class:"" do %><%= attachment_image_tag member, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-                <td><%= link_to admin_user_path(member),class:"" do %><%= member.name %><% end %></td>
-                <td><%= member.belongs %></td>
-                <td><%= member.position %></td>
-                <td><%= link_to 'DMを開始', admin_room_path(member.id), class:"btn small-btn blue-btn" %></td>
+                <th scope="col"></th>
+                <th scope="col">氏名</th>
+                <th scope="col">会社名・所属・役職</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              <% @members.each do |member| %>
+                <tr>
+                  <th scope="row"><%= link_to user_path(member),class:"" do %><%= attachment_image_tag member, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+                  <td><%= link_to admin_user_path(member),class:"nomal-font font-sm" do %><%= member.name %><% end %></td>
+                  <td class="nomal-font responsive-font-sm"><%= member.belongs %><br><%= member.position %></td>
+                  <td><%= link_to 'DM', admin_room_path(member.id), class:"btn btn-sm green-btn" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+         <div class="text-muted dm-index-no-content">ダイレクトメッセージを送れるメンバーはまだいません</div>
+      <% end %>
     </div>
+    <%= render "layouts/footer" %>
   </div>
 </main>

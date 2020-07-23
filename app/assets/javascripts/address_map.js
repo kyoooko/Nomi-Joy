@@ -29,7 +29,7 @@ function initMap(){
   // 該当しなかった場合はデフォルトでNYを表示（下記ないと表示できない）
   map = new google.maps.Map(document.getElementById('map'), {
   center: {lat: 40.7828, lng: -73.9653},
-  zoom: 18
+  zoom: 15
   });
   marker = new google.maps.Marker({
     position:  {lat: 40.7828, lng:-73.9653},

@@ -12,7 +12,7 @@
   .heading__top-welcome{
   font-size: 20px;
   }
-  .content__block--today,.content__block--nomikai-overview {
+  .content__block--today,.content__block--nomikai-overview, .content__block--restaurant, .content__block--overview{
     // 今日のノミカイの画像(767px以上）
     .restaurant-image{
       display:none;
@@ -129,4 +129,7 @@
   .google-map{
     height: 300px;
     }
+  #map{
+    height: 300px;
+  }
 }
