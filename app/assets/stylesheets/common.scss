@@ -69,6 +69,9 @@
   }
 }
 // ボタン
+// .xs-btn{
+//   font-size: 8px;
+// }
 .small-btn{
   font-size: 12px;
 }
@@ -76,7 +79,15 @@
   float:right;
   width:100px;
 }
-// 画像（丸型・小）
+.orange-btn{
+  background-color: #efa04c !important;
+  color:$white  !important;
+  &:hover{
+    background-color: $light-gray !important;
+    color:#efa04c !important;
+  }
+}
+// 画像（丸型・小
 .small-image{
   width:80px;
   height: 80px;

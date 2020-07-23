@@ -13,39 +13,46 @@
           <%= message %>
         </div>
       <% end %>
-      <h1 class="heading__en">Nomikai Create Step3</h1>
-      <h3 class="heading__ja">ノミカイ新規作成</h3>
+         <h1 class="heading__en">Create ノミカイ &lt;Step2&gt;</h1>
+        <h3 class="heading__ja">ノミカイ新規作成 &lt;Step3&gt;</h3>
     </div>
     <div class="content">
       <div class="content__block--step-bar">
         <h3>参加者選択</h3>
-        <p>メンバーは後から選択・追加できます</p>
         <div><%= image_tag("step-bar.png", class: "") %>
       </div> 
       <div class="content__block--step3 content__block">
-        <%= form_with model: @event, url: admin_step4_path,  local: true do |f| %>
-          <table class="table table-borderless">
-            <tbody>
-              <tr class= "">
-                <td class="event-create-member-form">
-                 <%= collection_check_boxes(:event_user, :ids, @members, :id, :name) %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <%= f.hidden_field :name %>
-          <%= f.hidden_field :date %>
-          <%= f.hidden_field :begin_time %>
-          <%= f.hidden_field :end_time %>
-          <%= f.hidden_field :restaurant_id %>
-          <%= f.hidden_field :memo %>
-          <div class="actions"> 
-            <%= f.submit "Next", class: "btn blue-btn" %>
-            <%= f.submit "Back", name: :back, class: "btn white-btn" %>
-          </div> 
+        <p class="text-muted">メンバーは後から選択・追加できます</p>
+        <% if @members.present? %>
+          <%= form_with model: @event, url: admin_step4_path,  local: true do |f| %>
+            <table class="table table-borderless">
+              <tbody>
+                <tr class= "">
+                  <td class="event-create-member-form">
+                    <%= collection_check_boxes(:event_user, :ids, @members, :id, :name) %>
+                    <div class="actions d-flex justify-content-center mt-2"> 
+                      <%= f.submit "Next", class: "btn blue-btn btn-sm mr-1" %>
+                      <%= f.submit "Back", name: :back, class: "btn white-btn btn-sm" %>
+                    </div> 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :date %>
+            <%= f.hidden_field :begin_time %>
+            <%= f.hidden_field :end_time %>
+            <%= f.hidden_field :restaurant_id %>
+            <%= f.hidden_field :memo %>
+          <% end %>
+        <% else %>
+          <h3>追加できるメンバーがいません  </h3>
+          <br>
+          <p class="text-muted">カンジの部屋を退室し、メンバータブから申請・承認を行ってください</p>
         <% end %>
       </div>
     </div>
+    <%= render "layouts/footer" %>
   </div>
 </main>
 

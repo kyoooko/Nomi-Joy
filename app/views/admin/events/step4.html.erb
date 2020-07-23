@@ -22,12 +22,12 @@
           <table class="table table-borderless">
             <tbody>
               <tr>
-                <td class="">
+                <td class="nomal-font font-sm">
                   <%# カンジ %>
-                  <span class="fee-name"><%= User.find(@event.user_id).name %>（カンジ）</span>&emsp;<%= text_field_tag "admin_fee","",class:"fee-form" %>円<br />
+                  <span class="fee-name nomal-font"><%= User.find(@event.user_id).name %>（カンジ）</span>&emsp;<%= text_field_tag "admin_fee","",class:"fee-form" %>円<br />
                   <%# カンジ以外の参加メンバー %>
                   <% @event_user_ids.each do |event_user_id| -%>
-                    <span class="fee-name"><%= User.find(event_user_id).name %></span>&emsp;<%= text_field_tag "fees[]","",class:"fee-form" %>円<br>
+                    <span class="fee-name nomal-font"><%= User.find(event_user_id).name %></span>&emsp;<%= text_field_tag "fees[]","",class:"fee-form" %>円<br>
                   <% end -%>
                 </td>
               </tr>
@@ -46,6 +46,7 @@
         <% end %>
       </div>
     </div>
+    <%= render "layouts/footer" %>
   </div>
 </main>
 

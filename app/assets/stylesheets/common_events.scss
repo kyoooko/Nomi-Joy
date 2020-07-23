@@ -70,7 +70,6 @@
   font-size: 50px;
 }
 .calendar{
-  line-height: 1.1 !important;
   p{
     margin: 0 !important;
   }
@@ -104,12 +103,13 @@
     font-size: 40px;
   }
   .calendar{
+    line-height: 1.1 !important;
     &__time{
-      font-size: 3px;
+      font-size: 6px;
       margin-bottom: 1px;
     }
     &__restaurant{
-      font-size: 3px;
+      font-size: 6px;
     }
     &__days td{
       height: 130px !important;
