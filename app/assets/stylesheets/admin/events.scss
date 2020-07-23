@@ -2,6 +2,71 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+// ***ステップバー共通部分（Bootstrap・見た目のみ）**********
+.bootstrapWizard li:before {
+  border-top: 3px solid #55606E;
+  content: "";
+  display: block;
+  font-size: 0;
+  overflow: hidden;
+  position: relative;
+  top: 11px;
+  right: 1px;
+  width: 100%;
+  z-index: 1
+}
+.bootstrapWizard li:first-child:before {
+  left: 50%;
+  max-width: 50%
+}
+.bootstrapWizard li:last-child:before {
+  max-width: 50%;
+  width: 50%
+}
+.bootstrapWizard li .step {
+  background: #B2B5B9;
+  color: #fff;
+  display: inline;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 12px;
+  padding: 7px 13px;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  line-height: normal;
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  transition: all .1s linear 0s
+}
+.bootstrapWizard li.active .step,.bootstrapWizard li.active.complete .step {
+  background: #267594;
+  color: #fff;
+  font-weight: 700;
+  padding: 7px 13px;
+  font-size: 15px;
+  border-radius: 50%;
+  border: 3px solid #55606E
+}
+.bootstrapWizard li.complete .title,.bootstrapWizard li.active .title {
+  color: #2B3D53
+}
+.bootstrapWizard li .title {
+  color: #bfbfbf;
+  display: block;
+  font-size: 13px;
+  line-height: 15px;
+  max-width: 100%;
+  position: relative;
+  table-layout: fixed;
+  text-align: center;
+  top: 20px;
+  word-wrap: break-word;
+  z-index: 104
+}
+// ***************************************************
+
 // adminトップページ(index)
 // 見出し
 .heading__top-welcome{
@@ -28,21 +93,31 @@
     font-size: 16px;
   }
 }
-.step-bar-202{
-  width:50%;
-  height: 50px;
-  margin-bottom: 5%;
+// *****タブ２(index)：ステップバー（Bootstrap・見た目のみ）*******
+// stepbar
+.all-nomikai__stepbar{
+ margin-bottom: 30px;
+
+  .bootstrapWizard li {
+    display: block;
+    float: left;
+    width: 33%;
+    text-align: center;
+    padding-left: 0
+  }
 }
-.all-nomikai{
+// content
+.all-nomikai__content{
   display: flex;
   justify-content:space-around;
-  &__step{
+  .partition{
     background-color: #dfdfdf;
     border-radius: 20px;
     font-size: 12px;
     width:31%;
   }
 }
+// **********************************
 
 // イベント詳細(show)
 .heading__event-date{
@@ -151,9 +226,6 @@ font-size: 8px !important;
   margin-left: 40%;
 }
 // step4
-.fee-annotion{
-  font-size: 10px;
-}
 .fee-form{
   width: 20%;
 }
@@ -161,3 +233,17 @@ font-size: 8px !important;
   width: 30%;
   display: inline-block;
 }
+// *****新規登録：ステップバー（Bootstrap・見た目のみ）*****
+// stepbar
+.create-nomikai-stepbar{
+  margin-bottom: 30px;
+
+  .bootstrapWizard li {
+    display: block;
+    float: left;
+    width: 20%;
+    text-align: center;
+    padding-left: 0
+  }
+}
+ // **********************************************

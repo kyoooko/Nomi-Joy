@@ -19,7 +19,16 @@
     <div class="content">
       <div class="content__block--step-bar">
         <h3>参加者選択</h3>
-        <div><%= image_tag("step-bar.png", class: "") %>
+        <%# ステップバー（Bootstrap・見た目のみ） %>
+        <div class="create-nomikai-stepbar">
+          <ul class="bootstrapWizard form-wizard">
+            <li class="" data-target="#step1"><span class="step">1</span></li>
+            <li data-target="#step2" class=""><span class="step">2</span></li>
+            <li data-target="#step3" class="active"><span class="step">3</span></li>
+            <li data-target="#step3" class=""><span class="step">4</span></li>
+            <li data-target="#step3" class=""><span class="step">5</span></li>
+          </ul>
+          <div class="clearfix"></div>
       </div> 
       <div class="content__block--step3 content__block">
         <p class="text-muted">メンバーは後から選択・追加できます</p>

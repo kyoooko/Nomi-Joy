@@ -19,13 +19,24 @@
     <div class="content">
       <div class="content__block--step-bar">
         <h3>お店選択</h3>
-        <div><%= image_tag("step-bar.png", class: "") %>
+        <%# ステップバー（Bootstrap・見た目のみ） %>
+        <div class="create-nomikai-stepbar">
+          <ul class="bootstrapWizard form-wizard">
+            <li class="" data-target="#step1"><span class="step">1</span></li>
+            <li data-target="#step2" class="active"><span class="step">2</span></li>
+            <li data-target="#step3" class=""><span class="step">3</span></li>
+            <li data-target="#step3" class=""><span class="step">4</span></li>
+            <li data-target="#step3" class=""><span class="step">5</span></li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
       </div> 
       <div class="content__block--step2 content__block">
-        <p class="text-muted">（例：&ensp;"魚金 新宿",&ensp;;"イタリアン,新宿"）</p>
+        <p class="text-muted">（例： "魚金 新宿", "イタリアン,新宿"）</p>
         <%= form_with model: @event, url: admin_step2_path, local: true do |f| %>
           <%= text_field_tag :freeword %>
-          <%= submit_tag '検索',class: "" %>
+          <%= f.button type: "submit", class:"btn blue-btn btn-sm"  do %><i class="fas fa-search public-search-btn"></i><% end %>
+          <%#= submit_tag '検索',class: "" %>
           <span class="must">&emsp;*</span>
           <% if @rests %>
             <% @rests.each do |rest| %>

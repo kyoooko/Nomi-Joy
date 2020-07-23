@@ -294,6 +294,7 @@ class Admin::EventsController < ApplicationController
     end
     # 自分（カンジ）のevent_userも作成
     EventUser.create(user_id: current_user.id, event_id: @event.id, fee: session[:admin_fee])
+    flash[:success]="ノミカイを新規作成しました メンバーを招待しました"
     redirect_to admin_event_path(@event)
   end
 
