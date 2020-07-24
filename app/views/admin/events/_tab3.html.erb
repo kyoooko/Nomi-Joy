@@ -6,11 +6,11 @@
     <table class="table members-table">
       <thead>
         <tr>
-          <th scope="col" class=""></th>
+          <th scope="col" class="participants-image-head"></th>
           <th scope="col"></th>
           <th scope="col">氏名</th>
-          <th scope="col">会社名・所属・役職</th>
           <th scope="col">会費</th> 
+          <th scope="col">支払い状況</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -24,10 +24,13 @@
                 <td><span class="badge badge-danger">欠席</span></td>
               <% end %>
             </div>
-            <td scope="row"><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= attachment_image_tag unpaying_event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></td>
-            <td><%= link_to admin_user_path(unpaying_event_user.user.id),class:"nomal-font font-sm" do %><%= unpaying_event_user.user.name %><% end %></td>
-            <td class="nomal-font font-xs"><%= unpaying_event_user.user.belongs %><br><%= unpaying_event_user.user.position %></td>
-            <td class="nomal-font font-xs"><%= unpaying_event_user.fee %>円</td>
+            <td scope="row" class="participants-image"><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= attachment_image_tag unpaying_event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></td>
+            <td class="participants-name"><%= link_to admin_user_path(unpaying_event_user.user.id),class:"nomal-font responsive-font-sm" do %><%= unpaying_event_user.user.name %><% end %></td>
+            <td class="nomal-font responsive-font-sm"><%= unpaying_event_user.fee %>円</td>
+            <td class="event-users-fee-status_<%= unpaying_event_user.id %>">
+            <%# 会員ごとの会費ステータス変更フォーム(非同期) %>
+            <%= render 'admin/event_users/event_users_fee_status', event_user: unpaying_event_user %>
+          </td>
             <td><%= link_to 'DM', admin_room_path(unpaying_event_user.user.id), class:"btn btn-sm blue-btn" %></td>
           </tr>
         <% end %>
@@ -47,12 +50,11 @@
     <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col" class="participants-image-head"></th>
         <th scope="col">氏名</th>
-        <th scope="col">会社名・所属</th>
-        <th scope="col">役職</th>
         <th scope="col">会費</th>
         <th scope="col">支払い状況</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -63,9 +65,8 @@
           <% else%>
             <td><span class="badge badge-danger">欠席</span></td>
           <% end %>
-          <td scope="row"><%= link_to admin_user_path(event_user.user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></td>
-          <td><%= link_to admin_user_path(event_user.user),class:"nomal-font" do %><%= event_user.user.name %><% end %></td>
-          <td class="nomal-font font-xs"><%= event_user.user.belongs %><br><%= event_user.user.position %></td>
+          <td scope="row" class="participants-image"><%= link_to admin_user_path(event_user.user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></td>
+          <td class="participants-name"><%= link_to admin_user_path(event_user.user),class:"nomal-font responsive-font-sm" do %><%= event_user.user.name %><% end %></td>
           <td class="event-users-fee_<%= event_user.id %> nomal-font">
             <%# 会員ごとの会費変更フォーム(非同期) %>
             <%= render 'admin/event_users/event_users_fee', event_user: event_user %>
@@ -73,7 +74,7 @@
           <td class="event-users-fee-status_<%= event_user.id %>">
             <%# 会員ごとの会費ステータス変更フォーム(非同期) %>
             <%= render 'admin/event_users/event_users_fee_status', event_user: event_user %>
-            </td>
+          </td>
           <td><%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn" %></td>
         </tr>
       <% end %>

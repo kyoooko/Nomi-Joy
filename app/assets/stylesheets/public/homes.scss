@@ -29,6 +29,14 @@ color:$white;
  .about_heading-logo{
   height:60px;
  }
+ @media (max-width: 767px) {
+  .about__heading{
+    font-size: 30px;
+    }
+    .about_heading-logo{
+    height:40px;
+    }
+}
  .about__content{
   text-align: center;
   /* contaner使用しないかわり（今後レスポンシブ対応要） */
@@ -59,6 +67,4 @@ color:$white;
   background-color:$white-gray;
   background-color:$main;
  }
- @media (max-width: 767px) {
-  
- }
+ 

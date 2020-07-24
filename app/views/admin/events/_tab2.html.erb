@@ -1,4 +1,4 @@
-<!-- 参加メンバー一覧 -->
+<%# 参加メンバー一覧(767px以上) %>
 <div class="content__block--participants mt-5"> 
   <h2 class="block-hedding">参加者 <%= event.event_users.count %>名&ensp;（欠席 <%= event.event_users.only_deleted.count %>名）</h2>
   <table class="table members-table">
@@ -33,10 +33,71 @@
           <td class="participate_<%= event_user.id %>">
             <%= render 'admin/event_users/participate_button', event_user: event_user %>
           </td>
-            <td><%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn" %></td>
+          <td><%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%= link_to '参加メンバーを追加', admin_add_event_user_path(event), class:"btn blue-btn" %>
+</div>
+
+
+
+
+
+
+
+
+
+
+<%# 上記のレスポンシブ対応版 %>
+<%# 参加メンバー一覧(767px未満) %>
+<div class="content__block--participants-responsive mt-5"> 
+  <h2 class="block-hedding">メンバー一覧</h2>
+  <% event_users.each do |event_user| %>
+    <table class="table table-borderless font-sm">        
+      <tbody>
+        <tr>
+          <th scope="row"  class="p-0"><%= link_to admin_user_path(event_user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <th scope="row"></th>
+          <td  class="p-0"><%= link_to admin_user_path(event_user),class:"nomal-font font-md" do %><%= event_user.user.name %><% end %><br><br><p class="nomal-font font-xs"><%= event_user.user.belongs %>&emsp;<%= event_user.user.position %></p></td>
+        </tr>
+        <tr>
+          <th scope="row" ></th>
+          <th scope="row" class="p-0">お酒</th>
+          <td class="nomal-font p-0"><% if  event_user.user.can_drink == true %>○<% else%>×<% end%></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <th scope="row" class="p-0">好き</th>
+          <td class="nomal-font font-xs p-0"><%= event_user.user.favolite %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <th scope="row" class="p-0">嫌い</th>
+          <td class="nomal-font font-xs p-0"><%= event_user.user.unfavolite %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <th scope="row" class="p-0">最寄駅</th>
+          <td class="nomal-font font-xs p-0"><%= event_user.user.nearest_station %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <th scope="row"></th>          
+          <td scope="row" class="d-flex justify-content-end">
+            <%# 参加不参加ボタン(非同期実装済み） %>
+            <span class="participate_<%= event_user.id %>">
+              <%= render 'admin/event_users/participate_button', event_user: event_user %>
+            </span>
+            <span>
+              <%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn ml-1" %>
+            </span>
+          </td>
+        </tr>
+        <hr>
+      </tbody>
+    </table>
+  <% end %>
   <%= link_to '参加メンバーを追加', admin_add_event_user_path(event), class:"btn blue-btn" %>
 </div>

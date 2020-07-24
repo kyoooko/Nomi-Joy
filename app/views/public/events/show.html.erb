@@ -7,8 +7,8 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <h1 class="heading__en">Nomikai Detail</h1>
-      <h3 class="heading__ja">ノミカイ詳細</h3>
+      <h3 class="heading__event-date"><%= @event.date.to_s(:date) %>（<%= @day_of_the_week %>）</h3>
+      <h1 class="heading__event-name"><%= @event.name %></h1>
     </div>
     <div class="content">
       <div class="content__block--overview">
