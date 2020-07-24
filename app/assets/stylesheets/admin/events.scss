@@ -119,6 +119,32 @@
 }
 // **********************************
 
+// タブ３(index)
+.content__block__unpaid-user-sum table td {
+  vertical-align: middle;
+}
+@media (max-width: 767px) {
+  .content__block__unpaid-user-sum{
+    table td {
+      padding:0.3rem;
+      vertical-align: top;
+    }
+    .small-image{
+      width: 50px;
+      height:50px;
+    }
+  }
+}
+// タブ４(index)
+@media (max-width: 767px) {
+  .content__block__unpaid{
+    table td {
+      padding:0.3rem;
+      vertical-align: top;
+    }
+  }
+}
+
 // イベント詳細(show)
 .heading__event-date{
   font-size: 3rem;
@@ -147,11 +173,44 @@
   font-size: 10px;
   }
 }
+// テーブルをレスポンシブで２つに分けている
+.content__block--participants-responsive{
+  display: none;
+}
+@media (max-width: 767px) {
+  .content__block--participants{
+    display: none;
+  }
+  .content__block--participants-responsive{
+    display: block;
+    td {
+      padding:0 !important;
+    }
+  }
+}
+
 /* タブ3(show) */
 .event-fee-form,.participant-fee-status-form{
-  display: flex;
   &__form{
     border-radius: 5px;
+  }
+}
+.content__block__participants-fee-status, .content__block__unpaid-participants{
+  table td {
+    vertical-align: middle;
+  }
+}
+@media (max-width: 767px) {
+  .content__block__participants-fee-status, .content__block__unpaid-participants{
+    table td {
+      padding:0.3rem;
+    }
+    .participants-image-head,.participants-image{
+      display: none;
+    } 
+    .participants-name{
+      width:30%;
+    }
   }
 }
 /* タブ４(show) */

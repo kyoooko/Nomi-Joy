@@ -75,7 +75,7 @@
             </div>
           </div>
         <% else %>
-          <p class="text-muted">ノミカイの予定はありません</p>
+          <p class="text-muted">予定はありません</p>
         <% end %>
       </div>
       <!-- カレンダー -->
@@ -97,7 +97,7 @@
             <tbody>
               <% @unpaying_event_users.each do |unpaying_event_user| %>
                 <tr>
-                  <td class="nomal-font"><%= unpaying_event_user.event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[unpaying_event_user.event.date.wday] %>)
+                  <td class="nomal-font responsive-font-sm"><%= unpaying_event_user.event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[unpaying_event_user.event.date.wday] %>)
                     <div>
                       <% if unpaying_event_user.deleted_at.nil? %>
                       <span></span>
@@ -106,16 +106,10 @@
                       <% end %>
                     </div>
                   </td>
-                  <td><%= link_to event_path(unpaying_event_user.event_id ),class:"nomal-font  font-sm" do %><%= unpaying_event_user.event.name %><% end %></td>
-                  <td class="nomal-font font-sm"><%= unpaying_event_user.fee %>円</td>
+                  <td style="width:25%;"><%= link_to event_path(unpaying_event_user.event_id ),class:"nomal-font responsive-font-sm" do %><%= unpaying_event_user.event.name %><% end %></td>
+                  <td class="nomal-font responsive-font-sm"><%= unpaying_event_user.fee %>円</td>
                   <td>
-                    <div class="font-xs nomal-font">
-                      <%= User.find(unpaying_event_user.event.user_id).belongs%>
-                    </div>
-                    <div class="font-xs nomal-font">
-                      <%= User.find(unpaying_event_user.event.user_id).position%>
-                    </div><br>
-                    <%= link_to user_path(unpaying_event_user.event.user_id ),class:"nomal-font font-sm" do %><%= User.find(unpaying_event_user.event.user_id).name%><% end %>
+                    <%= link_to user_path(unpaying_event_user.event.user_id ),class:"nomal-font responsive-font-sm" do %><%= User.find(unpaying_event_user.event.user_id).name%><% end %>
                   </td>
                   <td><%=link_to "DM", room_path(unpaying_event_user.event.user_id), class:"btn btn-sm green-btn" %></td>
                 </tr>
