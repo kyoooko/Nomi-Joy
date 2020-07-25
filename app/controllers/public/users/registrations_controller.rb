@@ -20,15 +20,14 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
-        set_flash_message! :notice, :signed_up
-        # flash[:success] = "ようこそ、ノミジョイ！へ！"
+        # set_flash_message! :notice, :signed_up
+        flash[:success] = "ようこそ、ノミジョイ！へ！"
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
-        # ThanksMailer.thanks_mail(current_user).deliver_now # この一文追加
+        # ThanksMailer.thanks_mail(current_user).deliver_now 
         # DailyMailer.daily_mail.deliver_now
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-        # flash[:danger] = "正しい情報を入力してください"
         expire_data_after_sign_in!
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end

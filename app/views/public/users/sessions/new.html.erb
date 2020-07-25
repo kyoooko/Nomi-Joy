@@ -7,6 +7,12 @@
   </div>  
   <div class="body body--logging-out">
     <div class="heading">
+      <%# フラッシュメッセージ %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
       <h1 class="heading__en">Login</h1>
       <h3 class="heading__ja">ログイン</h3>
     </div>

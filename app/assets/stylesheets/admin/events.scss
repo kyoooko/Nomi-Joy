@@ -136,6 +136,11 @@
   }
 }
 // タブ４(index)
+.content__block__unpaid{
+  table td {
+    vertical-align: middle;
+  }
+}
 @media (max-width: 767px) {
   .content__block__unpaid{
     table td {

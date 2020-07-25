@@ -1,11 +1,19 @@
 <main>
   <div class="main-visual">
     <div class="container">
+      <%# フラッシュメッセージ %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
       <%= image_tag("Nomi-Joy.png", class: "main-visual__logo") %>
       <h2 class="main-visual__catch-copy">飲み会の準備を楽しく、便利に。</h2>
       <div class="main-visual__sign">
-        <%= link_to new_user_session_path,class:"btn btn-info" do %>Login<% end %>
         <%= link_to new_user_registration_path,class:"btn btn-success" do %>Sign up<% end %>
+        <%= link_to new_user_session_path,class:"btn btn-info" do %>Login<% end %>
+        <%# かんたんログイン %>
+        <%= render 'public/users/sessions/testuser' %>
       </div>   
     </div>
   </div>
@@ -47,7 +55,7 @@
 <footer class="top-footer">
   <div class="container">
     <div class="d-flex justify-content-center footer">
-      <p class="mb-0 mt-3">Copyright(c)  2020 Nomi-Joy! Co.,Ltd</p>&emsp;
+      <p class="mb-0 copyright">Copyright(c)  2020 Nomi-Joy! Co.,Ltd</p>&emsp;
       <%= link_to "https://api.gnavi.co.jp/api/scope/", target: :_blank do %>
         <%= image_tag("https://api.gnavi.co.jp/api/img/credit/api_155_20.gif") %>
       <% end %>

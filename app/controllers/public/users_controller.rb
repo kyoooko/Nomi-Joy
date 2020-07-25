@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
   # current_user以外がedit,updateできないようにする（URL直打ちも不可）
   before_action :ensure_correct_user, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :check_guest, only: :update
 
   def index
     # ================タブ１===============
@@ -50,5 +51,12 @@ class Public::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def check_guest
+    if current_user.email == 'test1@test.co.jp'
+      flash[:danger] = "ゲストユーザーのため編集できません"
+      redirect_to edit_user_path(current_user)
+    end
   end
 end
