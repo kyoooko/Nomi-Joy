@@ -1,0 +1,10 @@
+<%# かんたんログインボタン %>
+<%= form_for(User.new, url:user_session_path) do |f| %>
+  <div class="field">
+    <%= f.hidden_field :email, value: "test1@test.co.jp" %>
+    <%= f.hidden_field :password, value: "testuser" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "かんたんログイン", class: "btn orange-btn" %>
+  </div>
+<% end %>

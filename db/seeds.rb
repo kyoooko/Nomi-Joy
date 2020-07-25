@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # ◆ユーザー(10名)
-User.create!(name:"能美ジョイ子", email: "test1@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy1", belongs: "オーシャンティック航空（株） 東自損3課 ", position: "副主任",image:File.open("./app/assets/images/ajisai.JPG", ?r),nearest_station:"吉祥寺", can_drink: true, favolite:"ワイン、もんじゃ焼き、スパイスカレー",unfavolite:"焼酎、胡麻豆腐", introduction:"新入社員の能美です。学生時代はバレーボール部に所属していました。白ワインが好きです。よろしくお願いいたします。")
+User.create!(name:"テストユーザー", email: "test1@test.co.jp", password: "testuser", nomi_joy_id:"nomijoy1", belongs: "オーシャンティック航空（株） 東自損3課 ", position: "副主任",image:File.open("./app/assets/images/ajisai.JPG", ?r),nearest_station:"吉祥寺", can_drink: true, favolite:"ワイン、もんじゃ焼き、スパイスカレー",unfavolite:"焼酎、胡麻豆腐", introduction:"新入社員の能美です。学生時代はバレーボール部に所属していました。白ワインが好きです。よろしくお願いいたします。")
 
 User.create!(name:"能美ジョイ男", email: "test2@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy2", belongs: "パシフィックインターナショナル ", position: "代表取締役",image:File.open("./app/assets/images/ajisai.JPG", ?r),nearest_station:"恵比寿", can_drink: true, favolite:"ビール、ワイン",unfavolite:"生魚", introduction:"麻布十番・恵比寿・代官山開拓中です！クラフトビール にハマっています！ぜひお声がけください！")
 

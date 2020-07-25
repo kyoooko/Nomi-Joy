@@ -9,6 +9,16 @@
   /* margin-bottom:25%; */
   width:35%;
 }
+// ログインできない場合のエラーメッセージ
+.alert-alert{
+  background-color: #F8D7DA;
+  color: rgb(114, 31, 31);
+}
+// サインアップ画面でエラーメッセージ を出した際背景色が途切れるため
+.body--logging-out{
+  height: 120%;
+}
+// *******************************************************
 // マイページ
 .mypage-follow-btn{
   margin-right: 5%;
@@ -16,7 +26,8 @@
 .content__block--data td{
   font-family: "MPLUS-Regular", "Yu Gothic", "游ゴシック", sans-serif !important;
 }
-
+// *******************************************************
+// メンバー＆フォローページ
 /* タブ２ */
 // テーブルをレスポンシブで２つに分けている
 .content__block__following,.content__block__followed,.content__block__search-users{

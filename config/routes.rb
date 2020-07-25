@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   }
   scope module: :public do
     root 'homes#top'
+    resources :testsessions, only: :create
     resources :events, only: [:show, :index]
     resources :users, only: [:show, :edit, :index, :update] do
       resource :relationships, only: [:create, :destroy]
