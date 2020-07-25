@@ -93,6 +93,17 @@
   height: 80px;
   border-radius: 50%;
  }
+ .responsive-small-image{
+  width:80px;
+  height: 80px;
+  border-radius: 50%;
+ }
+ @media (max-width: 767px){
+  .responsive-small-image{
+    width:50px;
+    height: 50px;
+   }
+ }
  .small-square-image{
   width:50px;
   height: 50px;

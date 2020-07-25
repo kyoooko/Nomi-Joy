@@ -19,8 +19,8 @@
       <tbody>
         <% followers.each do |follower| %>
           <tr>
-            <th scope="row"><%= link_to user_path(follower),class:"" do %><%= attachment_image_tag follower, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
-            <td><%= link_to user_path(follower),class:"nomal-font font-sm" do %><%= follower.name %><% end %></td>
+            <th scope="row"><%= link_to user_path(follower),class:"" do %><%= attachment_image_tag follower, :image, format: 'jpeg',fallback: "no_image.jpg", class:"responsive-small-image" %><% end %></th>
+            <td style="width:25%"><%= link_to user_path(follower),class:"nomal-font font-sm" do %><%= follower.name %><% end %></td>
             <td class="nomal-font responsive-font-sm"><%= follower.belongs %><br><%= follower.position %></td>
             <td>
               <%# フォローボタン（非同期） %>
@@ -35,7 +35,7 @@
   <% end %>
 </div>
 <div class="content__block__followed">
-  <h2 class="block-hedding">全てのユーザー</h2>
+  <h2 class="block-hedding">全てのユーザー【あとで消す】</h2>
   <table class="table members-table font-sm">
     <tbody>
       <% users.each do |user| %>
@@ -70,8 +70,8 @@
           <% followings.each do |following| %>
           <tr>
             <%# 申請中のユーザーはユーザー詳細ページにいけない %>
-            <th scope="row"><%= attachment_image_tag following, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %></th>
-            <td class="nomal-font font-sm"><%= following.name %></td>
+            <th scope="row"><%= attachment_image_tag following, :image, format: 'jpeg',fallback: "no_image.jpg", class:"responsive-small-image" %></th>
+            <td class="nomal-font font-sm" style="width:25%"><%= following.name %></td>
             <td class="nomal-font responsive-font-sm"><%= following.belongs %><br><%= following.position %></td>
             <td>
               <%# フォローボタン（非同期） %>

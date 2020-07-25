@@ -1,7 +1,9 @@
 <% @find_users.each do |find_user| %>
-    $(".result1").append('<%= attachment_image_tag find_user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %>')
+    $(".result1").append('<%= attachment_image_tag find_user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"responsive-small-image" %>')
     $(".result2").append('<%= find_user.name %>')
-    $(".result3").append('<%= find_user.belongs %>')
-    $(".result4").append('<%= find_user.position %>')
-    $(".result5").append('<% if current_user != find_user %><div id="follow-button_<%= find_user.id %>"><% if find_user.followed_by?(current_user) %><p><%=link_to 'フォロー済み', user_relationships_path(find_user.id), method: :delete,remote: true, class:'btn small-btn white-btn' %></p> <% else %><p><%=link_to 'フォローする', user_relationships_path(find_user.id), method: :post,remote: true, class:'btn small-btn green-btn' %></p><% end %></div><% end %>')
+    $(".result3").append('<%= find_user.belongs %><br><%= find_user.position %>')
+    $(".result4").html('<% if current_user != find_user %><div class="follow-button_<%= find_user.id %>"><% if find_user.followed_by?(current_user) %><p><%=link_to 'フォロー済み', user_relationships_path(find_user.id), method: :delete,remote: true, class:'btn btn-sm white-btn' %></p><% else %><p><%=link_to 'フォローする', user_relationships_path(find_user.id), method: :post,remote: true, class:'btn btn-sm green-btn' %></p><% end %></div><% end %>')
  <% end %>
+
+
+
