@@ -28,6 +28,12 @@
 }
 // *******************************************************
 // メンバー＆フォローページ
+// タブ１
+.content__block--menbers{
+  table td {
+    vertical-align: middle;
+  }
+}
 /* タブ２ */
 // テーブルをレスポンシブで２つに分けている
 .content__block__following,.content__block__followed,.content__block__search-users{
@@ -38,6 +44,12 @@
 }
 .content__block--menbers-responsive{
   display: none;
+}
+// テーブル
+.content__block__search-users,.content__block__following,.content__block__followed{
+  table td {
+    vertical-align: middle;
+  }
 }
 @media (max-width: 767px) {
   // ヘッダーと見出しが被らないようにする

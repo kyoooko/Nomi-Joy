@@ -6,13 +6,15 @@
     <%= render 'public/logging_in_slidebar' %>
   </div>  
   <div class="body">
-    <%# フラッシュメッセージ %>
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>">
-        <%= message %>
-      </div>
-    <% end %>
     <div class="heading">
+      <%# フラッシュメッセージ %>
+      <div class="">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <%= message %>
+          </div>
+        <% end %>
+      </div>
       <span class="heading__top-welcome">Welcome to</span>
       <div class="heading__top-logo"><%= image_tag("Nomi-Joy_letter.png", class: "public-top-logo") %></div>
     </div>
