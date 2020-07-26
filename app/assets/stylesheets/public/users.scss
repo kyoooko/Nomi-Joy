@@ -4,19 +4,30 @@
 @import "../colors";
 
 // ログイン・サインアップページ
+.content__block--new_user{
+  .sign-btn{
+    // margin-top:10%;
+    width:40%;
+    padding:8px 16px;
+  }
+  // サインアップ画面でエラーメッセージ を出した際背景色が途切れるため
+  .sign-btns{
+    padding-top: 10%;
+  }
+}
 .sign-up-btn,.login-btn{
   margin-top:10%;
-  /* margin-bottom:25%; */
   width:35%;
 }
+
 // ログインできない場合のエラーメッセージ
 .alert-alert{
   background-color: #F8D7DA;
   color: rgb(114, 31, 31);
 }
-// サインアップ画面でエラーメッセージ を出した際背景色が途切れるため
+// ログイン・サインアップ画面でエラーメッセージ を出した際背景色が途切れるため
 .body--logging-out{
-  height: 120%;
+  height: 170vh ;
 }
 // *******************************************************
 // マイページ
@@ -29,6 +40,9 @@
 // *******************************************************
 // メンバー＆フォローページ
 // タブ１
+.description{
+  margin-bottom: 5%;
+}
 .content__block--menbers{
   table td {
     vertical-align: middle;

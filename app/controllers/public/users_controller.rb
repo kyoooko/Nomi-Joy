@@ -6,7 +6,6 @@ class Public::UsersController < ApplicationController
 
   def index
     # ================タブ１===============
-    @users = User.all
     # マッチングしたユーザー（＝「メンバー」となる。matchersはモデルに定義したインスタンスメソッド）
     @members = current_user.matchers
     # ================タブ2===============

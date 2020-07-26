@@ -37,10 +37,12 @@
             <%= f.label :password_confirmation %><span class="must">&emsp;*</span><br />
             <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"input-form" %>
           </div>
-          <div class="actions">
-            <%= f.submit "Sign up", class: "btn btn-lg login-btn green-btn" %>
+          <div class="actions sign-btns">
+            <%= f.submit "Sign up", class: "btn sign-btn green-btn" %>
           </div>
         <% end %>
+        <%# かんたんログイン %>
+        <%= render 'public/users/sessions/testuser' %>
       </div>
     </div>
     <%= render "layouts/footer" %>

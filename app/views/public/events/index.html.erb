@@ -69,9 +69,7 @@
                       <%= @today_admin.belongs %>
                       <%= @today_admin.position %><br><br>
                       <%= link_to user_path(@today_admin),class:"nomal-font" do %><%= @today_admin.name %><% end %>&emsp;&emsp;
-                      <% unless @today_admin == current_user%>
-                      <%= link_to room_path(@today_admin.id),class:"btn green-btn btn-sm" do %>DM<% end %>
-                      <% end %>
+                      <% unless @today_admin == current_user %><%=link_to room_path(@today_admin), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %><% end %>
                      </div>
                   </td>
                 </tr>
@@ -117,9 +115,11 @@
                   <td style="width:25%;"><%= link_to event_path(unpaying_event_user.event_id ),class:"nomal-font responsive-font-sm" do %><%= unpaying_event_user.event.name %><% end %></td>
                   <td class="nomal-font responsive-font-sm"><%= unpaying_event_user.fee %>円</td>
                   <td>
-                    <%= link_to user_path(unpaying_event_user.event.user_id ),class:"nomal-font responsive-font-sm" do %><%= User.find(unpaying_event_user.event.user_id).name%><% end %>
+                    <%= link_to user_path(unpaying_event_user.event.user_id),class:"nomal-font responsive-font-sm" do %><%= User.find(unpaying_event_user.event.user_id).name%><% end %>
                   </td>
-                  <td><%=link_to "DM", room_path(unpaying_event_user.event.user_id), class:"btn btn-sm green-btn" %></td>
+                  <td>
+                    <%=link_to room_path(unpaying_event_user.event.user_id), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>

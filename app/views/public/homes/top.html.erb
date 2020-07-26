@@ -10,8 +10,8 @@
       <%= image_tag("Nomi-Joy.png", class: "main-visual__logo") %>
       <h2 class="main-visual__catch-copy">飲み会の準備を楽しく、便利に。</h2>
       <div class="main-visual__sign">
-        <%= link_to new_user_registration_path,class:"btn btn-success" do %>Sign up<% end %>
-        <%= link_to new_user_session_path,class:"btn btn-info" do %>Login<% end %>
+        <%= link_to new_user_registration_path,class:"btn green-btn" do %>Sign up<% end %>
+        <%= link_to new_user_session_path,class:"btn green-btn" do %>Login<% end %>
         <%# かんたんログイン %>
         <%= render 'public/users/sessions/testuser' %>
       </div>   
@@ -21,7 +21,7 @@
     <h1 class="about__heading">What about <%= image_tag("Nomi-Joy_letter_white.jpg", class: "about_heading-logo") %> ?</h1>
     <div class="about__content">
       <div class="about-all">
-        <p class="">ノミジョイ！は、 「飲み会の準備を楽しく、便利に」 するためのサービスです。登録をすることで、簡単に参加者の方も幹事の方もご利用いただけます。</p>
+        <p class="">ノミジョイ！は、 「飲み会の準備を楽しく、便利に」 するためのサービスです。<br>ログインすることで、参加者の方も幹事の方もかんたんにご利用いただけます。</p>
       </div>
       <div class="about-2way row">
         <div class="about-Nomi-Joy col-sm-5">

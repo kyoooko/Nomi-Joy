@@ -1,13 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top header-nav">
   <%= link_to root_path do %><%= image_tag("Nomi-Joy.png", class: "header-logo") %><% end %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler public-navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-bars"></i>
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
     <ul class="navbar-nav">
-      <li><%= link_to "Home", root_path, class:"nav-item" %></li>
-      <li><%= link_to "Sign up", new_user_registration_path, class:"nav-item" %></li>
-      <li><%= link_to "Login", new_user_session_path, class:"nav-item" %></li>
+      <li><%= link_to root_path,class:"nav-item" do %>
+    <i class="fas fa-home public-icon"></i>&ensp;
+    Top<% end %></li>
+    <li><%= link_to new_user_registration_path,class:"nav-item" do %><i class="fas fa-user-plus public-icon"></i>&ensp;Sign up<% end %></li>
+    <li><%= link_to new_user_session_path,class:"nav-item" do %><i class="fas fa-sign-in-alt public-icon"></i>&ensp;Login<% end %></li>
     </ul>
   </div>
 </nav>

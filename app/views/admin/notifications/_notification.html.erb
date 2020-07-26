@@ -7,7 +7,9 @@
     </div>
     <div class="col-9">
         <strong>
-          <%= notification.visitor.name %>
+          <%= link_to user_path(notification.visitor) do %>
+            <%= notification.visitor.name %>
+           <% end %>
         </strong>
         さんから
       <% case notification.action %>

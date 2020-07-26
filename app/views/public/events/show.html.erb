@@ -68,9 +68,9 @@
                     <%= @admin.belongs %>
                     <%= @admin.position %><br><br>
                     <%= link_to user_path(@admin),class:"nomal-font" do %><%= @admin.name %><% end %>&emsp;&emsp;
-                    <%# unless @admin == current_user%>
-                    <%= link_to room_path(@admin.id),class:"btn green-btn btn-sm" do %>DM<% end %>
-                    <%# end %>
+                    <% unless @admin == current_user%>
+                    <%=link_to room_path(@admin), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %>
+                    <% end %>
                     </div>
                 </td>
               </tr>

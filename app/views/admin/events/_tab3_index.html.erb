@@ -57,7 +57,7 @@
             <% end %>
           </td>
           <td class="nomal-font responsive-font-sm"><%= sum %>円</td>
-          <td><%=link_to "DM", admin_room_path(user), class:"btn btn-sm blue-btn" %></td>
+          <td><%=link_to admin_room_path(user), class:"btn btn-sm blue-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %></td>
         </tr>
       <% end %>
     </tbody>

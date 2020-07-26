@@ -172,6 +172,22 @@
 .admin-nomikai-overview-btn{
   width:100%;
 }
+// *****ノミカイ進捗：ステップバー*****
+// stepbar
+.progress__stepbar{
+  margin-bottom: 30px;
+.bootstrapWizard li {
+    display: block;
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding-left: 0
+  }
+  .stepbar-tittle{
+    z-index:1 !important;
+  }
+}
+ // **********************************************
 /* タブ２(show) */
 .content{
   &__block--participants table,&__unpaid-participants table{
