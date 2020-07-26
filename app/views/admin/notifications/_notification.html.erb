@@ -1,13 +1,13 @@
 <div class= "col-lg-8 mx-auto">
   <div class="row">
     <div class="col-3">
-      <%= link_to user_path(notification.visitor) do %>
+      <%= link_to admin_user_path(notification.visitor) do %>
         <%= attachment_image_tag notification.visitor, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %>
       <% end %>
     </div>
     <div class="col-9">
         <strong>
-          <%= link_to user_path(notification.visitor) do %>
+          <%= link_to admin_user_path(notification.visitor) do %>
             <%= notification.visitor.name %>
            <% end %>
         </strong>

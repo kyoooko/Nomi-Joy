@@ -10,7 +10,9 @@
       <h1 class="heading__en">Notice</h1>
       <h3 class="heading__ja">通知一覧</h3>
     </div>
-    <div class="content">
+    <!-- 新規作成ボタン -->
+      <%= render 'admin/events/create_event_button' %>
+    <div class="content content__block__notice">
       <% if @notifications.exists? %>
         <%= render @notifications %>
         <div class="paginate-bar">

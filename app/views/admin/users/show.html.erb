@@ -71,7 +71,9 @@
             </tr>
           </tbody>
         </table>
-        <%= link_to 'DMを開始', admin_room_path(@user.id), class:"btn mypage-btn blue-btn" %>
+        <% unless current_user == @user %>
+           <%=link_to admin_room_path(@user), class:"btn btn-sm blue-btn mypage-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+        <% end %>
       </div>
     </div>
     <%= render "layouts/admin_footer" %>

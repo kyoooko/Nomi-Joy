@@ -42,8 +42,6 @@ class User < ApplicationRecord
   has_many :event_users, -> { with_deleted }, dependent: :destroy
   # ◆ノミカイ（中間テーブルを介す）
   has_many :events, through: :event_users
-  # 【確認要】◆ノミカイ（中間テーブル介さない、幹事とノミカイの関係性）
-  # has_many :admin_events,class_name:"Event",foreign_key: :user_id
 
   # ◆通知機能
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
