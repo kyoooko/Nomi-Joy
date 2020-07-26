@@ -8,10 +8,10 @@
         </div>
       <% end %>
       <%= image_tag("Nomi-Joy.png", class: "main-visual__logo") %>
-      <h2 class="main-visual__catch-copy">飲み会の準備を楽しく、便利に。</h2>
+      <h1 class="main-visual__catch-copy">ノミカイの準備を楽しく、便利に。</h1>
       <div class="main-visual__sign">
         <%= link_to new_user_registration_path,class:"btn green-btn" do %>Sign up<% end %>
-        <%= link_to new_user_session_path,class:"btn green-btn" do %>Login<% end %>
+        <%= link_to new_user_session_path,class:"btn blue-btn" do %>Login<% end %>
         <%# かんたんログイン %>
         <%= render 'public/users/sessions/testuser' %>
       </div>   
@@ -21,31 +21,37 @@
     <h1 class="about__heading">What about <%= image_tag("Nomi-Joy_letter_white.jpg", class: "about_heading-logo") %> ?</h1>
     <div class="about__content">
       <div class="about-all">
-        <p class="">ノミジョイ！は、 「飲み会の準備を楽しく、便利に」 するためのサービスです。<br>ログインすることで、参加者の方も幹事の方もかんたんにご利用いただけます。</p>
+        <h4 class="">ノミジョイ！は、 「ノミカイの準備を楽しく、便利に」 するためのサービスです。<br>ログインすることで、参加者の方もカンジの方もかんたんにご利用いただけます。</h4>
       </div>
       <div class="about-2way row">
-        <div class="about-Nomi-Joy col-sm-5">
+        <div class="about-Nomi-Joy col-md-6">
           <%= image_tag("Nomi-Joy.png", class: "about-Nomi-Joy__logo") %>
           <div class="about-Nomi-Joy__content">
-            <p class="">ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。</p>
+            <h2><span class="title">Step 1<%= image_tag("edamame.png", class: "step-small-image") %>ノミカイの予定が一目でわかる！</span></h2>
+            <%= image_tag("top-public-step1.JPG", class: "descreption-image") %>
           </div>
           <div class="about-Nomi-Joy__content">
-            <p class="">ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。</p>
+            <h2><span  class="title">Step 2<%= image_tag("negima.png", class: "step-small-image") %>場所や会費がすぐにわかる ！</span></h2>
+            <%= image_tag("top-public-step2.JPG", class: "descreption-image") %>
           </div>
           <div class="about-Nomi-Joy__content">
-            <p class="">ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。ノミジョイの説明。</p>
+            <h2><span  class="title">Step 3<%= image_tag("tyouchin.png", class: "step-small-image") %>カンジへの連絡もスムーズ ！</span></h2>
+             <%= image_tag("top-public-step3.JPG", class: "descreption-image") %>
           </div>
         </div>
-        <div class="about-Kanjino-Heya col-sm-5">
+        <div class="about-Kanjino-Heya col-md-6">
           <%= image_tag("Kanjino-Heya.png", class: "about-Kanjino-Heya__logo") %>
           <div class="about-Kanjino-Heya__content">
-            <p class="">カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。</p>
+            <h2><span  class="title admin">Step 1<%= image_tag("edamame.png", class: "step-small-image") %>カンジの部屋へ入室！</span></h2>
+            <%= image_tag("top-admin-step1.JPG", class: "descreption-image") %>
           </div>
           <div class="about-Kanjino-Heya__content">
-            <p class="">カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。</p>
+            <h2><span  class="title admin">Step 2<%= image_tag("negima.png", class: "step-small-image") %>ノミカイを作成してメンバーを招待 !</span></h2>
+            <%= image_tag("top-admin-step2.JPG", class: "descreption-image") %>
           </div>
           <div class="about-Kanjino-Heya__content">
-            <p class="">カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。カンジの部屋の説明。</p>
+            <h2><span  class="title admin">Step 3<%= image_tag("tyouchin.png", class: "step-small-image") %>集金の管理ができる！</span></h2>
+            <%= image_tag("top-admin-step3.JPG", class: "descreption-image") %>
           </div>
         </div>
       </div>

@@ -58,8 +58,9 @@ color:$white;
   margin-bottom: 30px;
  }
  .about-Nomi-Joy__content,.about-Kanjino-Heya__content{
-   height:300px;
+   padding:3%;
    margin-bottom:30px;
+   border-radius: 30px;
    background-color: $light-gray;
  }
  .top-footer{
@@ -73,3 +74,27 @@ color:$white;
     margin-top: 15px;
   }
  }
+ // 画像（step)
+.step-small-image{
+  width:38px;
+  height:38px;
+}
+// 画像（説明)
+.descreption-image{
+  width:90%;
+  padding-top:4%;
+}
+// 見出しのマーカー
+.about-Nomi-Joy, .about-Kanjino-Heya{
+  .title {
+    background:linear-gradient(transparent 70%, #e2eeaf 0%);
+    }
+}
+// 見出しのサイズ
+@media (max-width: 767px) {
+  .about-Nomi-Joy__content, .about-Kanjino-Heya{
+    .title {
+      font-size: 0.7em;
+    }
+  }
+}
