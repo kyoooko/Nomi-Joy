@@ -14,10 +14,6 @@ class Event < ApplicationRecord
   belongs_to :restaurant, optional: true
   # ◆ノミカイユーザー（中間テーブル）
   has_many :event_users, dependent: :destroy
-  # ◆ユーザー（中間テーブルを介す）
-  # has_many :users, through: :event_users, dependent: :destroy
-  # 【確認要】 ◆ユーザー（中間テーブル介さない、幹事とノミカイの関係性）
-  # belongs_to :admin_user,class_name:"User"
   # ◆通知
   has_many :notifications, dependent: :destroy
 
