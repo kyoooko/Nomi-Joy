@@ -36,16 +36,20 @@
               <%= f.label :remember_me %>
             </div>
           <% end %>
-          <div class="actions">
-            <%= f.submit "Login", class: "btn btn-lg login-btn green-btn" %>
+          <div class="actions sign-btns">
+            <%= f.submit "Login", class: "btn sign-btn green-btn" %>
           </div>
         <% end %>
+        <%# かんたんログイン %>
+        <%= render 'public/users/sessions/testuser' %>
       </div>
       <%# パスワード変更のリンクを作る場合は下記 %>
       <%#= link_to new_user_password_path,class:"content__block--forget-pass" do %>
        <%# Forgot your password? %>
       <%# end %>
     </div>
-    <%= render "layouts/footer" %>
+    <%# <div class="pt-30"> %>
+     <%= render "layouts/footer" %>
+    <%# </div> %>
   </div>
 </main>

@@ -1,26 +1,7 @@
-<%# 説明 %>
-<div class="content__block--member-description">
-  <p class="text-secondary">このページは&ensp;「ノミカイメンバー」&ensp;の一覧です<br>お互いにフォローしているユーザーは&ensp;「ノミカイメンバー」&ensp;となります<br>「ノミカイメンバー」&ensp;になると、あなたがカンジをするノミカイに招待できます！</p>
-</div>
-<!-- メンバー検索 -->
-<div class="content__block--search-members content__block">
-  <h2 class="block-hedding">メンバーを探す</h2>
-  <form class="members-search-form">  
-    <div class="form-group col-3">
-        <select class="form-control">
-            <option>氏名</option>
-            <option>会社名・所属</option>
-        </select>
-    </div>
-    <div class="form-group col-6">
-      <input type="text" class="form-control input-form-sm">
-    </div>
-  </form>
-</div>
-
 <%# メンバー一覧(767px以上) %>
 <div class="content__block--menbers"> 
   <h2 class="block-hedding">メンバー一覧</h2>
+  <p class="text-secondary description">このページは&ensp;「ノミカイメンバー」&ensp;の一覧です<br>お互いにフォローしているユーザーは&ensp;「ノミカイメンバー」&ensp;となります<br>「ノミカイメンバー」&ensp;になると、あなたがカンジをするノミカイに招待できます！</p>
   <% if members.present? %>
     <table class="table members-table font-sm">
       <thead>
@@ -52,7 +33,7 @@
             <%# フォローボタン（非同期） %>
               <%= render "follow_button", member: member %>
             </td>
-            <td><br><%= link_to 'DM', room_path(member.id), class:"btn btn-sm green-btn" %></td>
+            <td><br><%=link_to room_path(member), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %></td>
           </tr>
         <% end %>
       </tbody>
@@ -61,7 +42,6 @@
    <p class="text-secondary">まだメンバーはいません</p>
   <% end %>
 </div>
-
 
 <%# 上記のレスポンシブ対応版 %>
 <%# メンバー一覧(767px未満) %>
@@ -98,9 +78,9 @@
           </tr>
           <tr>
             <th scope="row"></th>
-            <th scope="row"><br><%= link_to 'DM', room_path(member.id), class:"btn btn-sm green-btn" %></th>
+            <th scope="row"><br><%=link_to room_path(member), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %></th>
             <td id="follow_form">
-            <%# フォローボタン（非同期） %>
+              <%# フォローボタン（非同期） %>
               <%= render "follow_button", member: member %>
             </td>
           </tr>

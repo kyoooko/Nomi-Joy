@@ -8,32 +8,17 @@
     color:$public-main !important;
   }
 }
-.white-btn{
-  background-color: $light-gray !important;
-  color:$public-main !important;
-  &:hover{
-    background-color: $white-gray !important;
-    color: $public-main !important;
-  }
-}
-/* Bootstrapアイコン（対応要） */
-.bi-house{
-  fill:#eee;
-}
-.bi-house:hover{
-  fill:#1b515c;
-}
+/* サイドバー、ヘッダー */
 .nav-item{
   color:#fff;
   line-height: 3rem;
   display: block;
 }
 .nav-item:hover{
-  color:#1b515c;
+  color:#fff;
   text-decoration: none;
-  background-color: #eee;
+  background-color: #89a5aa;
 }
-
 // ボディ
 // ボディ：ログイン・ログアウトページのボディのみ高さ指定
 .body--logging-out{

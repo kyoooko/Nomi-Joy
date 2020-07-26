@@ -79,11 +79,19 @@
   float:right;
   width:100px;
 }
+.white-btn{
+  background-color: $light-gray !important;
+  color:$public-main !important;
+  &:hover{
+    background-color: $white-gray !important;
+    color: $public-main !important;
+  }
+}
 .orange-btn{
   background-color: #efa04c !important;
   color:$white  !important;
   &:hover{
-    background-color: $light-gray !important;
+    background-color: $white-gray !important;
     color:#efa04c !important;
   }
 }
@@ -238,26 +246,27 @@ margin-bottom: 3%;
   display: flex;
   justify-content: center;
 }
-// fontawesome
+// fontawesome(通知）
 .n-circle {
   position: absolute;
+  font-size: 0.5rem;
   padding-left: 1rem;
   padding-top: 0rem;
   color: #efa04c;
-  // color: rgb(213, 230, 139);
 }
 // fontawesome（public側)
 .public-icon{
-  color: #eee !important;
-  &:hover{
-    color: #1b515c;
-  }
+  color: #fff;;
 }
 // fontawesome（admin側)
 .admin-icon{
-  color: #eee !important;
-  &:hover{
-    color: #267594;
+  color: #fff !important;
+}
+// fontawesome（タブ)
+.tab-icon{
+  color: #626a6d ;
+  &:active{
+    color: #fff !important;
   }
 }
 // 検索ボタン（public側)

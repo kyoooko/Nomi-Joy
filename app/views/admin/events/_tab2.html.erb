@@ -33,7 +33,7 @@
           <td class="participate_<%= event_user.id %>">
             <%= render 'admin/event_users/participate_button', event_user: event_user %>
           </td>
-          <td><%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn" %></td>
+          <td><%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn ml-1" do %><i class="fas fa-envelope admin-icon"></i><% end %></td>
         </tr>
       <% end %>
     </tbody>
@@ -91,7 +91,7 @@
               <%= render 'admin/event_users/participate_button', event_user: event_user %>
             </span>
             <span>
-              <%= link_to 'DM', admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn ml-1" %>
+              <%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn ml-1" do %><i class="fas fa-envelope admin-icon"></i><% end %>
             </span>
           </td>
         </tr>

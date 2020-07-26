@@ -12,7 +12,8 @@
     </div>
     <div class="content">
       <% if @members.present?%>
-        <div class="content__block--search">
+         <%# 検索フォーム（実装中） %>
+        <%# <div class="content__block--search">
           <form class="dm-search-form">  
             <div class="form-group col-3">
                 <select class="form-control">
@@ -24,7 +25,7 @@
               <input type="text" class="form-control">
             </div>
           </form>
-        </div>
+        </div> %>
         <div class="content__block--dm-menbers">
           <table class="table dm-table">
             <thead>
@@ -40,7 +41,7 @@
                   <th scope="row"><%= link_to user_path(member),class:"" do %><%= attachment_image_tag member, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
                   <td><%= link_to user_path(member),class:"nomal-font font-sm" do %><%= member.name %><% end %></td>
                   <td class="nomal-font responsive-font-sm"><%= member.belongs %><br><%= member.position %></td>
-                  <td><%= link_to 'DM', room_path(member.id), class:"btn btn-sm green-btn" %></td>
+                  <td><%=link_to room_path(member), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %></td>
                 </tr>
               <% end %>
             </tbody>
