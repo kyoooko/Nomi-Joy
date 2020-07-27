@@ -24,7 +24,7 @@ module ApplicationHelper
       twitter: {
         site: ENV['TWITTER_ACCOUNT'],
         card: 'summary_large_image',
-        image: image_url("Nomi-Joy.png"), # ツイッター専用にイメージを設定する場合
+        image: image_url("twitter-card.png"), # ツイッター専用にイメージを設定する場合
       },
       # ,
       #   fb: {
