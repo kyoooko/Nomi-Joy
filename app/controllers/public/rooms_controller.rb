@@ -1,4 +1,7 @@
 class Public::RoomsController < ApplicationController
+  # メンバー（相互フォロー）以外のDMルームへは入れない
+  before_action :check_member, only: :show
+
   def index
     @members = current_user.matchers
   end
@@ -25,5 +28,14 @@ class Public::RoomsController < ApplicationController
     @dms = @room.direct_messages
     # 通知機能
     session[:user_id] = @user.id
+  end
+
+  private
+
+  def check_member
+    user = User.find(params[:id])
+    members = current_user.matchers
+    flash[:danger] = "このユーザーと 「ノミカイメンバー」 になっていません DMができるのは 「ノミカイ」 メンバーのみです"
+    redirect_to users_path unless members.any? { |member| member == user }
   end
 end

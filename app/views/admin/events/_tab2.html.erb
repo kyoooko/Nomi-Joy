@@ -33,22 +33,18 @@
           <td class="participate_<%= event_user.id %>">
             <%= render 'admin/event_users/participate_button', event_user: event_user %>
           </td>
-          <td><%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn ml-1" do %><i class="fas fa-envelope admin-icon"></i><% end %></td>
+          <td>
+            <%# current_user(自分)の場合はDMボタンを表示しない %>
+            <% unless event_user.user == current_user %>
+              <%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn ml-1" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <%= link_to '参加メンバーを追加', admin_add_event_user_path(event), class:"btn blue-btn" %>
 </div>
-
-
-
-
-
-
-
-
-
 
 <%# 上記のレスポンシブ対応版 %>
 <%# 参加メンバー一覧(767px未満) %>
@@ -91,7 +87,10 @@
               <%= render 'admin/event_users/participate_button', event_user: event_user %>
             </span>
             <span>
-              <%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn ml-1" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+              <%# current_user(自分)の場合はDMボタンを表示しない %>
+              <% unless event_user.user == current_user %>
+                <%=link_to admin_room_path(event_user.user), class:"btn btn-sm blue-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+              <% end %>     
             </span>
           </td>
         </tr>

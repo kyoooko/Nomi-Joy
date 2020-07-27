@@ -31,7 +31,12 @@
             <%# 会員ごとの会費ステータス変更フォーム(非同期) %>
             <%= render 'admin/event_users/event_users_fee_status', event_user: unpaying_event_user %>
           </td>
-            <td><%=link_to admin_room_path(unpaying_event_user.user), class:"btn btn-sm blue-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %></td>
+            <td>
+              <%# current_user(自分)の場合はDMボタンを表示しない %>
+              <% unless unpaying_event_user.user == current_user %>
+                <%=link_to admin_room_path(unpaying_event_user.user), class:"btn btn-sm blue-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+              <% end %>     
+            </td>
           </tr>
         <% end %>
       </tbody>
@@ -75,7 +80,12 @@
             <%# 会員ごとの会費ステータス変更フォーム(非同期) %>
             <%= render 'admin/event_users/event_users_fee_status', event_user: event_user %>
           </td>
-          <td><%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %></td>
+          <td>
+            <%# current_user(自分)の場合はDMボタンを表示しない %>
+            <% unless event_user.user == current_user %>
+              <%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+            <% end %>      
+          </td>
         </tr>
       <% end %>
     </tbody>

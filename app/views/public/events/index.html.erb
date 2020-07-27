@@ -60,6 +60,14 @@
                   <td class="nomal-font font-xs text-muted"><%= @today_event.restaurant.address %></td>
                 </tr>
                 <tr>
+                <th scope="row">会費</th>
+                  <td class="nomal-font"><%= @event_user.fee %>円</td>
+                </tr>
+                <tr>
+                  <th scope="row">支払いステータス</th>
+                  <td class="nomal-font"><% if @event_user.fee_status == true %>支払済<% else %>未払い<% end %></td>
+                </tr>
+                <tr>
                   <th scope="row">カンジ</th> 
                   <td class="d-inline-flex">
                     <div>
