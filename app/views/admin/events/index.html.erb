@@ -7,6 +7,12 @@
   </div>  
   <div class="body">
     <div class="heading-non--underline mt-4">
+      <%# フラッシュメッセージ %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
       <span class="heading__top-welcome" style="color:#267594 !important";>Welcome to</span>
       <div class="heading__top-logo"><%= image_tag("Kanjino-Heya_letter.png", class: "admin-top-logo") %></div>
     </div>

@@ -84,6 +84,12 @@
 .stepbar{
   margin-bottom: 30px;
 }
+// todoリスト実装後下記削除予定（背景が途切れるための調整）
+.content__block--todo{
+  padding: 5%;
+  margin-top:50%;
+  margin-bottom: 10%;
+}
 // タブ２(index)
 .content__block__all-nomikai h4{
   margin-top: 5px;

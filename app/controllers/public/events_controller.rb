@@ -6,6 +6,9 @@ class Public::EventsController < ApplicationController
     from = Time.current.beginning_of_day
     to = Time.current.end_of_day
     @today_event = Event.joins(:event_users).where(event_users: { user_id: current_user.id }).find_by(date: from..to)
+    if @today_event.present?
+      @event_user = EventUser.with_deleted.find_by(user_id: current_user.id, event_id: @today_event.id)
+    end
     # 曜日
     @day_of_the_week = %w(日 月 火 水 木 金 土)[@today_event.date.wday] if @today_event.present?
     # 今日のノミカイのカンジ
@@ -28,6 +31,7 @@ class Public::EventsController < ApplicationController
   end
 
   private
+
   # 自分の参加するノミカイ以外はアクセス(URL検索含む）できないようにする
   def ensure_current_user?
     event = Event.find(params[:id])

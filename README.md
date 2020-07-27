@@ -1,7 +1,9 @@
-# Nomi-joy
+![Nomi-Joy_letter](https://user-images.githubusercontent.com/60662524/88514554-44829f80-d025-11ea-8dc3-166964a86d2f.png)
+
+![twitter-card](https://user-images.githubusercontent.com/60662524/88514102-6f202880-d024-11ea-9d22-4eab14ce3e09.png)
 
 ## サイト概要
-【飲み会の準備を便利に、楽しく】
+【ノミカイの準備を便利に、楽しく】
 
 幹事さんと参加者双方に向けた、飲み会の準備を便利に楽しくサポートするサービスです。
 
@@ -32,4 +34,7 @@
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pqhcQ/edit#gid=1830135488
+
+### ER図
+https://drive.google.com/file/d/1qWo_DcQI12CA0tIKWqu1P8B3I4GlSt2q/view?usp=sharing
 

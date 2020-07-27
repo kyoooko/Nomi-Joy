@@ -17,7 +17,7 @@ class Admin::EventsController < ApplicationController
     else
       @room = 1
     end
-     # ================タブ１===============
+    # ================タブ１===============
     # 今日のノミカイ
     # 【★幹事＝user_id使用】
     from = Time.current.beginning_of_day
@@ -26,7 +26,7 @@ class Admin::EventsController < ApplicationController
     # 曜日
     @day_of_the_week = %w(日 月 火 水 木 金 土)[@today_event.date.wday] if @today_event.present?
 
-     # ================タブ２===============
+    # ================タブ２===============
     # 全てのノミカイ
     # 【★幹事＝user_id使用】
     @status0_events = Event.where(progress_status: 0, user_id: current_user.id)
@@ -35,7 +35,7 @@ class Admin::EventsController < ApplicationController
     # 全てのノミカイ（カレンダー）
     @events = Event.where(user_id: current_user.id)
 
-     # ================タブ３===============
+    # ================タブ３===============
     # 集金中のノミカイ
     @events = Event.where(user_id: current_user.id)
     # 集金中のノミカイ参加メンバー
@@ -73,7 +73,13 @@ class Admin::EventsController < ApplicationController
 
   # show(タブ１）：ノミカイ基本情報の更新
   def update
-    redirect_to admin_event_path(@event) if @event.update(event_params)
+    if @event.update(event_params)
+      flash[:success] = "ノミカイ概要を更新しました"
+      redirect_to admin_event_path(@event)
+    else
+      flash[:danger] = "ノミカイ名を時間は入力必須です"
+      redirect_to edit_admin_event_path(@event)
+    end
   end
 
   # show(タブ１）：ノミカイ基本情報の削除
@@ -175,7 +181,6 @@ class Admin::EventsController < ApplicationController
     end
     redirect_to admin_event_path(@event, room: 4) if params[:back]
   end
-
 
   # 新規作成(1)：基本情報入力ページ表示（GET)
   def step1
@@ -303,8 +308,8 @@ class Admin::EventsController < ApplicationController
   def send_plan_remind
   end
 
-
   private
+
   def set_event
     @event = Event.find(params[:id])
   end
@@ -328,4 +333,3 @@ class Admin::EventsController < ApplicationController
     redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id
   end
 end
-

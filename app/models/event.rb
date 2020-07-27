@@ -4,9 +4,8 @@ class Event < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :date
-    validates :start_time
+    validates :begin_time
     validates :end_time
-    validates :start_time
   end
 
   # ==============アソシエーション ================================

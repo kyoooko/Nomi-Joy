@@ -40,13 +40,13 @@ color:$white;
 }
  .about__content{
   text-align: center;
-  /* contaner使用しないかわり（今後レスポンシブ対応要） */
   padding: 50px 50px;
   background-color:$white-gray;
  }
  .about-all{
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding-top: 50px;
+  padding-bottom: 80px;
  }
  .about-2way{
   display: flex;
@@ -72,6 +72,9 @@ color:$white;
  @media (max-width: 767px) {
   .copyright{
     margin-top: 15px;
+  }
+  .about__content h4{
+    font-size:16px;
   }
  }
  // 画像（step)
