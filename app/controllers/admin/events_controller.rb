@@ -84,8 +84,12 @@ class Admin::EventsController < ApplicationController
 
   # show(タブ１）：ノミカイ基本情報の削除
   def destroy
-    # dependent: :destroyとしているので紐づいているevent_usersも同時に全て削除される
     @event.destroy
+    # dependent: :destroyをモデルに記載したため、紐づくnotificationsは@event.destroyで削除されるがevent_userは論理削除が働いてしまうため、物理削除が必要。
+    event_users = EventUser.with_deleted.where(event_id: @event.id)
+    event_users.each do |event_user|
+      event_user.really_destroy!
+    end
     redirect_to admin_events_path
   end
 
@@ -187,7 +191,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.new
   end
 
-  # 新規作成(2)：step1更新＋お店検索ページ表示＋正しく選択されていればstep3へリダイレクト（POST：vieあり)
+  # 新規作成(2)：step1更新＋お店検索ページ表示＋正しく選択されていればstep3へリダイレクト（POST：viewあり)
   # form内にsubmitボタンが複数ある。リダイレクトのためstep3はGET、createされる
   def step2
     @event = Event.new(event_params)

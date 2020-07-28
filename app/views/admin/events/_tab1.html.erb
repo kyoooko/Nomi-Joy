@@ -57,7 +57,7 @@
       <%# 編集・削除ボタン %>
       <div class="admin-nomikai-overview-btn d-flex justify-content-end">
         <%= link_to "Edit", edit_admin_event_path(event), class:"btn blue-btn edit-btn  btn-sm mr-2" %>
-        <%= link_to "Delete", admin_event_path(event),method: :delete,data:{confirm:"このノミカイを削除しますか？"}, class:"btn blue-btn btn-sm mr-2" %>
+        <%= link_to "Delete", admin_event_path(event),method: :delete,data:{confirm:"このノミカイを削除しますか？ 削除するとこのノミカイに紐づく情報も全て削除されます"}, class:"btn blue-btn btn-sm mr-2" %>
       </div>
   </div>
 </div>
