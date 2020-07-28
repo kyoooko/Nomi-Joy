@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# ◆ユーザー(10名)
+
+# ◆ユーザー(全10名)
 User.create!(name:"テストユーザー", email: "test1@test.co.jp", password: "testuser", nomi_joy_id:"nomijoy1", belongs: "オーシャンティック航空（株） 東自損3課", position: "副主任",image:File.open("./app/assets/images/ajisai.JPG", ?r),nearest_station:"吉祥寺", can_drink: true, favolite:"ワイン、ハイボール、スパイスカレー",unfavolite:"焼酎、胡麻豆腐", introduction:"2年目のテストユーザーです。白ワインが好きです！よろしくお願いいたします。")
 
 User.create!(name:"加藤真美", email: "test2@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy2", belongs: "オーシャンティック航空（株） 東自損3課", position: "",image:File.open("./app/assets/images/torii.JPG", ?r),nearest_station:"清瀬", can_drink: true, favolite:"中華、韓国料理",unfavolite:"えび", introduction:"新入社員の加藤です。学生時代はバレーボール部に所属していました。よろしくお願いします。")
