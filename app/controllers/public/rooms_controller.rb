@@ -31,11 +31,10 @@ class Public::RoomsController < ApplicationController
   end
 
   private
-
   def check_member
     user = User.find(params[:id])
     members = current_user.matchers
-    flash[:danger] = "このユーザーと 「ノミカイメンバー」 になっていません DMができるのは 「ノミカイ」 メンバーのみです"
+    # flash[:danger] = "このユーザーと 「ノミカイメンバー」 になっていません DMができるのは 「ノミカイ」 メンバーのみです"
     redirect_to users_path unless members.any? { |member| member == user }
   end
 end
