@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_175805) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_event_users_on_event_id"
     t.index ["user_id"], name: "index_event_users_on_user_id"
   end
 

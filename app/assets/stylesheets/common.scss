@@ -56,6 +56,10 @@
 .responsive-font-sm{
   font-size: 12px;
 }
+// 通常8px、767px未満の時5px
+.responsive-font-xs{
+  font-size: 8px;
+}
 @media (max-width: 767px) {
   .font-xs-responsive{
     font-size: 8px;
@@ -66,6 +70,10 @@
   // 通常12px、767px未満の時8px
   .responsive-font-sm{
     font-size: 8px;
+  }
+  // 通常8px、767px未満の時5px
+  .responsive-font-xs{
+    font-size: 5px;
   }
 }
 // ボタン

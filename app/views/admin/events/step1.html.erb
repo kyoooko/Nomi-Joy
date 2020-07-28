@@ -48,7 +48,7 @@
               </tr>
               <tr>
                 <th scope="row">メモ</th>
-                <td class="nomal-font font-sm"><%= f.text_area :memo, autofocus: true, autocomplete: "memo", class:"create-event-textarea" %></td>
+                <td class="nomal-font"><span class="text-muted responsive-font-sm">※カンジ専用のメモです。参加者側には表示されません。</span><br><%= f.text_area :memo, autofocus: true, autocomplete: "memo", class:"create-event-textarea" %></td>
               </tr>
             </tbody>
           </table>

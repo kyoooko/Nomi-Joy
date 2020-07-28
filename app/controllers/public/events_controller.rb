@@ -18,7 +18,7 @@ class Public::EventsController < ApplicationController
     # includesはN+1問題の解消
     @events = Event.joins(:event_users).where(event_users: { user_id: current_user.id }).includes([:restaurant])
     # 未払いのevent_userのうち自分にあたるもの(欠席のノミカイも含む)
-    @unpaying_event_users = EventUser.with_deleted.includes([:event]).where(user_id: current_user.id, fee_status: false)
+      @unpaying_event_users = EventUser.with_deleted.includes([:event]).where(user_id: current_user.id, fee_status: false)
   end
 
   def show
