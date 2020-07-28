@@ -24,7 +24,7 @@
       <% end %>
     </div>
     <div class="partition">
-      <h4>前日リマインド済</h4>
+      <h4>リマインド済</h4>
         <%  status2_events.each do |status2_event| %>
         <p><%= link_to admin_event_path(status2_event),class:"nomal-font responsive-font-sm" do %><%= status2_event.date.to_s(:date) %>(<%= %w(日 月 火 水 木 金 土)[status2_event.date.wday] %>)&emsp;<%= status2_event.name %><% end %></p>
       <% end %>
