@@ -17,8 +17,11 @@ class Event < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   # ==================メソッド=====================================
-  # ◆カレンダー：gem simple_calendarでは"start_time"ベースでカレンダーのdayに入るため、今回はdateカラムをstart_timeに設定する
+  # ◆カレンダー：gem simple_calendarでは"start_time"と"end_time"ベースでカレンダーのdayに入る。今回は日付と時間の入力を分けており、時間カラムには今日に日付が入ってしまうため、simple_calendarの仕様踏まえて明示的にstart_timeとend_timeを日付カラムの日にちに設定しなければならない。そのため開始時間と終了時間の命名をかぶらないようにbegin_timeとfinish_timeにした。
   def start_time
+    date
+  end
+  def end_time
     date
   end
 

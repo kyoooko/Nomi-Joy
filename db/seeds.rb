@@ -6,8 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-# ◆ユーザー(全10名)
+# ◆ユーザー(10名)
 User.create!(name:"テストユーザー", email: "test1@test.co.jp", password: "testuser", nomi_joy_id:"nomijoy1", belongs: "オーシャンティック航空（株） 東自損3課", position: "副主任",image:File.open("./app/assets/images/ajisai.JPG", ?r),nearest_station:"吉祥寺", can_drink: true, favolite:"ワイン、ハイボール、スパイスカレー",unfavolite:"焼酎、胡麻豆腐", introduction:"2年目のテストユーザーです。白ワインが好きです！よろしくお願いいたします。")
 
 User.create!(name:"加藤真美", email: "test2@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy2", belongs: "オーシャンティック航空（株） 東自損3課", position: "",image:File.open("./app/assets/images/torii.JPG", ?r),nearest_station:"清瀬", can_drink: true, favolite:"中華、韓国料理",unfavolite:"えび", introduction:"新入社員の加藤です。学生時代はバレーボール部に所属していました。よろしくお願いします。")
@@ -78,7 +77,7 @@ DirectMessage.create!(user_id:1, room_id:1, message: "承知致しました。�
 #◆ノミカイ１（カンジ：user1、参加メンバー：user1~3,5、お店：restaurant1)
 Restaurant.create!(user_id: 1,name:"上海庭 九段南店",address:"〒102-0074  東京都千代田区九段南3-2-12 上海庭ビル1～3F ＪＲ中央線 市ヶ谷駅 徒歩8分",access:"東京メトロ東西線九段下駅徒歩５分",url:"https://r.gnavi.co.jp/e263700/",shop_image:"shanhaitei.png",tel:"050-3490-6986",opentime:"月～土 ランチ 11:00～15:00 ディナー 17:00～22:00",holiday:"年中無休
 年末年始のみお休みを頂きます。")
-Event.create!(restaurant_id:1,user_id:1,name:"2020年3課暑気払い",date:"2020-07-28 00:00:00",begin_time:"2020-07-28 18:00:00",end_time:"2020-07-28 21:00:00",memo:"締めは林さんにお願いする。お店に1名欠席の連絡。最初の挨拶→林課長、中締め→大野課長代理",progress_status:0)
+Event.create!(restaurant_id:1,user_id:1,name:"2020年3課暑気払い",date:"2020-07-28 00:00:00",begin_time:"2020-07-28 18:00:00",finish_time:"2020-07-28 21:00:00",memo:"締めは林さんにお願いする。お店に1名欠席の連絡。最初の挨拶→林課長、中締め→大野課長代理",progress_status:0)
 EventUser.create!(user_id:1,event_id:1,fee:4000,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:2,event_id:1,fee:3500,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:3,event_id:1,fee:4000,fee_status:false,deleted_at:"")
@@ -87,7 +86,7 @@ EventUser.create!(user_id:5,event_id:1,fee:4500,fee_status:true,deleted_at:"2020
 
 # ◆ノミカイ２（カンジ：user2、参加メンバー：user1,2,5,6、お店：restaurant2)
 Restaurant.create!(user_id: 2,name:"魚民 市ヶ谷駅前店",address:"〒162-0844  東京都新宿区市谷八幡町2-1 DS市ヶ谷ビル8F",access:"地下鉄南北線 市ケ谷駅 徒歩2分",url:"https://r.gnavi.co.jp/hr6cjkc90000/",shop_image:"uotami.png",tel:"03-3268-6088",opentime:"月～木 16:00～翌1:00 金・土・祝前日 16:00～翌5:00 日・祝日 16:00～24:00",holiday:"無")
-Event.create!(restaurant_id:2,user_id:2,name:"野澤さん送別会",date:"2020-07-17 00:00:00",begin_time:"2020-07-17 18:30:00",end_time:"2020-07-17 21:00:00",memo:"吉田さんは19時から参加、花束と色紙を用意する。",progress_status:1)
+Event.create!(restaurant_id:2,user_id:2,name:"野澤さん送別会",date:"2020-07-17 00:00:00",begin_time:"2020-07-17 18:30:00",finish_time:"2020-07-17 21:00:00",memo:"吉田さんは19時から参加、花束と色紙を用意する。",progress_status:1)
 EventUser.create!(user_id:1,event_id:2,fee:3500,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:2,event_id:2,fee:3500,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:5,event_id:2,fee:4000,fee_status:true,deleted_at:"")
@@ -95,7 +94,7 @@ EventUser.create!(user_id:6,event_id:2,fee:4500,fee_status:true,deleted_at:"")
 
 # ◆ノミカイ３（カンジ：user1、参加メンバー：user1~6、お店：restaurant3)
 Restaurant.create!(user_id: 1,name:"KICHIRI 新宿",address:"〒160-0022  東京都新宿区新宿3-36-10 ミラザ新宿4F",access:"ＪＲ 新宿駅 中央東口 徒歩1分",url:"https://r.gnavi.co.jp/b441509/",shop_image:"kichiri.png",tel:"050-3464-0249",opentime:"月～金・日・祝日 17:00～23:00（L.O.22:00、ドリンクL.O.22:00）",holiday:"無")
-Event.create!(restaurant_id:3,user_id:1,name:"3課新人歓迎会",date:"2020-07-29 00:00:00",begin_time:"2020-07-29 19:00:00",end_time:"2020-07-29 21:00:00",memo:"新人さんに着任挨拶を依頼する、最初の挨拶→林課長、中締め→吉田課長代理",progress_status:2)
+Event.create!(restaurant_id:3,user_id:1,name:"3課新人歓迎会",date:"2020-07-15 00:00:00",begin_time:"2020-07-15 19:00:00",finish_time:"2020-07-15 21:00:00",memo:"新人さんに着任挨拶を依頼する、最初の挨拶→林課長、中締め→吉田課長代理",progress_status:2)
 EventUser.create!(user_id:1,event_id:3,fee:3000,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:2,event_id:3,fee:3500,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:3,event_id:3,fee:4000,fee_status:true,deleted_at:"")
@@ -106,7 +105,7 @@ EventUser.create!(user_id:6,event_id:3,fee:5500,fee_status:true,deleted_at:"")
 # ◆ノミカイ４（カンジ：user1、参加メンバー：user1~3、お店：restaurant4)
 Restaurant.create!(user_id: 1,name:"金沢乃家 九段下店",address:"〒102-0073  東京都千代田区九段北1-2-3 フナトビルB1",access:"地下鉄都営新宿線 半蔵門線 東西線 九段下駅 5番出口 徒歩1分",url:"https://r.gnavi.co.jp/a185700/",shop_image:"kanazawanoie.png",tel:"050-3476-2892",opentime:"月～金 ランチ 11:30～14:00／月～木 ディナー17:00～23:00／金
 17:00～23:00／土 17:00～22:00",holiday:"不定休日あり")
-Event.create!(restaurant_id:4,user_id:1,name:"大学ゼミ同期会",date:"2020-07-07 00:00:00",begin_time:"2020-07-07 18:00:00",end_time:"2020-07-07 20:00:00",memo:"コースが決まったらお店に連絡",progress_status:1)
+Event.create!(restaurant_id:4,user_id:1,name:"大学ゼミ同期会",date:"2020-07-06 00:00:00",begin_time:"2020-07-06 18:00:00",finish_time:"2020-07-06 20:00:00",memo:"コースが決まったらお店に連絡",progress_status:1)
 EventUser.create!(user_id:1,event_id:4,fee:4000,fee_status:true,deleted_at:"")
 EventUser.create!(user_id:7,event_id:4,fee:4000,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:8,event_id:4,fee:4000,fee_status:false,deleted_at:"")

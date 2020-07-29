@@ -6,7 +6,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.datetime :date, null: false
       t.datetime :begin_time, null: false
-      t.datetime :end_time, null: false
+      t.datetime :finish_time, null: false
       t.string :memo
       t.integer :progress_status, default: 0, null: false
 
