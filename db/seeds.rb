@@ -53,15 +53,15 @@ Relationship.create!(following_id:10,follower_id:1)
 # user1とuser10はお互いに申請していない
 
 # user2がマッチング（＝メンバーになっている）済み(user5,6(1は上記で作成済）)
-Relationship.create!(following_id:1,follower_id:5)
-Relationship.create!(following_id:5,follower_id:1)
-Relationship.create!(following_id:1,follower_id:6)
-Relationship.create!(following_id:6,follower_id:1)
+Relationship.create!(following_id:2,follower_id:5)
+Relationship.create!(following_id:5,follower_id:2)
+Relationship.create!(following_id:2,follower_id:6)
+Relationship.create!(following_id:6,follower_id:2)
 # user2が申請中(user3)
-Relationship.create!(following_id:1,follower_id:3)
+Relationship.create!(following_id:2,follower_id:3)
 # user2へ申請依頼あり(user7,8)
-Relationship.create!(following_id:7,follower_id:1)
-Relationship.create!(following_id:8,follower_id:1)
+Relationship.create!(following_id:7,follower_id:2)
+Relationship.create!(following_id:8,follower_id:2)
 
 # ◆Room
 Room.create!
