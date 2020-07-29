@@ -71,5 +71,4 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 * Rubocop
 
 ## ER図
-https://drive.google.com/file/d/1qWo_DcQI12CA0tIKWqu1P8B3I4GlSt2q/view?usp=sharing
-
+https://drive.google.com/file/d/1K2Qrs0czp6oltj0WGz1hlMRBMYsf_4XE/view?usp=sharing
