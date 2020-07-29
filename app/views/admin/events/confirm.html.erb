@@ -37,7 +37,7 @@
               </tr>
               <tr>
                 <th scope="row">時間</th>
-                <td class="nomal-font responsive-font-sm"><%= @event.begin_time.to_s(:time) %>&emsp;〜&emsp;<%= @event.end_time.to_s(:time) %></td>
+                <td class="nomal-font responsive-font-sm"><%= @event.begin_time.to_s(:time) %>&emsp;〜&emsp;<%= @event.finish_time.to_s(:time) %></td>
               </tr>
               <tr>
                 <th scope="row">場所</th>
@@ -67,7 +67,7 @@
           <%= f.hidden_field :name %>
           <%= f.hidden_field :date %>
           <%= f.hidden_field :begin_time %>
-          <%= f.hidden_field :end_time %>
+          <%= f.hidden_field :finish_time %>
           <%= f.hidden_field :restaurant_id %>
           <%= f.hidden_field :memo %>
           <div class="actions"> 

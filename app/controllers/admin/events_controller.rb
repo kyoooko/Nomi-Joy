@@ -323,7 +323,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :date, :begin_time, :end_time, :memo, :progress_status)
+    params.require(:event).permit(:name, :date, :begin_time, :finish_time, :memo, :progress_status)
   end
 
   # 自分がカンジでないノミカイはアクセス(URL検索含む）できないようにする
