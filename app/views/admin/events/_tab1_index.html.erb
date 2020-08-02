@@ -46,6 +46,10 @@
             <th scope="row">参加者</th>
             <td class="nomal-font"><%= today_event.event_users.count %>名&ensp;（欠席 <%= today_event.event_users.only_deleted.count %>名）</td>
           </tr>
+          <tr>
+          <th scope="row">メモ</th>
+          <td class="nomal-font responsive-font-sm"><%=  today_event.memo %></td>
+        </tr>
         </tbody>
       </table>
       <%# この箇所の画像は767px以上のみ表示 %>
