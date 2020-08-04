@@ -16,7 +16,7 @@
       <h1 class="heading__en">Edit ノミカイ</h1>
       <h3 class="heading__ja">ノミカイ編集</h3>
     </div>
-    <%= form_with model: @event,url: admin_event_path(@event.id), local: true do |f| %>
+    <%= form_with model: @event,url: admin_event_path(@event.id), local: true,class:"edit-nomikai-form" do |f| %>
       <table class="table table-borderless">
         <tbody>
           <tr>
