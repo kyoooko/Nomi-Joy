@@ -9,7 +9,8 @@
   </div>  
   <div class="body dm-body">
     <div class="heading dm-show-heading sticky-top">
-      <div class="heading__image"><%= link_to user_path(@user),class:"" do %><%= image_tag(image_url, fallback: "no_image.jpg", class:"responsive-dm-image") %><% end %></div>
+      <%# S3+Lambdaで表示 %>
+      <div class="heading__image"><%= link_to user_path(@user),class:"" do %><%= image_tag(@image_url, fallback: "no_image.jpg", class:"responsive-dm-image") %><% end %></div>
       <div class="heading__name"><%= link_to user_path(@user),style:"font-size:3rem" do %><%= @user.name %><% end %></div>
     </div>
     <div class="content dm-content">

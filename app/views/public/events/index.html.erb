@@ -71,7 +71,8 @@
                   <th scope="row">カンジ</th> 
                   <td class="d-inline-flex">
                     <div>
-                      <%= link_to user_path(@today_admin),class:"" do %><%= attachment_image_tag @today_admin, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %>
+                      <%# S3+Lambdaで表示 %>
+                      <%= link_to user_path(@today_admin),class:"" do %><%= image_tag(@image_url, fallback: "no_image.jpg", class:"small-image") %><% end %>
                     </div>&emsp;
                     <div class="nomal-font font-sm">
                       <%= @today_admin.belongs %>
