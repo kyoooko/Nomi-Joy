@@ -21,6 +21,14 @@ class Public::UsersController < ApplicationController
 
   def show
     @members = current_user.matchers
+    # 参照先のS3オブジェクトURLを作成
+    # リサイズ
+    @image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + @user.image_id + "-thumbnail."
+    # オリジナル
+    @image_url_original = "https://dmm-cloud-lesson10-image-files-original.s3-ap-northeast-1.amazonaws.com/store/" + @user.image_id 
+
+   
+
   end
 
   def edit
