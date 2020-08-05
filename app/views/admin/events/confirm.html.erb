@@ -7,11 +7,11 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <h2 class="">ノミカイをつくる</h2>
-      <h1 class="heading__en">確認画面</h1>
+      <h2 class="admin">ノミカイをつくる</h2>
+      <h1 class="heading__en admin">確認画面</h1>
     </div>
     <div class="content">
-      <div class="content__block--step-bar">
+      <div class="content__block--step-bar admin-table">
       <%# ステップバー（Bootstrap・見た目のみ） %>
       <div class="create-nomikai-stepbar">
         <ul class="bootstrapWizard form-wizard">
@@ -72,7 +72,7 @@
           <%= f.hidden_field :memo %>
           <div class="actions"> 
             <%= f.submit "つくる", class: "btn blue-btn" %>
-            <%= f.submit "戻る", name: :back, class: "btn white-btn" %>
+            <%= f.submit "戻る", name: :back, class: "btn admin-white-btn" %>
           </div> 
         <% end %>
       </div>

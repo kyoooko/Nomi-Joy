@@ -271,16 +271,17 @@
 }
 .event-add-member-form label,.event-create-member-form label{
   font-family: "MPLUS-Regular", "Yu Gothic", "游ゴシック", sans-serif !important;
+  color:#267594 !important;
 }
-@media (max-width: 767px) {
-  .event-create-member-form label{
-  font-size: 12px;
-  }
-  .event-create-member-form{
-    width: 50% !important;
+.event-add-member-form{
+  width: 50% !important;
     margin: 0 auto !important;
     display: flex;
     flex-direction: column;
+}
+@media (max-width: 767px) {
+  .event-add-member-form label{
+  font-size: 12px;
   }
 }
 // 編集ページ
@@ -302,6 +303,7 @@
 }
 .gurunavi-sm-btn{
 font-size: 8px !important;
+padding:1px !important;
 }
 @media (max-width: 1000px) {
   .choose-restaurant{
@@ -311,9 +313,21 @@ font-size: 8px !important;
   }
 }
 // step3
+// 一部参加者追加ページに合わせて記載
 .event-create-member-form {
   width:20%;
   margin-left: 40%;
+}
+@media (max-width: 767px) {
+  .event-create-member-form label{
+  font-size: 12px;
+  }
+  .event-create-member-form{
+    width: 50% !important;
+    margin: 0 auto !important;
+    display: flex;
+    flex-direction: column;
+  }
 }
 // step4
 .fee-form{

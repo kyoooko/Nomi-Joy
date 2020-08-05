@@ -1,5 +1,5 @@
 <%# 参加メンバー一覧(767px以上) %>
-<div class="content__block--participants mt-5"> 
+<div class="content__block--participants admin-table mt-5"> 
   <h2 class="block-hedding">参加者 <%= event.event_users.count %>名&ensp;（欠席 <%= event.event_users.only_deleted.count %>名）</h2>
   <table class="table members-table">
     <thead>

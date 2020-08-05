@@ -8,7 +8,7 @@
         <%= image_tag(image_url, fallback: "no_image.jpg", class:"small-image") %>
       <% end %>
     </div>
-    <div class="col-9">
+    <div class="col-9 admin">
         <strong>
           <%= link_to admin_user_path(notification.visitor) do %>
             <%= notification.visitor.name %>

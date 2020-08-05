@@ -13,8 +13,8 @@
           <%= message %>
         </div>
       <% end %>
-      <h1 class="heading__en">Add Member</h1>
-      <h3 class="heading__ja">メンバー追加</h3>
+      <h1 class="heading__en admin">Add Member</h1>
+      <h3 class="heading__ja admin">メンバー追加</h3>
     </div>
     <div class="content">
       <div class="content__block--add-event-user content__block ">
@@ -25,9 +25,9 @@
                 <tr class= "">
                   <td class="event-add-member-form">
                     <%= collection_check_boxes(:event_user, :ids, @unselected_members, :id, :name) %>
-                    <div class="actions d-flex justify-content-center mt-2"> 
-                      <%= f.submit "Next", class: "btn blue-btn btn-sm mr-1" %>
-                      <%= f.submit "Back", name: :back, class: "btn white-btn btn-sm" %>
+                    <div class="actions d-flex justify-content-center mt-5"> 
+                      <%= f.submit "Next", class: "btn blue-btn mr-1" %>
+                      <%= f.submit "Back", name: :back, class: "btn admin-white-btn" %>
                     </div> 
                   </td>
                 </tr>

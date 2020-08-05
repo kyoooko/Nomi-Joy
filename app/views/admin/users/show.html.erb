@@ -8,15 +8,15 @@
   <div class="body">
     <div class="heading">
       <% if  @user == current_user %>
-        <h1 class="heading__en">My page</h1>
-        <h3 class="heading__ja">マイページ</h3>
+        <h1 class="heading__en admin">My page</h1>
+        <h3 class="heading__ja admin">マイページ</h3>
       <% else %>
-        <h1 class="heading__en"><%= @user.name %></h1>
+        <h1 class="heading__en admin"><%= @user.name %></h1>
       <% end %>
     </div>
     <!-- 新規作成ボタン -->
     <%= render 'admin/events/create_event_button' %>
-    <div class="content content--mypage">
+    <div class="content content--mypage admin-table">
       <div class="content__block--mypage-image">
         <%= image_tag(@image_url, fallback: "no_image.jpg", class:"mypage-image") %>
       </div>

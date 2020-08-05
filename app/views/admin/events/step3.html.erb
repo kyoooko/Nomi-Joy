@@ -13,11 +13,11 @@
           <%= message %>
         </div>
       <% end %>
-      <h2 class="">ノミカイをつくる</h2>
-      <h1 class="heading__en">Step3</h1>
+      <h2 class="admin">ノミカイをつくる</h2>
+      <h1 class="heading__en admin">Step3</h1>
     </div>
     <div class="content">
-      <div class="content__block--step-bar">
+      <div class="content__block--step-bar admin-table">
         <h3>参加者選択</h3>
         <%# ステップバー（Bootstrap・見た目のみ） %>
         <div class="create-nomikai-stepbar">
@@ -40,8 +40,8 @@
                   <td class="event-create-member-form">
                     <%= collection_check_boxes(:event_user, :ids, @members, :id, :name) %>
                     <div class="actions d-flex justify-content-center mt-2"> 
-                      <%= f.submit "Next", class: "btn blue-btn btn-sm mr-1" %>
-                      <%= f.submit "Back", name: :back, class: "btn white-btn btn-sm" %>
+                      <%= f.submit "Next", class: "btn blue-btn mr-1" %>
+                      <%= f.submit "Back", name: :back, class: "btn admin-white-btn" %>
                     </div> 
                   </td>
                 </tr>

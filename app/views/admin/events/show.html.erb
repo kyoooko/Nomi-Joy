@@ -13,8 +13,8 @@
           <%= message %>
         </div>
       <% end %>
-      <h3 class="heading__event-date"><%= @event.date.to_s(:date) %>（<%= @day_of_the_week %>）</h3>
-      <h1 class="heading__event-name"><%= @event.name %></h1>
+      <h3 class="heading__event-date admin"><%= @event.date.to_s(:date) %>（<%= @day_of_the_week %>）</h3>
+      <h1 class="heading__event-name admin"><%= @event.name %></h1>
     </div>
     <!-- 新規作成ボタン -->
     <%= render 'admin/events/create_event_button' %>
