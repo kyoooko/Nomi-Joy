@@ -78,9 +78,9 @@ gem 'jquery-rails'
 gem 'devise'
 # 画像投稿
 gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
 # AmazonS3に画像をアップ
 gem 'refile-s3'
-gem "refile-mini_magick"
 # ページネーション
 gem 'kaminari', '~> 1.2.1'
 # デバッグ
