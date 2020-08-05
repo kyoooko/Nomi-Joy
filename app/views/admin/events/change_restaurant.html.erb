@@ -8,29 +8,29 @@
   <div class="body">
     <div class="heading">
       
-      <h1 class="heading__en">Chenge Restaurant</h1>
-      <h3 class="heading__ja">お店変更</h3>
+      <h1 class="heading__en admin">Chenge Restaurant</h1>
+      <h3 class="heading__ja admin">お店変更</h3>
     </div>
     <div class="content">
-      <div class="content__block--change-restaurant content__block">
+      <div class="content__block--change-restaurant content__block admin-table">
         <h3>お店を検索<span class="must">&emsp;*</span></h3>
-        <p>（例："魚金 新宿", &emsp;"イタリアン,新宿"）</p>
+        <p class="admin">（例："魚金 新宿", &emsp;"イタリアン,新宿"）</p>
         <%= form_with model: @event, url: admin_change_restaurant_path(@event), method: :get, local: true do |f| %>
           <%= text_field_tag :freeword %>
-          <%= submit_tag '検索',class: "" %>
+          <%= f.button type: "submit", class:"btn blue-btn btn-sm"  do %><i class="fas fa-search public-search-btn"></i><% end %>
           <% if @rests %>
             <% @rests.each do |rest| %>
               <p>
                 <%= radio_button_tag :restaurant, rest  %>
-                <%= image_tag(rest["image_url"]["shop_image1"], class: "restaurant-image") %>
-                <span class="restaurant-result responsive-font-sm"><%= rest["name"] %></span>
-                <%= link_to rest["url"], target: :_blank, class: "btn blue-btn btn-sm" do %>ぐるなびで見る<% end %>
+                <%= image_tag(rest["image_url"]["shop_image1"], class: "sm-restaurant-image") %>
+                <span class="restaurant-result responsive-font-sm admin"><%= rest["name"] %></span>
+                <%= link_to rest["url"], target: :_blank, class: "btn blue-btn gurunavi-sm-btn" do %>ぐるなびで見る<% end %>
               </p>
             <% end %>
           <% end %>
           <p class="step2-button">
             <%= f.submit "変更", name: :change, class: "btn blue-btn" %>
-            <%= f.submit "Back", name: :back, class: "btn white-btn" %>
+            <%= f.submit "Back", name: :back, class: "btn admin-white-btn" %>
           </p>
         <% end %>
       </div>

@@ -1,5 +1,5 @@
 <!-- 未払いメンバー一覧 -->
-<div class="content__block__unpaid-participants content__block">
+<div class="content__block__unpaid-participants content__block admin-table">
   <h2 class="block-hedding">集金中のメンバー</h2>
   <% if unpaying_event_users.with_deleted.present? %>
     <h2 class="block-hedding"><%= unpaying_event_users.with_deleted.count %>名</h2>
@@ -52,7 +52,7 @@
   <% end %>
 </div>
 <!-- メンバーごとの会費、支払いステータス変更 -->
-<div class="content__block__participants-fee-status">
+<div class="content__block__participants-fee-status admin-table">
   <h2 class="block-hedding">メンバーごとの会費・集金状況</h2>
   <table class="table">
     <thead>

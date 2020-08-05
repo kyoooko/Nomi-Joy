@@ -13,27 +13,27 @@
           <%= message %>
         </div>
       <% end %>
-      <h1 class="heading__en">Edit ノミカイ</h1>
-      <h3 class="heading__ja">ノミカイ編集</h3>
+      <h1 class="heading__en admin">Edit ノミカイ</h1>
+      <h3 class="heading__ja admin">ノミカイ編集</h3>
     </div>
-    <%= form_with model: @event,url: admin_event_path(@event.id), local: true,class:"edit-nomikai-form" do |f| %>
+    <%= form_with model: @event,url: admin_event_path(@event.id), local: true,class:"edit-nomikai-form admin-table" do |f| %>
       <table class="table table-borderless">
         <tbody>
           <tr>
-            <th scope="row">ノミカイ名<span class="must">&emsp;*</span></th>
-            <td class="nomal-font responsive-font-sm"><%= f.text_field :name, autofocus: true, autocomplete: "name", class:"create-event-form" %></td>
+            <th scope="row" class="w-25">ノミカイ名<span class="must">&emsp;*</span></th>
+            <td class="nomal-font responsive-font-sm"><%= f.text_field :name, autofocus: true, autocomplete: "name", class:"create-event-form admin" %></td>
           </tr>
           <tr>
-            <th scope="row">日にち</th>
-            <td class="nomal-font responsive-font-sm"><%= @event.date.to_s(:date_jp) %>&emsp;<span class="text-muted nomal-font　font-xs">※日にちは変更できません</span></td>
+            <th scope="row" class="w-25">日にち&emsp;&emsp;</th>
+            <td class="nomal-font responsive-font-sm"><%= f.date_field :date, autofocus: true, autocomplete: "date", class:"create-event-form admin" %></td>
           </tr>
           <tr>
-            <th scope="row">時間<span class="must">&emsp;*</span></th>
-            <td class="nomal-font responsive-font-sm"><%= f.time_field :begin_time, autofocus: true, autocomplete: "start_time", class:"create-event-form--time" %>&emsp;〜&emsp;<%= f.time_field :finish_time, autofocus: true, autocomplete: "finish_time", class:"create-event-form--time" %></td>
+            <th scope="row" class="w-25">時間<span class="must">&emsp;&emsp;*</span></th>
+            <td class="nomal-font responsive-font-sm"><%= f.time_field :begin_time, autofocus: true, autocomplete: "start_time", class:"create-event-form--time admin" %>&emsp;〜&emsp;<%= f.time_field :finish_time, autofocus: true, autocomplete: "finish_time", class:"create-event-form--time admin" %></td>
           </tr>
           <tr>
-            <th scope="row">メモ</th>
-            <td class="nomal-font responsive-font-sm"><%= f.text_area :memo, autofocus: true, autocomplete: "memo", class:"create-event-textarea" %></td>
+            <th scope="row" class="w-25">メモ&emsp;&emsp;</th>
+            <td class="nomal-font responsive-font-sm"><%= f.text_area :memo, autofocus: true, autocomplete: "memo", class:"create-event-textarea admin" %></td>
           </tr>
         </tbody>
       </table>

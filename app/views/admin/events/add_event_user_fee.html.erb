@@ -7,8 +7,8 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <h1 class="heading__en">Add Member &lt;Fee&gt; </h1>
-      <h3 class="heading__ja">メンバー追加 &lt;会費設定&gt;</h3>
+      <h1 class="heading__en admin">Add Member &lt;Fee&gt; </h1>
+      <h3 class="heading__ja admin">メンバー追加 &lt;会費設定&gt;</h3>
     </div>
     <div class="content">
       <div class="content__block--add-event-user-fee content__block">
@@ -20,15 +20,15 @@
                 <tr>
                   <td class="nomal-font">
                     <% @event_user_ids.each do |event_user_id| -%>
-                      <span class="fee-name nomal-font"><%= User.find(event_user_id).name %></span>&emsp;<%= text_field_tag "fees[]","",class:"fee-form" %>円<br>
+                      <span class="fee-name nomal-font admin"><%= User.find(event_user_id).name %></span>&emsp;<%= text_field_tag "fees[]","",class:"fee-form" %>円<br>
                     <% end -%>
                   </td>
                 </tr>
               </tbody>
             </table>
             <div class="actions"> 
-              <%= f.submit "確定", class: "btn blue-btn btn-sm" %>
-              <%= f.submit "Back", name: :back, class: "btn white-btn btn-sm" %>
+              <%= f.submit "追加", class: "btn blue-btn" %>
+              <%= f.submit "Back", name: :back, class: "btn admin-white-btn" %>
             </div> 
          <% end %>
       </div>

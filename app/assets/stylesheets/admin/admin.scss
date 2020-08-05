@@ -9,6 +9,14 @@
     color:$admin-main !important;
   }
 }
+.admin-white-btn{
+  background-color: $light-gray !important;
+  color:$admin-main !important;
+  &:hover{
+    background-color: $white-gray !important;
+    color: $admin-main !important;
+  }
+}
 /* ノミカイ新規作成ボタン（枝豆）*/
 .create-event{
   position:fixed;
@@ -42,16 +50,14 @@
   background-color: #aac4cf;
 }
 
-
  /* ベースカラー変更 */
  .admin{
   color:#267594 !important;
  }
-/* body見出しに下線 */
-// .heading{
-//   border-bottom: 1px solid #1b515c;
-//   padding-bottom: 5%;
-// }
+//  テーブル
+.admin-table th, .admin-table td, .admin-table h2, .admin-table h3, .admin-table h4{
+  color:#267594 !important;
+}
 
 
 

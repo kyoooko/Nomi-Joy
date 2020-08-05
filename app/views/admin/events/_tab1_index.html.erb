@@ -1,12 +1,12 @@
 <!-- 今日の飲み会 -->
-<div class="content__block--today content__block">
+<div class="content__block--today content__block admin-table">
   <h2 class="admin-block-hedding">今日のノミカイ</h2>
   <div class="row">
     <% if today_event.present? %>
       <table class="table table-borderless col-md-8">
         <tbody>
           <tr>
-            <th scope="row" class="">ノミカイ
+            <th scope="row">ノミカイ
             名</th>
             <td><%= link_to admin_event_path(today_event),class:"today-link nomal-font" do %><%= today_event.name %><% end %></td>
           </tr>
