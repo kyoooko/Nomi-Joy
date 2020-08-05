@@ -18,8 +18,11 @@
       </thead>
       <tbody>
         <% followers.each do |follower| %>
+          <%# 参照先のS3オブジェクトURLを作成 %>
+           <% image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + follower.image_id + "-thumbnail." %>
           <tr>
-            <th scope="row"><%= link_to user_path(follower),class:"" do %><%= attachment_image_tag follower, :image, format: 'jpeg',fallback: "no_image.jpg", class:"responsive-small-image" %><% end %></th>
+            <%# S3+Lambdaで表示 %>
+            <th scope="row"><%= link_to user_path(follower),class:"" do %><%= image_tag(image_url, fallback: "no_image.jpg", class:"responsive-small-image") %><% end %></th>
             <td style="width:25%"><%= link_to user_path(follower),class:"nomal-font font-sm" do %><%= follower.name %><% end %></td>
             <td class="nomal-font responsive-font-sm"><%= follower.belongs %><br><%= follower.position %></td>
             <td>
@@ -49,16 +52,20 @@
         </tr>
       </thead>
       <tbody>
-          <% followings.each do |following| %>
+        <% followings.each do |following| %>
+          <%# 参照先のS3オブジェクトURLを作成 %>
+          <% image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + following.image_id + "-thumbnail." %>
           <tr>
             <%# 申請中のユーザーはユーザー詳細ページにいけない %>
-            <th scope="row"><%= attachment_image_tag following, :image, format: 'jpeg',fallback: "no_image.jpg", class:"responsive-small-image" %></th>
+            <%# S3+Lambdaで表示 %>
+            <th scope="row"><%= image_tag(image_url, fallback: "no_image.jpg", class:"responsive-small-image") %></th>
             <td class="nomal-font font-sm" style="width:25%"><%= following.name %></td>
             <td class="nomal-font responsive-font-sm"><%= following.belongs %><br><%= following.position %></td>
             <td>
               <%# フォローボタン（非同期） %>
               <%= render "follow_button", member: following %>
             </td>
+          </tr>
         <% end %>
       </tbody>
     </table>

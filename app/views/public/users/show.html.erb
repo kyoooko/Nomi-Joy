@@ -22,23 +22,8 @@
     </div>
     <div class="content content--mypage">
       <div class="content__block--mypage-image">
-        <%# S3+Lambda %>
-        <p>リサイズ</p>
+        <%# S3+Lambdaで表示 %>
         <%= image_tag(@image_url, fallback: "no_image.jpg", class:"mypage-image") %>
-        <hr>
-        <P> オリジナル </p>
-        <%= image_tag(@image_url_original, fallback: "no_image.jpg", class:"mypage-image") %>
-        <hr>
-    
-
-
-
-    
-
-
-
-
-
       </div>
       <div class="content__block--data">
         <table class="table table-borderless">
