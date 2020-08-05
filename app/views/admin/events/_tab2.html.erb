@@ -19,8 +19,11 @@
     </thead>
     <tbody>
       <% event_users.each do |event_user| %>
+        <%# 参照先のS3オブジェクトURLを作成 %>
+        <% image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + event_user.user.image_id + "-thumbnail." %>
         <tr >
-          <td scope="row"><%= link_to admin_user_path(event_user.user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></td>
+          <%# S3+Lambdaで表示 %>
+          <td scope="row"><%= link_to admin_user_path(event_user.user),class:"" do %><%= image_tag(image_url, fallback: "no_image.jpg", class:"small-image") %><% end %></td>
           <td><%= link_to admin_user_path(event_user.user),class:"nomal-font" do %><%= event_user.user.name %><% end %></td>
           <td class="nomal-font"><%= event_user.user.belongs %></td>
           <td class="nomal-font"><%= event_user.user.position %></td>

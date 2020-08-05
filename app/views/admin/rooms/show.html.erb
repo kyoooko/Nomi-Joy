@@ -7,7 +7,8 @@
   </div>  
   <div class="body dm-body">
     <div class="heading dm-show-heading sticky-top">
-      <div class="heading__image"><%= link_to admin_user_path(@user),class:"" do %><%= attachment_image_tag @user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"responsive-dm-image" %><% end %></div>
+      <%# S3+Lambdaで表示 %>
+      <div class="heading__image"><%= link_to admin_user_path(@user),class:"" do %><%= image_tag(@image_url, fallback: "no_image.jpg", class:"responsive-dm-image") %><% end %></div>
       <div class="heading__name"><%= link_to admin_user_path(@user),style:"font-size:3rem" do %><%= @user.name %><% end %></div>
     </div>
     <!-- 新規作成ボタン -->

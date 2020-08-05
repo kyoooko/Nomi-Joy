@@ -18,7 +18,7 @@
     <%= render 'admin/events/create_event_button' %>
     <div class="content content--mypage">
       <div class="content__block--mypage-image">
-        <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "no_image.jpg", class:"mypage-image" %>
+        <%= image_tag(@image_url, fallback: "no_image.jpg", class:"mypage-image") %>
       </div>
       <div class="content__block--data">
         <table class="table table-borderless">
