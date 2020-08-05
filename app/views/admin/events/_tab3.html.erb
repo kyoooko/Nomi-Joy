@@ -16,6 +16,8 @@
       </thead>
       <tbody>
         <% unpaying_event_users.each do |unpaying_event_user| %>
+          <%# 参照先のS3オブジェクトURLを作成 %>
+          <% image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + unpaying_event_user.user.image_id + "-thumbnail." %>
           <tr>
             <div class="">
               <% if unpaying_event_user.deleted_at.nil? %>
@@ -24,7 +26,8 @@
                 <td><span class="badge badge-danger">欠席</span></td>
               <% end %>
             </div>
-            <td scope="row" class="participants-image"><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= attachment_image_tag unpaying_event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></td>
+            <%# S3+Lambdaで表示 %>
+            <td scope="row" class="participants-image"><%= link_to admin_user_path(unpaying_event_user.user.id),class:"" do %><%= image_tag(image_url, fallback: "no_image.jpg", class:"small-image") %><% end %></td>
             <td class="participants-name"><%= link_to admin_user_path(unpaying_event_user.user.id),class:"nomal-font responsive-font-sm" do %><%= unpaying_event_user.user.name %><% end %></td>
             <td class="nomal-font responsive-font-sm"><%= unpaying_event_user.fee %>円</td>
             <td class="event-users-fee-status_<%= unpaying_event_user.id %>">
@@ -63,14 +66,17 @@
       </tr>
     </thead>
     <tbody>
-        <% event_users.each do |event_user| %>
+      <% event_users.each do |event_user| %>
+        <%# 参照先のS3オブジェクトURLを作成 %>
+        <% image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + event_user.user.image_id + "-thumbnail." %>
         <tr>
           <% if event_user.deleted_at.nil? %>
             <td></td>
           <% else%>
             <td><span class="badge badge-danger">欠席</span></td>
           <% end %>
-          <td scope="row" class="participants-image"><%= link_to admin_user_path(event_user.user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></td>
+          <%# S3+Lambdaで表示 %>
+          <td scope="row" class="participants-image"><%= link_to admin_user_path(event_user.user),class:"" do %><%= image_tag(image_url, fallback: "no_image.jpg", class:"small-image") %><% end %></td>
           <td class="participants-name"><%= link_to admin_user_path(event_user.user),class:"nomal-font responsive-font-sm" do %><%= event_user.user.name %><% end %></td>
           <td class="event-users-fee_<%= event_user.id %> nomal-font">
             <%# 会員ごとの会費変更フォーム(非同期) %>
