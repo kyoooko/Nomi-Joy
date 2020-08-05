@@ -1,16 +1,16 @@
-<div class="content__block--calender">
+<div class="content__block--calender admin-calendar">
   <%# N+1問題の解消 %>
   <% events = events.includes([:restaurant]) %>
   <%= month_calendar events: events do |date, events| %>
     <%= date.day %>
     <% events.each do |event| %>
       <div class="calendar">
-        <p class="calendar__time nomal-font">
+        <p class="calendar__time nomal-font admin">
           <%= event.begin_time.to_s(:time)%> 〜 <%= event.finish_time.to_s(:time) %>
         </p>
         <p class="calendar__name"><%= link_to admin_event_path(event),class:"event-link nomal-font responsive-font-sm" do %><%= event.name%><% end %></p>
         <%= image_tag(event.restaurant.shop_image, class: "small-square-image") %>
-        <p class="calendar__restaurant nomal-font">＠<%= event.restaurant.name %></p>
+        <p class="calendar__restaurant nomal-font admin">＠<%= event.restaurant.name %></p>
       </div>
     <% end %>
   <% end %>
