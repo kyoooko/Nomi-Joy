@@ -25,7 +25,7 @@
     }
   }
 }
-// カレンダー
+// ******カレンダー**********************************
 .simple-calendar {
   .day {
   }
@@ -90,12 +90,10 @@
     text-decoration: none;
   }
 }
-// .day_of_the_week{
-  // background-color: #1b515c;
-  // &:first-child{
-  //   color: rgb(177, 74, 74) !important;
-  // }
-// }
+// カンジ側のカレンダー文字色
+.admin-calendar .calendar-title, .admin-calendar th, .admin-calendar .wday-1, .admin-calendar th, .admin-calendar .wday-2, .admin-calendar th, .admin-calendar .wday-3, .admin-calendar th, .admin-calendar .wday-4, .admin-calendar th, .admin-calendar .wday-5{
+  color:#267594 !important;
+}
 
 @media (max-width: 767px) {
   // カレンダー
@@ -116,6 +114,7 @@
     }
   }
 }
+// *************************************************
 // マップ
 .google-map{
   display: flex;
