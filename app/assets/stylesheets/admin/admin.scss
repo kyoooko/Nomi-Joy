@@ -20,22 +20,20 @@
 /* ノミカイ新規作成ボタン（枝豆）*/
 .create-event{
   position:fixed;
-  right:30px;
-  bottom:30px;
+  right:50px;
+  bottom:50px;
   z-index:99 !important;
 }
 .create-event-edamame{
-  width:220px;
-  height: 220px;
+  width:200px;
 }
 @media (max-width: 767px) {
   .create-event{
-    right:0;
-    bottom:0;
+    right:20px;
+    bottom:20px;
   }
   .create-event-edamame{
-    width:150px;
-    height: 150px;
+    width:130px;
   }
 }
 /* サイドバー、ヘッダー */

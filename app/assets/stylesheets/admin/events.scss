@@ -294,6 +294,10 @@
 }
 // 新規作成
 // step2
+// 背景が途切れてしまうための調整
+.content__block--step2{
+  margin-bottom: 40% !important;
+}
 .step2-gurunave,.step2-button{
   display: block;
   margin-top: 20px;
@@ -330,6 +334,10 @@ padding:1px !important;
   }
 }
 // step4
+// 背景が途切れてしまうための調整
+.content__block--step4{
+  margin-bottom: 30% !important;
+}
 .fee-form{
   width: 20%;
 }
