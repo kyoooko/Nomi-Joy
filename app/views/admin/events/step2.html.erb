@@ -36,7 +36,6 @@
         <%= form_with model: @event, url: admin_step2_path, local: true do |f| %>
           <%= text_field_tag :freeword %>
           <%= f.button type: "submit", class:"btn blue-btn btn-sm"  do %><i class="fas fa-search public-search-btn"></i><% end %>
-          <%#= submit_tag '検索',class: "" %>
           <span class="must">&emsp;*</span>
           <% if @rests %>
             <% @rests.each do |rest| %>
