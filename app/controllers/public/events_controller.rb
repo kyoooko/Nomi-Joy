@@ -32,6 +32,8 @@ class Public::EventsController < ApplicationController
     @admin = User.find(@event.user_id)
     # 曜日
     @day_of_the_week = %w(日 月 火 水 木 金 土)[@event.date.wday]
+    # 参照先のS3オブジェクトURLを作成
+    @image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + @admin.image_id + "-thumbnail." 
   end
 
   private
