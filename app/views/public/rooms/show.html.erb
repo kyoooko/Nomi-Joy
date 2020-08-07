@@ -8,6 +8,8 @@
     </div>
   </div>  
   <div class="body dm-body">
+    <!-- Go toカンジの部屋ボタン（767px以下のみ） -->
+    <%= render 'public/events/go_to_kanjino_heya_button' %>
     <div class="heading dm-show-heading sticky-top">
       <%# S3+Lambdaで表示 %>
       <div class="heading__image"><%= link_to user_path(@user),class:"" do %><%= image_tag(@image_url, fallback: "no_image.jpg", class:"responsive-dm-image") %><% end %></div>

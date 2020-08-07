@@ -24,7 +24,7 @@
 .body--logging-out{
   height:125vh;
 }
-/* go_to_カンジの部屋ボタン（767px以下）*/
+/* Go toカンジの部屋ボタン（767px以下のみ）*/
 .go_to_kanjino_heya{
   display: none;
 }
@@ -32,8 +32,8 @@
   .go_to_kanjino_heya{
     display: block;
     position:fixed;
-    right:10px;
-    bottom:20px;
+    right:20px;
+    bottom:30px;
     z-index:99 !important;
   }
   .go_to_kanjino_heya_icon{

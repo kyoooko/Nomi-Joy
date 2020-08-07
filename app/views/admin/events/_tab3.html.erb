@@ -78,7 +78,7 @@
           <%# S3+Lambdaで表示 %>
           <td scope="row" class="participants-image"><%= link_to admin_user_path(event_user.user),class:"" do %><%= image_tag(image_url, fallback: "no_image.jpg", class:"small-image") %><% end %></td>
           <td class="participants-name"><%= link_to admin_user_path(event_user.user),class:"nomal-font responsive-font-sm" do %><%= event_user.user.name %><% end %></td>
-          <td class="event-users-fee_<%= event_user.id %> nomal-font">
+          <td class="event-users-fee_<%= event_user.id %>">
             <%# 会員ごとの会費変更フォーム(非同期) %>
             <%= render 'admin/event_users/event_users_fee', event_user: event_user %>
           </td>

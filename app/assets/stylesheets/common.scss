@@ -77,8 +77,11 @@
   }
 }
 // ボタン
-.small-btn{
-  font-size: 12px;
+@media (max-width: 767px){
+  .btn-xs{
+    font-size: 8px !important;
+    padding: 2px !important;
+  }
 }
 .right-btn{
   float:right;
