@@ -54,10 +54,13 @@
 <div class="content__block--participants-responsive mt-5"> 
   <h2 class="block-hedding">メンバー一覧</h2>
   <% event_users.each do |event_user| %>
+    <%# 参照先のS3オブジェクトURLを作成 %>
+    <% image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + event_user.user.image_id + "-thumbnail." %>
     <table class="table table-borderless font-sm">        
       <tbody>
         <tr>
-          <th scope="row"  class="p-0"><%= link_to admin_user_path(event_user),class:"" do %><%= attachment_image_tag event_user.user, :image, format: 'jpeg',fallback: "no_image.jpg", class:"small-image" %><% end %></th>
+          <%# S3+Lambdaで表示 %>
+          <th scope="row" class="p-0 member-image"><%= link_to admin_user_path(event_user),class:"" do %><%= image_tag(image_url, fallback: "no_image.jpg", class:"small-image") %><% end %></th>
           <th scope="row"></th>
           <td  class="p-0"><%= link_to admin_user_path(event_user),class:"nomal-font font-md" do %><%= event_user.user.name %><% end %><br><br><p class="nomal-font font-xs"><%= event_user.user.belongs %>&emsp;<%= event_user.user.position %></p></td>
         </tr>
