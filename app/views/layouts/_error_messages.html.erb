@@ -4,14 +4,15 @@
 
 <% if model.errors.any? %>
     <%# alert-warningが黄色背景のBootstrap %>
-  <div class="error_explanation alert-warning">
-    <h2 class="error-prohibited">
-      <%= pluralize(model.errors.count, "error") %> prohibited this user from being saved:
-    </h2>
-    <div class="alert">
-      <ul>
+  <div class="error_explanation alert-warning" style="background-color:#F8D7DA; padding:5px; margin-bottom:10px; border-radius:10px">
+    <%# <h2 class="error-prohibited"> %>
+      <%#= pluralize(model.errors.count, "error") %> 
+      <%# prohibited this user from being saved: %>
+    <%# </h2> %>
+    <div class="alert" style="margin-bottom:0;">
+      <ul style="list-style: none;">
         <% model.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li style="color:rgb(114, 31, 31) !important;"><%= message %></li>
         <% end %>
       </ul>
     </div>

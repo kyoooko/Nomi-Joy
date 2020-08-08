@@ -23,6 +23,8 @@ module NomiJoy
     config.beginning_of_week = :sunday
     # 通知機能の「○分前」を日本語表示にするため
     config.i18n.default_locale = :ja
+    # config/locales以下のディレクトリ内にある全てのymlファイルを読み込む（エラーメッセージの日本語化で使用）
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
   end
 end
 

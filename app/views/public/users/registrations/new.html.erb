@@ -13,6 +13,7 @@
     <div class="content">
       <div class="content__block--new_user">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%# エラーメッセージ %>
           <%= render "public/users/shared/error_messages", resource: resource %>
           <div class="field">
             <%= f.label :name %><span class="must">&emsp;*</span><br />
