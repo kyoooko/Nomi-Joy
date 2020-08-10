@@ -21,8 +21,14 @@
       <%= form_with model: @user, local: true do |f| %>
         <div class="content row">
           <div class="col-sm-4">
-            <div class="heading__image"><%= image_tag(@image_url, fallback: "no_image.jpg", class:"mypage-edit-image") %></div>
-            <%= f.attachment_field :image, class:"mypage-edit-image-field" %>
+            <% if @user.image.present? %>
+              <%# S3+Lambdaで表示 %>
+              <%= image_tag(@image_url, fallback: "no_image.jpg", class:"mypage-edit-image") %></div>
+                <%= f.attachment_field :image, class:"mypage-edit-image-field" %>
+            <% else %>
+              <%= image_tag("no_image.jpg", class: "mypage-edit-image") %>
+              <%= f.attachment_field :image, class:"mypage-edit-image-field" %>
+            <% end %>
           </div>
           <div class="content__block--data col-sm-8">
             <table class="table table-borderless">

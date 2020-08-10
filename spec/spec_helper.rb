@@ -15,10 +15,11 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'capybara/rspec'
 RSpec.configure do |config|
-  config.include Capybara::DSL
+  ENV['RAILS_ENV'] = 'test'
+  # config.include Capybara::DSL
   config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
-    # driven_by :rack_test
+    # driven_by :selenium_chrome_headless
+    driven_by :rack_test
   end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
   before_action :check_guest, only: :update
-  before_action :set_image_url, only: [:show, :edit]
+  before_action :set_image_url, only: [:show, :edit, :update]
 
   def index
     # ================タブ１===============
@@ -57,7 +57,9 @@ class Public::UsersController < ApplicationController
   # 参照先のS3オブジェクト（リサイズ済み）URLを作成
   def set_image_url
     @user = User.find(params[:id])
-    @image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + @user.image_id + "-thumbnail."
+    if @user.image.present?
+      @image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + @user.image_id + "-thumbnail."
+    end
   end
 
   def check_guest
