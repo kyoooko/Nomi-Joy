@@ -28,7 +28,9 @@ class Public::UsersController < ApplicationController
   end
 
   def update
+    # binding.pry
     if @user.update(user_params)
+      sleep(3) # S3への画像反映のタイムラグを考慮して3秒待機
       flash[:success] = "マイページの情報が更新されました"
       redirect_to user_path(current_user.id)
     else
@@ -38,9 +40,8 @@ class Public::UsersController < ApplicationController
   end
 
   private
-
   def user_params
-    params.require(:user).permit(:name, :belongs, :position, :email, :nomi_joy, :nearest_station, :can_drink, :favolite, :unfavolite, :introduction, :image)
+    params.require(:user).permit(:name, :belongs, :position, :email, :nomi_joy_id, :nearest_station, :can_drink, :favolite, :unfavolite, :introduction, :image)
   end
 
   def ensure_correct_user
