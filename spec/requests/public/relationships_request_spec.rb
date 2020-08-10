@@ -1,4 +1,4 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe "Public::Relationships", type: :request do
-end
+# RSpec.describe "Public::Relationships", type: :request do
+# end

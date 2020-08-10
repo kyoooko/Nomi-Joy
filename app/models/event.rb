@@ -5,7 +5,7 @@ class Event < ApplicationRecord
     validates :name
     validates :date
     validates :begin_time
-    validates :end_time
+    validates :finish_time
   end
 
   # ==============アソシエーション ================================

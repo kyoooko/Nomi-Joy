@@ -7,12 +7,6 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <%# フラッシュメッセージ %>
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>">
-          <%= message %>
-        </div>
-      <% end %>
       <h2 class="admin">ノミカイをつくる</h2>
       <h1 class="heading__en admin">Step1</h1>
     </div>
@@ -32,6 +26,8 @@
       </div>
       <div class="content__block--step1 content__block">
         <%= form_with model: @event, url: admin_step2_path,  local: true do |f| %>
+        <%# エラーメッセージ %>
+          <%= render 'layouts/error_messages', model: f.object %>
           <table class="table table-borderless">
             <tbody>
               <tr>

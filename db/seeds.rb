@@ -74,6 +74,7 @@ Entry.create!(user_id: 5, room_id: 1)
 DirectMessage.create!(user_id:5, room_id:1, message: "お疲れ様です。8/17の暑気払ですが、子供の関係でいけなくなってしました・・・残念ですが欠席でお願いします。" )
 DirectMessage.create!(user_id:1, room_id:1, message: "承知致しました。ご連絡ありがとうございます。" )
 
+# 追記：以下、dateカラムははsimple_calendar考慮しDateTime型にしたがDate型のままでも問題なかった
 #◆ノミカイ１（カンジ：user1、参加メンバー：user1~3,5、お店：restaurant1)
 Restaurant.create!(user_id: 1,name:"上海庭 九段南店",address:"〒102-0074  東京都千代田区九段南3-2-12 上海庭ビル1～3F ＪＲ中央線 市ヶ谷駅 徒歩8分",access:"東京メトロ東西線九段下駅徒歩５分",url:"https://r.gnavi.co.jp/e263700/",shop_image:"shanhaitei.png",tel:"050-3490-6986",opentime:"月～土 ランチ 11:00～15:00 ディナー 17:00～22:00",holiday:"年中無休
 年末年始のみお休みを頂きます。")

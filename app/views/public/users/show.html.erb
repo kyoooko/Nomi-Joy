@@ -24,9 +24,13 @@
     </div>
     <div class="content content--mypage">
       <div class="content__block--mypage-image">
-        <%# S3+Lambdaで表示 %>
-        <%= image_tag(@image_url, fallback: "no_image.jpg", class:"mypage-image") %>
-      </div>
+        <% if @user.image.present? %>
+          <%# S3+Lambdaで表示 %>
+          <%= image_tag(@image_url, fallback: "no_image.jpg", class:"mypage-image") %>
+        <% else %>
+          <%= image_tag("no_image.jpg", class: "mypage-image") %>
+        <% end %>
+      </div>  
       <div class="content__block--data">
         <table class="table table-borderless">
           <tbody>
