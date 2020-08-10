@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
   before_action :check_guest, only: :update
-  before_action :set_image_url, only: [:show, :edit, :update]
+  before_action :set_image_url, only: [:show, :edit]
 
   def index
     # ================タブ１===============
@@ -28,12 +28,14 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    # binding.pry
     if @user.update(user_params)
       sleep(3) # S3への画像反映のタイムラグを考慮して3秒待機
       flash[:success] = "マイページの情報が更新されました"
       redirect_to user_path(current_user.id)
     else
+      if @user.image.present?
+        @image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + @user.image_id + "-thumbnail."
+      end
       flash[:danger] = "正しい情報を入力してください"
       render :edit
     end

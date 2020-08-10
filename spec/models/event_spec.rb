@@ -16,9 +16,6 @@ RSpec.describe Event, type: :model do
         event.name = ''
         event.valid?
         expect(event.errors[:name]).to include("を入力してください")
-        # within '.alert_danger' do
-        #   expect(page).to have_content '必要情報を入力してください'
-        # end
       end
     end
 
@@ -31,9 +28,6 @@ RSpec.describe Event, type: :model do
         event.date = ''
         event.valid?
         expect(event.errors[:date]).to include("を入力してください")
-        # within '.alert_danger' do
-        #   expect(page).to have_content '必要情報を入力してください'
-        # end
       end
     end
 
@@ -46,9 +40,6 @@ RSpec.describe Event, type: :model do
         event.begin_time = ''
         event.valid?
         expect(event.errors[:begin_time]).to include("を入力してください")
-        # within '.alert_danger' do
-        #   expect(page).to have_content '必要情報を入力してください'
-        # end
       end
     end
 
@@ -61,9 +52,6 @@ RSpec.describe Event, type: :model do
         event.finish_time = ''
         event.valid?
         expect(event.errors[:finish_time]).to include("を入力してください")
-        # within '.alert_danger' do
-        #   expect(page).to have_content '必要情報を入力してください'
-        # end
       end
     end
   end

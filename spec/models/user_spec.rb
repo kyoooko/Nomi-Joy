@@ -7,8 +7,6 @@ RSpec.describe User, type: :model do
     # 備忘録：createはDBに保存されるがbuildは保存されない
     let(:user) { create(:user) }
     let(:user_2) { create(:user) }
-    # 下記のようにも書ける
-    # let(:user) { FactoryBot.create(:user, name: 'ユーザー1', email: 'test1@test.co.jp') }
 
     context 'nameカラム' do
       let(:test_user) { user }
@@ -20,9 +18,6 @@ RSpec.describe User, type: :model do
         test_user.name = ''
         test_user.valid?
         expect(test_user.errors[:name]).to include("を入力してください")
-        # within '#error_explanation' do
-        #   expect(page).to have_content 'を入力してください'
-        # end
       end
     end
 
@@ -37,9 +32,6 @@ RSpec.describe User, type: :model do
         test_user.email = ''
         test_user.valid?
         expect(test_user.errors[:email]).to include("を入力してください")
-        # within '#error_explanation' do
-        #   expect(page).to have_content 'を入力してください'
-        # end
       end
 
       it '一意であること' do
@@ -60,9 +52,6 @@ RSpec.describe User, type: :model do
         test_user_2.save
         test_user_2.valid?
         expect(test_user_2.errors[:email]).to include("はすでに存在します")
-        # within '#error_explanation' do
-        #   expect(page).to have_content 'はすでに存在します'
-        # end
       end
     end
 
@@ -80,9 +69,6 @@ RSpec.describe User, type: :model do
         test_user.nomi_joy_id = Faker::Lorem.characters(number: 1)
         test_user.valid?
         expect(test_user.errors[:nomi_joy_id]).to include("は6文字以上で入力してください")
-        # within '#error_explanation' do
-        #   expect(page).to have_content 'は6文字以上で入力してください'
-        # end
       end
       it '半角英数字であること' do
         test_user.nomi_joy_id = 'ノミジョイ！ID'
@@ -92,9 +78,6 @@ RSpec.describe User, type: :model do
         test_user.nomi_joy_id = 'ノミジョイ！ID'
         test_user.valid?
         expect(test_user.errors[:nomi_joy_id]).to include("は不正な値です")
-        # within '#error_explanation' do
-        #   expect(page).to have_content 'は不正な値です'
-        # end
       end
     end
 
@@ -108,9 +91,6 @@ RSpec.describe User, type: :model do
         test_user.password = ''
         test_user.valid?
         expect(test_user.errors[:password]).to include("を入力してください")
-        # within '#error_explanation' do
-        #   expect(page).to have_content 'を入力してください'
-        # end
       end
       it '6文字以上であること' do
         test_user.password = Faker::Lorem.characters(number: 1)
@@ -120,30 +100,12 @@ RSpec.describe User, type: :model do
         test_user.password = Faker::Lorem.characters(number: 1)
         test_user.valid?
         expect(test_user.errors[:password]).to include("は6文字以上で入力してください")
-        # within '#error_explanation' do
-        #   expect(page).to have_content 'は6文字以上で入力してください'
-        # end
-      end
-      it '半角英数字であること' do
-        test_user.password = 'パスワードパスワード'
-        is_expected.to eq false
-      end
-      it '半角英数字以外の場合はエラーが出る' do
-        test_user.password = 'パスワードパスワード'
-        test_user.valid?
-        expect(test_user.errors[:password]).to include("は不正な値です")
-        # within '#error_explanation' do
-        #   expect(page).to have_content 'は不正な値です'
-        # end
       end
       it 'パスワードが不一致' do
         test_user.password = "password1"
         test_user.password_confirmation = "password2"
         test_user.valid?
         expect(test_user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
-        # within '#error_explanation' do
-        #   expect(page).to have_content 'の入力が一致しません'
-        # end
       end
     end
   end
