@@ -83,12 +83,11 @@ RSpec.describe "Public::Users", type: :request do
       end
       it "更新が成功すること" do
         put user_path user.id, user: user_params
-        binding.pry
         expect(user.reload.name).to eq "編集後ユーザー名"
       end
       it "ユーザー編集ページへリダイレクトすること" do
         put user_path user.id, user: user_params
-        expect(response).to redirect_to edit_user_path user.id
+        expect(response).to redirect_to user_path user.id
       end
     end
 
@@ -100,101 +99,67 @@ RSpec.describe "Public::Users", type: :request do
       end
     end
   end
+  
+  # ========================================================
 
-  # describe "ログインページ(GET /sign_in)が" do
-  #   it '正しく表示されること' do
-  #     get new_user_session_path
-  #     expect(response).to have_http_status(200)
-  #   end
-  # end
+  describe "ログインページ(GET /sign_in)が" do
+    it '正しく表示されること' do
+      get new_user_session_path
+      expect(response).to have_http_status(200)
+    end
+  end
 
-  # describe "ログイン(POST /sign_in)に" do
-  #   # 存在する(DBに登録されている)ユーザー
-  #   let (:authenticated_user) { create(:user) }
-  #   # 存在しない(DBに登録されていない)ユーザー
-  #   let (:unauthenticated_user) { build(:user) }
-  #   let (:req_params) { { session_form: { email: user.email, password: user.password } } }
-  #   # , remember_me:'0'
-  #   # let (:req_params) { attributes_for(:user) }
+  describe "ログイン(POST /sign_in)に" do
+    # 存在する(DBに登録されている)ユーザー
+    let (:authenticated_user) { create(:user) }
+    # 存在しない(DBに登録されていない)ユーザー
+    let (:unauthenticated_user) { build(:user) }
+    let (:req_params) { { user: { email: user.email, password: user.password } } }
 
-  #    # *****通らない*******************************************:
-  #   describe '存在するユーザでログインすると' do
-  #     let (:user) { authenticated_user }
-  #     it '成功すること' do
-  #       get new_user_session_path
-  #       # login_as user
-  #       post user_session_path, params: req_params
-  #       # post user_session_path, params: { user: req_params }
-  #       # sign_in user
-  #       # binding.pry
-  #       expect(response).to have_http_status(302)
-  #     end
-  #     # *****************************************************:
-  #     # *****通らない*******************************************:
-  #     it 'ログイン後トップページにリダイレクトされること' do
-  #       get new_user_session_path
-  #       login_as user
-  #       # sign_in user
-  #       # post user_session_path, params: req_params
-  #       expect(response).to redirect_to events_path
-  #     end
-  #     # *****************************************************:
-  #   end
+    context '存在するユーザでログインすると' do
+      let (:user) { authenticated_user }
+      it '成功すること' do
+        post user_session_path, params: req_params
+        expect(response).to have_http_status(302)
+      end
+      it 'ログイン後トップページにリダイレクトされること' do
+        post user_session_path, params: req_params
+        expect(response).to redirect_to events_path
+      end
+    end
 
-  #   describe '存在しないユーザでログインすると' do
-  #     let (:user) { unauthenticated_user }
-  #     it '失敗すること' do
-  #       post user_session_path, params: req_params
-  #       expect(response).to have_http_status(200)
-  #     end
-  #     # ********通らない************************************:
-  #     # (リダイレクトのコード書いてないからできない？)
-  #     it 'ログインページにリダイレクトされること' do
-  #       post user_session_path, params: req_params
-  #       expect(response).to redirect_to new_user_session_path
-  #     end
-  #     # *****************************************************:
-  #     it 'エラー（フラッシュ）メッセージが表示されること' do
-  #       post user_session_path, params: req_params
-  #       expect(response.body).to include 'メールアドレスかパスワードが違います'
-  #       # expect(page).to have_selector '.alert_danger',text:'メールアドレスかパスワードが違います'
-  #     end
-  #   end
-  # end
+    context '存在しないユーザでログインすると' do
+      let (:user) { unauthenticated_user }
+      it '失敗すること' do
+        post user_session_path, params: req_params
+        expect(response).to have_http_status(200)
+      end
+      it 'エラー（フラッシュ）メッセージが表示されること' do
+        post user_session_path, params: req_params
+        expect(response.body).to include 'メールアドレスかパスワードが違います。'
+      end
+    end
+  end
 
-  # describe "新規登録ページ(GET /sign_up)が" do
-  #   it "正しく表示されること" do
-  #     get new_user_registration_path
-  #     expect(response).to have_http_status(200)
-  #   end
-  # end
+  describe "新規登録ページ(GET /sign_up)が" do
+    it "正しく表示されること" do
+      get new_user_registration_path
+      expect(response).to have_http_status(200)
+    end
+  end
 
-  # describe "新規登録(POST /sign_up)で" do
-  #   # 存在しない(DBに登録されていない)ユーザー
-  #   let (:new_user) { FactoryBot.build(:user) }
-  #   let (:req_params) { { session_form: { email: user.email, password: user.password } } }
+  describe "新規登録(POST /sign_up)で" do
+    let (:req_params) { { user: { name: '新規ユーザー', email: 'test@test.co.jp', nomi_joy_id: 'nomijoy', password: 'password', password_confirmation: 'password' } } }
 
-  #   describe '全て正しい情報を入力した場合' do
-  #     let (:user) { new_user }
-  #     # *****通らない**************************************:
-  #     it '登録に成功すること' do
-  #       post user_registration_path, params: req_params
-  #       expect(response).to have_http_status(302)
-  #     end
-  #     # *****************************************************
-  #      # *****通らない**************************************:
-  #     it 'ログイン後トップページにリダイレクトされること' do
-  #       post user_session_path, params: req_params
-  #       expect(response).to redirect_to events_path
-  #     end
-  #     # *****************************************************:
-  #   end
-  # end
-
-
-
-
-
-
-
+    context '全て正しい情報を入力した場合' do
+      it '登録に成功すること' do
+        post user_registration_path, params: req_params
+        expect(response).to have_http_status(302)
+      end
+      it 'トップページにリダイレクトされること' do
+        post user_registration_path, params: req_params
+        expect(response).to redirect_to events_path
+      end
+    end
+  end
 end

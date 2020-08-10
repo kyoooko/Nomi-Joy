@@ -8,84 +8,77 @@
   <!-- Go toカンジの部屋ボタン（767px以下のみ） -->
   <%= render 'public/events/go_to_kanjino_heya_button' %>
   <div class="body">
+    <%= form_with model: @user, local: true do |f| %>
+    <%# エラーメッセージを上部に表示するため、formをヘッダーより上に記載) %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <div class="heading">
-        <%# フラッシュメッセージ %>
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>">
-            <%= message %>
-          </div>
-        <% end %>
         <h1 class="heading__en">My page &lt;Edit&gt;</h1>
         <h3 class="heading__ja">マイページ &lt;編集&gt;</h3>
       </div>
-      <%= form_with model: @user, local: true do |f| %>
-        <div class="content row">
-          <div class="col-sm-4">
-            <div class="heading__image">
-              <% if @user.image.present? %>
-                <%# S3+Lambdaで表示 %>
-                <%= image_tag(@image_url, fallback: "no_image.jpg", class:"mypage-edit-image") %>
-                  <%= f.file_field :image, class:"mypage-edit-image-field" %>
-                  <%#= f.attachment_field :image, class:"mypage-edit-image-field" %>
-              <% else %>
-                <%= image_tag("no_image.jpg", class: "mypage-edit-image") %>
-                <%#= f.attachment_field :image, class:"mypage-edit-image-field" %>
-                <%= f.file_field :image, class:"mypage-edit-image-field" %>
-              <% end %>
-             </div>
-          </div>
-          <div class="content__block--data col-sm-8">
-            <table class="table table-borderless">
-              <tbody>
-                <tr>
-                  <th scope="row">氏名<span class="must">&emsp;*</span></th>
-                  <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class:"mypage-edit-form" %></td>
-                </tr>
-                <tr>
-                  <th scope="row">会社名・所属</th>
-                  <td><%= f.text_field :belongs, autofocus: true, autocomplete: "belongs", class:"mypage-edit-form" %></td>
-                </tr>
-                <tr>
-                  <th scope="row">役職</th>
-                  <td><%= f.text_field :position, autofocus: true, autocomplete: "position", class:"mypage-edit-form" %></td>
-                </tr>
-                <tr>
-                  <th scope="row">Email<span class="must">&emsp;*</span></th>
-                  <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"mypage-edit-form" %></td>
-                </tr>
-                <tr>
-                  <th scope="row">ノミジョイ！ID<br><em>(6文字以上 半角英数字)</em><span class="must">&emsp;*</span></th>
-                  <td><%= f.text_field :nomi_joy_id, autofocus: true, autocomplete: "nomi_joy_id", class:"mypage-edit-form" %></td>
-                </tr>
-                <tr>
-                  <th scope="row">最寄駅</th>
-                  <td><%= f.text_field :nearest_station, autofocus: true, autocomplete: "nearest_station", class:"mypage-edit-form" %></td>
-                </tr>
-                <tr>
-                  <th scope="row">お酒を飲むか</th>
-                  <td><%= f.radio_button :can_drink, true %>飲む&emsp;<%= f.radio_button :can_drink, false %> 飲まない
-                </tr>
-                <tr>
-                  <th scope="row">好きな料理・お酒</th>
-                  <td><%= f.text_field :favolite, autofocus: true, autocomplete: "favolite", class:"mypage-edit-form" %></td>
-                </tr>
-                <tr>
-                  <th scope="row">苦手な料理・お酒</th>
-                  <td><%= f.text_field :unfavolite, autofocus: true, autocomplete: "unfavolite", class:"mypage-edit-form" %></td>
-                </tr>
-                <tr>
-                  <th scope="row">自己紹介</th>
-                  <td><%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class:"mypage-edit-textarea" %></textarea></td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="actions"> 
-              <%= f.submit "Update", class: "btn mypage-btn green-btn" %>
-            </div> 
-          </div>
+      <div class="content row">
+        <div class="col-sm-4">
+          <div class="heading__image">
+            <% if @user.image.present? %>
+              <%# S3+Lambdaで表示 %>
+              <%= image_tag(@image_url, fallback: "no_image.jpg", class:"mypage-edit-image") %>
+                <%= f.attachment_field :image, class:"mypage-edit-image-field" %>
+            <% else %>
+              <%= image_tag("no_image.jpg", class: "mypage-edit-image") %>
+              <%= f.attachment_field :image, class:"mypage-edit-image-field" %>
+            <% end %>
+            </div>
         </div>
-      <% end %>
+        <div class="content__block--data col-sm-8">
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th scope="row">氏名<span class="must">&emsp;*</span></th>
+                <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class:"mypage-edit-form" %></td>
+              </tr>
+              <tr>
+                <th scope="row">会社名・所属</th>
+                <td><%= f.text_field :belongs, autofocus: true, autocomplete: "belongs", class:"mypage-edit-form" %></td>
+              </tr>
+              <tr>
+                <th scope="row">役職</th>
+                <td><%= f.text_field :position, autofocus: true, autocomplete: "position", class:"mypage-edit-form" %></td>
+              </tr>
+              <tr>
+                <th scope="row">Email<span class="must">&emsp;*</span></th>
+                <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"mypage-edit-form" %></td>
+              </tr>
+              <tr>
+                <th scope="row">ノミジョイ！ID<br><em>(6文字以上 半角英数字)</em><span class="must">&emsp;*</span></th>
+                <td><%= f.text_field :nomi_joy_id, autofocus: true, autocomplete: "nomi_joy_id", class:"mypage-edit-form" %></td>
+              </tr>
+              <tr>
+                <th scope="row">最寄駅</th>
+                <td><%= f.text_field :nearest_station, autofocus: true, autocomplete: "nearest_station", class:"mypage-edit-form" %></td>
+              </tr>
+              <tr>
+                <th scope="row">お酒を飲むか</th>
+                <td><%= f.radio_button :can_drink, true %>飲む&emsp;<%= f.radio_button :can_drink, false %> 飲まない
+              </tr>
+              <tr>
+                <th scope="row">好きな料理・お酒</th>
+                <td><%= f.text_field :favolite, autofocus: true, autocomplete: "favolite", class:"mypage-edit-form" %></td>
+              </tr>
+              <tr>
+                <th scope="row">苦手な料理・お酒</th>
+                <td><%= f.text_field :unfavolite, autofocus: true, autocomplete: "unfavolite", class:"mypage-edit-form" %></td>
+              </tr>
+              <tr>
+                <th scope="row">自己紹介</th>
+                <td><%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class:"mypage-edit-textarea" %></textarea></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="actions"> 
+            <%= f.submit "Update", class: "btn mypage-btn green-btn" %>
+          </div> 
+        </div>
+      </div>
+    <% end %>
     <%= render "layouts/footer" %>
-    </div>
-  </main>
-</body>
+  </div>
+</main>

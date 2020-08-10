@@ -10,6 +10,10 @@ ja:
 
   devise:
     failure:
+      not_found_in_database: 'メールアドレスかパスワードが違います。'
+      # translation missing:ja.devise.failure.user.not_found_in_database
+      already_authenticated: 'すでにログインしています。'
+      # translation missing: ja.devise.failure.user.already_authenticated
       unauthenticated: 'ログインしてください。'
 #      unauthenticated: 'You need to sign in or sign up before continuing.'
       unconfirmed: '本登録を行ってください。'
@@ -61,3 +65,4 @@ ja:
       unlock_instructions:
         subject: 'アカウントの凍結解除'
 #        subject: 'Unlock Instructions'
+    
