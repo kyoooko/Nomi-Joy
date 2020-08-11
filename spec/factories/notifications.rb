@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :notification do
-    action { "follow" }
+    action { "" }
     checked { Faker::Boolean.boolean } 
     event
-    direct_message
-    visitor
-    visited
-    # association :visitor
-    # association :visited
+    direct_message_id {  }
+    # visitor
+    # visited
+    association :visitor
+    association :visited
   end
 end
