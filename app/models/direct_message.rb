@@ -6,7 +6,7 @@ class DirectMessage < ApplicationRecord
   belongs_to :user
   belongs_to :room
   # ◆通知機能
-  has_many :notifications, dependent: :destroy
+  # has_many :notifications, dependent: :destroy
 
   # ==================メソッド===================================
   def create_notification_dm(current_user, visited_id)

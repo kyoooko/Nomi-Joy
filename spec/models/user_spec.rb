@@ -138,20 +138,20 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context '中間テーブルEventUserモデルとの関係' do
-      let(:target) { :event_users }
-      it '1:Nとなっている' do
-        expect(association.macro).to eq :has_many
-      end
-    end
-
     context 'Eventモデルとの関係' do
       let(:target) { :events }
       it '1:Nとなっている（中間テーブルevent_usersを介すので多対多）' do
         expect(association.macro).to eq :has_many
       end
     end
-
+    
+    context '中間テーブルEventUserモデルとの関係' do
+      let(:target) { :event_users }
+      it '1:Nとなっている' do
+        expect(association.macro).to eq :has_many
+      end
+    end
+    
     context 'Relationshipモデル(active_relationships)との関係' do
       let(:target) { :active_relationships }
       it '1:Nとなっている' do

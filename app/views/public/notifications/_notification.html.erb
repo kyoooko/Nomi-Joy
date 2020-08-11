@@ -21,7 +21,8 @@
       <% when 'dm' then%>
         <%= link_to 'DM', room_path(notification.visitor), style: "font-weight: bold;" %>が届いています
         <p class="text-muted mb-0 font-xs nomal-font" >
-        <%= notification.direct_message.message %>
+        <%#= notification.direct_message.message %>
+        <%= DirectMessage.find_by(id:notification.direct_message_id).message %>
         </p>
       <% when 'require_fee' then %>
         下記のお支払いについて確認の依頼があります

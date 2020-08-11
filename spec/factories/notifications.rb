@@ -6,5 +6,7 @@ FactoryBot.define do
     direct_message
     visitor
     visited
+    # association :visitor
+    # association :visited
   end
 end
