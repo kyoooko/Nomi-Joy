@@ -8,9 +8,17 @@
 .restaurant-image-responsive{
   display:none;
 }
+.heading__top-welcome{
+  font-size: 80px !important;
+  }
+@media (max-width: 1000px) {
+  .heading__top-welcome{
+  font-size: 60px !important;
+  }
+}
 @media (max-width: 767px) {
   .heading__top-welcome{
-  font-size: 20px;
+  font-size: 45px !important;
   }
   .content__block--today,.content__block--nomikai-overview, .content__block--restaurant, .content__block--overview{
     // 今日のノミカイの画像(767px以上）
@@ -23,6 +31,11 @@
     .restaurant{
       display: block;
     }
+  }
+}
+@media (max-width: 400px) {
+  .heading__top-welcome{
+  font-size: 30px !important;
   }
 }
 // ******カレンダー**********************************

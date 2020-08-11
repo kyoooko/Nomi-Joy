@@ -1,16 +1,5 @@
 ja:
   activerecord:
-    models:
-      event: ノミカイ
-    attributes:
-      event:
-        name: ノミカイ名
-        date: 日にち
-        begin_time: 開始時間
-        finish_time: 終了時間
-
-    models:
-      user: ユーザー
     attributes:
       user:
         name: 名前
@@ -18,4 +7,9 @@ ja:
         nomi_joy_id: ノミジョイ！ID
         password: パスワード
         password_confirmation: パスワード（確認）
+      event:
+        name: ノミカイ名
+        date: 日にち
+        begin_time: 開始時間
+        finish_time: 終了時間
   

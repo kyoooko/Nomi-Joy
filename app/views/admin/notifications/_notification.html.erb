@@ -19,14 +19,15 @@
       <% when 'follow' then %>
         メンバー承認依頼が届いています
       <% when 'dm' then%>
-        <%= link_to 'DM', room_path(notification.visitor), style: "font-weight: bold;" %>が届いています
+        <%= link_to 'DM', admin_room_path(notification.visitor), style: "font-weight: bold;" %>が届いています
         <p class="text-muted mb-0 font-xs nomal-font" >
-        <%= notification.direct_message.message %>
+        <%#= notification.direct_message.message %>
+        <%= DirectMessage.find_by(id:notification.direct_message_id).message %>
         </p>
       <% when 'require_fee' then %>
         下記のお支払いについて確認の依頼があります
         <p class="text-muted mb-0 nomal-font font-xs " >
-          <%= link_to event_path(notification.event_id), class: "nomal-font" do %><%= notification.event.date.to_s(:date) %>&emsp;<%= notification.event.name %><% end %>&emsp;
+          <%= link_to admin_event_path(notification.event_id), class: "nomal-font" do %><%= notification.event.date.to_s(:date) %>（<%= %w(日 月 火 水 木 金 土)[notification.event.date.wday] %>）&emsp;<%= notification.event.name %><% end %>&emsp;
           会費：<%= EventUser.with_deleted.find_by(user_id: notification.visitor_id,event_id: notification.event_id).fee %>円
         </p>
       <% end %>
