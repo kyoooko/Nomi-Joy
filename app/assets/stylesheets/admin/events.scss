@@ -217,6 +217,9 @@
     td {
       padding:0 !important;
     }
+    .btn{
+      margin-right: 5px;
+    }
   }
 }
 
@@ -298,6 +301,10 @@
 // お店変更ページ
 .restaurant-result{
   font-family: "MPLUS-Regular", "Yu Gothic", "游ゴシック", sans-serif !important;
+}
+// 背景が途切れてしまうための調整
+.admin-table{
+  margin-bottom: 70% !important;
 }
 // 新規作成
 // step2

@@ -1,11 +1,12 @@
 <div class="content__block__search-users content__block">
   <h2 class="block-hedding">ユーザーを探す</h2>
+  <p class="text-secondary description">まだフォローしていない・されていないユーザーを&nbsp;「ノミジョイ！ID」&nbsp;で探せます</p>
   <%# 検索フォーム(非同期) %>
   <%= render 'public/searches/member_search_form', find_users:@find_users %>
 </div>
 <div class="content__block__followed">
   <h2 class="block-hedding">承認依頼の来ているユーザー</h2>
-  <p class="text-secondary description">下記のユーザーから承認申請が来ています<br>フォローを返して&ensp;「ノミカイメンバー」&ensp;になりましょう！</p>
+  <p class="text-secondary description">下記のユーザーから承認申請（フォロー）が来ています<br>フォローを返して&nbsp;「ノミカイメンバー」&nbsp;になりましょう！</p>
   <% if followers.present? %>
     <table class="table members-table font-sm">
       <thead>
@@ -37,10 +38,11 @@
    <p class="text-secondary">他のユーザーからの承認依頼はありません</p>
   <% end %>
 </div>
+<hr>
 
 <div class="content__block__following">
   <h2 class="block-hedding">承認申請中のユーザー</h2>
-  <p class="text-secondary description">下記のユーザーへ承認申請を送信済みです<br>相手が承認をしてくれると&ensp;「ノミカイメンバー」&ensp;になり、あなたがカンジをするノミカイに招待できます！</p>
+  <p class="text-secondary description">下記のユーザーへ承認申請（フォロー）を送信済みです<br>相手が承認をしてくれると&nbsp;「ノミカイメンバー」&nbsp;になり、あなたがカンジをするノミカイに招待できます！</p>
   <% if followings.present? %>
     <table class="table members-table font-sm">
       <thead>

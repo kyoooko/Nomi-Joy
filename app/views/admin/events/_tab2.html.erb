@@ -8,7 +8,6 @@
         <th scope="col">氏名</th>
         <th scope="col">会社名・所属</th>
         <th scope="col">役職</th>
-        <th scope="col">会費</th>
         <th scope="col">お酒</th>
         <th scope="col">好きな食べ物・お酒</th>
         <th scope="col">苦手な食べ物・お酒</th>
@@ -27,7 +26,6 @@
           <td><%= link_to admin_user_path(event_user.user),class:"nomal-font" do %><%= event_user.user.name %><% end %></td>
           <td class="nomal-font"><%= event_user.user.belongs %></td>
           <td class="nomal-font"><%= event_user.user.position %></td>
-          <td class="nomal-font"><%= event_user.fee %></td>
           <td class="nomal-font"><% if  event_user.user.can_drink == true %>○<% else%>×<% end%></td>
           <td class="nomal-font"><%= event_user.user.favolite %></td>
           <td class="nomal-font"><%= event_user.user.unfavolite %></td>

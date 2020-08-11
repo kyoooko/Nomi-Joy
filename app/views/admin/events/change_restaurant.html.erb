@@ -14,7 +14,7 @@
     <div class="content">
       <div class="content__block--change-restaurant content__block admin-table">
         <h3>お店を検索<span class="must">&emsp;*</span></h3>
-        <p class="admin">（例："魚金 新宿", &emsp;"イタリアン,新宿"）</p>
+        <p class="text-muted">（例：&nbsp;"魚金 新宿",&nbsp;"イタリアン,新宿"）</p>
         <%= form_with model: @event, url: admin_change_restaurant_path(@event), method: :get, local: true do |f| %>
           <%= text_field_tag :freeword %>
           <%= f.button type: "submit", class:"btn blue-btn btn-sm"  do %><i class="fas fa-search public-search-btn"></i><% end %>

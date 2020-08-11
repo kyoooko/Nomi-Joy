@@ -26,7 +26,7 @@
       <% when 'require_fee' then %>
         下記のお支払いについて確認の依頼があります
         <p class="text-muted mb-0 nomal-font font-xs " >
-          <%= link_to event_path(notification.event_id), class: "nomal-font" do %><%= notification.event.date.to_s(:date) %>&emsp;<%= notification.event.name %><% end %>&emsp;
+          <%= link_to event_path(notification.event_id), class: "nomal-font" do %><%= notification.event.date.to_s(:date) %>（<%= %w(日 月 火 水 木 金 土)[notification.event.date.wday] %>）&emsp;<%= notification.event.name %><% end %>&emsp;
           会費：<%= EventUser.with_deleted.find_by(user_id: notification.visitor_id,event_id: notification.event_id).fee %>円
         </p>
       <% end %>
