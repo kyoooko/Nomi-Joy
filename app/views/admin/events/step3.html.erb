@@ -31,7 +31,7 @@
           <div class="clearfix"></div>
       </div> 
       <div class="content__block--step3 content__block">
-        <p class="text-muted">※メンバーは後から選択・追加できます</p>
+        <p class="text-muted">※ 参加者を１人以上選択してください<span class="must">&emsp;*</span></p><p class="text-muted">※後から追加できます</p>
         <% if @members.present? %>
           <%= form_with model: @event, url: admin_step4_path,  local: true do |f| %>
             <table class="table table-borderless">

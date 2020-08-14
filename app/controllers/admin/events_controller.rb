@@ -252,9 +252,14 @@ class Admin::EventsController < ApplicationController
     @event.user_id = current_user.id
     @event_user_ids = session[:event_user_ids] = params[:event_user][:ids].drop(1)
     render(:step2) && return if params[:back]
+    unless @event_user_ids.present?
+      @members = current_user.matchers
+      flash.now[:danger] = "参加者を１人以上選択してください"
+      render(:step3)
+    end  
   end
 
-  # 新規作成(5)：step4のparamsの値をsessionに代入＋step4のparamsの値をsessionに代入＋確認ページの表示（POST：vieあり)
+  # 新規作成(5)：step4のparamsの値をsessionに代入＋step4のparamsの値をsessionに代入＋確認ページの表示（POST：viewあり)
   def confirm
     @event = Event.new(event_params)
     # 曜日
@@ -297,12 +302,21 @@ class Admin::EventsController < ApplicationController
     # drop(1)は、sessionの配列の要素１つ目に""(nil)が渡されてしまい参加メンバーの一覧表示ができないため、１つ目を除いている
     event_user_ids = session[:event_user_ids]
     event_user_fees = session[:fees]
-    # 参加メンバーを選択しなかった場合でもエラーにならないようにするためのif文
-    if event_user_ids.present?
+    # else以降がないと会費を入力しなかった場合EventUserが保存されない
+    if event_user_fees != [""]
       event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
+    else
+      event_user_ids.each { |event_user_id| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: 0) }
     end
-    # 自分（カンジ）のevent_userも作成
-    EventUser.create(user_id: current_user.id, event_id: @event.id, fee: session[:admin_fee])
+    # 自分（カンジ）のevent_userも作成。else以降がないと会費を入力しなかった場合EventUserが保存されない
+    if session[:admin_fee].present?
+      EventUser.create(user_id: current_user.id, event_id: @event.id, fee: session[:admin_fee])
+    else
+      EventUser.create(user_id: current_user.id, event_id: @event.id, fee: 0)
+    end
+
+    # ノミカイ招待メール
+    InvitationMailer.invitation_mail(@event).deliver_now
     redirect_to admin_event_path(@event)
   end
 
