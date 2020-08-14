@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Public::Users", type: :request do
   let(:user) { create(:user) }
+  # ログインしていないユーザー
   let(:other_user) { create(:user) }
+  # フォローされていないユーザー
+  let(:unfollowed_user) { create(:user) }
 
   describe "ユーザー一覧ページを表示(GET #index)" do
     context "未ログインの場合" do
@@ -30,10 +33,20 @@ RSpec.describe "Public::Users", type: :request do
     end
 
     context "ログインしている場合" do
-      it "リクエストが成功すること" do
+      before do
         sign_in user
-        get user_path user.id
-        expect(response).to have_http_status "200"
+      end
+      context "本人のページの場合" do
+        it "リクエストが成功すること" do
+          get user_path user.id
+          expect(response).to have_http_status "200"
+        end
+      end
+      context "フォローされていないユーザーのページの場合" do
+        it "トップ画面にリダイレクトされること" do
+          get user_path unfollowed_user.id
+          expect(response).to redirect_to root_path
+        end
       end
     end
   end
@@ -46,19 +59,21 @@ RSpec.describe "Public::Users", type: :request do
       end
     end
 
-    context "本人の場合" do
-      it "リクエストが成功すること" do
-        sign_in user
-        get edit_user_path user.id
-        expect(response).to have_http_status "200"
+    context "ログインしている場合" do
+      context "本人の場合" do
+        it "リクエストが成功すること" do
+          sign_in user
+          get edit_user_path user.id
+          expect(response).to have_http_status "200"
+        end
       end
-    end
 
-    context "他のユーザーの場合" do
-      it "ログイン前トップページへリダイレクトすること" do
-        sign_in other_user
-        get edit_user_path user.id
-        expect(response).to redirect_to root_path
+      context "他のユーザーの場合" do
+        it "ログイン前トップページへリダイレクトすること" do
+          sign_in other_user
+          get edit_user_path user.id
+          expect(response).to redirect_to root_path
+        end
       end
     end
   end
