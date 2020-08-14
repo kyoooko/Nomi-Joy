@@ -95,4 +95,17 @@ Rails.application.configure do
 
   # ぐるなびAPI
   config.require_master_key = true
+
+  # メール
+  # config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  port:                 587,
+  address:              'smtp.gmail.com',
+  domain:               'smtp.gmail.com',
+  user_name: 'test.kyoooko@gmail.com',
+  password: 'lefvlsdizmmtahrg',
+  authentication: 'plain',
+  enable_starttls_auto: true
+}
 end

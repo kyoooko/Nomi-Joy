@@ -24,7 +24,7 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
         flash[:success] = "ログインしました"
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
-        # ThanksMailer.thanks_mail(current_user).deliver_now
+        ThanksMailer.thanks_mail(current_user).deliver_now
         # DailyMailer.daily_mail.deliver_now
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
