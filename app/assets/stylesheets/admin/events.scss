@@ -303,7 +303,7 @@
   font-family: "MPLUS-Regular", "Yu Gothic", "游ゴシック", sans-serif !important;
 }
 // 背景が途切れてしまうための調整
-.admin-table{
+.content__block--change-restaurant{
   margin-bottom: 70% !important;
 }
 // 新規作成
@@ -359,6 +359,11 @@ padding:1px !important;
   width: 30%;
   display: inline-block;
 }
+// 確認画面
+.invitation_mail{
+  width:40%;
+}
+
 // *****新規登録：ステップバー（Bootstrap・見た目のみ）*****
 // stepbar
 .create-nomikai-stepbar{

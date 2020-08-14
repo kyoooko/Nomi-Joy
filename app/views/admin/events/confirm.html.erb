@@ -71,10 +71,15 @@
           <%= f.hidden_field :restaurant_id %>
           <%= f.hidden_field :memo %>
           <div class="actions"> 
-            <%= f.submit "つくる", class: "btn blue-btn" %>
             <%= f.submit "戻る", name: :back, class: "btn admin-white-btn" %>
+            <%= f.submit "つくる （メール通知しない）", class: "btn blue-btn" %>
+            <%= f.submit "つくる （全員にメール通知）", name: :mail, class: "btn orange-btn" %>
           </div> 
         <% end %>
+      </div>
+      <div class="content__block--invitation_mail">
+        <p class="text-muted">※ 「つくる （全員にメール通知）」 ボタンを押すと、参加者全員に下記のような招待メールが自動送信されます。<br>自動送信をしない場合は 「つくる （メール通知しない）」 を押してください。</p>
+        <%= image_tag("invitation_mail.jpg", class: "invitation_mail") %>
       </div>
     </div>
     <%= render "layouts/admin_footer" %>

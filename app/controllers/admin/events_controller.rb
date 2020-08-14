@@ -316,7 +316,9 @@ class Admin::EventsController < ApplicationController
     end
 
     # ノミカイ招待メール
-    InvitationMailer.invitation_mail(@event).deliver_now
+    if params[:mail]
+      InvitationMailer.invitation_mail(@event).deliver_now
+    end
     redirect_to admin_event_path(@event)
   end
 
