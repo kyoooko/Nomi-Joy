@@ -4,6 +4,7 @@ class Public::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   before_action :check_guest, only: :update
   before_action :set_image_url, only: [:show, :edit]
+  before_action :couldnt_show_unfollowd_user, only: [:show]
 
   def index
     # ================タブ１===============
@@ -50,6 +51,15 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     if current_user.id != @user.id
       redirect_back(fallback_location: root_path)
+    end
+  end
+
+  # フォローされていないユーザーの詳細ページは閲覧できない（URL検索含む）
+  def couldnt_show_unfollowd_user
+    unfollowd_users = User.all - current_user.followers
+    user = User.find(params[:id])
+    unless user == current_user
+      redirect_back(fallback_location: root_path) if unfollowd_users.any? { |unfollowd_user| unfollowd_user == user }
     end
   end
 
