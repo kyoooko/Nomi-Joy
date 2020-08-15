@@ -32,10 +32,10 @@
               <tr>
                 <td class="nomal-font font-sm">
                   <%# カンジ %>
-                  <span class="fee-name nomal-font"><%= User.find(@event.user_id).name %>（カンジ）</span>&emsp;<%= text_field_tag "admin_fee","",class:"fee-form" %>円<br />
+                  <span class="fee-name nomal-font admin"><%= User.find(@event.user_id).name %>（カンジ）</span>&emsp;<%= text_field_tag "admin_fee","",class:"fee-form" %>円<br />
                   <%# カンジ以外の参加メンバー %>
                   <% @event_user_ids.each do |event_user_id| -%>
-                    <span class="fee-name nomal-font"><%= User.find(event_user_id).name %></span>&emsp;<%= text_field_tag "fees[]","",class:"fee-form" %>円<br>
+                    <span class="fee-name nomal-font admin"><%= User.find(event_user_id).name %></span>&emsp;<%= text_field_tag "fees[]","",class:"fee-form" %>円<br>
                   <% end -%>
                 </td>
               </tr>
@@ -48,8 +48,8 @@
           <%= f.hidden_field :restaurant_id %>
           <%= f.hidden_field :memo %>
           <div class="actions"> 
-            <%= f.submit "Next", class: "btn blue-btn" %>
-            <%= f.submit "Back", name: :back, class: "btn admin-white-btn" %>
+            <%= f.submit "戻る", name: :back, class: "btn admin-white-btn" %>
+            <%= f.submit "次へ", class: "btn blue-btn" %>
           </div> 
         <% end %>
       </div>

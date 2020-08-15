@@ -80,5 +80,4 @@ Rails.application.configure do
   authentication: 'plain',
   enable_starttls_auto: true
   }
-  # ActionMailer::Base.default :from => "Company Name <no-reply@production-server.ca>"
 end

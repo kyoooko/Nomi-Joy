@@ -25,12 +25,39 @@ class Event < ApplicationRecord
     date
   end
 
-  # ◆通知機能（未払いのメンバーへの一斉支払い確認通知）
+  # ◆通知機能（未払いのメンバーへの支払い依頼）
   def create_notification_require_fee(current_user, visited_id)
     notification = current_user.active_notifications.new(
       event_id: id,
       visited_id: visited_id,
       action: 'require_fee'
+    )
+    notification.save if notification.valid?
+  end
+  # ◆通知機能（新規ノミカイ案内）
+  def create_notification_new_event(current_user, visited_id)
+    notification = current_user.active_notifications.new(
+      event_id: id,
+      visited_id: visited_id,
+      action: 'create_event'
+    )
+    notification.save if notification.valid?
+  end
+  # ◆通知機能（リマインド）
+  def create_notification_remind_event(current_user, visited_id)
+    notification = current_user.active_notifications.new(
+      event_id: id,
+      visited_id: visited_id,
+      action: 'remind_event'
+    )
+    notification.save if notification.valid?
+  end
+  # ◆通知機能（領収済）
+  def create_notification_paid_fee(current_user, visited_id)
+    notification = current_user.active_notifications.new(
+      event_id: id,
+      visited_id: visited_id,
+      action: 'paid_fee'
     )
     notification.save if notification.valid?
   end

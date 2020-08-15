@@ -17,8 +17,8 @@
       <h1 class="heading__en admin">Step2</h1>
     </div>
     <div class="content">
-      <div class="content__block--step-bar admin-table">
-        <h3>お店選択</h3>
+      <div class="content__block--step-bar">
+        <h3 class="admin">お店選択</h3>
         <%# ステップバー（Bootstrap・見た目のみ） %>
         <div class="create-nomikai-stepbar">
           <ul class="bootstrapWizard form-wizard">
@@ -53,8 +53,8 @@
           <%= f.hidden_field :finish_time %>
           <%= f.hidden_field :memo %>
           <p class="step2-button">
-            <%= f.submit "Next", name: :next, class: "btn blue-btn" %>
-            <%= f.submit "Back", name: :back, class: "btn admin-white-btn" %>
+            <%= f.submit "戻る", name: :back, class: "btn admin-white-btn" %>
+            <%= f.submit "次へ", name: :next, class: "btn blue-btn" %>
           </p>
         <% end %>
       </div>

@@ -28,8 +28,8 @@ Rails.application.routes.draw do
     post 'step4', to: 'events#step4'
     post 'confirm', to: 'events#confirm'
 
-    get 'events/confirm_plan_remind'
-    get 'events/send_plan_remind'
+    # get 'events/confirm_plan_remind'
+    get 'events/:event_id/send_remind', to: 'events#send_remind', as: 'events_send_remind'
     patch 'events/:event_id/progress_status_update', to: 'events#progress_status_update', as: 'events_progress_status'
     get 'events/:event_id/notice_to_unpaying_users', to: 'events#notice_to_unpaying_users', as: 'notice_to_unpaying_users'
     get 'events/:event_id/add_event_user', to: 'events#add_event_user', as: 'add_event_user'

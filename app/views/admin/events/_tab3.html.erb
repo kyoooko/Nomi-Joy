@@ -45,7 +45,13 @@
       </tbody>
     </table>
     <div class="notice-to-unpaying-users-button">
-      <%= link_to "集金中のメンバー全員に支払い依頼通知を送る",admin_notice_to_unpaying_users_path(@event), class:"btn blue-btn", remote: true %>
+      <%=link_to admin_notice_to_unpaying_users_path(@event), class:"btn orange-btn" do %>
+        <i class="fas fa-envelope admin-icon"></i>&nbsp;<i class="fas fa-bell admin-icon"></i>&ensp;集金中のメンバー全員に支払い依頼通知・メールを送る
+      <% end %>
+    </div>
+    <div class="mail-preview">
+      <p class="unpaid-mail-description text-muted">※ 「集金中のメンバー全員に支払い依頼通知・メールを送る」 ボタンを押すと、<br>対象者全員に下記のような確認依頼メールおよび通知が一括自動送信されます。</p>
+      <%= image_tag("unpaid_mail.png", class: "paid-mail-img") %>
     </div>
   <% else %>
   全員領収済
@@ -96,4 +102,8 @@
       <% end %>
     </tbody>
   </table>
+  <div class="mail-preview">
+    <p class="paid-mail-description text-muted">※ 「領収済」 ボタンを押すと、下記のような領収済メールおよび通知が自動送信されます。</p>
+    <%= image_tag("paid_mail.jpg", class: "paid-mail-img") %>
+  </div>
 </div>

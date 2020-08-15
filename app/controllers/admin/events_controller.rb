@@ -1,6 +1,6 @@
 class Admin::EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_event_by_event_id, only: [:notice_to_unpaying_users, :progress_status_update, :add_event_user, :add_event_user_fee, :add_event_user_create, :change_restaurant, :change_restaurant_update]
+  before_action :set_event_by_event_id, only: [:notice_to_unpaying_users, :progress_status_update, :add_event_user, :add_event_user_fee, :add_event_user_create, :change_restaurant, :change_restaurant_update,:send_remind]
   before_action :ensure_admin?, only: [:show, :edit, :update, :destroy]
   before_action :ensure_admin_event_id?, only: [:progress_status_update, :notice_to_unpaying_users]
 
@@ -100,6 +100,24 @@ class Admin::EventsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  # show(タブ１）：リマインドメール・通知
+  def send_remind
+     # 出席者全員に通知を送る
+     @event_users = EventUser.where(event_id: @event.id)
+     @event_users.each do |event_user|
+       @event.create_notification_remind_event(current_user, event_user.user_id)
+     end
+ 
+
+     
+
+
+    RemindMailer.remind_mail(@event).deliver_now
+    redirect_back(fallback_location: root_path)
+  end
+  # def confirm_plan_remind
+  # end
+
   # show(タブ２）：参加メンバーの追加編集ページ
   def add_event_user
     members = current_user.matchers
@@ -138,7 +156,10 @@ class Admin::EventsController < ApplicationController
     @unpaying_event_users = EventUser.with_deleted.where(event_id: @event.id, fee_status: false)
     @unpaying_event_users.each do |unpaying_event_user|
       @event.create_notification_require_fee(current_user, unpaying_event_user.user_id)
+      # メール通知
+      UnpaidMailer.unpaid_mail(unpaying_event_user).deliver_now
     end
+    redirect_back(fallback_location: root_path)
     # 非同期のため下記削除
     # redirect_back(fallback_location: root_path)
   end
@@ -314,20 +335,19 @@ class Admin::EventsController < ApplicationController
     else
       EventUser.create(user_id: current_user.id, event_id: @event.id, fee: 0)
     end
-
-    # ノミカイ招待メール
-    InvitationMailer.invitation_mail(@event).deliver_now
+    if params[:mail]
+      # ノミカイ招待メール
+      InvitationMailer.invitation_mail(@event).deliver_now
+      # 通知機能
+      event_users = EventUser.where(event_id: @event.id)
+      event_users.each do |event_user|
+        @event.create_notification_new_event(current_user, event_user.user_id)
+      end
+    end
     redirect_to admin_event_path(@event)
   end
 
-  def confirm_plan_remind
-  end
-
-  def send_plan_remind
-  end
-
   private
-
   def set_event
     @event = Event.find(params[:id])
   end
