@@ -36,13 +36,11 @@ class Event < ApplicationRecord
   end
   # ◆通知機能（新規ノミカイ案内）
   def create_notification_new_event(current_user, visited_id)
-    if notification.visitor_id != notification.visited_id
-      notification = current_user.active_notifications.new(
-        event_id: id,
-        visited_id: visited_id,
-        action: 'create_event'
-      )
-    end
+    notification = current_user.active_notifications.new(
+      event_id: id,
+      visited_id: visited_id,
+      action: 'create_event'
+    )
     # 自分へは通知が作られない・届かないようにする
     notification.save if (notification.visitor_id != notification.visited_id && notification.valid?)
   end

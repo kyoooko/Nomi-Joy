@@ -7,13 +7,12 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <h1 class="heading__en admin">Add Member &lt;Fee&gt; </h1>
-      <h3 class="heading__ja admin">メンバー追加 &lt;会費設定&gt;</h3>
+      <h3 class="heading__event-date admin"><%= @event.date.to_s(:date) %>（<%= @day_of_the_week %>）</h3>
+      <h1 class="heading__event-name admin"><%= @event.name %></h1>
     </div>
     <div class="content">
       <div class="content__block--add-event-user-fee content__block">
-         <p class="text-muted">会費は後から入力・変更できます</p>
-         <p class="text-muted">※ 半角数字で入力</p>
+         <p class="text-muted">※会費は後から入力・変更できます<br>※ 半角数字で入力</p>
         <%= form_with model: @event_user, url: admin_add_event_user_create_path(room: "303"),  local: true do |f| %>
           <table class="table table-borderless">
               <tbody>
@@ -27,8 +26,8 @@
               </tbody>
             </table>
             <div class="actions"> 
+              <%= f.submit "戻る", name: :back, class: "btn admin-white-btn" %>
               <%= f.submit "追加", class: "btn blue-btn" %>
-              <%= f.submit "Back", name: :back, class: "btn admin-white-btn" %>
             </div> 
          <% end %>
       </div>

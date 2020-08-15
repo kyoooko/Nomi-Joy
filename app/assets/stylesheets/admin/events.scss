@@ -79,6 +79,16 @@
   font-size: 20px;
   }
 }
+// 部屋の説明
+.room-description{
+  font-size: 20px;
+  margin-top: 30px;
+}
+@media (max-width: 767px) {
+  .room-description{
+    font-size: 16px;
+  }
+}
 /* タブ1(index) */
 .stepbar{
   margin-bottom: 30px;
@@ -402,6 +412,15 @@ padding:1px !important;
 // 確認画面
 .invitation_mail{
   width:40%;
+}
+@media (max-width: 767px) {
+  .confim-actions{
+    display: flex;
+    flex-direction: column-reverse;
+    .btn{
+      margin-bottom: 5px;
+    }
+  }
 }
 
 // *****新規登録：ステップバー（Bootstrap・見た目のみ）*****

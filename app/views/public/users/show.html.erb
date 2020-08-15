@@ -102,7 +102,7 @@
             </span>
             <span>
               <% if  @members.any? { |member| member.id == @user.id } %>
-                <%=link_to room_path(@user), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %>
+                <%=link_to room_path(@user), class:"btn btn-sm green-btn" do %><i class="fas fa-comments public-icon"></i><% end %>
               <% end %>
             </span>
           </div>

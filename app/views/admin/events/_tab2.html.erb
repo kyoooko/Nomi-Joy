@@ -37,20 +37,20 @@
           <td>
             <%# current_user(自分)の場合はDMボタンを表示しない %>
             <% unless event_user.user == current_user %>
-              <%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn ml-1" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+              <%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn ml-1" do %><i class="fas fa-comments admin-icon"></i><% end %>
             <% end %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to '参加メンバーを追加', admin_add_event_user_path(event), class:"btn blue-btn" %>
+  <%= link_to '参加者を追加', admin_add_event_user_path(event), class:"btn blue-btn" %>
 </div>
 
 <%# 上記のレスポンシブ対応版 %>
 <%# 参加メンバー一覧(767px未満) %>
 <div class="content__block--participants-responsive mt-5"> 
-  <h2 class="block-hedding">メンバー一覧</h2>
+  <h2 class="block-hedding admin">参加者一覧</h2>
   <% event_users.each do |event_user| %>
     <%# 参照先のS3オブジェクトURLを作成 %>
     <% image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + event_user.user.image_id + "-thumbnail." %>
@@ -64,22 +64,22 @@
         </tr>
         <tr>
           <th scope="row" ></th>
-          <th scope="row" class="p-0">お酒</th>
+          <th scope="row" class="p-0 admin">お酒</th>
           <td class="nomal-font p-0"><% if  event_user.user.can_drink == true %>○<% else%>×<% end%></td>
         </tr>
         <tr>
           <th scope="row"></th>
-          <th scope="row" class="p-0">好き</th>
+          <th scope="row" class="p-0 admin">好き</th>
           <td class="nomal-font font-xs p-0"><%= event_user.user.favolite %></td>
         </tr>
         <tr>
           <th scope="row"></th>
-          <th scope="row" class="p-0">嫌い</th>
+          <th scope="row" class="p-0 admin">嫌い</th>
           <td class="nomal-font font-xs p-0"><%= event_user.user.unfavolite %></td>
         </tr>
         <tr>
           <th scope="row"></th>
-          <th scope="row" class="p-0">最寄駅</th>
+          <th scope="row" class="p-0 admin">最寄駅</th>
           <td class="nomal-font font-xs p-0"><%= event_user.user.nearest_station %></td>
         </tr>
         <tr>
@@ -93,7 +93,7 @@
             <span>
               <%# current_user(自分)の場合はDMボタンを表示しない %>
               <% unless event_user.user == current_user %>
-                <%=link_to admin_room_path(event_user.user), class:"btn btn-sm blue-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+                <%=link_to admin_room_path(event_user.user), class:"btn btn-sm blue-btn" do %><i class="fas fa-comments admin-icon"></i><% end %>
               <% end %>     
             </span>
           </td>

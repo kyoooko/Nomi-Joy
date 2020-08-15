@@ -14,6 +14,7 @@
     </div>
     <div class="content">
       <div class="content__block--overview">
+        <h2 class="block-hedding">ノミカイ概要</h2>
         <div class="row">
           <table class="table table-borderless col-md-8">
             <tbody>
@@ -72,7 +73,7 @@
                     <%= @admin.position %><br><br>
                     <%= link_to user_path(@admin),class:"nomal-font" do %><%= @admin.name %><% end %>&emsp;&emsp;
                     <% unless @admin == current_user%>
-                    <%=link_to room_path(@admin), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %>
+                    <%=link_to room_path(@admin), class:"btn btn-sm green-btn" do %><i class="fas fa-comments public-icon"></i><% end %>
                     <% end %>
                     </div>
                 </td>

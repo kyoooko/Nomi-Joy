@@ -13,8 +13,8 @@
           <%= message %>
         </div>
       <% end %>
-      <h1 class="heading__en admin">Edit ノミカイ</h1>
-      <h3 class="heading__ja admin">ノミカイ編集</h3>
+      <h3 class="heading__event-date admin"><%= @event.date.to_s(:date) %>（<%= @day_of_the_week %>）</h3>
+      <h1 class="heading__event-name admin"><%= @event.name %></h1>
     </div>
     <%= form_with model: @event,url: admin_event_path(@event.id), local: true,class:"edit-nomikai-form admin-table" do |f| %>
       <table class="table table-borderless">
@@ -37,7 +37,7 @@
           </tr>
         </tbody>
       </table>
-      <%= f.submit "Update", class:"btn blue-btn" %>
+      <%= f.submit "更新", class:"btn blue-btn" %>
     <% end %>
     <%= render "layouts/footer" %>
   </div>

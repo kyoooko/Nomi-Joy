@@ -80,7 +80,7 @@
                       <%= @today_admin.belongs %>
                       <%= @today_admin.position %><br><br>
                       <%= link_to user_path(@today_admin),class:"nomal-font" do %><%= @today_admin.name %><% end %>&emsp;&emsp;
-                      <% unless @today_admin == current_user %><%=link_to room_path(@today_admin), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %><% end %>
+                      <% unless @today_admin == current_user %><%=link_to room_path(@today_admin), class:"btn btn-sm green-btn" do %><i class="fas  fa-comments public-icon"></i><% end %><% end %>
                      </div>
                   </td>
                 </tr>
@@ -129,7 +129,7 @@
                     <%= link_to user_path(unpaying_event_user.event.user_id),class:"nomal-font responsive-font-sm" do %><%= User.find(unpaying_event_user.event.user_id).name%><% end %>
                   </td>
                   <td>
-                    <%=link_to room_path(unpaying_event_user.event.user_id), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %>
+                    <%=link_to room_path(unpaying_event_user.event.user_id), class:"btn btn-sm green-btn" do %><i class="fas fa-comments public-icon"></i><% end %>
                   </td>
                 </tr>
               <% end %>
