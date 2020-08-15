@@ -144,14 +144,24 @@
 // **********************************
 
 // タブ３(index)
-.content__block__unpaid-user-sum table td{
+.content__block__unpaid-user-sum{
+  table td{
   vertical-align: middle;
+  }
 }
 @media (max-width: 767px) {
+  .content__block__unpaid-nomikai{
+    table th{
+      font-size: 0.8rem;
+    }
+  }
   .content__block__unpaid-user-sum{
     table td {
       padding:0.3rem;
       vertical-align: top;
+    }
+    table th{
+      font-size: 0.8rem;
     }
     .small-image{
       width: 50px;
@@ -199,6 +209,11 @@
 /* タブ1(show) */
 .admin-nomikai-overview-btn{
   width:100%;
+}
+.content__block--nomikai-overview{
+  .table th{
+    width:20%;
+  }
 }
 // *****ノミカイ進捗：ステップバー*****
 // stepbar
@@ -288,9 +303,14 @@
   }
 }
 /* タブ４(show) */
-.content__block--restaurant tr:first-child td{
+.content__block--restaurant {
+  tr:first-child td{
   font-size: 130%;
   font-weight: bold;
+  }
+  .table th{
+    width:20%;
+  }
 }
 @media (max-width: 767px) {
   .content__block--restaurant tr:first-child td{
@@ -412,6 +432,11 @@ padding:1px !important;
 // 確認画面
 .invitation_mail{
   width:40%;
+}
+.content__block--confirm{
+  table th{
+    width:25%;
+  }
 }
 @media (max-width: 767px) {
   .confim-actions{

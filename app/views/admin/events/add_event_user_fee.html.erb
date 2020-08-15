@@ -17,9 +17,9 @@
           <table class="table table-borderless">
               <tbody>
                 <tr>
-                  <td class="nomal-font">
+                  <td class="nomal-font responsive-font-sm">
                     <% @event_user_ids.each do |event_user_id| -%>
-                      <span class="fee-name nomal-font admin"><%= User.find(event_user_id).name %></span>&emsp;<%= text_field_tag "fees[]","",class:"fee-form" %>円<br>
+                      <span class="fee-name nomal-font admin responsive-font-sm"><%= User.find(event_user_id).name %></span>&emsp;<%= text_field_tag "fees[]","",class:"fee-form responsive-font-sm" %>円<br>
                     <% end -%>
                   </td>
                 </tr>
