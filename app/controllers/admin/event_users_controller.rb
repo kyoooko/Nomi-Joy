@@ -24,7 +24,10 @@ class Admin::EventUsersController < ApplicationController
   # 参加メンバーことの会費ステータス変更（欠席者含む）
   def fee_status_update
     @event_user.update(event_user_params)
+    # メール
     PaidMailer.paid_mail(@event_user).deliver_now
+    # 通知機能
+    @event_user.event.create_notification_paid_fee(current_user, @event_user.user_id)
     # 非同期のため下記削除
     # redirect_back(fallback_location: root_path)
   end

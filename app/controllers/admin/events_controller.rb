@@ -100,8 +100,18 @@ class Admin::EventsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  # show(タブ１）：リマインドメール
+  # show(タブ１）：リマインドメール・通知
   def send_remind
+     # 出席者全員に通知を送る
+     @event_users = EventUser.where(event_id: @event.id)
+     @event_users.each do |event_user|
+       @event.create_notification_remind_event(current_user, event_user.user_id)
+     end
+ 
+
+     
+
+
     RemindMailer.remind_mail(@event).deliver_now
     redirect_back(fallback_location: root_path)
   end
