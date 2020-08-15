@@ -66,7 +66,6 @@
   z-index: 104
 }
 // ***************************************************
-
 // adminトップページ(index)
 // 見出し
 .heading__top-welcome{
@@ -84,11 +83,20 @@
 .stepbar{
   margin-bottom: 30px;
 }
-// todoリスト実装後下記削除予定（背景が途切れるための調整）
-.content__block--todo{
-  padding: 5%;
-  margin-top:50%;
-  margin-bottom: 10%;
+// ToDoリスト
+.content__block--todo {
+  .todo-form{
+    margin-bottom: 30px;
+  }
+  table{
+    width: 80%;
+    margin: 0 auto;
+  }
+  .todo-btn{
+    &:hover{
+      color:#267594 !important;
+    }
+  }
 }
 // タブ２(index)
 .content__block__all-nomikai h4{
@@ -326,6 +334,19 @@
   margin-bottom: 70% !important;
 }
 // 新規作成
+// 見出し「ノミカイをつくる」
+.heading__create-event{
+  width:200px;
+  color:#fff !important;
+  background-color: #267594;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+@media (max-width: 767px) {
+  .heading__create-event{
+  width:160px;
+  }
+}
 // step2
 // 背景が途切れてしまうための調整
 .content__block--step2{

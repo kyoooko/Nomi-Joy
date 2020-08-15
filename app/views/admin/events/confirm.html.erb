@@ -7,7 +7,7 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <h2 class="admin">ノミカイをつくる</h2>
+      <h5 class="heading__create-event admin">ノミカイをつくる</h5>
       <h1 class="heading__en admin">確認画面</h1>
     </div>
     <div class="content">
@@ -73,12 +73,12 @@
           <div class="actions"> 
             <%= f.submit "戻る", name: :back, class: "btn admin-white-btn" %>
             <%= f.button type: "submit", class:"btn blue-btn"  do %><i class="fas fa-bell admin-icon"></i>&ensp;つくる （メール通知しない）<% end %>
-            <%= f.button type: "submit", class:"btn orange-btn"  do %><i class="fas fa-envelope admin-icon"></i>&nbsp;<i class="fas fa-bell admin-icon"></i>&ensp;つくる （全員にメール通知）<% end %>
+            <%= f.button type: "submit", name: :mail, class:"btn orange-btn"  do %><i class="fas fa-bell admin-icon"></i>&nbsp;<i class="fas fa-envelope admin-icon"></i>&ensp;つくる （全員にメール通知）<% end %>
           </div> 
         <% end %>
       </div>
       <div class="content__block--invitation_mail">
-        <p class="text-muted">※ 「つくる （全員にメール通知）」 ボタンを押すと、参加者全員に下記のような招待メールが自動送信されます。<br>自動送信をしない場合は 「つくる （メール通知しない）」 を押してください。<br>※「つくる （全員にメール通知）」、「つくる （メール通知しない）」ボタンいずれも参加者全員に「ノミジョイ！」内の通知が届きます。</p>
+        <p class="text-muted">※ 「つくる （全員にメール通知）」 ボタンを押すと、参加者全員に下記のような招待メールが自動送信されます。<br>自動送信をしない場合は 「つくる （メール通知しない）」 を押してください。<br>※ 「つくる （全員にメール通知）」 、 「つくる （メール通知しない）」 ボタンいずれも参加者全員に 「ノミジョイ！」 内の通知が届きます。</p>
         <%= image_tag("invitation_mail.jpg", class: "invitation_mail") %>
       </div>
     </div>

@@ -87,7 +87,7 @@
         </table>
         <%# current_userなら編集ボタンを表示 %>
         <% if @user == current_user %>
-          <%= link_to "Edit", edit_user_path(@user), class:"btn mypage-btn green-btn" %>
+          <%= link_to "編集", edit_user_path(@user), class:"btn mypage-btn green-btn" %>
         <% else %>
           <%# current_user以外なら下記２つ %>
           <%# メンバー（相互フォロー）ならDMボタンを表示 %>

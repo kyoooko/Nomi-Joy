@@ -17,11 +17,11 @@
       </div>
       <div class="content row">
         <div class="col-sm-4">
-          <div class="heading__image">
+          <div class="mypage-image-edit">
             <% if @user.image.present? %>
               <%# S3+Lambdaで表示 %>
               <%= image_tag(@image_url, fallback: "no_image.jpg", class:"mypage-edit-image") %>
-                <%= f.attachment_field :image, class:"mypage-edit-image-field" %>
+              <%= f.attachment_field :image, class:"mypage-edit-image-field" %>
             <% else %>
               <%= image_tag("no_image.jpg", class: "mypage-edit-image") %>
               <%= f.attachment_field :image, class:"mypage-edit-image-field" %>
@@ -74,7 +74,7 @@
             </tbody>
           </table>
           <div class="actions"> 
-            <%= f.submit "Update", class: "btn mypage-btn green-btn" %>
+            <%= f.submit "更新", class: "btn mypage-btn green-btn" %>
           </div> 
         </div>
       </div>

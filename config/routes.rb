@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   }
   scope module: :public do
     root 'homes#top'
-    resources :testsessions, only: :create
+    # resources :testsessions, only: :create
     resources :events, only: [:show, :index]
     resources :users, only: [:show, :edit, :index, :update] do
       resource :relationships, only: [:create, :destroy]
@@ -19,8 +19,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:show]
-    # 下記メンバー仕様のルーティングに変更要
+    resources :users, only: [:show] do
+      resources :todos, only: [:create, :destroy]
+    end
     resources :events, only: [:show, :index, :edit, :create, :update, :destroy]
     get 'step1', to: 'events#step1'
     post 'step2', to: 'events#step2'
@@ -43,6 +44,5 @@ Rails.application.routes.draw do
     resources :rooms, only: [:show, :index]
     resources :direct_messages, only: [:create]
     resources :notifications, only: [:index, :destroy]
-    resources :searches, only: [:find_restaurant, :find_member]
   end
 end

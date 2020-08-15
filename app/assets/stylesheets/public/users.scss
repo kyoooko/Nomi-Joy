@@ -37,6 +37,13 @@
 .content__block--data td{
   font-family: "MPLUS-Regular", "Yu Gothic", "游ゴシック", sans-serif !important;
 }
+// マイページ（編集）
+.mypage-image-edit{
+  display:flex;
+  flex-direction: column;
+  width:150px !important;
+  margin: 0 auto;
+}
 // *******************************************************
 // メンバー＆フォローページ
 // タブ１

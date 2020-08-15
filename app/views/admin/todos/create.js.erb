@@ -1,0 +1,8 @@
+  $(".result_create").append('<tr class="result_delete"><td><%= link_to admin_user_todo_path(current_user, @todo), method: :delete, remote: true,  class: 'todo-btn blue-btn' do %><i class="fas fa-check-square admin"></i><% end %></td><td class = "admin nomal-font font-sm-responsive"><%= @todo.task %></td></tr>')
+  <%# valメソッドはコメント送信後のコメント入力フォームを空に %>
+  $('input[type=text]').val("");
+
+
+
+
+  

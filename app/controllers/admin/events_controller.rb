@@ -25,7 +25,9 @@ class Admin::EventsController < ApplicationController
     @today_event = Event.find_by(date: from..to, user_id: current_user.id)
     # 曜日
     @day_of_the_week = %w(日 月 火 水 木 金 土)[@today_event.date.wday] if @today_event.present?
-
+    # ToDoリスト
+    @todo = Todo.new
+    @todos = Todo.where(user_id:current_user.id)
     # ================タブ２===============
     # 全てのノミカイ
     # 【★幹事＝user_id使用】
@@ -107,16 +109,9 @@ class Admin::EventsController < ApplicationController
      @event_users.each do |event_user|
        @event.create_notification_remind_event(current_user, event_user.user_id)
      end
- 
-
-     
-
-
     RemindMailer.remind_mail(@event).deliver_now
     redirect_back(fallback_location: root_path)
   end
-  # def confirm_plan_remind
-  # end
 
   # show(タブ２）：参加メンバーの追加編集ページ
   def add_event_user
@@ -338,14 +333,18 @@ class Admin::EventsController < ApplicationController
     if params[:mail]
       # ノミカイ招待メール
       InvitationMailer.invitation_mail(@event).deliver_now
-      # 通知機能
-      event_users = EventUser.where(event_id: @event.id)
-      event_users.each do |event_user|
-        @event.create_notification_new_event(current_user, event_user.user_id)
-      end
+    end
+    # 通知機能
+    event_users = EventUser.where(event_id: @event.id)
+    event_users.each do |event_user|
+      @event.create_notification_new_event(current_user, event_user.user_id)
     end
     redirect_to admin_event_path(@event)
   end
+
+  # def confirm_plan_remind
+  # end
+
 
   private
   def set_event
