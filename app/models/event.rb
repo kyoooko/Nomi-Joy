@@ -34,4 +34,22 @@ class Event < ApplicationRecord
     )
     notification.save if notification.valid?
   end
+  # ◆通知機能（新規ノミカイ一斉案内メール）
+  def create_notification_new_event(current_user, visited_id)
+    notification = current_user.active_notifications.new(
+      event_id: id,
+      visited_id: visited_id,
+      action: 'create_event'
+    )
+    notification.save if notification.valid?
+  end
+  # ◆通知機能（リマインドメール）
+  def create_notification_remind_event(current_user, visited_id)
+    notification = current_user.active_notifications.new(
+      event_id: id,
+      visited_id: visited_id,
+      action: 'remind_event'
+    )
+    notification.save if notification.valid?
+  end
 end

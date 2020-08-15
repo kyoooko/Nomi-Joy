@@ -80,12 +80,13 @@
     </ul>
     <div class="clearfix"></div>
   </div>
-  <div>
-  <%# 一斉通知もしくはメール（実装予定） %>
-    <%# <form class="remind-mail">   %>
-        <%#=link_to admin_events_path, class:"btn blue-btn" do %>
-        <%# <i class="fas fa-envelope admin-icon"></i>(comming soon）全員にリマインドメールを送る %>
-        <%# end %>
-    <%# </form> %>
+  <div class="remind-mail">
+    <%# リマインドメール %>
+    <%=link_to admin_events_send_remind_path(event.id), class:"btn orange-btn" do %>
+      <i class="fas fa-envelope admin-icon"></i>&nbsp;<i class="fas fa-bell admin-icon"></i>&ensp;全員にリマインドメールを送る
+    <% end %>
   </div>
 </div>
+<p class="text-muted remind-mail-description">※ 「全員にリマインドメールを送る」 ボタンを押すと、参加者全員に下記のようなリマインドメールが自動送信されます。</p>
+<%= image_tag("remind_mail.jpg", class: "remind-mail-img") %>
+ 

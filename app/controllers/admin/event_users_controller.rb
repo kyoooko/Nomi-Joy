@@ -11,7 +11,6 @@ class Admin::EventUsersController < ApplicationController
 
   # 参加メンバーことの会費変更（欠席者含む）
   def fee_update
-    @event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id], user_id: params[:event_user][:user_id])
     # 下記のようにnullの場合を書かないと、入力だnillでもデータベースは更新されない
     if params[:event_user][:fee].present?
       @event_user.update(event_user_params)
@@ -24,16 +23,15 @@ class Admin::EventUsersController < ApplicationController
 
   # 参加メンバーことの会費ステータス変更（欠席者含む）
   def fee_status_update
-    @event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id], user_id: params[:event_user][:user_id])
     @event_user.update(event_user_params)
+    PaidMailer.paid_mail(@event_user).deliver_now
     # 非同期のため下記削除
     # redirect_back(fallback_location: root_path)
   end
 
   private
-
   def set_event_user
-    event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id], user_id: params[:event_user][:user_id])
+    @event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id], user_id: params[:event_user][:user_id])
   end
 
   def event_user_params

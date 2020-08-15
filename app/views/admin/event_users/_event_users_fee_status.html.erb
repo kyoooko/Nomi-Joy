@@ -1,16 +1,12 @@
 <%# 会員ごとの会費ステータス変更フォーム(非同期) %>
   <% if event_user.fee_status == false %>
-      <%= form_with model: event_user, url: admin_event_users_fee_status_path(event_user.id), class:"participant-fee-status-form"  do |f| %>
-      <%= f.hidden_field :fee_status, value: true %>
-      <%= f.hidden_field :user_id, value: event_user.user_id %>
-      <%= f.hidden_field :event_id, value: event_user.event_id %>
-      <%= f.submit "未領収",class:"btn btn-sm orange-btn participant-fee-status-form__btn" %>
-      <% end %>
+    <%= form_with model: event_user, url: admin_event_users_fee_status_path(event_user.id), class:"participant-fee-status-form"  do |f| %>
+    <%= f.hidden_field :fee_status, value: true %>
+    <%= f.hidden_field :user_id, value: event_user.user_id %>
+    <%= f.hidden_field :event_id, value: event_user.event_id %>
+    <%= f.submit "未領収",class:"btn btn-sm orange-btn participant-fee-status-form__btn" %>
+    <% end %>
   <% else %>
-      <%= form_with model: event_user, url: admin_event_users_fee_status_path(event_user.id), class:"participant-fee-status-form"  do |f| %>
-      <%= f.hidden_field :fee_status, value: false %>
-      <%= f.hidden_field :user_id, value: event_user.user_id %>
-      <%= f.hidden_field :event_id, value: event_user.event_id %>
-      <%= f.submit "領収済",class:"btn btn-sm btn-secondary participant-fee-status-form__btn" %>
-      <% end %>
+    <p class="btn btn-sm faked-gray-btn participant-fee-status-form__btn" >領収済</p>
   <% end %>
+
