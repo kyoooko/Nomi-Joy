@@ -1,4 +1,5 @@
-<!-- 今日の飲み会 -->
+<p class="text-muted room-description"><i class="fas fa-key text-muted"></i>&nbsp;101号室は 「今日の予定」 と 「ToDo リスト」 の部屋です&nbsp;<i class="fas fa-key text-muted"></i></p>
+<!-- 今日のノミカイ -->
 <div class="content__block--today content__block admin-table">
   <h2 class="admin-block-hedding">今日のノミカイ</h2>
   <div class="row">
@@ -62,19 +63,5 @@
   </div>
 </div>
 
-<!-- ToDoリスト（実装予定） -->
-<%# クラス名にcontent__block追加しcontent__block--todoのCSS（背景途切れ防止のため現在高さつけてる）削除要 %>
-<div class="content__block--todo">
-  <%# <h2 class="block-hedding">ToDo List</h2>
-  <form class="">
-    <div>
-      <p class="nomal-font"><input type="checkbox" name="course" value="html">村瀬課長代理に締めの挨拶依頼</p>
-      <p class="nomal-font"><input type="checkbox" name="course" value="html">中堀さんに出席可否再確認</p>
-      <p class="nomal-font"><input type="checkbox" name="course" value="html">7/23 ４課懇親会お店に電話</p>
-    </div>
-    <input autofocus="autofocus" class="input-form" type="text" name="" id="">  %>
-    <%#= link_to admin_events_path, class:"btn blue-btn" do %>
-    <%# <i class="fas fa-check admin-icon"></i>  %>
-    <%# end %>
-   <%# </form> %>
-</div>
+<!-- ToDoリスト(非同期) -->
+<%= render 'admin/todos/todos', todo:@todo, todos: @todos %>

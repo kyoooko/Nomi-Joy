@@ -87,7 +87,7 @@
         </table>
         <%# current_userなら編集ボタンを表示 %>
         <% if @user == current_user %>
-          <%= link_to "Edit", edit_user_path(@user), class:"btn mypage-btn green-btn" %>
+          <%= link_to "編集", edit_user_path(@user), class:"btn mypage-btn green-btn" %>
         <% else %>
           <%# current_user以外なら下記２つ %>
           <%# メンバー（相互フォロー）ならDMボタンを表示 %>
@@ -102,7 +102,7 @@
             </span>
             <span>
               <% if  @members.any? { |member| member.id == @user.id } %>
-                <%=link_to room_path(@user), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %>
+                <%=link_to room_path(@user), class:"btn btn-sm green-btn" do %><i class="fas fa-comments public-icon"></i><% end %>
               <% end %>
             </span>
           </div>

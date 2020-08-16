@@ -36,7 +36,7 @@
             <%# フォローボタン（非同期） %>
               <%= render "follow_button", member: member %>
             </td>
-            <td><br><%=link_to room_path(member), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %></td>
+            <td><br><%=link_to room_path(member), class:"btn btn-sm green-btn" do %><i class="fas fa-comments public-icon"></i><% end %></td>
           </tr>
         <% end %>
       </tbody>
@@ -85,7 +85,7 @@
           </tr>
           <tr>
             <th scope="row"></th>
-            <th scope="row"><br><%=link_to room_path(member), class:"btn btn-sm green-btn" do %><i class="fas fa-envelope public-icon"></i><% end %></th>
+            <th scope="row"><br><%=link_to room_path(member), class:"btn btn-sm green-btn" do %><i class="fas fa-comments public-icon"></i><% end %></th>
             <td id="follow_form">
               <%# フォローボタン（非同期） %>
               <%= render "follow_button", member: member %>

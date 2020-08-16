@@ -7,17 +7,17 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <%# フラッシュメッセージ %>
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>">
-          <%= message %>
-        </div>
-      <% end %>
-      <h1 class="heading__en admin">Add Member</h1>
-      <h3 class="heading__ja admin">メンバー追加</h3>
+      <h3 class="heading__event-date admin"><%= @event.date.to_s(:date) %>（<%= @day_of_the_week %>）</h3>
+      <h1 class="heading__event-name admin"><%= @event.name %></h1>
     </div>
     <div class="content">
       <div class="content__block--add-event-user content__block ">
+        <%# フラッシュメッセージ %>
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <%= message %>
+          </div>
+        <% end %>
         <% if @unselected_members.present? %>
           <%= form_with model: @event_user, url: admin_add_event_user_fee_path,  local: true, class: "" do |f| %>
             <table class="table table-borderless">
@@ -26,8 +26,8 @@
                   <td class="event-add-member-form">
                     <%= collection_check_boxes(:event_user, :ids, @unselected_members, :id, :name) %>
                     <div class="actions d-flex justify-content-center mt-5"> 
-                      <%= f.submit "Next", class: "btn blue-btn mr-1" %>
-                      <%= f.submit "Back", name: :back, class: "btn admin-white-btn" %>
+                      <%= f.submit "戻る", name: :back, class: "btn admin-white-btn" %>
+                      <%= f.submit "次へ", class: "btn blue-btn mr-1" %>
                     </div> 
                   </td>
                 </tr>

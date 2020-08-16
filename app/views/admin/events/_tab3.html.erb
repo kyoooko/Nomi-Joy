@@ -37,7 +37,7 @@
             <td>
               <%# current_user(自分)の場合はDMボタンを表示しない %>
               <% unless unpaying_event_user.user == current_user %>
-                <%=link_to admin_room_path(unpaying_event_user.user), class:"btn btn-sm blue-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+                <%=link_to admin_room_path(unpaying_event_user.user), class:"btn btn-sm blue-btn" do %><i class="fas fa-comments admin-icon"></i><% end %>
               <% end %>     
             </td>
           </tr>
@@ -95,7 +95,7 @@
           <td>
             <%# current_user(自分)の場合はDMボタンを表示しない %>
             <% unless event_user.user == current_user %>
-              <%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+              <%=link_to admin_room_path(event_user.user.id), class:"btn btn-sm blue-btn" do %><i class="fas fa-comments admin-icon"></i><% end %>
             <% end %>      
           </td>
         </tr>

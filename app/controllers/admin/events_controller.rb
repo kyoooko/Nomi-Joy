@@ -3,6 +3,8 @@ class Admin::EventsController < ApplicationController
   before_action :set_event_by_event_id, only: [:notice_to_unpaying_users, :progress_status_update, :add_event_user, :add_event_user_fee, :add_event_user_create, :change_restaurant, :change_restaurant_update,:send_remind]
   before_action :ensure_admin?, only: [:show, :edit, :update, :destroy]
   before_action :ensure_admin_event_id?, only: [:progress_status_update, :notice_to_unpaying_users]
+  before_action :set_day_of_the_week, only: [:show, :edit, :change_restaurant, :add_event_user_fee, :add_event_user]
+
 
   # 以下、includesはN+1問題の解消
   # 以下、with_deletedは欠席者も含むための記述（gem paranoia）
@@ -24,8 +26,10 @@ class Admin::EventsController < ApplicationController
     to = Time.current.end_of_day
     @today_event = Event.find_by(date: from..to, user_id: current_user.id)
     # 曜日
-    @day_of_the_week = %w(日 月 火 水 木 金 土)[@today_event.date.wday] if @today_event.present?
-
+    day_of_the_week(@today_event) if @today_event.present?
+    # ToDoリスト
+    @todo = Todo.new
+    @todos = Todo.where(user_id:current_user.id)
     # ================タブ２===============
     # 全てのノミカイ
     # 【★幹事＝user_id使用】
@@ -56,9 +60,6 @@ class Admin::EventsController < ApplicationController
     else
       @room = 1
     end
-    # ================タブ１===============
-    # 曜日
-    @day_of_the_week = %w(日 月 火 水 木 金 土)[@event.date.wday]
     # ================タブ２===============
     # 当該飲み会の参加メンバー全員（欠席者含む）
     @event_users = EventUser.with_deleted.includes([:user]).where(event_id: @event.id)
@@ -107,16 +108,9 @@ class Admin::EventsController < ApplicationController
      @event_users.each do |event_user|
        @event.create_notification_remind_event(current_user, event_user.user_id)
      end
- 
-
-     
-
-
     RemindMailer.remind_mail(@event).deliver_now
     redirect_back(fallback_location: root_path)
   end
-  # def confirm_plan_remind
-  # end
 
   # show(タブ２）：参加メンバーの追加編集ページ
   def add_event_user
@@ -146,7 +140,6 @@ class Admin::EventsController < ApplicationController
     event_user_ids = session[:event_user_ids]
     event_user_fees = session[:fees] = params[:fees]
     event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
-    # 非同期なら下記削除予定（JSファイルあり）
     flash[:success] = "参加メンバーを追加しました"
     redirect_to admin_event_path(@event, room: 2)
   end
@@ -159,7 +152,6 @@ class Admin::EventsController < ApplicationController
       # メール通知
       UnpaidMailer.unpaid_mail(unpaying_event_user).deliver_now
     end
-    redirect_back(fallback_location: root_path)
     # 非同期のため下記削除
     # redirect_back(fallback_location: root_path)
   end
@@ -196,7 +188,6 @@ class Admin::EventsController < ApplicationController
           holiday: restaurant["holiday"]
         )
         @event.update(restaurant_id: @restaurant.id)
-        # 下記非同期実装中
         flash[:success] = "お店を変更しました"
         redirect_to admin_event_path(@event, room: 4)
       else
@@ -283,13 +274,13 @@ class Admin::EventsController < ApplicationController
   # 新規作成(5)：step4のparamsの値をsessionに代入＋step4のparamsの値をsessionに代入＋確認ページの表示（POST：viewあり)
   def confirm
     @event = Event.new(event_params)
-    # 曜日
-    @day_of_the_week = %w(日 月 火 水 木 金 土)[@event.date.wday]
     # Backボタンで戻ってきた時renderでstep3に戻るので下記追記が必要
     @members = current_user.matchers
     # カンジ
     # 【★幹事＝user_id使用】
     @event.user_id = current_user.id
+    # 曜日
+    day_of_the_week(@event)
     @restautant_name = session[:name]
     # 選択されたメンバーのIDの配列
     @event_user_ids = session[:event_user_ids]
@@ -338,14 +329,18 @@ class Admin::EventsController < ApplicationController
     if params[:mail]
       # ノミカイ招待メール
       InvitationMailer.invitation_mail(@event).deliver_now
-      # 通知機能
-      event_users = EventUser.where(event_id: @event.id)
-      event_users.each do |event_user|
-        @event.create_notification_new_event(current_user, event_user.user_id)
-      end
+    end
+    # 通知機能
+    event_users = EventUser.where(event_id: @event.id)
+    event_users.each do |event_user|
+      @event.create_notification_new_event(current_user, event_user.user_id)
     end
     redirect_to admin_event_path(@event)
   end
+
+  # def confirm_plan_remind
+  # end
+
 
   private
   def set_event
@@ -358,6 +353,15 @@ class Admin::EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :date, :begin_time, :finish_time, :memo, :progress_status)
+  end
+
+  # 曜日
+  def day_of_the_week(event)
+    @day_of_the_week = %w(日 月 火 水 木 金 土)[event.date.wday]
+  end
+  # 曜日
+  def set_day_of_the_week
+    @day_of_the_week = %w(日 月 火 水 木 金 土)[@event.date.wday]
   end
 
   # 自分がカンジでないノミカイはアクセス(URL検索含む）できないようにする

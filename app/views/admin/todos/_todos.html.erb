@@ -1,0 +1,22 @@
+<div class="content__block--todo content__block">
+  <h2 class="block-hedding admin">ToDo リスト</h2>
+  <%= form_with model: todo, url: admin_user_todos_path(current_user), remote: true, class:"todo-form"  do |f| %>
+    <%= f.text_field :task, class:"input-form nomal-font" %>
+    <%= f.button type: "submit", class:"btn blue-btn" do %><i class="fas fa-pen admin-icon"></i><% end %>
+  <% end %>
+  <table class="table table-borderless">
+    <tbody class="result_create">
+      <% todos.each do |todo| %>
+        <tr class="result_delete">
+          <td>
+            <%= link_to admin_user_todo_path(current_user, todo), method: :delete, remote: true,  class: 'todo-btn blue-btn' do %><i class="fas fa-check-square admin"></i><% end %>
+          </td>
+          <td class = "admin nomal-font font-sm-responsive">
+             <%= todo.task %>
+          </td>
+        </tr>
+      <% end %>
+      <%# <tr class="result_create result_delete"></tr> %>
+    </tbody>
+  </table>
+</div>

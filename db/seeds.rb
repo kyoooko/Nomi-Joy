@@ -9,7 +9,7 @@
 # ◆ユーザー(10名)
 User.create!(name:"テストユーザー", email: "test1@test.co.jp", password: "testuser", nomi_joy_id:"nomijoy1", belongs: "オーシャンティック航空（株） 東自損3課", position: "副主任",image:File.open("./app/assets/images/ajisai.JPG", ?r),nearest_station:"吉祥寺", can_drink: true, favolite:"ワイン、ハイボール、スパイスカレー",unfavolite:"焼酎、胡麻豆腐", introduction:"2年目のテストユーザーです。白ワインが好きです！よろしくお願いいたします。")
 
-User.create!(name:"加藤真美", email: "ki993a668@gmail.com", password: "aaaaaa", nomi_joy_id:"nomijoy2", belongs: "オーシャンティック航空（株） 東自損3課", position: "",image:File.open("./app/assets/images/torii.JPG", ?r),nearest_station:"清瀬", can_drink: true, favolite:"中華、韓国料理",unfavolite:"えび", introduction:"新入社員の加藤です。学生時代はバレーボール部に所属していました。よろしくお願いします。")
+User.create!(name:"加藤真美", email: "liliuokalani.618@ezweb.ne.jp", password: "aaaaaa", nomi_joy_id:"nomijoy2", belongs: "オーシャンティック航空（株） 東自損3課", position: "",image:File.open("./app/assets/images/torii.JPG", ?r),nearest_station:"清瀬", can_drink: true, favolite:"中華、韓国料理",unfavolite:"えび", introduction:"新入社員の加藤です。学生時代はバレーボール部に所属していました。よろしくお願いします。")
 
 User.create!(name:"林健太", email: "test3@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy3", belongs: "オーシャンティック航空（株） 東自損3課", position: "課長",image:File.open("./app/assets/images/ny.jpg", ?r),nearest_station:"目黒", can_drink: true, favolite:"お酒全般、ゆでたん",unfavolite:"生物", introduction:"美味しいお店開拓中です！鶯谷の焼肉屋『鶯谷園』がおすすめです！")
 
@@ -88,7 +88,7 @@ EventUser.create!(user_id:5,event_id:1,fee:4500,fee_status:true,deleted_at:"2020
 # ◆ノミカイ２（カンジ：user2、参加メンバー：user1,2,5,6、お店：restaurant2)
 Restaurant.create!(user_id: 2,name:"魚民 市ヶ谷駅前店",address:"〒162-0844  東京都新宿区市谷八幡町2-1 DS市ヶ谷ビル8F",access:"地下鉄南北線 市ケ谷駅 徒歩2分",url:"https://r.gnavi.co.jp/hr6cjkc90000/",shop_image:"uotami.png",tel:"03-3268-6088",opentime:"月～木 16:00～翌1:00 金・土・祝前日 16:00～翌5:00 日・祝日 16:00～24:00",holiday:"無")
 Event.create!(restaurant_id:2,user_id:2,name:"野澤さん送別会",date:"2020-08-17 00:00:00",begin_time:"2020-08-17 18:30:00",finish_time:"2020-08-17 21:00:00",memo:"吉田さんは19時から参加、花束と色紙を用意する。",progress_status:1)
-EventUser.create!(user_id:1,event_id:2,fee:3500,fee_status:false,deleted_at:"")
+EventUser.create!(user_id:1,event_id:2,fee:3500,fee_status:true,deleted_at:"")
 EventUser.create!(user_id:2,event_id:2,fee:3500,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:5,event_id:2,fee:4000,fee_status:true,deleted_at:"")
 EventUser.create!(user_id:6,event_id:2,fee:4500,fee_status:true,deleted_at:"")
@@ -114,6 +114,16 @@ EventUser.create!(user_id:8,event_id:4,fee:4000,fee_status:false,deleted_at:"")
 # ◆通知
 Notification.create!(visitor_id:8, visited_id:1, action: "follow")
 Notification.create!(visitor_id:5, visited_id:1, action: "dm", direct_message_id: 1)
+Notification.create!(visitor_id:2, visited_id:1, action: "create_event",event_id: 2)
+Notification.create!(visitor_id:2, visited_id:1, action: "remind_event", event_id: 2)
 Notification.create!(visitor_id:2, visited_id:1, action: "require_fee",event_id: 2)
+Notification.create!(visitor_id:2, visited_id:1, action: "paid_fee", event_id: 2)
 Notification.create!(visitor_id:1, visited_id:5, action: "dm", direct_message_id: 2)
 
+
+# ◆ToDoリスト
+Todo.create!(user_id:1, task: "3課新人歓迎会：林課長に挨拶依頼")
+Todo.create!(user_id:1, task: "大学ゼミ同期会：みんなにコース相談→お店に連絡")
+Todo.create!(user_id:1, task: "2020年3課暑気払い：お店に１名欠席連絡")
+Todo.create!(user_id:1, task: "2020年3課暑気払い：前日リマインド流す")
+Todo.create!(user_id:2, task: "野澤さん送別会：花束用意する")

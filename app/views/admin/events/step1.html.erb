@@ -7,7 +7,7 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <h2 class="admin">ノミカイをつくる</h2>
+      <h5 class="heading__create-event admin">ノミカイをつくる</h5>
       <h1 class="heading__en admin">Step1</h1>
     </div>
     <div class="content">
@@ -43,7 +43,7 @@
                 <td class="nomal-font font-sm"><%= f.time_field :begin_time, autofocus: true, autocomplete: "start_time", class:"create-event-form--time" %>&emsp;〜&emsp;<%= f.time_field :finish_time, autofocus: true, autocomplete: "finish_time", class:"create-event-form--time" %></td>
               </tr>
               <tr>
-                <th scope="row">メモ</th>
+                <th scope="row">メモ&ensp;&nbsp;</th>
                 <td class="nomal-font"><span class="text-muted responsive-font-sm">※カンジ専用のメモです。参加者側には表示されません。</span><br><%= f.text_area :memo, autofocus: true, autocomplete: "memo", class:"create-event-textarea" %></td>
               </tr>
             </tbody>

@@ -13,7 +13,7 @@
           <%= message %>
         </div>
       <% end %>
-      <h2 class="admin">ノミカイをつくる</h2>
+      <h5 class="heading__create-event admin">ノミカイをつくる</h5>
       <h1 class="heading__en admin">Step3</h1>
     </div>
     <div class="content">
@@ -37,7 +37,7 @@
             <table class="table table-borderless">
               <tbody>
                 <tr class= "">
-                  <td class="event-create-member-form">
+                  <td class="event-create-member-form responsive-font-sm">
                     <%= collection_check_boxes(:event_user, :ids, @members, :id, :name) %>
                     <div class="actions d-flex justify-content-center mt-2"> 
                       <%= f.submit "戻る", name: :back, class: "btn admin-white-btn mr-1" %>

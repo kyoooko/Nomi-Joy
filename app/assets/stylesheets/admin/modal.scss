@@ -1,0 +1,70 @@
+// モーダルを表示するボタン
+.modal-btn{
+  font-size: 1.25rem;
+  margin-left: 15px;
+  .fa-question-circle{
+    color:#626a6d !important;
+    &:hover{
+      color: #9ca1a1 !important;
+    }
+  }
+}
+// ===========================================
+// モーダル表示
+.modal-background{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  text-align: center;
+  display: none;
+}
+
+.modal-box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform : translate(-50%,-50%);
+  transform : translate(-50%,-50%);
+  background-color: #fff;
+  border-radius: 4px;
+  width: 700px;
+  min-height: 875px;
+  padding:50px;
+}
+.modal-description {
+  font-size: 20px;
+}
+@media (max-width: 1000px) {
+  .modal-box{
+    width: 500px;
+    min-height: 625px;
+  }
+}
+@media (max-width: 400px) {
+  .modal-box{
+    width: 300px;
+    min-height: 375px;
+    padding:30px;
+  }
+}
+.fa-times {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: rgba(128, 128, 128, 0.46);
+  cursor: pointer;
+}
+.close-modal{
+  margin-bottom: 30px;
+}
+
+// ===========================================
+// admin側event/show/タブ２
+.remind-mail{
+  padding-top: 50px;
+}

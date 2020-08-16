@@ -16,6 +16,9 @@
   padding: 5%;
   margin-top:5%;
   margin-bottom: 10%;
+  th{
+    width:20%
+  }
 }
 .content__block__unpaid{
   background-color: #eee;
@@ -28,7 +31,6 @@
   background-color: #eee;
   border-radius: 20px;
   padding: 5%;
-  /* margin-top:5%; */
 }
 .content__block--map{
   margin-top:10%;

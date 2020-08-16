@@ -1,3 +1,4 @@
+<p class="text-muted room-description"><i class="fas fa-key text-muted"></i>&nbsp;303号室は 「集金」 の部屋です&nbsp;<i class="fas fa-key text-muted"></i></p>
 <!-- 未払い飲み会一覧 -->
 <div class="content__block__unpaid-nomikai content__block admin-table">
   <h2 class="block-hedding">集金中のノミカイ</h2>
@@ -31,7 +32,7 @@
         <th scope="col"></th>
         <th scope="col">氏名</th>
         <th scope="col">内訳</th>
-        <th scope="col">トータル額</th>
+        <th scope="col">合計</th>
       </tr>
     </thead>
     <tbody>
@@ -62,7 +63,7 @@
           <td class="nomal-font responsive-font-sm"><%= sum %>円</td>
           <td>
             <% unless current_user == user %>
-              <%=link_to admin_room_path(user), class:"btn btn-sm blue-btn" do %><i class="fas fa-envelope admin-icon"></i><% end %>
+              <%=link_to admin_room_path(user), class:"btn btn-sm blue-btn" do %><i class="fas  fa-comments admin-icon"></i><% end %>
             <% end %>
           </td>
         </tr>
