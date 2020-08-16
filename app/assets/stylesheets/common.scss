@@ -103,6 +103,10 @@
     color:#efa04c !important;
   }
 }
+.orange-btn-demo{
+  background-color: #efa04c !important;
+  color:$white  !important;
+}
 // 画像（丸型・小
 .small-image{
   width:80px;
@@ -214,10 +218,11 @@ margin-bottom: 3%;
 .content{
   margin-top:10%;
 }
-// ボディ内ブロックの見出し（publicとadmin共通）
+// ブロックない見出し
 .block-hedding{
-  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
+// ※印
 .must{
   color: rgb(177, 74, 74);
 }

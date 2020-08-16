@@ -1,7 +1,12 @@
 <%# メンバー一覧(767px以上) %>
-<div class="content__block--menbers"> 
-  <h2 class="block-hedding">ノミカイメンバー一覧</h2>
-  <p class="text-secondary description">このページは&nbsp;「ノミカイメンバー」&nbsp;の一覧です<br>お互いにフォローしているユーザーは&nbsp;「ノミカイメンバー」&nbsp;となります<br>「ノミカイメンバー」&nbsp;になると、DMをしたり、あなたがカンジをするノミカイに招待できます！<br><span class="must">※「ノミカイメンバー」になると、相手へメールアドレスが公開されます</span></p>
+<div class="content__block--menbers acordion"> 
+  <div class="block-hedding">
+    <h2 class="block-hedding__head">ノミカイメンバー一覧&emsp;<span class="symbol"><i class="fas fa-caret-down"></i></span></h2>
+    <div class="block-hedding__description">
+      <p class="text-secondary">「ノミカイメンバー」 とはマッチング（相互フォロー）しているユーザーです<br>「ノミカイメンバー」&nbsp;になると、DMをしたり、あなたがカンジをするノミカイに招待できます！<br><span class="must">※ 「ノミカイメンバー」 になると相手へメールアドレスが公開されます</span>
+      </p>
+    </div>
+  </div>
   <% if members.present? %>
     <table class="table members-table font-sm">
       <thead>
@@ -48,9 +53,14 @@
 
 <%# 上記のレスポンシブ対応版 %>
 <%# メンバー一覧(767px未満) %>
-<div class="content__block--menbers-responsive"> 
-  <h2 class="block-hedding">ノミカイメンバー一覧</h2>
-  <p class="text-secondary description">このページは&nbsp;「ノミカイメンバー」&nbsp;の一覧です<br>お互いにフォローしているユーザーは&nbsp;「ノミカイメンバー」&nbsp;となります<br>「ノミカイメンバー」&nbsp;になると、DMをしたり、あなたがカンジをするノミカイに招待できます！<br><span class="must">※「ノミカイメンバー」になると、相手へメールアドレスが公開されます</span></p>
+<div class="content__block--menbers-responsive acordion"> 
+  <div class="block-hedding">
+    <h2 class="block-hedding__head">ノミカイメンバー一覧&emsp;<span class="symbol"><i class="fas fa-caret-down"></i></span></h2>
+    <div class="block-hedding__description">
+      <p class="text-secondary">「ノミカイメンバー」 とはマッチング（相互フォロー）しているユーザーです<br>「ノミカイメンバー」&nbsp;になると、DMをしたり、あなたがカンジをするノミカイに招待できます！<br><span class="must">※ 「ノミカイメンバー」 になると相手へメールアドレスが公開されます</span>
+      </p>
+    </div>
+  </div>
   <% if members.present? %>
     <% members.each do |member| %>
       <%# 参照先のS3オブジェクトURLを作成 %>

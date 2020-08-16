@@ -10,7 +10,8 @@
           <th scope="col"></th>
           <th scope="col">氏名</th>
           <th scope="col">会費</th> 
-          <th scope="col">支払い状況</th>
+          <%# モーダルを表示するボタン %>
+           <th scope="col">支払い状況<br><span class="sm-modal-btn" id="paid-modal-btn-1"><i class="far fa-question-circle"></i></span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -48,10 +49,8 @@
       <%=link_to admin_notice_to_unpaying_users_path(@event), class:"btn orange-btn" do %>
         <i class="fas fa-envelope admin-icon"></i>&nbsp;<i class="fas fa-bell admin-icon"></i>&ensp;集金中のメンバー全員に支払い依頼通知・メールを送る
       <% end %>
-    </div>
-    <div class="mail-preview">
-      <p class="unpaid-mail-description text-muted">※ 「集金中のメンバー全員に支払い依頼通知・メールを送る」 ボタンを押すと、<br>対象者全員に下記のような確認依頼メールおよび通知が一括自動送信されます。</p>
-      <%= image_tag("unpaid_mail.png", class: "paid-mail-img") %>
+      <%# モーダルを表示するボタン %>
+      <span class="modal-btn" id="unpaid-modal-btn"><i class="far fa-question-circle"></i></span>
     </div>
   <% else %>
   全員領収済
@@ -67,7 +66,8 @@
         <th scope="col" class="participants-image-head"></th>
         <th scope="col">氏名<br><br></th>
         <th scope="col">会費<br><span class="text-muted">※半角英数字</span></th>
-        <th scope="col">支払い状況<br><br></th>
+        <%# モーダルを表示するボタン %>
+        <th scope="col">支払い状況<br><span class="sm-modal-btn" id="paid-modal-btn-2"><i class="far fa-question-circle"></i></span></th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -102,8 +102,9 @@
       <% end %>
     </tbody>
   </table>
-  <div class="mail-preview">
-    <p class="paid-mail-description text-muted">※ 「領収済」 ボタンを押すと、下記のような領収済メールおよび通知が自動送信されます。</p>
-    <%= image_tag("paid_mail.jpg", class: "paid-mail-img") %>
-  </div>
 </div>
+<%# モーダル表示画面 %>
+<%= render 'modals/admin_event_index_tab3' %>
+
+
+

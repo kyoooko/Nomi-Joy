@@ -1,12 +1,22 @@
-<div class="content__block__search-users content__block">
-  <h2 class="block-hedding">ユーザーを探す</h2>
-  <p class="text-secondary description">まだフォローしていない・されていないユーザーを&nbsp;「ノミジョイ！ID」&nbsp;で探せます</p>
+<div class="content__block__search-users content__block acordion">
+  <div class="block-hedding">
+    <h2 class="block-hedding__head">ユーザーを探す&emsp;<span class="symbol"><i class="fas fa-caret-down"></i></span></h2>
+    <div class="block-hedding__description">
+      <p class="text-secondary">「ノミジョイ！ID」&nbsp;で新しいユーザーを探せます
+      </p>
+    </div>
+  </div>
   <%# 検索フォーム(非同期) %>
   <%= render 'public/searches/member_search_form', find_users:@find_users %>
 </div>
-<div class="content__block__followed">
-  <h2 class="block-hedding">承認依頼の来ているユーザー</h2>
-  <p class="text-secondary description">下記のユーザーから承認申請（フォロー）が来ています<br>フォローを返して&nbsp;「ノミカイメンバー」&nbsp;になりましょう！</p>
+<div class="content__block__followed acordion">
+  <div class="block-hedding">
+    <h2 class="block-hedding__head">承認依頼の来ているユーザー&emsp;<span class="symbol"><i class="fas fa-caret-down"></i></span></h2>
+    <div class="block-hedding__description">
+      <p class="text-secondary">下記のユーザーから承認申請（フォロー）が来ています<br>フォローを返して&nbsp;「ノミカイメンバー」&nbsp;になりましょう！
+      </p>
+    </div>
+  </div>
   <% if followers.present? %>
     <table class="table members-table font-sm">
       <thead>
@@ -39,10 +49,14 @@
   <% end %>
 </div>
 <hr>
-
-<div class="content__block__following">
-  <h2 class="block-hedding">承認申請中のユーザー</h2>
-  <p class="text-secondary description">下記のユーザーへ承認申請（フォロー）を送信済みです<br>相手が承認をしてくれると&nbsp;「ノミカイメンバー」&nbsp;になり、あなたがカンジをするノミカイに招待できます！</p>
+<div class="content__block__following acordion">
+  <div class="block-hedding">
+    <h2 class="block-hedding__head">承認申請中のユーザー&emsp;<span class="symbol"><i class="fas fa-caret-down"></i></span></h2>
+    <div class="block-hedding__description">
+      <p class="text-secondary">下記のユーザーへ承認申請（フォロー）を送信済みです<br>相手がに承認されると&nbsp;「ノミカイメンバー」&nbsp;になり、あなたがカンジをするノミカイに招待できます！
+      </p>
+    </div>
+  </div>
   <% if followings.present? %>
     <table class="table members-table font-sm">
       <thead>

@@ -1,0 +1,18 @@
+/*アコーディオン */
+.symbol {
+  font-size:20px;
+  vertical-align: 5px;
+}
+.block-hedding__description{
+  display: none;
+  width: 70%;
+  margin: 0 auto !important;
+  .tag{
+    background-color: #1b515c !important;
+  }
+}
+// DM
+.content__block__dm .block-hedding__head{
+  margin-top: 30px;
+}
+
