@@ -139,7 +139,15 @@ class Admin::EventsController < ApplicationController
     # 確定ボタン押した場合
     event_user_ids = session[:event_user_ids]
     event_user_fees = session[:fees] = params[:fees]
-    event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
+    add_event_users = event_user_ids.zip(event_user_fees).map { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
+    # ノミカイ招待メール
+    if params[:mail]
+      InvitationMailer.invitation_mail_for_add_participant(@event,add_event_users).deliver_now
+    end
+    # 通知機能
+    add_event_users.each do |add_event_user|
+      @event.create_notification_new_event(current_user, add_event_user.user_id)
+    end
     flash[:success] = "参加メンバーを追加しました"
     redirect_to admin_event_path(@event, room: 2)
   end
