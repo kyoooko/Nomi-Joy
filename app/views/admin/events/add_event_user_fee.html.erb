@@ -27,8 +27,9 @@
             </table>
             <div class="actions"> 
               <%= f.submit "戻る", name: :back, class: "btn admin-white-btn" %>
-              <%= f.button type: "submit", class:"btn blue-btn"  do %><i class="fas fa-bell admin-icon"></i>&ensp;追加 （メール通知しない）<% end %>
-              <%= f.button type: "submit", name: :mail, class:"btn orange-btn"  do %><i class="fas fa-bell admin-icon"></i>&nbsp;<i class="fas fa-envelope admin-icon"></i>&ensp;追加 （メール通知する）<% end %>
+              <%= f.button type: "submit", class:"btn blue-btn"  do %><i class="fas fa-bell admin-icon"></i>&ensp;追加<% end %>
+              <%= f.button type: "submit", name: :mail, class:"btn orange-btn"  do %><i class="fas fa-bell admin-icon"></i>&nbsp;<i class="fas fa-envelope admin-icon"></i>&ensp;追加 （メールで通知する）<% end %>
+              <span class="modal-btn modal-btn-responsive-right" id="invite-modal-btn"><i class="far fa-question-circle"></i></span>
             </div> 
          <% end %>
       </div>
@@ -36,3 +37,5 @@
     <%= render "layouts/admin_footer" %>
   </div>
 </main>
+<%# モーダル表示画面 %>
+<%= render 'modals/admin_event_add_event_user' %>

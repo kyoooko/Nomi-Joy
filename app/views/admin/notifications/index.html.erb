@@ -13,8 +13,6 @@
     <!-- 新規作成ボタン -->
       <%= render 'admin/events/create_event_button' %>
     <div class="content content__block__notice">
-      <p class="text-secondary description">このページは、DMができるメンバー（ノミカイメンバー）の一覧です<br>「ノミカイメンバー」&nbsp;ではなくなると（どちらかがフォローをやめると）<br>DMができなくなります</p>
-      <br>
       <% if @notifications.exists? %>
         <%= render @notifications %>
         <div class="paginate-bar">

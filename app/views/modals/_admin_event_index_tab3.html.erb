@@ -1,0 +1,40 @@
+<%# admin/event/show/タブ３（支払い確認依頼） %>
+    <div class="modal-background" id="modal-background-unpaid">
+      <div class="modal-box">
+        <div class="close-modal">
+          <i class="fa fa-times"></i>
+        </div>
+        <div class="row">
+          <p class="modal-description admin col-md-12">
+            <span class="btn btn-sm orange-btn-demo"><i class="fas fa-bell admin-icon"></i>&nbsp;<i class="fas fa-envelope admin-icon"></i>&ensp;集金中のメンバー全員に支払い依頼通知・メールを送る</span>&nbsp;を押すと、<br>対象者全員に下記のような確認依頼メールおよび ノミジョイ！ 内の通知が自動送信されます。
+          </p>
+          <div class="col-md-6">
+            <p class="tag"><i class="fas fa-envelope admin-icon"></i>&nbsp;メール</p>
+            <%= image_tag("preview/unpaid_mail.png", class: "preview-img") %>
+          </div>
+          <div class="col-md-6">
+          <p class="tag"><i class="fas fa-bell admin-icon"></i>&ensp;通知</p>
+            <%= image_tag("preview/unpaid-notice.png", class: "preview-img") %>
+          </div>
+        </div>
+      </div>
+    </div>
+<%# admin/event/show/タブ３（領収済） %>
+  <div class="modal-background" id="modal-background-paid">
+    <div class="modal-box">
+      <div class="close-modal">
+        <i class="fa fa-times"></i>
+      </div>
+      <div class="row">
+        <p class="modal-description admin col-md-12"><span class="btn btn-sm orange-btn-demo">領収済</span>&nbsp;を押すと、下記のような領収済メールおよび ノミジョイ！ 内の通知が自動送信されます。</p>
+        <div class="col-md-6">
+          <p class="tag"><i class="fas fa-envelope admin-icon"></i>&nbsp;メール</p>
+          <%= image_tag("preview/paid_mail.jpg", class: "preview-img") %>
+        </div>
+        <div class="col-md-6">
+        <p class="tag"><i class="fas fa-bell admin-icon"></i>&ensp;通知</p>
+          <%= image_tag("preview/paid-notice.png", class: "preview-img") %>
+        </div>
+      </div>
+    </div>
+  </div>

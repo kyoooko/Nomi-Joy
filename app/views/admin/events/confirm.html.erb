@@ -72,16 +72,33 @@
           <%= f.hidden_field :memo %>
           <div class="confim-actions"> 
             <%= f.submit "戻る", name: :back, class: "btn admin-white-btn" %>
-            <%= f.button type: "submit", class:"btn blue-btn"  do %><i class="fas fa-bell admin-icon"></i>&ensp;つくる （メール通知しない）<% end %>
-            <%= f.button type: "submit", name: :mail, class:"btn orange-btn"  do %><i class="fas fa-bell admin-icon"></i>&nbsp;<i class="fas fa-envelope admin-icon"></i>&ensp;つくる （全員にメール通知）<% end %>
+            <%= f.button type: "submit", class:"btn blue-btn"  do %><i class="fas fa-bell admin-icon"></i>&ensp;つくる<% end %>
+            <%= f.button type: "submit", name: :mail, class:"btn orange-btn"  do %><i class="fas fa-bell admin-icon"></i>&nbsp;<i class="fas fa-envelope admin-icon"></i>&ensp;つくる （メールで通知する）<% end %>
+            <span class="modal-btn modal-btn-responsive-right" id="invite-modal-btn"><i class="far fa-question-circle"></i></span>
           </div> 
         <% end %>
-      </div>
-      <div class="content__block--invitation_mail">
-        <p class="text-muted">※ 「つくる （全員にメール通知）」 ボタンを押すと、参加者全員に下記のような招待メールが自動送信されます。<br>自動送信をしない場合は 「つくる （メール通知しない）」 を押してください。<br>※ 「つくる （全員にメール通知）」 、 「つくる （メール通知しない）」 ボタンいずれも参加者全員に 「ノミジョイ！」 内の通知が届きます。</p>
-        <%= image_tag("invitation_mail.jpg", class: "invitation_mail") %>
       </div>
     </div>
     <%= render "layouts/admin_footer" %>
   </div>
 </main>
+<%# モーダル表示画面 %>
+<%= render 'modals/admin_event_confirm' %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,6 +9,15 @@
     }
   }
 }
+.sm-modal-btn{
+  margin-left: 15px;
+  .fa-question-circle{
+    color:#626a6d !important;
+    &:hover{
+      color: #9ca1a1 !important;
+    }
+  }
+}
 // ===========================================
 // モーダル表示
 .modal-background{
@@ -32,7 +41,6 @@
   background-color: #dfdfdf;
   border-radius: 4px;
   width: 700px;
-  // min-height: 750px;
   padding:30px;
 }
 .modal-description {
@@ -90,12 +98,21 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  color: rgba(128, 128, 128, 0.46);
+  color: #9ca1a1;
   cursor: pointer;
 }
 .close-modal{
   margin-bottom: 30px;
 }
+// ===========================================
+// レスポンシブ時、？ボタンを右端に表示するため
+.modal-btn-responsive-right{
+  text-align:right ;
+}
+
+
+
+
 
 
 

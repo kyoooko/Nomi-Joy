@@ -1,0 +1,21 @@
+<%# admin/event/confirm（新規作成確認画面） %>
+  <div class="modal-background" id="modal-background-invite">
+    <div class="modal-box">
+      <div class="close-modal">
+        <i class="fa fa-times"></i>
+      </div>
+      <div class="row">
+        <p class="modal-description admin col-md-12">
+          <span class="btn btn-sm orange-btn-demo"><i class="fas fa-bell admin-icon"></i>&nbsp;<i class="fas fa-envelope admin-icon"></i>&ensp;つくる （メールで通知する）</span>&nbsp;を押すと、参加者全員に下記のような招待メールおよび<br> ノミジョイ！ 内の通知が自動送信されます。<br><span class="btn btn-sm blue-btn-demo"><i class="fas fa-bell admin-icon"></i>&nbsp;つくる</span>&nbsp;を押した場合は通知のみ送信されます。
+        </p>
+        <div class="col-md-6">
+          <p class="tag"><i class="fas fa-envelope admin-icon"></i>&nbsp;メール</p>
+          <%= image_tag("preview/invitation_mail.jpg", class: "preview-img") %>
+        </div>
+        <div class="col-md-6">
+        <p class="tag"><i class="fas fa-bell admin-icon"></i>&ensp;通知</p>
+          <%= image_tag("preview/invite-notice.png", class: "preview-img") %>
+        </div>
+      </div>
+    </div>
+  </div>
