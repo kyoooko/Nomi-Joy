@@ -68,19 +68,19 @@
     font-size: 18px;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .modal-box{
-    width: 200px;
-    padding:5px;
+    width: 300px;
+    padding:15px;
   }
   .modal-description {
-    font-size: 12px;
+    font-size: 14px;
   }
   .preview-img{
-    width:40%;
+    width:50%;
   }
   .tag{
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 8px;
     margin-bottom: 5px;
   }
