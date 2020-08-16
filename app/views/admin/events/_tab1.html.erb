@@ -93,11 +93,18 @@
 <div class="modal-background">
   <div class="modal-box">
     <div class="close-modal">
-      <i class="fa fa-2x fa-times"></i>
+      <i class="fa fa-times"></i>
     </div>
-    <div>
-      <p class="modal-description admin">「全員にリマインドメールを送る」 ボタンを押すと、<br>参加者全員に下記のようなメールおよび通知が自動送信されます。</p>
-      <%= image_tag("remind_mail.jpg", class: "remind-mail-img") %>
+    <div class="row">
+      <p class="modal-description admin col-md-12">「全員にリマインドメールを送る」 ボタンを押すと、<br>参加者全員に下記のようなメールおよび通知が自動送信されます。</p>
+      <div class="col-md-6">
+        <p class="tag"><i class="fas fa-envelope admin-icon"></i>&nbsp;メール</p>
+        <%= image_tag("remind_mail.jpg", class: "preview-img") %>
+      </div>
+      <div class="col-md-6">
+       <p class="tag"><i class="fas fa-bell admin-icon"></i>&ensp;通知</p>
+        <%= image_tag("preview/remind-notice.png", class: "preview-img") %>
+      </div>
     </div>
   </div>
 </div>

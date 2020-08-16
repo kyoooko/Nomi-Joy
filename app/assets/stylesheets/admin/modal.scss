@@ -22,7 +22,6 @@
   text-align: center;
   display: none;
 }
-
 .modal-box{
   position: absolute;
   top: 50%;
@@ -30,26 +29,57 @@
   -ms-transform: translate(-50%,-50%);
   -webkit-transform : translate(-50%,-50%);
   transform : translate(-50%,-50%);
-  background-color: #fff;
+  background-color: #dfdfdf;
   border-radius: 4px;
   width: 700px;
-  min-height: 875px;
-  padding:50px;
+  // min-height: 750px;
+  padding:30px;
 }
 .modal-description {
   font-size: 20px;
 }
-@media (max-width: 1000px) {
+.preview-img{
+  width:80%;
+}
+.tag{
+  width:80%;
+  color:#fff !important;
+  background-color: #267594;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+@media (max-width: 767px) {
   .modal-box{
-    width: 500px;
-    min-height: 625px;
+    top: 54%;
+    width: 390px;
+  }
+  .modal-description {
+    font-size: 18px;
+    margin-bottom: 0 !important;
+  }
+  .preview-img{
+    width:58%;
+  }
+  .tag{
+    width:58%;
+    font-size: 18px;
   }
 }
 @media (max-width: 400px) {
   .modal-box{
-    width: 300px;
-    min-height: 375px;
-    padding:30px;
+    width: 270px;
+    padding:10px;
+  }
+  .modal-description {
+    font-size: 12px;
+  }
+  .tag{
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 }
 .fa-times {
@@ -63,8 +93,6 @@
   margin-bottom: 30px;
 }
 
-// ===========================================
-// admin側event/show/タブ２
-.remind-mail{
-  padding-top: 50px;
-}
+
+
+

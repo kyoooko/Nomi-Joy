@@ -112,14 +112,13 @@ EventUser.create!(user_id:7,event_id:4,fee:4000,fee_status:false,deleted_at:"")
 EventUser.create!(user_id:8,event_id:4,fee:4000,fee_status:false,deleted_at:"")
 
 # ◆通知
-Notification.create!(visitor_id:8, visited_id:1, action: "follow")
-Notification.create!(visitor_id:5, visited_id:1, action: "dm", direct_message_id: 1)
-Notification.create!(visitor_id:2, visited_id:1, action: "create_event",event_id: 2)
-Notification.create!(visitor_id:2, visited_id:1, action: "remind_event", event_id: 2)
-Notification.create!(visitor_id:2, visited_id:1, action: "require_fee",event_id: 2)
-Notification.create!(visitor_id:2, visited_id:1, action: "paid_fee", event_id: 2)
 Notification.create!(visitor_id:1, visited_id:5, action: "dm", direct_message_id: 2)
-
+Notification.create!(visitor_id:2, visited_id:1, action: "paid_fee", event_id: 2)
+Notification.create!(visitor_id:2, visited_id:1, action: "require_fee",event_id: 2)
+Notification.create!(visitor_id:2, visited_id:1, action: "remind_event", event_id: 2)
+Notification.create!(visitor_id:2, visited_id:1, action: "create_event",event_id: 2)
+Notification.create!(visitor_id:5, visited_id:1, action: "dm", direct_message_id: 1)
+Notification.create!(visitor_id:8, visited_id:1, action: "follow")
 
 # ◆ToDoリスト
 Todo.create!(user_id:1, task: "3課新人歓迎会：林課長に挨拶依頼")
