@@ -85,8 +85,19 @@
     <%=link_to admin_events_send_remind_path(event.id), class:"btn orange-btn" do %>
       <i class="fas fa-envelope admin-icon"></i>&nbsp;<i class="fas fa-bell admin-icon"></i>&ensp;全員にリマインドメール・通知を送る
     <% end %>
+    <%# モーダルを表示するボタン %>
+    <span class="modal-btn" id="remind-modal-btn"><i class="far fa-question-circle"></i></span>
   </div>
 </div>
-<p class="text-muted remind-mail-description">※ 「全員にリマインドメールを送る」 ボタンを押すと、参加者全員に下記のようなリマインドメールおよび通知が自動送信されます。</p>
-<%= image_tag("remind_mail.jpg", class: "remind-mail-img") %>
- 
+<%# モーダル表示 %>
+<div class="modal-background">
+  <div class="modal-box">
+    <div class="close-modal">
+      <i class="fa fa-2x fa-times"></i>
+    </div>
+    <div>
+      <p class="modal-description admin">「全員にリマインドメールを送る」 ボタンを押すと、<br>参加者全員に下記のようなメールおよび通知が自動送信されます。</p>
+      <%= image_tag("remind_mail.jpg", class: "remind-mail-img") %>
+    </div>
+  </div>
+</div>

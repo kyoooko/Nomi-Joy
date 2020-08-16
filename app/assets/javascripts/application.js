@@ -16,3 +16,18 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+
+$(function() {
+  $('#remind-modal-btn').click(function() {
+    $('.modal-background').fadeIn();
+  });
+
+  // $('.signup-show').click(function() {
+  //   $('#signup-modal').fadeIn();
+  // });
+
+  $('.close-modal').click(function() {
+    $('.modal-background').fadeOut();
+    // $('#signup-modal').fadeOut();
+  });
+});

@@ -215,6 +215,10 @@
     width:20%;
   }
 }
+// メールプレビューボタンの位置
+.remind-mail-img{
+  width:60%;
+}
 // *****ノミカイ進捗：ステップバー*****
 // stepbar
 .progress__stepbar{
@@ -241,15 +245,6 @@
 .content__block--participants-responsive{
   display: none;
 }
-.remind-mail{
-  padding-top: 50px;
-}
-.remind-mail-description{
-  margin-top: 30px;
-}
-.remind-mail-img{
-  width:30%;
-}
 @media (max-width: 767px) {
   .content__block--participants{
     display: none;
@@ -264,7 +259,6 @@
     }
   }
 }
-
 /* タブ3(show) */
 .event-fee-form,.participant-fee-status-form{
   &__form{
