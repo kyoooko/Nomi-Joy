@@ -1,8 +1,8 @@
 # =================================================
 # 定時処理の内容更新を反映
-# bundle exec whenever --update-crontab
+# RAILS_ENV=production bundle exec whenever --update-crontab
 # 無効化
-# bundle exec whenever --clear-crontab
+# RAILS_ENV=production bundle exec whenever --clear-crontab
 # 現在の設定内容確認
 # crontab  -l
 # ログはlog/cron.logを確認
