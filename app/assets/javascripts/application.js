@@ -35,13 +35,8 @@ $(function(){
   //取得したurlにアップロード画像のurlを挿入
   reader.readAsDataURL(e.target.files[0]); 
 
-
-
+  // 通常の表示はS3で行い、アップロード時のみ非同期で即時プレビューするため
   $('.preview-image').removeClass('d-none');
   $('.s3').remove();
-  // readURL(this);
-
-
-
-});
+  });
 });

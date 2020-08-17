@@ -6,13 +6,13 @@ class Public::DirectMessagesController < ApplicationController
       # 通知機能(session[:user_id]はDM相手のid)
       @dm.create_notification_dm(current_user, session[:user_id])
       # 非同期のためredirectなし
+      # binding.pry
     else
       redirect_back(fallback_location: root_path)
     end
   end
 
   private
-
   def dm_params
     params.require(:direct_message).permit(:message, :room_id)
   end
