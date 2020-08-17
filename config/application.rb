@@ -25,6 +25,9 @@ module NomiJoy
     config.i18n.default_locale = :ja
     # config/locales以下のディレクトリ内にある全てのymlファイルを読み込む（エラーメッセージの日本語化で使用）
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
+    # whenever(Rails5からデフォルトで本番環境時においてはautoloadが無効化されておりeager load(rails起動時にまとめて読み込む機能)が有効で、開発環境では逆にautoloadが有効でeager loadが無効になっている)
+    config.autoload_paths += %W(#{Rails.root}/lib)
+    config.eager_load_paths += %W(#{Rails.root}/lib)
   end
 end
 
