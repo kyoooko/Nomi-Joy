@@ -77,8 +77,8 @@ class Public::UsersController < ApplicationController
 
   def check_guest
     if current_user.email == 'test1@test.co.jp'
-      flash[:danger] = "ゲストユーザーのため編集できません"
-      redirect_to edit_user_path(current_user)
+      flash[:danger] = "テストユーザーのため編集できません"
+      redirect_to user_path(current_user)
     end
   end
 end

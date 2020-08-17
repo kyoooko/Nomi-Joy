@@ -97,8 +97,8 @@ class Admin::EventsController < ApplicationController
   # show(タブ１）：ノミカイ進捗ステータスの更新
   def progress_status_update
     @event.update(event_params)
-    flash[:success] = "進捗ステータスを更新しました"
-    redirect_back(fallback_location: root_path)
+    # 非同期のため下記削除
+    # redirect_back(fallback_location: root_path)
   end
 
   # show(タブ１）：リマインドメール・通知
