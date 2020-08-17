@@ -34,5 +34,14 @@ $(function(){
   }
   //取得したurlにアップロード画像のurlを挿入
   reader.readAsDataURL(e.target.files[0]); 
+
+
+
+  $('.preview-image').removeClass('d-none');
+  $('.s3').remove();
+  // readURL(this);
+
+
+
 });
 });
