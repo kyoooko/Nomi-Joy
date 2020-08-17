@@ -1,3 +1,15 @@
+# =================================================
+# 定時処理の内容更新を反映
+# bundle exec whenever --update-crontab
+# 無効化
+# use bundle exec whenever --update-crontab and whenever --clear-crontab
+# 現在の設定内容確認
+# crontab  -l
+# ログはlog/cron.logを確認
+# =================================================
+# File.expand_path(File.dirname(__FILE__) + "/environment")
+# Use this file to easily define all of your cron jobs.
+#
 # Use this file to easily define all of your cron jobs.
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
@@ -7,9 +19,9 @@
 env :PATH, ENV['PATH']
 # ログファイルの出力先
 set :output, 'log/cron.log'
-# ジョブの実行環境の指定
+# ジョブの実行環境の指定(実行環境はprodaction環境がデフォルト設定)
 # set :environment, :development
-set :environment, :production
+
 # Example:
 # every 1.days, at: '08:00 am' do
 #   runner "ScheduledProcessingMailer.check_notice_mail.deliver_now"
