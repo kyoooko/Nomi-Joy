@@ -20,6 +20,7 @@ env :PATH, ENV['PATH']
 # ログファイルの出力先
 set :output, 'log/cron.log'
 # ジョブの実行環境の指定(実行環境はprodaction環境がデフォルト設定)
+set :environment, :production 
 # set :environment, :development
 
 # Example:
