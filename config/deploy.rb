@@ -9,6 +9,10 @@ set :rbenv_ruby, '2.5.7'
 set :linked_files, %w(config/master.key .env)
 append :linked_dirs, "log", "public/system", "tmp"
 
+# バッジ（定時）処理
+set :whenever_roles,        ->{ :app }
+# set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+# set :whenever_roles,        ->{ :batch }
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
