@@ -64,24 +64,10 @@
 <!-- 進捗ステータス -->
 <div class="content__block--progress content__block admin-table">
   <h2 class="block-hedding">進捗ステータス</h2>
-  <div>
-    <%= form_with model: event, url: admin_events_progress_status_path(event.id), local: true, class:"progress-status"  do |f| %>
-      <%= f.select :progress_status, [ ["招待済",0], ["お店予約済", 1], ["リマインド済", 2 ] ,["終了済", 3] ], class: "admin" %>
-      <%= f.submit "更新",class:"btn blue-btn btn-sm" %>
-    <% end %>
-  </div>
-  <!-- ステップバー（今後動的に実装予定） -->
-  <div class="progress__stepbar">
-    <ul class="bootstrapWizard form-wizard">
-      <li class="active" data-target="#step1"><span class="step">1</span><span class="title stepbar-tittle admin">メンバを招待済</span> </li>
-      <li data-target="#step2" class="active"><span class="step">2</span><span class="title stepbar-tittle admin">お店予約済</span> </li>
-      <li data-target="#step3" class="active"><span class="step">3</span><span class="title stepbar-tittle admin">リマインド済</span> </li>
-      <li data-target="#step4" class="active"><span class="step">4</span><span class="title stepbar-tittle admin">終了済</span> </li>
-    </ul>
-    <div class="clearfix"></div>
-  </div>
+  <!-- ステータス変更フォーム・ステップバー -->
+  <%= render 'progress_stepbar', event: @event %>
+  <%# リマインドメール %>
   <div class="remind-mail">
-    <%# リマインドメール %>
     <%=link_to admin_events_send_remind_path(event.id), class:"btn orange-btn" do %>
       <i class="fas fa-envelope admin-icon"></i>&nbsp;<i class="fas fa-bell admin-icon"></i>&ensp;全員にリマインドメール・通知を送る
     <% end %>
