@@ -109,6 +109,10 @@ class Admin::EventsController < ApplicationController
        @event.create_notification_remind_event(current_user, event_user.user_id)
      end
     RemindMailer.remind_mail(@event).deliver_now
+    # ＝＝＝＝＝ここから＝＝＝＝＝
+    ScheduledProcessingMailer.check_notice_mail.deliver_now
+    # ＝＝＝＝＝ここから＝＝＝＝＝
+
     redirect_back(fallback_location: root_path)
   end
 
