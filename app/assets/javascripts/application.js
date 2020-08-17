@@ -17,6 +17,22 @@
 //= require bootstrap
 //= require_tree .
 
+
+// ホバーでヒントを表示するツールチップ(admin/events/index/101号室などのタグ)
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 })
+// =================================================================
+// アップロードした画像を即時プレビューする(public/user/editページ)
+$(function(){
+  // （Crome検証で）inputのidから情報の取得
+  $('#user_image').on('change', function (e) {
+  // 既存の画像のurlの取得
+  var reader = new FileReader();
+  reader.onload = function (e) {
+      $(".preview-image").attr('src', e.target.result);
+  }
+  //取得したurlにアップロード画像のurlを挿入
+  reader.readAsDataURL(e.target.files[0]); 
+});
+});
