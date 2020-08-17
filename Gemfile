@@ -99,6 +99,8 @@ gem 'dotenv-rails'
 gem 'rails-i18n', '~> 5.1'
 # メタタグ
 gem 'meta-tags'
+# バッチ（定時）処理
+gem 'whenever', require: false
 
 group :production do
   # 本番環境はmysql
