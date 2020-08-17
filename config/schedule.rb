@@ -7,13 +7,15 @@
 # crontab  -l
 # ログはlog/cron.logを確認
 # =================================================
-# File.expand_path(File.dirname(__FILE__) + "/environment")
+
 # Use this file to easily define all of your cron jobs.
 #
 # Use this file to easily define all of your cron jobs.
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
+
+# File.expand_path(File.dirname(__FILE__) + "/environment")
 
 # 絶対パスから相対パス指定
 env :PATH, ENV['PATH']
@@ -23,15 +25,17 @@ set :output, 'log/cron.log'
 set :environment, :production 
 # set :environment, :development
 
-# Example:
-# every 1.days, at: '08:00 am' do
-#   runner "ScheduledProcessingMailer.check_notice_mail.deliver_now"
-# end
 
-every 1.minutes do
+every 1.days, at: '08:00 am' do
   runner "ScheduledProcessingMailer.check_notice_mail.deliver_now"
 end
 
+# デバッグ用
+# every 1.minutes do
+#   runner "ScheduledProcessingMailer.check_notice_mail.deliver_now"
+# end
+
+# 例
 # set :output, "/path/to/my/cron_log.log"
 #
 # every 2.hours do
