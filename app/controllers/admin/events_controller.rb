@@ -112,6 +112,18 @@ class Admin::EventsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+
+
+  # ここから
+  # add_event_users = event_user_ids.zip(event_user_fees).map { |event_user_id, event_user_fee| 
+  #   # 下記記述がないと会費を入力しなかった場合EventUserが保存されない
+  #   event_user_fee = 0 if event_user_fee.empty?
+  #   EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
+
+
+
+
+
   # show(タブ２）：参加メンバーの追加編集ページ
   def add_event_user
     members = current_user.matchers
@@ -139,7 +151,11 @@ class Admin::EventsController < ApplicationController
     # 確定ボタン押した場合
     event_user_ids = session[:event_user_ids]
     event_user_fees = session[:fees] = params[:fees]
-    add_event_users = event_user_ids.zip(event_user_fees).map { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
+    add_event_users = event_user_ids.zip(event_user_fees).map { |event_user_id, event_user_fee| 
+    # 下記記述がないと会費を入力しなかった場合EventUserが保存されない
+    event_user_fee = 0 if event_user_fee.empty?
+    EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
+ 
     # ノミカイ招待メール
     if params[:mail]
       InvitationMailer.invitation_mail_for_add_participant(@event,add_event_users).deliver_now
@@ -322,12 +338,10 @@ class Admin::EventsController < ApplicationController
     # drop(1)は、sessionの配列の要素１つ目に""(nil)が渡されてしまい参加メンバーの一覧表示ができないため、１つ目を除いている
     event_user_ids = session[:event_user_ids]
     event_user_fees = session[:fees]
-    # else以降がないと会費を入力しなかった場合EventUserが保存されない
-    if event_user_fees != [""]
-      event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
-    else
-      event_user_ids.each { |event_user_id| EventUser.create(user_id: event_user_id, event_id: @event.id, fee: 0) }
-    end
+    event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| 
+     # 下記記述がないと会費を入力しなかった場合EventUserが保存されない
+      event_user_fee = 0 if event_user_fee.empty?
+      EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
     # 自分（カンジ）のevent_userも作成。else以降がないと会費を入力しなかった場合EventUserが保存されない
     if session[:admin_fee].present?
       EventUser.create(user_id: current_user.id, event_id: @event.id, fee: session[:admin_fee])
