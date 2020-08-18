@@ -2,7 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+// 共通部分
+// 767px以下の場合３つのボタンを縦に配置＋？を右上に配置(confirm・add_event_user_fee)
+@media (max-width: 767px) {
+  .resposive-actions{
+    display: flex;
+    flex-direction: column-reverse;
+    .btn{
+      margin-bottom: 5px;
+    }
+  }
+}
 // ***ステップバー共通部分（Bootstrap・見た目のみ）**********
 .bootstrapWizard li:before {
   border-top: 3px solid #55606E;
@@ -432,16 +442,6 @@ padding:1px !important;
     width:25%;
   }
 }
-@media (max-width: 767px) {
-  .confim-actions{
-    display: flex;
-    flex-direction: column-reverse;
-    .btn{
-      margin-bottom: 5px;
-    }
-  }
-}
-
 // *****新規登録：ステップバー（Bootstrap・見た目のみ）*****
 // stepbar
 .create-nomikai-stepbar{

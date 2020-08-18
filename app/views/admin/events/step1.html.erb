@@ -7,27 +7,28 @@
   </div>  
   <div class="body">
     <div class="heading">
-      <h5 class="heading__create-event admin">ノミカイをつくる</h5>
-      <h1 class="heading__en admin">Step1</h1>
-    </div>
-    <div class="content">
-      <div class="content__block--stepbar admin-table">
-        <h3>日時選択</h3>
-        <%# ステップバー（Bootstrap・見た目のみ） %>
-        <div class="create-nomikai-stepbar">
-          <ul class="bootstrapWizard form-wizard">
-            <li class="active" data-target="#step1"><span class="step">1</span></li>
-            <li data-target="#step2" class=""><span class="step">2</span></li>
-            <li data-target="#step3" class=""><span class="step">3</span></li>
-            <li data-target="#step3" class=""><span class="step">4</span></li>
-            <li data-target="#step3" class=""><span class="step">5</span></li>
-          </ul>
-          <div class="clearfix"></div>
-      </div>
-      <div class="content__block--step1 content__block">
-        <%= form_with model: @event, url: admin_step2_path,  local: true do |f| %>
+      <%# エラーメッセージをこの部分に表示させるためにここにform記載 %>
+      <%= form_with model: @event, url: admin_step2_path,  local: true do |f| %>
         <%# エラーメッセージ %>
-          <%= render 'layouts/error_messages', model: f.object %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        <h5 class="heading__create-event admin">ノミカイをつくる</h5>
+        <h1 class="heading__en admin">Step1</h1>
+      </div>
+      <div class="content">
+        <div class="content__block--stepbar admin-table">
+          <h3>日時選択</h3>
+          <%# ステップバー（Bootstrap・見た目のみ） %>
+          <div class="create-nomikai-stepbar">
+            <ul class="bootstrapWizard form-wizard">
+              <li class="active" data-target="#step1"><span class="step">1</span></li>
+              <li data-target="#step2" class=""><span class="step">2</span></li>
+              <li data-target="#step3" class=""><span class="step">3</span></li>
+              <li data-target="#step3" class=""><span class="step">4</span></li>
+              <li data-target="#step3" class=""><span class="step">5</span></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="content__block--step1 content__block">
           <table class="table table-borderless">
             <tbody>
               <tr>

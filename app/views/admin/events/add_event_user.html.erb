@@ -7,17 +7,18 @@
   </div>  
   <div class="body">
     <div class="heading">
+      <%# フラッシュメッセージ %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
       <h3 class="heading__event-date admin"><%= @event.date.to_s(:date) %>（<%= @day_of_the_week %>）</h3>
       <h1 class="heading__event-name admin"><%= @event.name %></h1>
     </div>
     <div class="content">
       <div class="content__block--add-event-user content__block ">
-        <%# フラッシュメッセージ %>
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>">
-            <%= message %>
-          </div>
-        <% end %>
+        <p class="text-muted">※ 参加者を１人以上選択してください<span class="must">&emsp;*</span><br>※後から追加できます</p>
         <% if @unselected_members.present? %>
           <%= form_with model: @event_user, url: admin_add_event_user_fee_path,  local: true, class: "" do |f| %>
             <table class="table table-borderless">
