@@ -63,17 +63,13 @@
 </div>
 <!-- 進捗ステータス -->
 <div class="content__block--progress content__block admin-table">
-  <h2 class="block-hedding">進捗ステータス</h2>
-  <!-- ステータス変更フォーム・ステップバー -->
-  <%= render 'progress_stepbar', event: @event %>
-  <%# リマインドメール %>
-  <div class="remind-mail">
-    <%=link_to admin_events_send_remind_path(event.id), class:"btn orange-btn" do %>
-      <i class="fas fa-envelope admin-icon"></i>&nbsp;<i class="fas fa-bell admin-icon"></i>&ensp;全員にリマインドメール・通知を送る
-    <% end %>
-    <%# モーダルを表示するボタン %>
+  <%# モーダルを表示するボタン %>
+  <h2 class="block-hedding">進捗ステータス
     <span class="modal-btn" id="remind-modal-btn"><i class="far fa-question-circle"></i></span>
-  </div>
-</div>
+  </h2>
+  <!-- ステータス変更フォーム・ステップバー -->
+  <%# メンバーを招待・お店予約済のステータスの時のみリマインドメールボタンを表示 %>
+  <%= render 'progress_stepbar', event: @event %>
+</div> 
 <%# モーダル表示画面 %>
 <%= render 'modals/admin_event_index_tab1' %>
