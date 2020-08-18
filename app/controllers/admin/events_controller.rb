@@ -112,18 +112,6 @@ class Admin::EventsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-
-
-  # ここから
-  # add_event_users = event_user_ids.zip(event_user_fees).map { |event_user_id, event_user_fee| 
-  #   # 下記記述がないと会費を入力しなかった場合EventUserが保存されない
-  #   event_user_fee = 0 if event_user_fee.empty?
-  #   EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
-
-
-
-
-
   # show(タブ２）：参加メンバーの追加編集ページ
   def add_event_user
     members = current_user.matchers

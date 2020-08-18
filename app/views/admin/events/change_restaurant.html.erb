@@ -7,17 +7,17 @@
   </div>  
   <div class="body">
     <div class="heading">
+      <%# フラッシュメッセージ %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
       <h3 class="heading__event-date admin"><%= @event.date.to_s(:date) %>（<%= @day_of_the_week %>）</h3>
       <h1 class="heading__event-name admin"><%= @event.name %></h1>
     </div>
     <div class="content">
       <div class="content__block--change-restaurant content__block admin-table">
-        <%# フラッシュメッセージ %>
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>">
-            <%= message %>
-          </div>
-        <% end %>
         <h3>お店を検索<span class="must">&emsp;*</span></h3>
         <p class="text-muted">（例：&nbsp;"魚金 新宿",&nbsp;"イタリアン,新宿"）</p>
         <%= form_with model: @event, url: admin_change_restaurant_path(@event), method: :get, local: true do |f| %>
