@@ -30,7 +30,7 @@ every 1.days, at: '08:00 am' do
   runner "ScheduledProcessingMailer.check_notice_mail.deliver_now"
 end
 
-every 1.days, at: '08:00 am' do
+every 1.minutes do
   runner "ScheduledProcessingMailer.before_1day_remind_mail.deliver_now"
 end
 # デバック
