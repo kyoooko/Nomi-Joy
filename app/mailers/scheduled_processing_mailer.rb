@@ -13,29 +13,18 @@ class ScheduledProcessingMailer < ApplicationMailer
   
   def before_1day_remind_mail
     @url = "https://nomi-joy.com/users/sign_in"
-    events = Event.all
-    events.each do |event|
+    @events = Event.all
+    @events.each do |event|
+      # 下記確認!!!!!!!!!!!!!!!!!!!!!!!!
       if event.date - 1.day <  Time.now
         # where.notでカンジ本人にはメールが行かないようにする
         @admin = User.find(event.user_id)
         participants = User.includes(:event_users).where(event_users: {event_id: event.id}).where.not(id: @admin.id)
         participant_mails = participants.pluck(:email)
-        mail(subject: "【リマインド】明日ノミカイの予定があります", bcc: participant_mails)
+        mail(subject: "【リマインド】明日ノミカイの予定があります！", bcc: participant_mails)
       end
     end
-
- 
-
-
-
-
-    # @event = event
-    # @admin = User.find(@event.user_id)
-    # # where.notでカンジ本人にはメールが行かないようにする
-    # participants = User.includes(:event_users).where(event_users: {event_id: @event.id}).where.not(id: @admin.id)
-    # @participant_mails = participants.pluck(:email)
-    # mail(subject: "【リマインド】ノミカイが近づいています", bcc: @participant_mails)
   end
 end
 
-# ScheduledProcessingMailer.before_1day_remind_mail(@event).deliver_now
+
