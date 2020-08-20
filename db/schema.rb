@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_08_15_055104) do
 
-  create_table "direct_messages", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "room_id", null: false
+  create_table "direct_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
     t.string "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -22,17 +22,17 @@ ActiveRecord::Schema.define(version: 2020_08_15_055104) do
     t.index ["user_id"], name: "index_direct_messages_on_user_id"
   end
 
-  create_table "entries", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "room_id", null: false
+  create_table "entries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
-  create_table "event_users", force: :cascade do |t|
-    t.integer "user_id", null: false
+  create_table "event_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.integer "event_id", null: false
     t.integer "fee"
     t.boolean "fee_status", default: false, null: false
@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 2020_08_15_055104) do
     t.index ["user_id"], name: "index_event_users_on_user_id"
   end
 
-  create_table "events", force: :cascade do |t|
-    t.integer "restaurant_id"
-    t.integer "user_id", null: false
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "restaurant_id"
+    t.bigint "user_id", null: false
     t.string "name", null: false
     t.datetime "date", null: false
     t.datetime "begin_time", null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_055104) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "notifications", force: :cascade do |t|
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "visitor_id"
     t.integer "visited_id"
     t.integer "event_id"
@@ -68,15 +68,15 @@ ActiveRecord::Schema.define(version: 2020_08_15_055104) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "following_id"
     t.integer "follower_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "restaurants", force: :cascade do |t|
-    t.integer "user_id", null: false
+  create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "name", null: false
     t.string "address"
     t.string "access"
@@ -90,20 +90,20 @@ ActiveRecord::Schema.define(version: 2020_08_15_055104) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
-  create_table "rooms", force: :cascade do |t|
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "todos", force: :cascade do |t|
+  create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "task", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_todos_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -125,4 +125,13 @@ ActiveRecord::Schema.define(version: 2020_08_15_055104) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "direct_messages", "rooms"
+  add_foreign_key "direct_messages", "users"
+  add_foreign_key "entries", "rooms"
+  add_foreign_key "entries", "users"
+  add_foreign_key "event_users", "users"
+  add_foreign_key "events", "restaurants"
+  add_foreign_key "events", "users"
+  add_foreign_key "restaurants", "users"
+  add_foreign_key "todos", "users"
 end

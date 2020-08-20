@@ -27,5 +27,3 @@ class ScheduledProcessingMailer < ApplicationMailer
     end
   end
 end
-
-
