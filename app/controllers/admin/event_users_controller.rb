@@ -11,11 +11,13 @@ class Admin::EventUsersController < ApplicationController
 
   # 参加メンバーことの会費変更（欠席者含む）
   def fee_update
-    # 下記のようにnullの場合を書かないと、入力だnillでもデータベースは更新されない
-    if params[:event_user][:fee].present?
-      @event_user.update(event_user_params)
-    else
-      @event_user.update(fee: "")
+    # 下記のようにnullの場合を書かないと、入力がnillでもデータベースは更新されない
+    if @event_user.fee_status == false
+      if params[:event_user][:fee].present?
+        @event_user.update(event_user_params)
+      else
+        @event_user.update(fee: "")
+      end
     end
     # 非同期のため下記削除
     # redirect_back(fallback_location: root_path)

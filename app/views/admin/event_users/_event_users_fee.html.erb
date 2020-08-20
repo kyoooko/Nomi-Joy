@@ -1,7 +1,11 @@
 <%# 会員ごとの会費変更フォーム(非同期) %>
-<%= form_with model: event_user,url: admin_event_users_fee_path(event_user.id), romote: true, class:"event-fee-form font-xs-responsive" do |f| %>
-  <%= f.text_field :fee, class:"event-fee-form__form nomal-font", size: 7 %><span class="nomal-font" >円</span>
-  <%= f.hidden_field :user_id, value: event_user.user_id %>
-  <%= f.hidden_field :event_id, value: event_user.event_id %>
-  <%= f.submit "更新",class:"btn btn-sm btn-xs admin-white-btn" %>
+<% if event_user.fee_status == false %>
+  <%= form_with model: event_user,url: admin_event_users_fee_path(event_user.id), romote: true, class:"event-fee-form font-xs-responsive" do |f| %>
+    <%= f.text_field :fee, class:"event-fee-form__form nomal-font", size: 7 %><span class="nomal-font" >円</span>
+    <%= f.hidden_field :user_id, value: event_user.user_id %>
+    <%= f.hidden_field :event_id, value: event_user.event_id %>
+    <%= f.submit "更新",class:"btn btn-sm btn-xs admin-white-btn" %>
+  <% end %>
+<% else %>
+  <span class="nomal-font admin font-xs-responsive"><%= event_user.fee%>円</span>
 <% end %>

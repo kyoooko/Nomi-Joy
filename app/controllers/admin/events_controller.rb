@@ -110,7 +110,7 @@ class Admin::EventsController < ApplicationController
      end
     RemindMailer.remind_mail(@event).deliver_now
     # 非同期のため下記削除
-    redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path)
   end
 
   # show(タブ２）：参加メンバーの追加編集ページ
