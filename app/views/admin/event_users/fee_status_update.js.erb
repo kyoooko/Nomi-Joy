@@ -1,2 +1,8 @@
 <%# 会員ごとの会費ステータス変更フォーム(非同期) %>
 $(".event-users-fee-status_<%= @event_user.id %>").html("<%= j(render 'admin/event_users/event_users_fee_status', event_user: @event_user) %>");
+$(".event-users-fee-status_<%= @event_user.id %>").append("<p class='alert-success font-sm-responsive'>メールを送信しました</p>");
+$(".event-users-fee_<%= @event_user.id %>").html("<span class='nomal-font admin font-xs-responsive'><%= @event_user.fee%>円</span>");
+
+
+
+
