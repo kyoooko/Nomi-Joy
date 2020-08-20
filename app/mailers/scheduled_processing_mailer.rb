@@ -10,4 +10,22 @@ class ScheduledProcessingMailer < ApplicationMailer
     users_with_unckecked_notices_mails = users_with_unckecked_notices.pluck(:email)
     mail(subject: "未読の通知が3件以上あります", bcc: users_with_unckecked_notices_mails)
   end
+  
+  def before_1day_remind_mail
+    @url = "https://nomi-joy.com/users/sign_in"
+    events = Event.all
+    events.each do |event|
+      # 定時処理で毎朝8:00に該当のノミカイの参加メンバーにメールが送信される
+      @event = event
+      if (Time.current - 1.day < @event.date) && (@event.date <  Time.current)
+        # where.notでカンジ本人にはメールが行かないようにする
+        @admin = User.find(@event.user_id)
+        participants = User.includes(:event_users).where(event_users: {event_id: @event.id}).where.not(id: @admin.id)
+        participant_mails = participants.pluck(:email)
+        mail(subject: "【リマインド】明日ノミカイの予定があります！", bcc: participant_mails)
+      end
+    end
+  end
 end
+
+
