@@ -11,3 +11,4 @@ class ScheduledProcessingMailer < ApplicationMailer
     mail(subject: "未読の通知が3件以上あります", bcc: users_with_unckecked_notices_mails)
   end
 end
+
