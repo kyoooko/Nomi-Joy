@@ -5,8 +5,7 @@ ruby '2.5.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
-# Use sqlite3 as the database for Active Record
-# 開発環境もmysql2に変更
+# 開発・本番・テスト環境をmysql2に変更
 # gem 'sqlite3'
 gem 'mysql2'
 # Use Puma as the app server
@@ -103,8 +102,3 @@ gem 'rails-i18n', '~> 5.1'
 gem 'meta-tags'
 # バッチ（定時）処理
 gem 'whenever', require: false
-
-# group :production do
-#   # 本番環境はmysql
-#   gem 'mysql2'
-# end

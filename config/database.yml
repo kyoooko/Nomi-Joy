@@ -4,6 +4,8 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
+## ******************************************
+# 元の設定
 # default: &default
 #   adapter: sqlite3
 #   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -20,58 +22,27 @@
 #   <<: *default
 #   database: db/test.sqlite3
 ## ******************************************
-# development:
-#   adapter: mysql2
-#   encoding: utf8
-#   database: blog_development
-#   pool: 5
-#   username: root
-#   password:
-#   socket: /tmp/mysql.sock
-
-## ******************************************
-
-# default: &default
-#   adapter: mysql2
-#   encoding: utf8
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#   timeout: 5000
-#   url: <%= ENV['DATABASE_URL'] %>
-
-# development:
-#   <<: *default
-#   database: db_development
-
-# test:
-#   <<: *default
-#   database: db_test
-
-# production:
-#   <<: *default
-#   database: db_production
-# ******************************************
 default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
   username: root
-  password: 
-  # host: localhost
+  password:       #今回は設定せず
+  host: localhost
 
 
 development:
   <<: *default
-  database: nomijoy_development #DBの名前（任意で付けられる）
+  database: nomijoy_development #DBの名前（任意で命名）
 
 test:
   <<: *default
-  database: nomijoy_test #DBの名前（任意で付けられる）
- # ****************************************** 
+  database: nomijoy_test #DBの名前（任意で命名）
 
 production:
   <<: *default
   database: <%= ENV['DB_DATABASE'] %>
-  adapter: mysql2
+  # adapter: mysql2
   encoding: utf8mb4
   charset: utf8mb4
   collation: utf8mb4_general_ci
