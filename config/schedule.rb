@@ -26,7 +26,7 @@ set :environment, :production
 # set :environment, :development
 
 
-every 1.days, at: '03:58 pm' do
+every 1.days, at: '07:10 am' do
   runner "ScheduledProcessingMailer.check_notice_mail.deliver_now"
   runner "ScheduledProcessingMailer.before_1day_remind_mail.deliver_now"
 end
