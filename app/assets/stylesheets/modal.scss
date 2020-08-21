@@ -40,11 +40,11 @@
   transform : translate(-50%,-50%);
   background-color: #dfdfdf;
   border-radius: 4px;
-  width: 700px;
+  width: 600px;
   padding:30px;
-}
-.modal-description {
-  font-size: 20px;
+  // スクロール
+  height:80%;
+  overflow-y:scroll;
 }
 .preview-img{
   width:80%;
@@ -58,6 +58,9 @@
   margin-top: 30px;
   margin-bottom: 10px;
   font-size: 20px;
+}
+.modal-description {
+  height:130px;
 }
 @media (max-width: 767px) {
   .modal-box{
@@ -74,6 +77,9 @@
   .tag{
     width:58%;
     font-size: 18px;
+  }
+  .modal-description {
+    height:auto;
   }
 }
 @media (max-width: 480px) {
@@ -109,16 +115,50 @@
 .modal-btn-responsive-right{
   text-align:right ;
 }
-
-@media (max-width: 767px) {
-  // .notice-to-unpaying-users-button .orange-btn{
-  //   width:80%;
-  //   font-size: 0.8rem;
-  // }
+//  ===========================================
+// リマインドメール
+// リマインドメールボタン
+.remind-mail p{
+  margin-top: 10px;
 }
-
-
-
+// 画像
+.sm-preview-img{
+  width:65%;
+}
+.sm-tag{
+  width:65%;
+  color:#fff !important;
+  background-color: #267594;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+// preview-imgと同じ
+@media (max-width: 767px) {
+  .sm-preview-img{
+    width:58%;
+  }
+  .sm-tag{
+    width:58%;
+  }
+  .manual-remind{
+    margin-top: 80px;
+  }
+}
+// preview-imgと同じ
+@media (max-width: 480px) {
+  .sm-preview-img{
+    width:50%;
+  }
+  .sm-tag{
+    width:50%;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+  }
+}
 
 
 

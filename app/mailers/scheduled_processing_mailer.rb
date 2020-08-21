@@ -21,6 +21,12 @@ class ScheduledProcessingMailer < ApplicationMailer
     end
     before_1day_events_emails = before_1day_events .map do |before_1day_event|
       @admin = User.find(before_1day_event.user_id)
+      # 通知
+      @event_users = EventUser.where(event_id: before_1day_event.id)
+      @event_users.each do |event_user|
+        before_1day_event.create_notification_remind_event(@admin, event_user.user_id)
+      end
+      # 送信するメールアドレス
       participants = User.includes(:event_users).where(event_users: {event_id: before_1day_event.id}).where.not(id: @admin.id)
       participant_mails = participants.pluck(:email)
     end
