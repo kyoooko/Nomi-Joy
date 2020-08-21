@@ -108,8 +108,7 @@ class Admin::EventsController < ApplicationController
      @event_users.each do |event_user|
        @event.create_notification_remind_event(current_user, event_user.user_id)
      end
-     ScheduledProcessingMailer.before_1day_remind_mail.deliver_now
-    # RemindMailer.remind_mail(@event).deliver_now
+    RemindMailer.remind_mail(@event).deliver_now
     # 非同期のため下記削除
     # redirect_back(fallback_location: root_path)
   end

@@ -19,6 +19,7 @@
       <%=link_to admin_events_send_remind_path(event.id), class:"btn orange-btn", remote: true do %>
         <i class="fas fa-envelope admin-icon"></i>&nbsp;<i class="fas fa-bell admin-icon"></i>&ensp;全員にリマインドメール・通知を送る 
       <% end %>
+      <p class="text-muted">※ リマインドメールはノミカイ前日に自動で送信されます。別途手動で送信したい場合は上記ボタンから送信できます。</p>
     </div>
   <% when 1 then %>
     <ul class="bootstrapWizard form-wizard">
@@ -32,6 +33,7 @@
       <%=link_to admin_events_send_remind_path(event.id), class:"btn orange-btn", remote: true do %>
         <i class="fas fa-envelope admin-icon"></i>&nbsp;<i class="fas fa-bell admin-icon"></i>&ensp;全員にリマインドメール・通知を送る 
       <% end %>
+      <p class="text-muted">※ リマインドメールはノミカイ前日に自動で送信されます。別途手動で送信したい場合は上記ボタンから送信できます。</p>
     </div>
   <% when 2 then %>
     <ul class="bootstrapWizard form-wizard">
