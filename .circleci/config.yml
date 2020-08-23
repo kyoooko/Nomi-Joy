@@ -2,83 +2,65 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      # ruby2.5.1を使ったアプリのため
-      - image: circleci/ruby:2.5.7-node-browsers
-        environment:
-#  ①注意！！ bundlerのバージョンが2.0.1以上だと、bundle installに失敗します。ここに環境として指定します。
-          - BUNDLER_VERSION: 2.1.4
-#  ②注意！！ circleCIは仮想環境を構築するので、そのときに使うデータベースを指定する必要があります。
-          - RAILS_ENV: 'test'
-      # Mysqlのバージョン5.6で動かしていたため、5.6を指定
-      - image: circleci/mysql:5.7
-        environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          - MYSQL_ROOT_HOST: '%'
+    - image: circleci/ruby:2.5.7-node-browsers
+      environment:
+        - BUNDLER_VERSION: 2.1.4
+        - RAILS_ENV: 'test'
+    - image: circleci/mysql:5.7
+      environment:
+        - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+        - MYSQL_ROOT_HOST: '%'
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
+    working_directory: ~/Nomi-Joy  #自身のアプリディレクトリ名を設定  
 
-    # working_directory: ~/repo
-    working_directory: ~/Nomi-Joy
 
     steps:
-      - checkout
+    - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "Gemfile.lock" }}
+        - v1-dependencies-
 
-      - run:
-          name: install dependencies
-          command: |
-# ①bundler2.0.1以降のものを使っているのであれば、環境変数と合わせて指定する必要があります。
-            gem install bundler -v 2.1.4
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+    - run:
+        name: install dependencies
+        command: |
+          gem install bundler -v 2.1.4
+          bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+    - save_cache:
+        paths:
+        - ./vendor/bundle
+        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-# ②ちょっと無理やりですが、database.ymlとdatabase.yml.ciを入れ替える記述です。
-      - run: mv config/database.yml.ci config/database.yml 
+    # Database setup
+    - run: mv ./config/database.yml.ci ./config/database.yml
 
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+    # Database setup
+    - run:
+        name: Databasesetup
+        command: |
+           bundle exec rake db:create
+           bundle exec rake db:schema:load
 
-# rubocopを走らせる記述です。
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop
+    # run tests!
+    - run:
+        name: Run rspec
+        command: |
+          mkdir /tmp/test-results
+          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+            circleci tests split --split-by=timings)"
 
-# rspecを走らせる記述です。
-      # run tests!
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
+          bundle exec rspec \
+            --format progress \
+            --format RspecJunitFormatter \
+            --out /tmp/test-results/rspec.xml \
+            --format progress \
+            $TEST_FILES
 
-
-# ③ここでRspecJunitFormatterというgemをインストールしていないとエラーになります。gemfileに記述しましょう。
-            bundle exec rspec \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+    # collect reports
+    - store_test_results:
+        path: /tmp/test-results
+    - store_artifacts:
+        path: /tmp/test-results
+        destination: test-results
