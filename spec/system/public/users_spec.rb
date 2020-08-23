@@ -17,15 +17,15 @@ RSpec.describe "Public::Users", type: :system do
       FactoryBot.create(:relationship, following_id:1,follower_id:3)
       FactoryBot.create(:relationship, following_id:3,follower_id:1)
     end
-    context 'ユーザーAがログインしている場合' do
-      let(:login_user) { user_A }
-      before do
-        visit users_path
-      end
-      it 'ユーザーAとマッチングしたユーザーCが表示される' do
-        expect(page).to have_content 'ユーザーC'
-      end
-    end
+    # context 'ユーザーAがログインしている場合' do
+    #   let(:login_user) { user_A }
+    #   before do
+    #     visit users_path
+    #   end
+    #   it 'ユーザーAとマッチングしたユーザーCが表示される' do
+    #     expect(page).to have_content 'ユーザーC'
+    #   end
+    # end
     context 'ユーザーBがログインしている場合' do
       let(:login_user) { user_B }
       before do
