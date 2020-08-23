@@ -292,6 +292,8 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
+    rspec_junit_formatter (0.4.1)
+      rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (0.76.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -419,6 +421,7 @@ DEPENDENCIES
   refile-mini_magick
   refile-s3
   rspec-rails
+  rspec_junit_formatter
   rubocop-airbnb
   sass-rails (~> 5.0)
   selenium-webdriver
