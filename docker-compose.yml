@@ -8,6 +8,15 @@ services:
     ports:
       - "3306:3306"
 
+  # Docker内部でテスト用のデータベースが必要になるので記述   
+  test-db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+    ports:
+      - "3307:3306"
+
   web: 
     build:
       context: .

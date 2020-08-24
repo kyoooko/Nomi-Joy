@@ -32,15 +32,12 @@ default: &default
 development:
   <<: *default
   database: nomijoy_development #DBの名前（任意で命名）
-  # ここから下はdocker-compose.ymlと対応
-  username: root
-  password: password
-  # database: docker_development
 
 
 test:
   <<: *default
   database: nomijoy_test #DBの名前（任意で命名）
+  host: test-db #追記
 
 production:
   <<: *default
