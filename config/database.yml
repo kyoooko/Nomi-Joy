@@ -28,18 +28,20 @@ default: &default
   username: root
   password: password
   # 【注意】dockerの場合はdb、vagrantの場合はlocalhostを指定
-  host: db
-  # host: localhost
+  # host: db
+  host: localhost
 
 development:
   <<: *default
   database: nomijoy_development #DBの名前（任意で命名）
+  
 
 
 test:
   <<: *default
   database: nomijoy_test #DBの名前（任意で命名）
-  host: test-db #Dockerでコンテナを分ける場合
+  # 【注意】vagrantの場合はコメントオフに
+  # host: test-db #Dockerでコンテナを分ける場合
 
 production:
   <<: *default
