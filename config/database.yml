@@ -27,7 +27,7 @@ default: &default
   pool: 5
   username: root
   password: password
-  # 【注意】dockerの場合はdb、vagrantの場合はlocalhost
+  # 【注意】dockerの場合はdb、vagrantの場合はlocalhostを指定
   host: db
   # host: localhost
 
