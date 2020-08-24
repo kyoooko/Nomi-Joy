@@ -71,7 +71,7 @@ group :test do
   gem 'rspec-rails'
   gem "factory_bot_rails"
   gem 'faker'
-  # CircleCI
+  # CircleCI使用時に必要
   gem "rspec_junit_formatter"
 end
 

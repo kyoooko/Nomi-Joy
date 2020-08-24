@@ -6,6 +6,8 @@ jobs:
       environment:
         - BUNDLER_VERSION: 2.1.4
         - RAILS_ENV: 'test'
+        # 環境変数を定義せずCircleCI アプリケーションで [Build (ビルド)] > [Project (プロジェクト)] > [Settings (設定)] の [Environment Variables (環境変数)] から登録した
+        # ここで定義する場合は下記のように記載
         # - AWS_REGION: 'ap-northeast-1'
     - image: circleci/mysql:5.7
       environment:

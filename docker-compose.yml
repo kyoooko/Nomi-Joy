@@ -8,7 +8,7 @@ services:
     ports:
       - "3306:3306"
 
-  # Docker内部でテスト用のデータベースが必要になるので記述   
+  # Docker内部でテスト用のデータベースが必要になるので記述 （必須でない）  
   test-db:
     image: mysql:5.7
     environment:
@@ -31,5 +31,4 @@ services:
       - "3000:3000" # ホストからゲストへポートフォワード
     volumes:
       - .:/workdir # ソースコード変更したらDocker側も即反映されるように
-    environment:
-      AWS_REGION: ap-northeast-1 # 追記
+  
