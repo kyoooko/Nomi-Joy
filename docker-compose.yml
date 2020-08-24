@@ -23,4 +23,4 @@ services:
     volumes:
       - .:/workdir # ソースコード変更したらDocker側も即反映されるように
     environment:
-      AWS_REGION: ap-northeast-1
+      AWS_REGION: ap-northeast-1 # 追記
