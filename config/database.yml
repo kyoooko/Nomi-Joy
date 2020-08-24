@@ -35,7 +35,7 @@ development:
   # ここから下はdocker-compose.ymlと対応
   username: root
   password: password
-  database: docker_development
+  # database: docker_development
 
 
 test:

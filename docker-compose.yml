@@ -22,3 +22,5 @@ services:
       - "3000:3000" # ホストからゲストへポートフォワード
     volumes:
       - .:/workdir # ソースコード変更したらDocker側も即反映されるように
+    environment:
+      AWS_REGION: ap-northeast-1
