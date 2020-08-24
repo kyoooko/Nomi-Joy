@@ -1,18 +1,23 @@
-version: '3'
+version: "3"
 services:
-  db: # database.ymlと対応したものを読み込みます
-    # image: mysql:5.6 
-    image: mysql
+  db:
+    image: mysql:5.7
     environment:
-      MYSQL_DATABASE: docker_development
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-    volumes:
-      - ./mysql/mysql_data:/var/lib/mysql # データの永続化
+      MYSQL_DATABASE: root
     ports:
-      - "4306:3306" # ホストからゲストへポートフォワード。sequelProと繋ぎたいので、3306ではなく4306をポートに指定
-  web: # さっき書いたDockerfileをwebって名前で扱うよ、って感じです
+      - "3306:3306"
+
+  # Docker内部でテスト用のデータベースが必要になるので記述 （必須でない）  
+  test-db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+    ports:
+      - "3307:3306"
+
+  web: 
     build:
       context: .
       dockerfile: Dockerfile
@@ -26,3 +31,4 @@ services:
       - "3000:3000" # ホストからゲストへポートフォワード
     volumes:
       - .:/workdir # ソースコード変更したらDocker側も即反映されるように
+  

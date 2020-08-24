@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # ◆ユーザー(10名)
-User.create!(name:"テストユーザー", email: "liliuokalani_618@yahoo.co.jp", password: "testuser", nomi_joy_id:"nomijoy1", belongs: "オーシャンティック航空（株） 東自損3課", position: "副主任",image:File.open("./app/assets/images/ajisai.JPG", ?r),nearest_station:"吉祥寺", can_drink: true, favolite:"ワイン、ハイボール、スパイスカレー",unfavolite:"焼酎、胡麻豆腐", introduction:"2年目のテストユーザーです。白ワインが好きです！よろしくお願いいたします。")
+User.create!(name:"テストユーザー", email: "test1@test.co.jp", password: "testuser", nomi_joy_id:"nomijoy1", belongs: "オーシャンティック航空（株） 東自損3課", position: "副主任",image:File.open("./app/assets/images/ajisai.JPG", ?r),nearest_station:"吉祥寺", can_drink: true, favolite:"ワイン、ハイボール、スパイスカレー",unfavolite:"焼酎、胡麻豆腐", introduction:"2年目のテストユーザーです。白ワインが好きです！よろしくお願いいたします。")
 
-User.create!(name:"加藤真美", email: "liliuokalani.618@ezweb.ne.jp", password: "aaaaaa", nomi_joy_id:"nomijoy2", belongs: "オーシャンティック航空（株） 東自損3課", position: "",image:File.open("./app/assets/images/torii.JPG", ?r),nearest_station:"清瀬", can_drink: true, favolite:"中華、韓国料理",unfavolite:"えび", introduction:"新入社員の加藤です。学生時代はバレーボール部に所属していました。よろしくお願いします。")
+User.create!(name:"加藤真美", email: "test2@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy2", belongs: "オーシャンティック航空（株） 東自損3課", position: "",image:File.open("./app/assets/images/torii.JPG", ?r),nearest_station:"清瀬", can_drink: true, favolite:"中華、韓国料理",unfavolite:"えび", introduction:"新入社員の加藤です。学生時代はバレーボール部に所属していました。よろしくお願いします。")
 
-User.create!(name:"林健太", email: "12ec153m@al.rikkyo.ac.jp", password: "aaaaaa", nomi_joy_id:"nomijoy3", belongs: "オーシャンティック航空（株） 東自損3課", position: "課長",image:File.open("./app/assets/images/ny.jpg", ?r),nearest_station:"目黒", can_drink: true, favolite:"お酒全般、ゆでたん",unfavolite:"生物", introduction:"美味しいお店開拓中です！鶯谷の焼肉屋『鶯谷園』がおすすめです！")
+User.create!(name:"林健太", email: "test3@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy3", belongs: "オーシャンティック航空（株） 東自損3課", position: "課長",image:File.open("./app/assets/images/ny.jpg", ?r),nearest_station:"目黒", can_drink: true, favolite:"お酒全般、ゆでたん",unfavolite:"生物", introduction:"美味しいお店開拓中です！鶯谷の焼肉屋『鶯谷園』がおすすめです！")
 
 
 User.create!(name:"吉田充", email: "test4@test.co.jp", password: "aaaaaa", nomi_joy_id:"nomijoy4", belongs: "オーシャンティック航空（株） 東自損3課", position: "課長代理",image:File.open("./app/assets/images/haru.jpg", ?r),nearest_station:"要町", can_drink: false, favolite:"刺身",unfavolite:"パクチー、納豆", introduction:"どうぞよろしくお願いします。")
