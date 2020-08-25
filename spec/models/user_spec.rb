@@ -5,11 +5,13 @@ RSpec.describe User, type: :model do
     subject { test_user.valid? }
     # 備忘録：letが呼び出された時点で実行される
     # 備忘録：createはDBに保存されるがbuildは保存されない
+
     let(:user) { create(:user) }
     let(:user_2) { create(:user) }
 
     context 'nameカラム' do
       let(:test_user) { user }
+
       it '空欄でないこと' do
         test_user.name = ''
         is_expected.to eq false
@@ -24,10 +26,11 @@ RSpec.describe User, type: :model do
     context 'emailカラム' do
       let(:test_user) { user }
       let(:test_user_2) { user_2 }
+
       it '空欄でないこと' do
         test_user.email = ''
         is_expected.to eq false
-      end  
+      end
       it '空欄の場合はエラーが出る' do
         test_user.email = ''
         test_user.valid?
@@ -57,6 +60,7 @@ RSpec.describe User, type: :model do
 
     context 'nomi_joy_idカラム' do
       let(:test_user) { user }
+
       it '空欄でないこと' do
         test_user.nomi_joy_id = ''
         is_expected.to eq false
@@ -83,6 +87,7 @@ RSpec.describe User, type: :model do
 
     context 'passwordカラム' do
       let(:test_user) { user }
+
       it '空欄でないこと' do
         test_user.password = ''
         is_expected.to eq false
@@ -117,8 +122,10 @@ RSpec.describe User, type: :model do
       # expect(User.reflect_on_association(:followings).class_name).to eq 'User'
       described_class.reflect_on_association(target)
     end
+
     context 'Restaurantモデルとの関係' do
       let(:target) { :restaurants }
+
       it '1:Nとなっている' do
         expect(association.macro).to eq :has_many
       end
@@ -126,6 +133,7 @@ RSpec.describe User, type: :model do
 
     context 'DirectMessageモデルとの関係' do
       let(:target) { :direct_messages }
+
       it '1:Nとなっている' do
         expect(association.macro).to eq :has_many
       end
@@ -133,6 +141,7 @@ RSpec.describe User, type: :model do
 
     context '中間テーブルEntryモデルとの関係' do
       let(:target) { :entries }
+
       it '1:Nとなっている' do
         expect(association.macro).to eq :has_many
       end
@@ -140,20 +149,23 @@ RSpec.describe User, type: :model do
 
     context 'Eventモデルとの関係' do
       let(:target) { :events }
+
       it '1:Nとなっている（中間テーブルevent_usersを介すので多対多）' do
         expect(association.macro).to eq :has_many
       end
     end
-    
+
     context '中間テーブルEventUserモデルとの関係' do
       let(:target) { :event_users }
+
       it '1:Nとなっている' do
         expect(association.macro).to eq :has_many
       end
     end
-    
+
     context 'Relationshipモデル(active_relationships)との関係' do
       let(:target) { :active_relationships }
+
       it '1:Nとなっている' do
         expect(association.macro).to eq :has_many
       end
@@ -164,6 +176,7 @@ RSpec.describe User, type: :model do
 
     context 'Relationshipモデル(passive_relationships)との関係' do
       let(:target) { :passive_relationships }
+
       it '1:Nとなっている' do
         expect(association.macro).to eq :has_many
       end
@@ -174,41 +187,45 @@ RSpec.describe User, type: :model do
 
     context '自分がフォローしているユーザーとの関連（自己結合型多対多）' do
       let(:target) { :followings }
+
       it '1:Nとなっている（中間テーブルactive_relationshipsを介すので自己結合型多対多）' do
         expect(association.macro).to eq :has_many
       end
       it '結合するモデルのクラスはUser(Follower)' do
-      	   expect(association.class_name).to eq 'User'
-    	end
+        expect(association.class_name).to eq 'User'
+      end
     end
 
     context '自分がフォローされるユーザーとの関連（自己結合型多対多）' do
       let(:target) { :followers }
+
       it '1:Nとなっている(中間テーブルpassive_relationshipsを介すので自己結合型多対多）' do
         expect(association.macro).to eq :has_many
       end
       it '結合するモデルのクラスはUser(Following)' do
-      	 expect(association.class_name).to eq 'User'
+        expect(association.class_name).to eq 'User'
       end
     end
 
     context 'Notificationモデル(active_notifications)との関連' do
       let(:target) { :active_notifications }
+
       it '1:Nとなっている' do
         expect(association.macro).to eq :has_many
       end
       it '結合するモデルのクラスはNotification' do
-      	   expect(association.class_name).to eq 'Notification'
-    	end
+        expect(association.class_name).to eq 'Notification'
+      end
     end
 
     context 'Notificationモデル(passive_notifications)との関連' do
       let(:target) { :passive_notifications }
+
       it '1:Nとなっている' do
         expect(association.macro).to eq :has_many
       end
       it '結合するモデルのクラスはNotification' do
-      	 expect(association.class_name).to eq 'Notification'
+        expect(association.class_name).to eq 'Notification'
       end
     end
   end

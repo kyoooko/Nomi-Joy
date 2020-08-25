@@ -5,9 +5,9 @@ FactoryBot.define do
     access { Faker::Lorem.characters(number: 20) }
     url { Faker::Lorem.characters(number: 20) }
     shop_image { '' }
-    tel{ Faker::Lorem.characters(number: 12)}
-    opentime{Faker::Lorem.characters(number: 20)}
-    holiday{Faker::Lorem.characters(number: 20)}
+    tel { Faker::Lorem.characters(number: 12) }
+    opentime { Faker::Lorem.characters(number: 20) }
+    holiday { Faker::Lorem.characters(number: 20) }
     user
   end
 end

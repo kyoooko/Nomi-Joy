@@ -17,6 +17,7 @@ RSpec.describe "Public::DirectMessages", type: :request do
       before do
         sign_in user_1
       end
+
       it "非同期にてリクエストが成功すること" do
         post direct_messages_path, params: req_params, xhr: true
         expect(response).to have_http_status "200"

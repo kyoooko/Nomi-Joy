@@ -1,5 +1,4 @@
 class Admin::TodosController < ApplicationController
-
   def create
     @todo = Todo.new(todo_params)
     @todo.user = current_user
@@ -16,6 +15,7 @@ class Admin::TodosController < ApplicationController
   end
 
   private
+
   def todo_params
     params.require(:todo).permit(:task)
   end

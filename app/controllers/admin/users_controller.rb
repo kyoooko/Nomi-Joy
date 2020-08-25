@@ -8,6 +8,7 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+
   def couldnt_show_unfollowd_user
     unfollowd_users = User.all - current_user.followers
     user = User.find(params[:id])

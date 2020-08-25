@@ -1,10 +1,9 @@
 class Admin::EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_event_by_event_id, only: [:notice_to_unpaying_users, :progress_status_update, :add_event_user, :add_event_user_fee, :add_event_user_create, :change_restaurant, :change_restaurant_update,:send_remind]
+  before_action :set_event_by_event_id, only: [:notice_to_unpaying_users, :progress_status_update, :add_event_user, :add_event_user_fee, :add_event_user_create, :change_restaurant, :change_restaurant_update, :send_remind]
   before_action :ensure_admin?, only: [:show, :edit, :update, :destroy]
   before_action :ensure_admin_event_id?, only: [:progress_status_update, :notice_to_unpaying_users]
   before_action :set_day_of_the_week, only: [:show, :edit, :change_restaurant, :add_event_user_fee, :add_event_user]
-
 
   # 以下、includesはN+1問題の解消
   # 以下、with_deletedは欠席者も含むための記述（gem paranoia）
@@ -29,7 +28,7 @@ class Admin::EventsController < ApplicationController
     day_of_the_week(@today_event) if @today_event.present?
     # ToDoリスト
     @todo = Todo.new
-    @todos = Todo.where(user_id:current_user.id)
+    @todos = Todo.where(user_id: current_user.id)
     # ================タブ２===============
     # 全てのノミカイ
     # 【★幹事＝user_id使用】
@@ -103,11 +102,11 @@ class Admin::EventsController < ApplicationController
 
   # show(タブ１）：リマインドメール・通知
   def send_remind
-     # 出席者全員に通知を送る
-     @event_users = EventUser.where(event_id: @event.id)
-     @event_users.each do |event_user|
-       @event.create_notification_remind_event(current_user, event_user.user_id)
-     end
+    # 出席者全員に通知を送る
+    @event_users = EventUser.where(event_id: @event.id)
+    @event_users.each do |event_user|
+      @event.create_notification_remind_event(current_user, event_user.user_id)
+    end
     RemindMailer.remind_mail(@event).deliver_now
     # 非同期のため下記削除
     # redirect_back(fallback_location: root_path)
@@ -140,14 +139,15 @@ class Admin::EventsController < ApplicationController
     # 確定ボタン押した場合
     event_user_ids = session[:event_user_ids]
     event_user_fees = session[:fees] = params[:fees]
-    add_event_users = event_user_ids.zip(event_user_fees).map { |event_user_id, event_user_fee| 
-    # 下記記述がないと会費を入力しなかった場合EventUserが保存されない
-    event_user_fee = 0 if event_user_fee.empty?
-    EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
- 
+    add_event_users = event_user_ids.zip(event_user_fees).map do |event_user_id, event_user_fee|
+      # 下記記述がないと会費を入力しなかった場合EventUserが保存されない
+      event_user_fee = 0 if event_user_fee.empty?
+      EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee)
+    end
+
     # ノミカイ招待メール
     if params[:mail]
-      InvitationMailer.invitation_mail_for_add_participant(@event,add_event_users).deliver_now
+      InvitationMailer.invitation_mail_for_add_participant(@event, add_event_users).deliver_now
     end
     # 通知機能
     add_event_users.each do |add_event_user|
@@ -277,11 +277,11 @@ class Admin::EventsController < ApplicationController
     @event.user_id = current_user.id
     @event_user_ids = session[:event_user_ids] = params[:event_user][:ids].drop(1)
     render(:step2) && return if params[:back]
-    unless @event_user_ids.present?
+    if @event_user_ids.blank?
       @members = current_user.matchers
       flash.now[:danger] = "参加者を１人以上選択してください"
       render(:step3)
-    end  
+    end
   end
 
   # 新規作成(5)：step4のparamsの値をsessionに代入＋step4のparamsの値をsessionに代入＋確認ページの表示（POST：viewあり)
@@ -327,10 +327,11 @@ class Admin::EventsController < ApplicationController
     # drop(1)は、sessionの配列の要素１つ目に""(nil)が渡されてしまい参加メンバーの一覧表示ができないため、１つ目を除いている
     event_user_ids = session[:event_user_ids]
     event_user_fees = session[:fees]
-    event_user_ids.zip(event_user_fees).each { |event_user_id, event_user_fee| 
-     # 下記記述がないと会費を入力しなかった場合EventUserが保存されない
+    event_user_ids.zip(event_user_fees).each do |event_user_id, event_user_fee|
+      # 下記記述がないと会費を入力しなかった場合EventUserが保存されない
       event_user_fee = 0 if event_user_fee.empty?
-      EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee) }
+      EventUser.create(user_id: event_user_id, event_id: @event.id, fee: event_user_fee)
+    end
     # 自分（カンジ）のevent_userも作成。else以降がないと会費を入力しなかった場合EventUserが保存されない
     if session[:admin_fee].present?
       EventUser.create(user_id: current_user.id, event_id: @event.id, fee: session[:admin_fee])
@@ -352,8 +353,8 @@ class Admin::EventsController < ApplicationController
   # def confirm_plan_remind
   # end
 
-
   private
+
   def set_event
     @event = Event.find(params[:id])
   end
@@ -370,6 +371,7 @@ class Admin::EventsController < ApplicationController
   def day_of_the_week(event)
     @day_of_the_week = %w(日 月 火 水 木 金 土)[event.date.wday]
   end
+
   # 曜日
   def set_day_of_the_week
     @day_of_the_week = %w(日 月 火 水 木 金 土)[@event.date.wday]

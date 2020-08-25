@@ -22,7 +22,7 @@ env :PATH, ENV['PATH']
 # ログファイルの出力先
 set :output, 'log/cron.log'
 # ジョブの実行環境の指定(実行環境はprodaction環境がデフォルト設定)
-set :environment, :production 
+set :environment, :production
 # set :environment, :development
 
 # 日本時間の午前8:00にメール送信される（JSTは+9:00なので-9:00の時間を記述）

@@ -18,6 +18,7 @@ RSpec.describe "Public::Events", type: :request do
       before do
         sign_in user
       end
+
       it "リクエストが成功すること" do
         get events_path
         expect(response).to have_http_status "200"
@@ -37,6 +38,7 @@ RSpec.describe "Public::Events", type: :request do
       before do
         sign_in user
       end
+
       it "リクエストが成功すること" do
         get event_path event.id
         expect(response).to have_http_status "200"
@@ -44,5 +46,3 @@ RSpec.describe "Public::Events", type: :request do
     end
   end
 end
-
-

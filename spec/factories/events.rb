@@ -4,8 +4,8 @@ FactoryBot.define do
     date { '2020-08-28 00:00:00' }
     begin_time { '2020-08-28 18:00:00' }
     finish_time { '2020-08-28 21:00:00' }
-    memo {Faker::Lorem.characters(number: 20)}
-    progress_status { Faker::Number.between(from: 0, to: 3)  }
+    memo { Faker::Lorem.characters(number: 20) }
+    progress_status { Faker::Number.between(from: 0, to: 3) }
     restaurant
     user
   end

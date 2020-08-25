@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Event, type: :model do
   describe 'バリデーションのテスト' do
     subject { event.valid? }
+
     let(:user) { create(:user) }
     let(:restaurant) { create(:restaurant, user_id: user.id) }
     let!(:event) { build(:event, restaurant_id: restaurant.id, user_id: user.id) }
@@ -23,7 +24,7 @@ RSpec.describe Event, type: :model do
       it '空欄でないこと' do
         event.date = ''
         is_expected.to eq false
-      end  
+      end
       it '空欄の場合はエラーが出る' do
         event.date = ''
         event.valid?
@@ -60,8 +61,10 @@ RSpec.describe Event, type: :model do
     let(:association) do
       described_class.reflect_on_association(target)
     end
+
     context 'Restaurantモデルとの関係' do
       let(:target) { :restaurant }
+
       it 'N:1となっている' do
         expect(association.macro).to eq :belongs_to
       end
@@ -69,6 +72,7 @@ RSpec.describe Event, type: :model do
 
     context 'EventUserモデルとの関係' do
       let(:target) { :event_users }
+
       it '1:Nとなっている' do
         expect(association.macro).to eq :has_many
       end
@@ -76,6 +80,7 @@ RSpec.describe Event, type: :model do
 
     context 'Notificationモデルとの関係' do
       let(:target) { :notifications }
+
       it '1:Nとなっている' do
         expect(association.macro).to eq :has_many
       end

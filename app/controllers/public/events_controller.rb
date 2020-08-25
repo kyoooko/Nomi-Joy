@@ -14,9 +14,9 @@ class Public::EventsController < ApplicationController
       @day_of_the_week = %w(日 月 火 水 木 金 土)[@today_event.date.wday]
       # 今日のノミカイのカンジ
       # 【★幹事＝user_id使用】
-      @today_admin = User.find(@today_event.user_id) 
+      @today_admin = User.find(@today_event.user_id)
       # 参照先のS3オブジェクトURLを作成
-      @image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + @today_admin.image_id + "-thumbnail." 
+      @image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + @today_admin.image_id + "-thumbnail."
     end
     # 全てのノミカイ（カレンダー）
     # includesはN+1問題の解消
@@ -33,7 +33,7 @@ class Public::EventsController < ApplicationController
     # 曜日
     @day_of_the_week = %w(日 月 火 水 木 金 土)[@event.date.wday]
     # 参照先のS3オブジェクトURLを作成
-    @image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + @admin.image_id + "-thumbnail." 
+    @image_url = "https://dmm-cloud-lesson10-image-files-resize.s3-ap-northeast-1.amazonaws.com/store/" + @admin.image_id + "-thumbnail."
   end
 
   private

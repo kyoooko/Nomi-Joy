@@ -65,7 +65,7 @@ RSpec.configure do |config|
   # build(:user)などが使えるようになる
   config.include FactoryBot::Syntax::Methods
   # Deviseのメソッド(sign_inヘルパーなど）をrequest spec内で使用できるように
-  config.include Devise::Test::IntegrationHelpers, type: :request 
+  config.include Devise::Test::IntegrationHelpers, type: :request
   # capybaraを用いた結合テストにはDevise::Test::IntegrationHelpersではなくWarden::Test::Helpersを用いる
-  # config.include Warden::Test::Helpers, type: :request 
+  # config.include Warden::Test::Helpers, type: :request
 end
