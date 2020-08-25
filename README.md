@@ -10,7 +10,7 @@
 ## URL
 https://nomi-joy.com
 
-「かんたんログイン」ボタンからテストユーザーとしてログインできます。幹事側へは、参加者側からログイン後「カンジの部屋」のロゴマークから入室できます。
+【かんたんログイン】ボタンからテストユーザーとしてログインできます。幹事側へは、参加者側からログイン後「カンジの部屋」のロゴマークから入室できます。
 
 ## 制作の背景
 前職で会社の飲み会の幹事をすることがありましたが、出欠や会費徴収の管理が大変でした。
@@ -31,8 +31,11 @@ https://nomi-joy.com
 * 幹事に連絡をしたいとき （欠席や遅刻の連絡など）
 
 ## 機能一覧
-* 通知機能 （フォローされた時、DMが届いた時、幹事が支払い依頼ボタンを押した時に通知が来る）
+* 通知機能 （①フォローされた時、②DMが届いた時、③飲み会に招待された時、④飲み会のリマインドが届いた時、⑤幹事が支払い依頼ボタンを押した時、⑥幹事に会費を領収された時に通知が来る）
+* メール機能 (①飲み会に招待された時、②飲み会のリマインドが届いた時、③幹事が支払い依頼ボタンを押した時、④幹事に会費を領収された時、⑤未読通知3件以上溜まったとき、⑥参加する飲み会の前日にメール送信)
+* 定時処理(①未読通知が3件以上溜まったユーザーに毎日午前８時にメール送信、②飲み会の前日午前８時に参加者全員にメール・通知送信)
 * DM機能 （非同期通信）
+* ToDoリスト(非同期通信)
 * 検索機能 （非同期通信／ぐるなびAPIを使用し店舗検索、保存）
 * マップ表示 （ぐるなびAPIにて取得した住所から表示）
 * カレンダー表示(保存した飲み会情報を表示)
@@ -57,18 +60,30 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 
 ### 開発環境
 * Vagrant 2.2.4
+* Docker
 
 ### 本番環境
+* AWS (EC2, RDS for MySQL,Route53,CloudWatch、S3、Lambda)
 * MySQL2
-* AWS (EC2, RDS for MySQL,Route53)
 * Nginx, Puma
 * Capistrano
 
+### インフラ構成図
+
+![AWS構成図](https://user-images.githubusercontent.com/60662524/91128951-1788e180-e6e4-11ea-8a3c-329ebad6eab1.png)
+
+### テスト
+* Rspec(単体／結合） 計140以上
+
 ### その他
+* 非同期通信(フォロー・集金・メール送信など各種ボタン、検索、DM、ToDoリスト、画像アップロードの即時反映、タブ等)
+* Action Mailer
+* whenever（定時処理）
 * ぐるなびAPI
 * Google MapAPI、Geocoding API
+* Rubocop-airbnb
 * HTTPS接続(Certbot)
-* Rubocop
+* CircleCIを用いた自動テスト、自動デプロイ(Doceker/Rspec/Capistrano)
 
 ## ER図
 https://drive.google.com/file/d/1K2Qrs0czp6oltj0WGz1hlMRBMYsf_4XE/view?usp=sharing
