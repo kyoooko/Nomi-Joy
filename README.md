@@ -82,8 +82,7 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 * CircleCIを用いて自動テスト
 
 ### その他使用技術
-* 非同期通信 
-  - フォロー・集金・メール送信など各種ボタン、検索、DM、ToDoリスト、画像アップロードの即時反映、タブ等
+* 非同期通信 (フォロー・集金・メール送信など各種ボタン、検索、DM、ToDoリスト、画像アップロードの即時反映、タブ等)
 * Action Mailer
 * whenever （定時処理）
 * ぐるなびAPI
