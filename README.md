@@ -66,7 +66,7 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 * AWS (EC2, RDS for MySQL,Route53,CloudWatch、S3、Lambda)
 * MySQL2
 * Nginx, Puma
-* Capistrano
+* CircleCIを用いて自動デプロイ（Capistrano）
 
 ### インフラ構成図
 
@@ -74,6 +74,7 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 
 ### テスト
 * Rspec(単体／結合） 計140以上
+* CircleCIを用いて自動テスト
 
 ### その他
 * 非同期通信(フォロー・集金・メール送信など各種ボタン、検索、DM、ToDoリスト、画像アップロードの即時反映、タブ等)
@@ -83,7 +84,7 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 * Google MapAPI、Geocoding API
 * Rubocop-airbnb
 * HTTPS接続(Certbot)
-* CircleCIを用いた自動テスト、自動デプロイ(Doceker/Rspec/Capistrano)
+* チーム開発を意識したGitHubの活用（マイルストーン、イシュー、プルリク、マージ）
 
 ## ER図
 https://drive.google.com/file/d/1K2Qrs0czp6oltj0WGz1hlMRBMYsf_4XE/view?usp=sharing
