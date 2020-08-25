@@ -36,12 +36,14 @@ RSpec.describe "Public::Users", type: :request do
       before do
         sign_in user
       end
+
       context "本人のページの場合" do
         it "リクエストが成功すること" do
           get user_path user.id
           expect(response).to have_http_status "200"
         end
       end
+
       context "フォローされていないユーザーのページの場合" do
         it "トップ画面にリダイレクトされること" do
           get user_path unfollowed_user.id
@@ -92,8 +94,9 @@ RSpec.describe "Public::Users", type: :request do
       before do
         sign_in user
       end
+
       it "リクエストが成功すること" do
-        put  user_path user.id, user: user_params
+        put user_path user.id, user: user_params
         expect(response.status).to eq 302
       end
       it "更新が成功すること" do
@@ -114,7 +117,7 @@ RSpec.describe "Public::Users", type: :request do
       end
     end
   end
-  
+
   # ========================================================
 
   describe "ログインページ(GET /sign_in)が" do
@@ -133,6 +136,7 @@ RSpec.describe "Public::Users", type: :request do
 
     context '存在するユーザでログインすると' do
       let (:user) { authenticated_user }
+
       it '成功すること' do
         post user_session_path, params: req_params
         expect(response).to have_http_status(302)
@@ -145,6 +149,7 @@ RSpec.describe "Public::Users", type: :request do
 
     context '存在しないユーザでログインすると' do
       let (:user) { unauthenticated_user }
+
       it '失敗すること' do
         post user_session_path, params: req_params
         expect(response).to have_http_status(200)

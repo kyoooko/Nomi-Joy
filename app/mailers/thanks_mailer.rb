@@ -8,5 +8,3 @@ class ThanksMailer < ApplicationMailer
     # @attachments.inline['image.jpg'] = File.read('./app/assets/images/twitter-card.png.JPG', ?r)
   end
 end
-
-

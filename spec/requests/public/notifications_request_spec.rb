@@ -9,7 +9,7 @@ RSpec.describe "Public::Notifications", type: :request do
   describe "通知ページ(GET #show)" do
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
-        get notifications_path 
+        get notifications_path
         expect(response).to redirect_to new_user_session_path
       end
     end
@@ -18,8 +18,9 @@ RSpec.describe "Public::Notifications", type: :request do
       before do
         sign_in user_1
       end
+
       it "リクエストが成功すること" do
-        get notifications_path 
+        get notifications_path
         expect(response).to have_http_status "200"
       end
     end
@@ -31,7 +32,7 @@ RSpec.describe "Public::Notifications", type: :request do
       before do
         sign_in user_1
       end
-      
+
       it "通知が作成されること" do
         post user_relationships_path(user_2.id), xhr: true
         # binding.pry
@@ -53,7 +54,7 @@ RSpec.describe "Public::Notifications", type: :request do
   # let!(:entry_1at1) { Entry.create(user_id: user_1.id, room_id: room.id) }
   # let!(:entry_2at1) { Entry.create(user_id: user_2.id, room_id: room.id) }
   # let (:req_params) { { direct_message: { room_id: room.id, message: "hoge" } } }
-  
+
   # describe "DMを送信(POST #create)した時" do
   #   context "ログインしている場合" do
   #     before do

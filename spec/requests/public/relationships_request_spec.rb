@@ -9,6 +9,7 @@ RSpec.describe "Public::Relationships", type: :request do
       before do
         sign_in following
       end
+
       it "非同期によるフォローのリクエストが成功すること" do
         post user_relationships_path(follower.id), xhr: true
         expect(response).to have_http_status "200"

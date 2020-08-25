@@ -35,6 +35,7 @@ class Admin::EventUsersController < ApplicationController
   end
 
   private
+
   def set_event_user
     @event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id], user_id: params[:event_user][:user_id])
   end

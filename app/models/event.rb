@@ -21,6 +21,7 @@ class Event < ApplicationRecord
   def start_time
     date
   end
+
   def end_time
     date
   end
@@ -34,6 +35,7 @@ class Event < ApplicationRecord
     )
     notification.save if notification.valid?
   end
+
   # ◆通知機能（新規ノミカイ案内）
   def create_notification_new_event(current_user, visited_id)
     notification = current_user.active_notifications.new(
@@ -42,8 +44,9 @@ class Event < ApplicationRecord
       action: 'create_event'
     )
     # 自分へは通知が作られない・届かないようにする
-    notification.save if (notification.visitor_id != notification.visited_id && notification.valid?)
+    notification.save if notification.visitor_id != notification.visited_id && notification.valid?
   end
+
   # ◆通知機能（リマインド）
   def create_notification_remind_event(current_user, visited_id)
     notification = current_user.active_notifications.new(
@@ -52,8 +55,9 @@ class Event < ApplicationRecord
       action: 'remind_event'
     )
     # 自分へは通知が作られない・届かないようにする
-    notification.save if (notification.visitor_id != notification.visited_id && notification.valid?)
+    notification.save if notification.visitor_id != notification.visited_id && notification.valid?
   end
+
   # ◆通知機能（領収済）
   def create_notification_paid_fee(current_user, visited_id)
     notification = current_user.active_notifications.new(
