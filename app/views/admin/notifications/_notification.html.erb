@@ -17,7 +17,8 @@
         さんから
       <% case notification.action %>
       <% when 'follow' then %>
-        メンバー承認依頼が届いています
+        フォローされました
+        <p class="text-muted mb-0 font-xs nomal-font" >まだフォローしていない場合は承認するとノミカイメンバーとなります</p>
       <% when 'dm' then%>
         <%= link_to 'DM', admin_room_path(notification.visitor), style: "font-weight: bold;" %>が届いています
         <p class="text-muted mb-0 font-xs nomal-font" >
