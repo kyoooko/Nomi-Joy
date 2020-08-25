@@ -3,14 +3,15 @@
 ![twitter-card](https://user-images.githubusercontent.com/60662524/88530963-19a44580-d03d-11ea-8ca6-8513ace6d7a3.png)
 
 ## 概要
-「ノミカイの準備を便利に、楽しく」
+「ノミカイの準備を楽しく、便利に」
 
-幹事さんと参加者双方に向けた、飲み会の準備を便利に楽しくサポートするサービスです。
+幹事さんと参加者双方に向けた、飲み会の準備を楽しく便利にサポートするサービスです。
 
 ## URL
 https://nomi-joy.com
 
-【かんたんログイン】ボタンからテストユーザーとしてログインできます。幹事側へは、参加者側からログイン後「カンジの部屋」のロゴマークから入室できます。
+【かんたんログイン】ボタンからテストユーザーとしてログインできます。
+幹事側へは、参加者側からログイン後「カンジの部屋」のロゴマークから入室できます。
 
 ## 制作の背景
 前職で会社の飲み会の幹事をすることがありましたが、出欠や会費徴収の管理が大変でした。
@@ -28,18 +29,21 @@ https://nomi-joy.com
 
 【参加者側】
 * 飲み会の情報（場所、会費など）を確認したいとき
-* 幹事に連絡をしたいとき （欠席や遅刻の連絡など）
+* 幹事に連絡をしたいとき（欠席や遅刻の連絡など）
 
 ## 機能一覧
-* 通知機能 （①フォローされた時、②DMが届いた時、③飲み会に招待された時、④飲み会のリマインドが届いた時、⑤幹事が支払い依頼ボタンを押した時、⑥幹事に会費を領収された時に通知が来る）
-* メール機能 (①飲み会に招待された時、②飲み会のリマインドが届いた時、③幹事が支払い依頼ボタンを押した時、④幹事に会費を領収された時、⑤未読通知3件以上溜まったとき、⑥参加する飲み会の前日にメール送信)
-* 定時処理(①未読通知が3件以上溜まったユーザーに毎日午前８時にメール送信、②飲み会の前日午前８時に参加者全員にメール・通知送信)
-* DM機能 （非同期通信）
-* ToDoリスト(非同期通信)
-* 検索機能 （非同期通信／ぐるなびAPIを使用し店舗検索、保存）
+* 通知機能 
+  (フォローされた時、DMが届いた時、飲み会に招待された時、飲み会のリマインドが届いた時、幹事が支払い依頼ボタンを押した時、幹事に会費を領収された時に通知が来る）
+* メール機能 
+  (飲み会に招待された時、飲み会のリマインドが届いた時、幹事が支払い依頼ボタンを押した時、幹事に会費を領収された時、未読通知3件以上溜まったとき、参加する飲み会の前日にメール送信)
+* 定時処理 
+  (未読通知が3件以上溜まったユーザーに毎日午前８時にメール送信、飲み会の前日午前８時に参加者全員にメール・通知送信)
+* DM機能 
+* ToDoリスト
+* 検索機能 （ぐるなびAPIを使用し店舗検索、保存）
 * マップ表示 （ぐるなびAPIにて取得した住所から表示）
 * カレンダー表示(保存した飲み会情報を表示)
-* マッチング（フォロー）機能 （非同期通信）
+* マッチング（フォロー）機能 
 * レスポンシブデザイン
 
 ![README-responsive](https://user-images.githubusercontent.com/60662524/88524761-bb736480-d034-11ea-94d1-dcfec3fc4266.png)
@@ -51,8 +55,8 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 ## 環境・使用技術
 ### フロントエンド
 * Bootstrap4
-* Scss(BEM)
-* JavaScript, jQuery,Ajax
+* SCSS (BEM)
+* JavaScript、jQuery、Ajax
 
 ### バックエンド
 * Ruby 2.5.7
@@ -63,28 +67,30 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 * Docker
 
 ### 本番環境
-* AWS (EC2, RDS for MySQL,Route53,CloudWatch、S3、Lambda)
+* AWS (EC2、RDS for MySQL、Route53、CloudWatch、S3、Lambda)
 * MySQL2
-* Nginx, Puma
-* CircleCIを用いて自動デプロイ（Capistrano）
+* Nginx、 Puma
+* Capistrano、CircleCIを用いて自動デプロイ
 
 ### インフラ構成図
 
-![AWS構成図](https://user-images.githubusercontent.com/60662524/91128951-1788e180-e6e4-11ea-8a3c-329ebad6eab1.png)
+![AWS構成図](https://user-images.githubusercontent.com/60662524/91147221-ed8aeb80-e6f2-11ea-85a6-084e361da2e0.png)
+
 
 ### テスト
-* Rspec(単体／結合） 計140以上
+* Rspec (単体／結合） 計140以上
 * CircleCIを用いて自動テスト
 
-### その他
-* 非同期通信(フォロー・集金・メール送信など各種ボタン、検索、DM、ToDoリスト、画像アップロードの即時反映、タブ等)
+### その他使用技術
+* 非同期通信 
+  (フォロー・集金・メール送信など各種ボタン、検索、DM、ToDoリスト、画像アップロードの即時反映、タブ等)
 * Action Mailer
-* whenever（定時処理）
+* whenever （定時処理）
 * ぐるなびAPI
 * Google MapAPI、Geocoding API
 * Rubocop-airbnb
-* HTTPS接続(Certbot)
-* チーム開発を意識したGitHubの活用（マイルストーン、イシュー、プルリク、マージ）
+* HTTPS接続 (Certbot)
+* チーム開発を意識したGitHubの活用 （マイルストーン、イシュー、プルリク、マージ）
 
 ## ER図
 https://drive.google.com/file/d/1K2Qrs0czp6oltj0WGz1hlMRBMYsf_4XE/view?usp=sharing
