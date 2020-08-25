@@ -65,6 +65,7 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 ### 開発環境
 * Vagrant 2.2.4
 * Docker
+* MySQL2
 
 ### 本番環境
 * AWS (EC2、RDS for MySQL、Route53、CloudWatch、S3、Lambda)
@@ -85,7 +86,7 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 * 非同期通信 (フォロー・集金・メール送信など各種ボタン、検索、DM、ToDoリスト、画像アップロードの即時反映、タブ等)
 * Action Mailer
 * whenever （定時処理）
-* ぐるなびAPI
+* ぐるなび レストラン検索API
 * Google MapAPI、Geocoding API
 * Rubocop-airbnb
 * HTTPS接続 (Certbot)
