@@ -54,7 +54,7 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 
 ## 環境・使用技術
 ### フロントエンド
-* Bootstrap4
+* Bootstrap 4.5.0
 * SCSS (BEM)
 * JavaScript、jQuery、Ajax
 
