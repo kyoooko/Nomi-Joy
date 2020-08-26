@@ -1,6 +1,19 @@
 require 'rails_helper'
 
-RSpec.describe Restaurant, type: :model do
+RSpec.describe Todo, type: :model do
+  describe 'バリデーションのテスト' do
+    subject { todo.valid? }
+
+    let(:user) { create(:user) }
+    let!(:todo) { build(:todo, user_id: user.id) }
+
+    context 'taskカラム' do
+      it '空欄でないこと' do
+        todo.task= ''
+        expect(todo.valid?).to eq false
+      end
+    end
+  end
 
   describe 'アソシエーションのテスト' do
     let(:association) do
@@ -12,14 +25,6 @@ RSpec.describe Restaurant, type: :model do
 
       it 'N:1となっている' do
         expect(association.macro).to eq :belongs_to
-      end
-    end
-
-    context 'Evnetモデルとの関係' do
-      let(:target) { :events }
-
-      it '1:Nとなっている' do
-        expect(association.macro).to eq :has_many
       end
     end
   end

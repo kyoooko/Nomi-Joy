@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   # ログ出力
   # Rails.logger.debug '実行されていますか〜〜〜'
-  
+
   describe 'バリデーションのテスト' do
+    # subject〜を書くことでis_expected〜を使えるようになる
     subject { test_user.valid? }
     # 備忘録：letが呼び出された時点で実行される
     # 備忘録：createはDBに保存されるがbuildは保存されない
