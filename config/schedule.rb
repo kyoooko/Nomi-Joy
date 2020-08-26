@@ -27,7 +27,7 @@ set :environment, :production
 
 # 日本時間の午前8:00にメール送信される（JSTは+9:00なので-9:00の時間を記述）
 every 1.days, at: '11:00 pm' do
-  # 未読通知が3件いおじゅたまっているユーザーにメール通知
+  # 未読通知が3件以上たまっているユーザーにメール通知
   runner "ScheduledProcessingMailer.check_notice_mail.deliver_now"
   # 翌日ノミカイがある参加者にメール通知
   runner "ScheduledProcessingMailer.before_1day_remind_mail.deliver_now"
