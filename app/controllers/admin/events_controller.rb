@@ -2,7 +2,7 @@ class Admin::EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_event_by_event_id, only: [:notice_to_unpaying_users, :progress_status_update, :add_event_user, :add_event_user_fee, :add_event_user_create, :change_restaurant, :change_restaurant_update, :send_remind]
   before_action :ensure_admin?, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_admin_event_id?, only: [:progress_status_update, :notice_to_unpaying_users]
+  before_action :ensure_admin_event_id?, only: [:progress_status_update, :add_event_user, :add_event_user_fee, :add_event_user_create, :notice_to_unpaying_users, :change_restaurant]
   before_action :set_day_of_the_week, only: [:show, :edit, :change_restaurant, :add_event_user_fee, :add_event_user]
 
   # 以下、includesはN+1問題の解消
@@ -270,7 +270,7 @@ class Admin::EventsController < ApplicationController
     render :step2 if @event.invalid?
   end
 
-  # 新規作成(4)：step3のparamsの値をsessionに代入＋会費設定ページの表示（POST：vieあり)
+  # 新規作成(4)：step3のparamsの値をsessionに代入＋会費設定ページの表示（POST：viewあり)
   def step4
     @event = Event.new(event_params)
     # # 【★幹事＝user_id使用】
@@ -350,11 +350,8 @@ class Admin::EventsController < ApplicationController
     redirect_to admin_event_path(@event)
   end
 
-  # def confirm_plan_remind
-  # end
 
   private
-
   def set_event
     @event = Event.find(params[:id])
   end

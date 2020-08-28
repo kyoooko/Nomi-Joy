@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe "Admin::Todos", type: :request do
   # ユーザー１はログインユーザー。
   let!(:user_1) { create(:user) }
-  # let(:todo_params) { { task: "お店に連絡する"} }
   let (:req_params) { { todo: {task: "お店に連絡する" } } }
   let!(:todo_1) { Todo.create(user_id: user_1.id, task:"ユーザー１のタスク") }
 

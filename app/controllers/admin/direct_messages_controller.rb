@@ -11,7 +11,6 @@ class Admin::DirectMessagesController < ApplicationController
   end
 
   private
-
   def dm_params
     params.require(:direct_message).permit(:message, :room_id)
   end

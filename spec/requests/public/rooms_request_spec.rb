@@ -33,7 +33,6 @@ RSpec.describe "Public::Rooms", type: :request do
 
   # ユーザー２は非ログインユーザー。ユーザー１はユーザー２とマッチング(相互フォロー)している。
   # ユーザー３は非ログインユーザー。ユーザー１はユーザー３とはマッチングしていない
-
   describe "DMページ(GET #show)" do
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
