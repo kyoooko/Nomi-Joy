@@ -18,7 +18,7 @@ class Admin::EventUsersController < ApplicationController
       if params[:event_user][:fee].present?
         @event_user.update(event_user_params)
       else
-        @event_user.update(fee: 0 )
+        @event_user.update(fee: 0)
       end
     end
     # 非同期のため下記削除
@@ -36,8 +36,8 @@ class Admin::EventUsersController < ApplicationController
     # redirect_back(fallback_location: root_path)
   end
 
-
   private
+
   def set_event_user
     @event_user = EventUser.with_deleted.find_by(event_id: params[:event_user][:event_id], user_id: params[:event_user][:user_id])
   end
@@ -51,6 +51,7 @@ class Admin::EventUsersController < ApplicationController
     @event = Event.find(params[:event_id])
     redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id
   end
+
   def ensure_admin_event_id?
     @event = Event.find(params[:event_user][:event_id])
     redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id

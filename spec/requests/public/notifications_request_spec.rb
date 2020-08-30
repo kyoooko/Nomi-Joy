@@ -6,6 +6,13 @@ RSpec.describe "Public::Notifications", type: :request do
   # ユーザー２はログインユーザーではない
   let!(:user_2) { create(:user) }
 
+  let (:req_params) { { direct_message: { room_id: room.id, message: "hoge" } } }
+  let!(:entry_2at1) { Entry.create(user_id: user_2.id, room_id: room.id) }
+  let!(:entry_1at1) { Entry.create(user_id: user_1.id, room_id: room.id) }
+  let!(:room) { Room.create }
+  let!(:follow_2to1) { Relationship.create(following_id: user_2.id, follower_id: user_1.id) }
+  let!(:follow_1to2) { Relationship.create(following_id: user_1.id, follower_id: user_2.id) }
+
   describe "通知ページ(GET #show)" do
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
@@ -47,12 +54,6 @@ RSpec.describe "Public::Notifications", type: :request do
   end
 
   # DM送信（ユーザー１がユーザー２にDMを送る）
-  let!(:follow_1to2) { Relationship.create(following_id: user_1.id, follower_id: user_2.id) }
-  let!(:follow_2to1) { Relationship.create(following_id: user_2.id, follower_id: user_1.id) }
-  let!(:room) { Room.create }
-  let!(:entry_1at1) { Entry.create(user_id: user_1.id, room_id: room.id) }
-  let!(:entry_2at1) { Entry.create(user_id: user_2.id, room_id: room.id) }
-  let (:req_params) { { direct_message: { room_id: room.id, message: "hoge" } } }
 
   describe "通知作成(POST #create)" do
     context "ユーザー１からユーザー２へDMを送信(POST #create)した時" do
@@ -62,6 +63,7 @@ RSpec.describe "Public::Notifications", type: :request do
         get room_path user_2.id
         post direct_messages_path, params: req_params, xhr: true
       end
+
       it "ユーザー１からユーザー２へ通知が作成されること" do
         # direct_message_idは1とかぎらない。今回のテストではそもそもDMひとつしか作っていないのでdirect_message_id指定しなくても問題ない
         expect(Notification.find_by(visitor_id: user_1.id, visited_id: user_2.id, action: "dm")).to be_truthy

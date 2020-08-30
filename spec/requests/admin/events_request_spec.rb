@@ -76,6 +76,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user_2
         end
+
         it "ログイン前トップページへリダイレクトすること" do
           get edit_admin_event_path event.id
           expect(response).to redirect_to root_path
@@ -99,6 +100,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user
         end
+
         it "リクエストが成功すること" do
           put admin_event_path event.id, event: update_params
           expect(response.status).to eq 302
@@ -117,6 +119,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user_2
         end
+
         it "ログイン前トップページへリダイレクトすること" do
           put admin_event_path event.id, event: update_params
           expect(response).to redirect_to root_path
@@ -138,6 +141,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user
         end
+
         it "リクエストが成功すること" do
           delete admin_event_path event.id
           expect(response.status).to eq 302
@@ -156,6 +160,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user_2
         end
+
         it "ログイン前トップページへリダイレクトすること" do
           delete admin_event_path event.id
           expect(response).to redirect_to root_path
@@ -180,6 +185,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user
         end
+
         it "非同期によるステータス更新のリクエストが成功すること" do
           # 非同期のため302でなく200
           patch admin_events_progress_status_path(event.id), params: progress_status_update_params, xhr: true
@@ -195,6 +201,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user_2
         end
+
         it "ログイン前トップページへリダイレクトすること" do
           patch admin_events_progress_status_path(event.id), params: progress_status_update_params, xhr: true
           expect(response).to redirect_to root_path
@@ -228,6 +235,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user_2
         end
+
         it "ログイン前トップページへリダイレクトすること" do
           get admin_add_event_user_path(event.id)
           expect(response).to redirect_to root_path
@@ -237,8 +245,8 @@ RSpec.describe "Admin::Events", type: :request do
   end
 
   describe "参加メンバーの追加後会費設定編集ページを表示(POST #add_event_user_fee)" do
-    let (:event_user_ids_params) { { event_user: {ids: ["", user.id, user_2.id]} } }
-    let (:nil_event_user_ids_params) { { event_user: {ids: [""]} } }
+    let (:event_user_ids_params) { { event_user: { ids: ["", user.id, user_2.id] } } }
+    let (:nil_event_user_ids_params) { { event_user: { ids: [""] } } }
 
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
@@ -275,12 +283,12 @@ RSpec.describe "Admin::Events", type: :request do
 
         context "戻るボタンを押したら" do
           it "リクエストが成功すること" do
-            post admin_add_event_user_fee_path(event.id), params: { event_user: {ids: [""]}, back: "戻る"}
+            post admin_add_event_user_fee_path(event.id), params: { event_user: { ids: [""] }, back: "戻る" }
             expect(response).to have_http_status "302"
           end
 
           it "詳細ページにリダイレクトされること" do
-            post admin_add_event_user_fee_path(event.id), params: { event_user: {ids: [""]}, back: "戻る"}
+            post admin_add_event_user_fee_path(event.id), params: { event_user: { ids: [""] }, back: "戻る" }
             expect(response).to redirect_to admin_event_path event.id, room: 2
           end
         end
@@ -290,6 +298,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user_2
         end
+
         it "ログイン前トップページへリダイレクトすること" do
           post admin_add_event_user_fee_path(event.id), params: event_user_ids_params
           expect(response).to redirect_to root_path
@@ -299,8 +308,8 @@ RSpec.describe "Admin::Events", type: :request do
   end
 
   describe "参加メンバーの追加後会費設定編集ページを表示(POST #add_event_user_fee)" do
-    let (:event_user_ids_params) { { event_user: {ids: ["", user.id, user_2.id]} } }
-    let (:fees_params) { {fees: ["3000", "4000"] } }
+    let (:event_user_ids_params) { { event_user: { ids: ["", user.id, user_2.id] } } }
+    let (:fees_params) { { fees: ["3000", "4000"] } }
 
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
@@ -315,26 +324,26 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user
         end
-        
+
         context "追加ボタンを押したら" do
           it "リクエストが成功すること" do
             post admin_add_event_user_fee_path(event.id), params: event_user_ids_params
             post admin_add_event_user_create_path(event.id), params: fees_params
             expect(response).to have_http_status "302"
           end
-        
+
           it "ノミカイ詳細ページにリダイレクトすること" do
             post admin_add_event_user_fee_path(event.id), params: event_user_ids_params
             post admin_add_event_user_create_path(event.id), params: fees_params
             expect(response).to redirect_to admin_event_path(event.id, room: 2)
           end
-        end  
-        
+        end
+
         context "戻るボタンを押したら" do
           it "リクエストが成功すること" do
             # リダイレクトではなくrenderなので302でなく200
             post admin_add_event_user_fee_path(event.id), params: event_user_ids_params
-            post admin_add_event_user_create_path(event.id), params: { event: fees_params, back: "戻る"}
+            post admin_add_event_user_create_path(event.id), params: { event: fees_params, back: "戻る" }
             expect(response).to have_http_status "200"
           end
         end
@@ -344,6 +353,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user_2
         end
+
         it "ログイン前トップページへリダイレクトすること" do
           post admin_add_event_user_fee_path(event.id), params: event_user_ids_params
           post admin_add_event_user_create_path(event.id), params: fees_params
@@ -354,7 +364,7 @@ RSpec.describe "Admin::Events", type: :request do
   end
 
   # show(タブ４）
-  describe "お店の変更(GET #change_restaurant)" do 
+  describe "お店の変更(GET #change_restaurant)" do
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
         get admin_change_restaurant_path(event.id)
@@ -377,40 +387,40 @@ RSpec.describe "Admin::Events", type: :request do
 
         context "更新ボタンを押したら" do
           let (:restaurant_params) { "{\"@attributes\"=>{\"order\"=>0}, \"id\"=>\"a127617\", \"update_date\"=>\"2020-08-26T13:45:28+09:00\", \"name\"=>\"くいもの屋わん 大宮南銀通り店\", \"name_kana\"=>\"クイモノヤワン オオミヤナンギンドオリテン\", \"url\"=>\"https://r.gnavi.co.jp/a127617/?ak=Z2rHoeARvgskgkLLcLGmAms4orYpvb6osrE291%2FehB4%3D\", \"image_url\"=>{\"shop_image1\"=>\"https://rimage.gnst.jp/rest/img/aax8xkgd0000/t_01r6.jpg\"}, \"address\"=>\"〒330-0845 埼玉県さいたま市大宮区仲町1-24 オリンピアビル2F\", \"tel\"=>\"050-3464-7669\", \"tel_sub\"=>\"048-631-1222\", \"fax\"=>\"048-631-1222\", \"opentime\"=>\" 16:00～翌03:00\", \"holiday\"=>\"年中無休\", \"access\"=>{\"line\"=>\"ＪＲ\", \"station\"=>\"大宮駅\", \"station_exit\"=>\"東口\", \"walk\"=>\"2\", \"note\"=>\"\"}}" }
-    
+
           context "お店を選択したら" do
             it "リクエストが成功すること" do
-              get admin_change_restaurant_path(event.id), params: {restaurant:restaurant_params, change: "変更"}
+              get admin_change_restaurant_path(event.id), params: { restaurant: restaurant_params, change: "変更" }
               expect(response).to have_http_status "302"
             end
-    
+
             it "ノミカイ詳細ページにリダイレクトすること" do
-              get admin_change_restaurant_path(event.id), params: {restaurant:restaurant_params, change: "変更"}
+              get admin_change_restaurant_path(event.id), params: { restaurant: restaurant_params, change: "変更" }
               expect(response).to redirect_to admin_event_path(event.id, room: 4)
-            end   
+            end
           end
-        
+
           context "お店を選択しなかったら" do
             it "リクエストが失敗すること" do
-              get admin_change_restaurant_path(event.id), params: { change: "変更"}
+              get admin_change_restaurant_path(event.id), params: { change: "変更" }
               expect(response).to have_http_status "200"
             end
-    
+
             it "詳細ページにリダイレクトされないこと" do
-              get admin_change_restaurant_path(event.id), params: { change: "変更"}
+              get admin_change_restaurant_path(event.id), params: { change: "変更" }
               expect(response).not_to redirect_to admin_event_path(event.id, room: 4)
-            end  
-          end 
+            end
+          end
         end
 
         context "戻るボタンを押したら" do
           it "リクエストが成功すること" do
-            get admin_change_restaurant_path(event.id), params: { back: "戻る"}
+            get admin_change_restaurant_path(event.id), params: { back: "戻る" }
             expect(response).to have_http_status "302"
           end
-    
+
           it "詳細ページにリダイレクトされること" do
-            get admin_change_restaurant_path(event.id), params: { back: "戻る"}
+            get admin_change_restaurant_path(event.id), params: { back: "戻る" }
             expect(response).to redirect_to admin_event_path event.id, room: 4
           end
         end
@@ -420,6 +430,7 @@ RSpec.describe "Admin::Events", type: :request do
         before do
           sign_in user_2
         end
+
         it "ログイン前トップページへリダイレクトすること" do
           get admin_change_restaurant_path(event.id)
           expect(response).to redirect_to root_path
@@ -449,12 +460,12 @@ RSpec.describe "Admin::Events", type: :request do
   end
 
   describe "ノミカイ新規作成(2)(POST #step2)" do
-    let (:event_params) { {name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00",  finish_time: "2020-07-30 20:00:00", memo: "花束用意する"} }
+    let (:event_params) { { name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00", finish_time: "2020-07-30 20:00:00", memo: "花束用意する" } }
     let (:restaurant_params) { "{\"@attributes\"=>{\"order\"=>0}, \"id\"=>\"a127617\", \"update_date\"=>\"2020-08-26T13:45:28+09:00\", \"name\"=>\"くいもの屋わん 大宮南銀通り店\", \"name_kana\"=>\"クイモノヤワン オオミヤナンギンドオリテン\", \"url\"=>\"https://r.gnavi.co.jp/a127617/?ak=Z2rHoeARvgskgkLLcLGmAms4orYpvb6osrE291%2FehB4%3D\", \"image_url\"=>{\"shop_image1\"=>\"https://rimage.gnst.jp/rest/img/aax8xkgd0000/t_01r6.jpg\"}, \"address\"=>\"〒330-0845 埼玉県さいたま市大宮区仲町1-24 オリンピアビル2F\", \"tel\"=>\"050-3464-7669\", \"tel_sub\"=>\"048-631-1222\", \"fax\"=>\"048-631-1222\", \"opentime\"=>\" 16:00～翌03:00\", \"holiday\"=>\"年中無休\", \"access\"=>{\"line\"=>\"ＪＲ\", \"station\"=>\"大宮駅\", \"station_exit\"=>\"東口\", \"walk\"=>\"2\", \"note\"=>\"\"}}" }
 
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
-        post admin_step2_path, params: {event: event_params}
+        post admin_step2_path, params: { event: event_params }
         expect(response).to redirect_to new_user_session_path
       end
     end
@@ -467,47 +478,47 @@ RSpec.describe "Admin::Events", type: :request do
       context "お店検索ページ表示" do
         it "リクエストが成功すること" do
           # このpostはページの表示兼paramsの送信なので302でなく200
-          post admin_step2_path, params: {event: event_params}
+          post admin_step2_path, params: { event: event_params }
           expect(response).to have_http_status "200"
         end
       end
 
       context "お店を選択したら" do
         it "リクエストが成功すること" do
-          post admin_step2_path, params: {event: event_params, restaurant:restaurant_params, next: "次へ"}
+          post admin_step2_path, params: { event: event_params, restaurant: restaurant_params, next: "次へ" }
           expect(response).to have_http_status "302"
         end
 
         it "Step3ページにリダイレクトすること" do
-          post admin_step2_path, params: {event: event_params, restaurant:restaurant_params, next: "次へ"}
+          post admin_step2_path, params: { event: event_params, restaurant: restaurant_params, next: "次へ" }
           expect(response).to redirect_to admin_step3_path(event: event_params)
-        end   
+        end
       end
 
       context "お店を選択しなかったら" do
         it "リクエストが失敗すること" do
-          post admin_step2_path, params: {event: event_params,  next: "次へ"}
+          post admin_step2_path, params: { event: event_params, next: "次へ" }
           expect(response).to have_http_status "200"
         end
 
         it "Step3ページにリダイレクトされないこと" do
-          post admin_step2_path, params: {event: event_params,  next: "次へ"}
+          post admin_step2_path, params: { event: event_params, next: "次へ" }
           expect(response).not_to redirect_to admin_step3_path(event: event_params)
-        end  
+        end
       end
 
       context "戻るボタンを押したら" do
         it "リクエストが成功すること" do
           # リダイレクトではなくrenderなので302でなく200
-          post admin_step2_path, params: { event: event_params, back: "戻る"}
+          post admin_step2_path, params: { event: event_params, back: "戻る" }
           expect(response).to have_http_status "200"
         end
       end
     end
   end
-  
+
   describe "ノミカイ新規作成(3)(GET #step3)" do
-  let (:event_params) { {name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00",  finish_time: "2020-07-30 20:00:00", memo: "花束用意する"} }
+    let (:event_params) { { name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00", finish_time: "2020-07-30 20:00:00", memo: "花束用意する" } }
 
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
@@ -531,15 +542,15 @@ RSpec.describe "Admin::Events", type: :request do
   end
 
   describe "ノミカイ新規作成(4)(POST #step4)" do
-    let (:event_params) { {name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00",  finish_time: "2020-07-30 20:00:00", memo: "花束用意する"} }
-    let (:event_user_ids_params) { {ids: ["", user.id, user_2.id]} }
-    let (:nil_event_user_ids_params) { {ids: [""]} }
+    let (:event_params) { { name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00", finish_time: "2020-07-30 20:00:00", memo: "花束用意する" } }
+    let (:event_user_ids_params) { { ids: ["", user.id, user_2.id] } }
+    let (:nil_event_user_ids_params) { { ids: [""] } }
 
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
-        post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params}
-        expect(response).to redirect_to    new_user_session_path
-        end
+        post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params }
+        expect(response).to redirect_to new_user_session_path
+      end
     end
 
     context "ログインしている場合" do
@@ -550,7 +561,7 @@ RSpec.describe "Admin::Events", type: :request do
       context "追加メンバーを選択したら" do
         it "リクエストが成功し、会費設定編集ページが表示されること" do
           # このpostはページの表示兼paramsの送信なので302でなく200
-          post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params}
+          post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params }
           expect(response).to have_http_status "200"
         end
       end
@@ -558,7 +569,7 @@ RSpec.describe "Admin::Events", type: :request do
       context "追加メンバーを選択しなかったら" do
         it "リクエストが失敗すること" do
           # renderのため302でなく200
-          post admin_step4_path, params: { event_user: nil_event_user_ids_params, event: event_params}
+          post admin_step4_path, params: { event_user: nil_event_user_ids_params, event: event_params }
           expect(response).to have_http_status "200"
         end
       end
@@ -566,7 +577,7 @@ RSpec.describe "Admin::Events", type: :request do
       context "戻るボタンを押したら" do
         it "リクエストが成功すること" do
           # リダイレクトではなくrenderなので302でなく200
-          post admin_step4_path, params: { event: event_params, event_user: nil_event_user_ids_params, back: "戻る"}
+          post admin_step4_path, params: { event: event_params, event_user: nil_event_user_ids_params, back: "戻る" }
           expect(response).to have_http_status "200"
         end
       end
@@ -574,17 +585,17 @@ RSpec.describe "Admin::Events", type: :request do
   end
 
   describe "ノミカイ新規作成(5)(POST #confirm)" do
-    let (:event_params) { {name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00",  finish_time: "2020-07-30 20:00:00", memo: "花束用意する"} }
-    let (:fees_params) {  ["3000", "4000"]  }
-    let (:admin_fee_params) {  "5000"  }
-    let (:event_user_ids_params) { {ids: ["", user_2.id, user_3.id]} }
+    let (:event_params) { { name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00", finish_time: "2020-07-30 20:00:00", memo: "花束用意する" } }
+    let (:fees_params) {  ["3000", "4000"] }
+    let (:admin_fee_params) { "5000" }
+    let (:event_user_ids_params) { { ids: ["", user_2.id, user_3.id] } }
     let (:restaurant_params) { "{\"@attributes\"=>{\"order\"=>0}, \"id\"=>\"a127617\", \"update_date\"=>\"2020-08-26T13:45:28+09:00\", \"name\"=>\"くいもの屋わん 大宮南銀通り店\", \"name_kana\"=>\"クイモノヤワン オオミヤナンギンドオリテン\", \"url\"=>\"https://r.gnavi.co.jp/a127617/?ak=Z2rHoeARvgskgkLLcLGmAms4orYpvb6osrE291%2FehB4%3D\", \"image_url\"=>{\"shop_image1\"=>\"https://rimage.gnst.jp/rest/img/aax8xkgd0000/t_01r6.jpg\"}, \"address\"=>\"〒330-0845 埼玉県さいたま市大宮区仲町1-24 オリンピアビル2F\", \"tel\"=>\"050-3464-7669\", \"tel_sub\"=>\"048-631-1222\", \"fax\"=>\"048-631-1222\", \"opentime\"=>\" 16:00～翌03:00\", \"holiday\"=>\"年中無休\", \"access\"=>{\"line\"=>\"ＪＲ\", \"station\"=>\"大宮駅\", \"station_exit\"=>\"東口\", \"walk\"=>\"2\", \"note\"=>\"\"}}" }
 
     context "未ログインの場合" do
       before do
-        post admin_step2_path, params: {event: event_params, restaurant:restaurant_params, next: "次へ"}
+        post admin_step2_path, params: { event: event_params, restaurant: restaurant_params, next: "次へ" }
         get admin_step3_path(event: event_params)
-        post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params}
+        post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params }
       end
 
       it "ログインページへリダイレクトすること" do
@@ -600,9 +611,9 @@ RSpec.describe "Admin::Events", type: :request do
 
       context "次へボタンを押したら" do
         before do
-          post admin_step2_path, params: {event: event_params, restaurant:restaurant_params, next: "次へ"}
+          post admin_step2_path, params: { event: event_params, restaurant: restaurant_params, next: "次へ" }
           get admin_step3_path(event: event_params)
-          post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params}
+          post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params }
         end
 
         it "リクエストが成功し、確認ページが表示されること" do
@@ -615,7 +626,7 @@ RSpec.describe "Admin::Events", type: :request do
       context "戻るボタンを押したら" do
         it "リクエストが成功すること" do
           # リダイレクトではなくrenderなので302でなく200
-          post admin_confirm_path, params: { event: event_params, fees: fees_params, admin_fee: admin_fee_params, back:"戻る" }
+          post admin_confirm_path, params: { event: event_params, fees: fees_params, admin_fee: admin_fee_params, back: "戻る" }
           expect(response).to have_http_status "200"
         end
       end
@@ -623,32 +634,32 @@ RSpec.describe "Admin::Events", type: :request do
   end
 
   describe "ノミカイ新規作成(6)(POST #create)" do
-    let (:event_params) { {name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00",  finish_time: "2020-07-30 20:00:00", memo: "花束用意する"} }
-    let (:fees_params) {  ["3000", "4000"]  }
-    let (:admin_fee_params) {  "5000"  }
-    let (:event_user_ids_params) { {ids: ["", user_2.id, user_3.id]} }
+    let (:event_params) { { name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00", finish_time: "2020-07-30 20:00:00", memo: "花束用意する" } }
+    let (:fees_params) {  ["3000", "4000"] }
+    let (:admin_fee_params) { "5000" }
+    let (:event_user_ids_params) { { ids: ["", user_2.id, user_3.id] } }
     let (:restaurant_params) { "{\"@attributes\"=>{\"order\"=>0}, \"id\"=>\"a127617\", \"update_date\"=>\"2020-08-26T13:45:28+09:00\", \"name\"=>\"くいもの屋わん 大宮南銀通り店\", \"name_kana\"=>\"クイモノヤワン オオミヤナンギンドオリテン\", \"url\"=>\"https://r.gnavi.co.jp/a127617/?ak=Z2rHoeARvgskgkLLcLGmAms4orYpvb6osrE291%2FehB4%3D\", \"image_url\"=>{\"shop_image1\"=>\"https://rimage.gnst.jp/rest/img/aax8xkgd0000/t_01r6.jpg\"}, \"address\"=>\"〒330-0845 埼玉県さいたま市大宮区仲町1-24 オリンピアビル2F\", \"tel\"=>\"050-3464-7669\", \"tel_sub\"=>\"048-631-1222\", \"fax\"=>\"048-631-1222\", \"opentime\"=>\" 16:00～翌03:00\", \"holiday\"=>\"年中無休\", \"access\"=>{\"line\"=>\"ＪＲ\", \"station\"=>\"大宮駅\", \"station_exit\"=>\"東口\", \"walk\"=>\"2\", \"note\"=>\"\"}}" }
 
     context "未ログインの場合" do
       before do
-        post admin_step2_path, params: {event: event_params, restaurant:restaurant_params, next: "次へ"}
+        post admin_step2_path, params: { event: event_params, restaurant: restaurant_params, next: "次へ" }
         get admin_step3_path(event: event_params)
-        post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params}
+        post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params }
         post admin_confirm_path, params: { event: event_params, fees: fees_params, admin_fee: admin_fee_params }
       end
 
       it "ログインページへリダイレクトすること" do
         post admin_events_path, params: { event: event_params }
         expect(response).to redirect_to new_user_session_path
-        end
+      end
     end
 
     context "ログインしている場合" do
       before do
         sign_in user
-        post admin_step2_path, params: {event: event_params, restaurant:restaurant_params, next: "次へ"}
+        post admin_step2_path, params: { event: event_params, restaurant: restaurant_params, next: "次へ" }
         get admin_step3_path(event: event_params)
-        post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params}
+        post admin_step4_path, params: { event_user: event_user_ids_params, event: event_params }
         post admin_confirm_path, params: { event: event_params, fees: fees_params, admin_fee: admin_fee_params }
       end
 
@@ -705,7 +716,7 @@ RSpec.describe "Admin::Events", type: :request do
       context "戻るボタンを押したら" do
         it "リクエストが成功すること" do
           # リダイレクトではなくrenderなので302でなく200
-          post admin_events_path, params: { event: event_params, back:"戻る"  }
+          post admin_events_path, params: { event: event_params, back: "戻る" }
           expect(response).to have_http_status "200"
         end
       end

@@ -41,9 +41,9 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
-  
 
   private
+
   def user_params
     params.require(:user).permit(:name, :belongs, :position, :email, :nomi_joy_id, :nearest_station, :can_drink, :favolite, :unfavolite, :introduction, :image)
   end

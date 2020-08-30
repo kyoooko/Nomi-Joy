@@ -9,7 +9,7 @@ RSpec.describe Todo, type: :model do
 
     context 'taskカラム' do
       it '空欄でないこと' do
-        todo.task= ''
+        todo.task = ''
         expect(todo.valid?).to eq false
       end
     end

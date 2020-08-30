@@ -350,8 +350,8 @@ class Admin::EventsController < ApplicationController
     redirect_to admin_event_path(@event)
   end
 
-
   private
+
   def set_event
     @event = Event.find(params[:id])
   end

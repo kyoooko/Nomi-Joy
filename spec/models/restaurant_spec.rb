@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, type: :model do
-
   describe 'アソシエーションのテスト' do
     let(:association) do
       described_class.reflect_on_association(target)

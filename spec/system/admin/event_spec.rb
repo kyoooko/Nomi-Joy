@@ -5,11 +5,6 @@
 # show(タブ３）
 # notice_to_unpaying_users
 
-
-
-
-
-
 # 備忘録：下記イベントユーザーでやる（リクエストスペックのfee_update／領収済みユーザーは金額変更できないテストできずのため）
 
 # ユーザー２は支払済
@@ -20,5 +15,5 @@
 #     patch admin_event_users_fee_path(event_user_2.id), params: { event_user: event_user_params }, xhr: true
 #     binding.pry
 #     expect(event_user.reload.fee).to eq 3000
-#   end  
-# end 
+#   end
+# end
