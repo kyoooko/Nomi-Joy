@@ -354,8 +354,7 @@ RSpec.describe "Admin::Events", type: :request do
   end
 
   # show(タブ４）
-  describe "お店の変更(GET #change_restaurant)" do
-    
+  describe "お店の変更(GET #change_restaurant)" do 
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
         get admin_change_restaurant_path(event.id)
@@ -669,6 +668,13 @@ RSpec.describe "Admin::Events", type: :request do
           post admin_events_path, params: { event: event_params }
           expect(Event.find_by(name: "野澤さん送別会", memo: "花束用意する", user_id: user.id)).to be_truthy
         end
+
+        # ノミカイユーザーはカンジ含め３人
+        it "ノミカイユーザーが作成されること" do
+          post admin_events_path, params: { event: event_params }
+          new_event = Event.last
+          expect(EventUser.where(event_id: new_event.id).count == 3).to be_truthy
+        end
       end
 
       context "つくる（メールで通知する）ボタンを押したら" do
@@ -686,6 +692,13 @@ RSpec.describe "Admin::Events", type: :request do
         it "詳細ページにリダイレクトされること" do
           post admin_events_path, params: { event: event_params }
           expect(Event.find_by(name: "野澤さん送別会", memo: "花束用意する", user_id: user.id)).to be_truthy
+        end
+
+        # ノミカイユーザーはカンジ含め３人
+        it "ノミカイユーザーが作成されること" do
+          post admin_events_path, params: { event: event_params }
+          new_event = Event.last
+          expect(EventUser.where(event_id: new_event.id).count == 3).to be_truthy
         end
       end
 

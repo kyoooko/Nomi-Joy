@@ -50,59 +50,11 @@ RSpec.describe "Admin::Notifications", type: :request do
   end
 
   # ノミカイ招待（ユーザー１がユーザー２を招待）
-  let!(:restaurant) { create(:restaurant, user_id: user_1.id) }
-  # let!(:event) { create(:event, restaurant_id: restaurant.id, user_id: user_1.id) }
-  # let!(:event_user_1) { create(:event_user, user_id: user_1.id, event_id: event.id) }
-  # let!(:event_user_2) { create(:event_user, user_id: user_2.id, event_id: event.id) }
-  let (:event_params) { { event: { name: "野澤さん送別会", date: "2020-07-30 00:00:00", begin_time: "2020-07-30 18:00:00",  finish_time: "2020-07-30 20:00:00", memo: "花束用意する"} } }
-
-  # describe "通知作成(POST #create)" do
-  #   context "ユーザー１がノミカイを新規作成しユーザー２を招待した時" do
-  #     before do
-  #       sign_in user_1
-  #       # get admin_room_path user_2.id
-  #       # ここ書く！！！！！！！！！！！！！
-  #       post admin_events_path, params: event_params, xhr: true
-  #     end
-  #     it "ユーザー１からユーザー２への通知が作成されること" do
-  #       expect(Notification.find_by(visitor_id: user_1.id, visited_id: user_2.id, action: "create_event")).to be_truthy
-  #     end
-  #   end
-  # end
 
   # ノミカイリマインド（ユーザー１がユーザー２を招待）
-  # describe "通知作成(POST #create)" do
-  #   context "ユーザー１(カンジ）がユーザー２へリマインドを送った時" do
-  #     before do
-  #       sign_in user_1
-  #     end
-  #     it "ユーザー１からユーザー２への通知が作成されること" do
-        
-  #     end
-  #   end
-  # end
 
-  # # 前日ノミカイリマインド（ユーザー１がユーザー２を招待／定時処理）
-  # describe "通知作成(POST #create)" do
-  #   context "ノミカイの前日AM８時になったら（カンジ：ユーザー１、参加者：ユーザー２）" do
-  #     before do
-  #       sign_in user_1
-  #     end
-  #     it "ユーザー１からユーザー２への通知が作成されること" do
-        
-  #     end
-  #   end
-  # end
+  # 会費支払い確認リマインド（ユーザー１がユーザー２へリマインド）
 
-
-
-
-
-
-# ノミカイ（ユーザー１がカンジでユーザー２は会費未払い）
-# let!(:restaurant) { create(:restaurant, user_id: user_1.id) }
-# let!(:event) { create(:event, restaurant_id: restaurant.id, user_id: user_1.id) }
-# let!(:event_user_1) { create(:event_user, user_id: user_1.id, event_id: event.id) }
-# let!(:event_user_2) { create(:event_user, user_id: user_2.id, event_id: event.id, fee_status: false) }
+  # 会費領収リマインド（ユーザー１がユーザー２へリマインド）
 
 end
