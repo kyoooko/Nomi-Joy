@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  # ログ出力
+  # Rails.logger.debug '実行されていますか〜〜〜'
+
   describe 'バリデーションのテスト' do
+    # subject〜を書くことでis_expected〜を使えるようになる
     subject { test_user.valid? }
     # 備忘録：letが呼び出された時点で実行される
     # 備忘録：createはDBに保存されるがbuildは保存されない
@@ -230,10 +234,11 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # describe 'データベースへの接続のテスト' do
-  #   subject { described_class.connection_config[:database] }
-  #     it '指定のDBに接続していること' do
-  #       is_expected.to match(/test.sqlite3/)
-  #     end
-  # end
+  describe 'データベースへの接続のテスト' do
+    subject { described_class.connection_config[:database] }
+
+    it '指定のDBに接続していること' do
+      is_expected.to match(/nomijoy_test/)
+    end
+  end
 end

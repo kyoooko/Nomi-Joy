@@ -3,14 +3,13 @@ require 'rails_helper'
 RSpec.describe "Public::Rooms", type: :request do
   # ユーザー１はログインユーザー。
   let!(:user_1) { create(:user) }
-
+  let!(:user_2) { create(:user) }
   let!(:user_3) { create(:user) }
   let!(:entry_2at1) { Entry.create(user_id: user_2.id, room_id: room.id) }
   let!(:entry_1at1) { Entry.create(user_id: user_1.id, room_id: room.id) }
   let!(:room) { Room.create }
   let!(:follow_2to1) { Relationship.create(following_id: user_2.id, follower_id: user_1.id) }
   let!(:follow_1to2) { Relationship.create(following_id: user_1.id, follower_id: user_2.id) }
-  let!(:user_2) { create(:user) }
 
   describe "DMできるメンバー一覧ページ(GET #index)" do
     context "未ログインの場合" do
@@ -34,7 +33,6 @@ RSpec.describe "Public::Rooms", type: :request do
 
   # ユーザー２は非ログインユーザー。ユーザー１はユーザー２とマッチング(相互フォロー)している。
   # ユーザー３は非ログインユーザー。ユーザー１はユーザー３とはマッチングしていない
-
   describe "DMページ(GET #show)" do
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do

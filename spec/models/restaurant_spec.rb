@@ -1,17 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, type: :model do
-  # describe 'バリデーションのテスト' do
-  #   let(:user) { create(:user) }
-  #   let!(:restaurant) { build(:restaurant, user_id: user.id) }
-  #   context 'nameカラム' do
-  #     it '空欄でないこと' do
-  #       restaurant.name= ''
-  #       expect(restaurant.valid?).to eq false
-  #    end
-  #   end
-  # end
-
   describe 'アソシエーションのテスト' do
     let(:association) do
       described_class.reflect_on_association(target)

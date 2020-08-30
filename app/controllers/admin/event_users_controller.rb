@@ -1,5 +1,7 @@
 class Admin::EventUsersController < ApplicationController
   before_action :set_event_user, only: [:fee_update, :fee_status_update]
+  before_action :ensure_admin?, only: [:participate_status_update]
+  before_action :ensure_admin_event_id?, only: [:fee_update, :fee_status_update]
 
   # 欠席の場合、論理削除
   def participate_status_update
@@ -11,12 +13,12 @@ class Admin::EventUsersController < ApplicationController
 
   # 参加メンバーことの会費変更（欠席者含む）
   def fee_update
-    # 下記のようにnullの場合を書かないと、入力がnillでもデータベースは更新されない
+    # 下記のようにnilの場合を書かないと、入力がnilでもデータベースは更新されない
     if @event_user.fee_status == false
       if params[:event_user][:fee].present?
         @event_user.update(event_user_params)
       else
-        @event_user.update(fee: "")
+        @event_user.update(fee: 0)
       end
     end
     # 非同期のため下記削除
@@ -42,5 +44,16 @@ class Admin::EventUsersController < ApplicationController
 
   def event_user_params
     params.require(:event_user).permit(:fee, :fee_status, :deleted_at)
+  end
+
+  # 自分がカンジでないノミカイはアクセス(URL検索含む）できないようにする
+  def ensure_admin?
+    @event = Event.find(params[:event_id])
+    redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id
+  end
+
+  def ensure_admin_event_id?
+    @event = Event.find(params[:event_user][:event_id])
+    redirect_back(fallback_location: root_path) unless @event.user_id == current_user.id
   end
 end

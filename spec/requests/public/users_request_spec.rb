@@ -27,7 +27,7 @@ RSpec.describe "Public::Users", type: :request do
   describe "ユーザー詳細ページを表示(GET #show)" do
     context "未ログインの場合" do
       it "ログインページへリダイレクトすること" do
-        get users_path
+        get user_path user.id
         expect(response).to redirect_to new_user_session_path
       end
     end

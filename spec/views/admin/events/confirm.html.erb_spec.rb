@@ -1,5 +1,6 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe "events/confirm.html.erb", type: :view do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+# RSpec.describe "events/confirm.html.erb", type: :view do
+#   pending "add some examples to (or delete) #{__FILE__}"
+# end
+# #

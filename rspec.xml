@@ -1,67 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="rspec" tests="61" skipped="0" failures="0" errors="0" time="4.809969" timestamp="2020-08-24T07:24:04+00:00" hostname="localhost.localdomain">
+<testsuite name="rspec" tests="1" skipped="0" failures="0" errors="0" time="1.162020" timestamp="2020-08-26T11:28:38+00:00" hostname="localhost.localdomain">
 <properties>
-<property name="seed" value="31056"/>
+<property name="seed" value="9669"/>
 </properties>
-<testcase classname="spec.models.direct_message_spec" name="DirectMessage アソシエーションのテスト Userモデルとの関係 N:1となっている" file="./spec/models/direct_message_spec.rb" time="0.915058"></testcase>
-<testcase classname="spec.models.direct_message_spec" name="DirectMessage アソシエーションのテスト Eventモデルとの関係 N:1となっている" file="./spec/models/direct_message_spec.rb" time="0.006159"></testcase>
-<testcase classname="spec.models.direct_message_spec" name="DirectMessage バリデーションのテスト messageカラム 空欄でないこと" file="./spec/models/direct_message_spec.rb" time="2.601511"></testcase>
-<testcase classname="spec.models.entry_spec" name="Entry アソシエーションのテスト Userモデルとの関係 N:1となっている" file="./spec/models/entry_spec.rb" time="0.001766"></testcase>
-<testcase classname="spec.models.entry_spec" name="Entry アソシエーションのテスト Eventモデルとの関係 N:1となっている" file="./spec/models/entry_spec.rb" time="0.001994"></testcase>
-<testcase classname="spec.models.event_spec" name="Event バリデーションのテスト nameカラム 空欄でないこと" file="./spec/models/event_spec.rb" time="0.082275"></testcase>
-<testcase classname="spec.models.event_spec" name="Event バリデーションのテスト nameカラム 空欄の場合はエラーが出る" file="./spec/models/event_spec.rb" time="0.041813"></testcase>
-<testcase classname="spec.models.event_spec" name="Event バリデーションのテスト dateカラム 空欄でないこと" file="./spec/models/event_spec.rb" time="0.031969"></testcase>
-<testcase classname="spec.models.event_spec" name="Event バリデーションのテスト dateカラム 空欄の場合はエラーが出る" file="./spec/models/event_spec.rb" time="0.035161"></testcase>
-<testcase classname="spec.models.event_spec" name="Event バリデーションのテスト begin_timeカラム 空欄でないこと" file="./spec/models/event_spec.rb" time="0.036290"></testcase>
-<testcase classname="spec.models.event_spec" name="Event バリデーションのテスト begin_timeカラム 空欄の場合はエラーが出る" file="./spec/models/event_spec.rb" time="0.042958"></testcase>
-<testcase classname="spec.models.event_spec" name="Event バリデーションのテスト finish_time 空欄でないこと" file="./spec/models/event_spec.rb" time="0.037487"></testcase>
-<testcase classname="spec.models.event_spec" name="Event バリデーションのテスト finish_time 空欄の場合はエラーが出る" file="./spec/models/event_spec.rb" time="0.051984"></testcase>
-<testcase classname="spec.models.event_spec" name="Event アソシエーションのテスト Restaurantモデルとの関係 N:1となっている" file="./spec/models/event_spec.rb" time="0.002664"></testcase>
-<testcase classname="spec.models.event_spec" name="Event アソシエーションのテスト EventUserモデルとの関係 1:Nとなっている" file="./spec/models/event_spec.rb" time="0.005584"></testcase>
-<testcase classname="spec.models.event_spec" name="Event アソシエーションのテスト Notificationモデルとの関係 1:Nとなっている" file="./spec/models/event_spec.rb" time="0.005585"></testcase>
-<testcase classname="spec.models.event_user_spec" name="EventUser バリデーションのテスト feeカラム 半角英数字であること" file="./spec/models/event_user_spec.rb" time="0.111881"></testcase>
-<testcase classname="spec.models.event_user_spec" name="EventUser アソシエーションのテスト Userモデルとの関係 N:1となっている" file="./spec/models/event_user_spec.rb" time="0.002091"></testcase>
-<testcase classname="spec.models.event_user_spec" name="EventUser アソシエーションのテスト Eventモデルとの関係 N:1となっている" file="./spec/models/event_user_spec.rb" time="0.001816"></testcase>
-<testcase classname="spec.models.notification_spec" name="Notification アソシエーションのテスト Userモデル(visitor)との関係 N:1となっている" file="./spec/models/notification_spec.rb" time="0.001871"></testcase>
-<testcase classname="spec.models.notification_spec" name="Notification アソシエーションのテスト Userモデル(visited)との関係 N:1となっている" file="./spec/models/notification_spec.rb" time="0.002471"></testcase>
-<testcase classname="spec.models.relationship_spec" name="Relationship アソシエーションのテスト Userモデル(following)との関係 N:1となっている" file="./spec/models/relationship_spec.rb" time="0.005610"></testcase>
-<testcase classname="spec.models.relationship_spec" name="Relationship アソシエーションのテスト Userモデル(follower)との関係 N:1となっている" file="./spec/models/relationship_spec.rb" time="0.003567"></testcase>
-<testcase classname="spec.models.restaurant_spec" name="Restaurant アソシエーションのテスト Userモデルとの関係 N:1となっている" file="./spec/models/restaurant_spec.rb" time="0.002127"></testcase>
-<testcase classname="spec.models.restaurant_spec" name="Restaurant アソシエーションのテスト Evnetモデルとの関係 1:Nとなっている" file="./spec/models/restaurant_spec.rb" time="0.001954"></testcase>
-<testcase classname="spec.models.room_spec" name="Room アソシエーションのテスト Userモデルとの関係 1:Nとなっている" file="./spec/models/room_spec.rb" time="0.006951"></testcase>
-<testcase classname="spec.models.room_spec" name="Room アソシエーションのテスト Entryモデルとの関係 1:Nとなっている" file="./spec/models/room_spec.rb" time="0.004273"></testcase>
-<testcase classname="spec.models.room_spec" name="Room アソシエーションのテスト DirectMessageモデルとの関係 1:Nとなっている" file="./spec/models/room_spec.rb" time="0.004165"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト nameカラム 空欄でないこと" file="./spec/models/user_spec.rb" time="0.025987"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト nameカラム 空欄の場合はエラーが出る" file="./spec/models/user_spec.rb" time="0.031481"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト emailカラム 空欄でないこと" file="./spec/models/user_spec.rb" time="0.023610"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト emailカラム 空欄の場合はエラーが出る" file="./spec/models/user_spec.rb" time="0.031384"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト emailカラム 一意であること" file="./spec/models/user_spec.rb" time="0.071967"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト emailカラム 一意でない場合はエラーが出る" file="./spec/models/user_spec.rb" time="0.069682"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト nomi_joy_idカラム 空欄でないこと" file="./spec/models/user_spec.rb" time="0.024607"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト nomi_joy_idカラム 6文字以上であること" file="./spec/models/user_spec.rb" time="0.039013"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト nomi_joy_idカラム ６文字未満の場合はエラーが出る" file="./spec/models/user_spec.rb" time="0.035115"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト nomi_joy_idカラム 半角英数字であること" file="./spec/models/user_spec.rb" time="0.032455"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト nomi_joy_idカラム 半角英数字以外の場合はエラーが出る" file="./spec/models/user_spec.rb" time="0.027532"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト passwordカラム 空欄でないこと" file="./spec/models/user_spec.rb" time="0.037924"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト passwordカラム 空欄の場合はエラーが出る" file="./spec/models/user_spec.rb" time="0.036757"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト passwordカラム 6文字以上であること" file="./spec/models/user_spec.rb" time="0.036106"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト passwordカラム ６文字未満の場合はエラーが出る" file="./spec/models/user_spec.rb" time="0.094034"></testcase>
-<testcase classname="spec.models.user_spec" name="User バリデーションのテスト passwordカラム パスワードが不一致" file="./spec/models/user_spec.rb" time="0.031447"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト Restaurantモデルとの関係 1:Nとなっている" file="./spec/models/user_spec.rb" time="0.001633"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト DirectMessageモデルとの関係 1:Nとなっている" file="./spec/models/user_spec.rb" time="0.003601"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト 中間テーブルEntryモデルとの関係 1:Nとなっている" file="./spec/models/user_spec.rb" time="0.006194"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト Eventモデルとの関係 1:Nとなっている（中間テーブルevent_usersを介すので多対多）" file="./spec/models/user_spec.rb" time="0.002359"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト 中間テーブルEventUserモデルとの関係 1:Nとなっている" file="./spec/models/user_spec.rb" time="0.002802"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト Relationshipモデル(active_relationships)との関係 1:Nとなっている" file="./spec/models/user_spec.rb" time="0.002487"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト Relationshipモデル(active_relationships)との関係 結合するモデルのクラスはRelationship" file="./spec/models/user_spec.rb" time="0.002878"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト Relationshipモデル(passive_relationships)との関係 1:Nとなっている" file="./spec/models/user_spec.rb" time="0.005570"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト Relationshipモデル(passive_relationships)との関係 結合するモデルのクラスはRelationship" file="./spec/models/user_spec.rb" time="0.002451"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト 自分がフォローしているユーザーとの関連（自己結合型多対多） 1:Nとなっている（中間テーブルactive_relationshipsを介すので自己結合型多対多）" file="./spec/models/user_spec.rb" time="0.001854"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト 自分がフォローしているユーザーとの関連（自己結合型多対多） 結合するモデルのクラスはUser(Follower)" file="./spec/models/user_spec.rb" time="0.002816"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト 自分がフォローされるユーザーとの関連（自己結合型多対多） 1:Nとなっている(中間テーブルpassive_relationshipsを介すので自己結合型多対多）" file="./spec/models/user_spec.rb" time="0.005107"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト 自分がフォローされるユーザーとの関連（自己結合型多対多） 結合するモデルのクラスはUser(Following)" file="./spec/models/user_spec.rb" time="0.003702"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト Notificationモデル(active_notifications)との関連 1:Nとなっている" file="./spec/models/user_spec.rb" time="0.002420"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト Notificationモデル(active_notifications)との関連 結合するモデルのクラスはNotification" file="./spec/models/user_spec.rb" time="0.001978"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト Notificationモデル(passive_notifications)との関連 1:Nとなっている" file="./spec/models/user_spec.rb" time="0.001883"></testcase>
-<testcase classname="spec.models.user_spec" name="User アソシエーションのテスト Notificationモデル(passive_notifications)との関連 結合するモデルのクラスはNotification" file="./spec/models/user_spec.rb" time="0.005291"></testcase>
+<testcase classname="spec.models.user_spec" name="User 1 + 1 は 2 になること" file="./spec/models/user_spec.rb" time="1.144729"></testcase>
 </testsuite>
