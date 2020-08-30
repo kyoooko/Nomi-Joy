@@ -79,7 +79,7 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 
 
 ### テスト
-* Rspec (単体／結合） 計140以上
+* Rspec (単体／結合） 計200以上
 * CircleCIを用いて自動テスト
 
 ### その他使用技術
