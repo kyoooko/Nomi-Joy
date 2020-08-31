@@ -71,16 +71,15 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 * AWS (EC2、RDS for MySQL、Route53、CloudWatch、S3、Lambda)
 * MySQL2
 * Nginx、 Puma
-* Capistrano、CircleCIを用いて自動デプロイ
+* CircleCIを用いてdocker-composeでコンテナを構築しCapistranoにより自動デプロイ
 
 ### インフラ構成図
 
 ![AWS構成図](https://user-images.githubusercontent.com/60662524/91147221-ed8aeb80-e6f2-11ea-85a6-084e361da2e0.png)
 
-
 ### テスト
 * Rspec (単体／結合） 計200以上
-* CircleCIを用いて自動テスト
+* CircleCIを用いてdocker-composeでコンテナを構築し自動テスト
 
 ### その他使用技術
 * 非同期通信 (フォロー・集金・メール送信など各種ボタン、検索、DM、ToDoリスト、画像アップロードの即時反映、タブ等)
