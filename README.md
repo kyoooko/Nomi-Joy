@@ -64,7 +64,7 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 
 ### 開発環境
 * Vagrant 2.2.4
-* Docker
+* Docker/Docker-compose
 * MySQL2
 
 ### 本番環境
@@ -79,14 +79,13 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 
 ### テスト
 * Rspec (単体／結合） 計200以上
-* CircleCIを用いてdocker-composeでコンテナを構築し自動テスト
+* CircleCIを用いてDocker-composeでコンテナを構築し自動テスト
 
 ### その他使用技術
 * 非同期通信 (フォロー・集金・メール送信など各種ボタン、検索、DM、ToDoリスト、画像アップロードの即時反映、タブ等)
 * Action Mailer
 * whenever （定時処理）
-* ぐるなび レストラン検索API
-* Google MapAPI、Geocoding API
+* 外部API(ぐるなび レストラン検索API、Google MapAPI、Geocoding API)
 * Rubocop-airbnb
 * HTTPS接続 (Certbot)
 * チーム開発を意識したGitHubの活用 （マイルストーン、イシュー、プルリク、マージ）
