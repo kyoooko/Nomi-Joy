@@ -92,3 +92,8 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 
 ## ER図
 https://drive.google.com/file/d/1K2Qrs0czp6oltj0WGz1hlMRBMYsf_4XE/view?usp=sharing
+
+## About me
+新卒で４年間損害保険会社に勤務しておりました。2020年４月からWebエンジニアを目指して勉強中です。
+
+[Quiita](https://qiita.com/kyoooko)
