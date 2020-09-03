@@ -96,4 +96,4 @@ https://drive.google.com/file/d/1K2Qrs0czp6oltj0WGz1hlMRBMYsf_4XE/view?usp=shari
 ## About me
 新卒で４年間損害保険会社に勤務しておりました。2020年４月からWebエンジニアを目指して勉強中です。
 
-[Quiita](https://qiita.com/kyoooko)
+[Qiita](https://qiita.com/kyoooko)
