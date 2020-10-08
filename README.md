@@ -91,7 +91,7 @@ https://docs.google.com/spreadsheets/d/1zn1J7OT1fU9TOgGupXXd03vXP6VqDejtVFZ6z9pq
 * チーム開発を意識したGitHubの活用 （マイルストーン、イシュー、プルリク、マージ）
 
 ## ER図
-https://drive.google.com/file/d/1K2Qrs0czp6oltj0WGz1hlMRBMYsf_4XE/view?usp=sharing
+![スクリーンショット 2020-10-09 0 22 29](https://user-images.githubusercontent.com/60662524/95479314-951f5d00-09c5-11eb-8050-a99d50ffee10.png)
 
 ## About me
 新卒で４年間損害保険会社に勤務しておりました。2020年４月からWebエンジニアを目指して勉強中です。
