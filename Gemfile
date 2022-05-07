@@ -4,7 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
+# mimemagic(0.3.5)エラーのためrailsのバージョンアップ
+gem 'rails', '5.2.5'
+# gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 # 開発・本番・テスト環境をmysql2に変更
 # gem 'sqlite3'
 gem 'mysql2'
